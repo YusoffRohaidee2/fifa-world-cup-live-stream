@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIFA World Cup 2026 | Media Center</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+
+    <style>
+        :root {
+            --bg-deep: #050505;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --accent-purple: #833ab4;
+            --accent-blue: #00d2ff;
+            --accent-green: #3fffcf;
+            --accent-orange: #ff9f43;
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+            --card-hover: rgba(255, 255, 255, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-deep);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(131, 58, 180, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(0, 210, 255, 0.1) 0px, transparent 50%);
+            color: var(--text-main);
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 40px 20px 10px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .main-logo {
+            width: 140px;
+            filter: drop-shadow(0 0 20px rgba(255,255,255,0.2));
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 3.5rem;
+            margin: 0;
+            background: linear-gradient(to right, #fff, #833ab4, #00d2ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .hero-desc {
+            max-width: 800px;
+            margin: 15px auto;
+            color: var(--text-dim);
+            font-size: 1.2rem;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px auto 40px;
+            max-width: 600px;
+            background: var(--glass);
+            padding: 8px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-dim);
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: 'Outfit';
+            cursor: pointer;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover { color: #fff; background: rgba(255,255,255,0.03); }
+        .tab-btn.active {
+            color: #000;
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(255,255,255,0.2);
+        }
+
+        .page-content {
+            display: none;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 40px 80px;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .page-content.active { display: block; }
+        .dashboard { display: grid; grid-template-columns: 1fr 400px; gap: 30px; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 1200px) {
+            .dashboard { grid-template-columns: 1fr; }
+            .page-content { padding: 0 20px 40px; }
+        }
+
+        .player-container {
+            background: var(--glass); border-radius: 30px; border: 1px solid var(--glass-border);
+            padding: 25px; backdrop-filter: blur(10px); box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .video-box { position: relative; width: 100%; padding-top: 56.25%; background: #000; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
+        .video-js { position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important; }
+
+        .player-info { display: flex; align-items: center; margin-top: 25px; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 20px; }
+        #channel-logo-display { height: 60px; margin-right: 25px; width: 100px; object-fit: contain; }
+        .status-dot { height: 10px; width: 10px; background: #3fffcf; border-radius: 50%; display: inline-block; margin-right: 10px; box-shadow: 0 0 10px #3fffcf; animation: pulse 1.5s infinite; }
+
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+
+        .sidebar { display: flex; flex-direction: column; gap: 20px; }
+        .section-header { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-main); font-weight: 600; margin: 15px 0 10px 0; display: flex; align-items: center; }
+        .section-header i { margin-right: 10px; color: var(--accent-green); }
+
+        .channel-card {
+            background: #0f1315; border: 1px solid var(--glass-border); border-radius: 20px;
+            padding: 18px 20px; display: flex; align-items: center; cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; margin-bottom: 16px;
+        }
+        .channel-card:hover { background: var(--card-hover); transform: translateY(-3px); border-color: var(--accent-blue); }
+        .channel-card.active { background: linear-gradient(135deg, rgba(131, 58, 180, 0.15), rgba(0, 210, 255, 0.15)); border-color: var(--accent-blue); box-shadow: 0 0 15px rgba(0, 210, 255, 0.2); }
+
+        .card-img { width: 70px; height: 45px; object-fit: contain; background: rgba(255,255,255,0.05); border-radius: 12px; margin-right: 20px; padding: 5px; }
+        .card-info h4 { margin: 0; font-size: 1.1rem; font-weight: 600; color: #ffffff; }
+        .card-info p { margin: 4px 0 0; font-size: 0.85rem; color: var(--text-dim); }
+        .tag { position: absolute; top: 0; right: 0; background: #00d2ff; color: #000; font-size: 0.7rem; font-weight: 800; padding: 6px 14px; border-radius: 0 0 0 14px; text-transform: uppercase; }
+
+        .scroll-area { max-height: 85vh; overflow-y: auto; padding-right: 10px; }
+        .scroll-area::-webkit-scrollbar { width: 5px; }
+        .scroll-area::-webkit-scrollbar-thumb { background: var(--glass-border); border-radius: 10px; }
+
+        .schedule-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 25px; width: 100%; }
+        .schedule-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 24px; padding: 22px; backdrop-filter: blur(10px); transition: all 0.3s ease; position: relative; }
+        .schedule-card:hover { border-color: var(--accent-purple); transform: translateY(-5px); }
+        
+        .match-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .match-group { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--accent-blue); letter-spacing: 1px; }
+        .match-date-gmt { font-size: 0.8rem; color: var(--text-dim); font-weight: 500; }
+
+        .teams { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding: 10px 0; }
+        .team { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; }
+        .team i { font-size: 2.2rem; color: #fff; filter: drop-shadow(0 0 8px rgba(255,255,255,0.2)); }
+        .team span { font-weight: 700; font-size: 1.1rem; text-align: center; letter-spacing: 0.5px; }
+        .vs { font-family: 'Poppins'; font-weight: 800; color: var(--accent-purple); font-size: 1.2rem; background: rgba(255,255,255,0.03); padding: 5px 12px; border-radius: 10px; border: 1px solid var(--glass-border); }
+        
+        .time-box { border-top: 1px solid var(--glass-border); padding-top: 15px; display: flex; flex-direction: column; gap: 6px; }
+        .time-row { display: flex; justify-content: space-between; font-size: 0.85rem; }
+        .time-row .label { color: var(--text-dim); }
+        .time-row .val { font-weight: 600; color: #fff; }
+        .time-row.system-time .val { color: var(--accent-green); font-weight: 700; }
+
+        .info-container { max-width: 900px; margin: 0 auto; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 30px; padding: 40px; backdrop-filter: blur(10px); }
+        .info-section { margin-bottom: 35px; }
+        .info-section h3 { font-family: 'Poppins'; font-size: 1.5rem; color: var(--accent-blue); margin-top: 0; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .info-section p { color: var(--text-dim); line-height: 1.7; font-size: 1.05rem; margin: 0; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/500px-2026_FIFA_World_Cup_emblem.svg.png" class="main-logo" alt="FIFA 2026">
+        <h1>FIFA World Cup 2026</h1>
+        <p class="hero-desc">
+            The official platform for FIFA World Cup 2026 media distribution, broadcasting, and technical integration services.
+        </p>
+    </header>
+
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('live', this)">
+            <i class="fa-solid fa-tv"></i> <span>Live Stream</span>
+        </button>
+        <button class="tab-btn" onclick="switchTab('schedule', this)">
+            <i class="fa-solid fa-calendar-days"></i> <span>Schedule</span>
+        </button>
+        <button class="tab-btn" onclick="switchTab('info', this)">
+            <i class="fa-solid fa-circle-info"></i> <span>Information</span>
+        </button>
+    </div>
+
+    <div id="page-live" class="page-content active">
+        <div class="dashboard">
+            <div class="player-section">
+                <div class="player-container">
+                    <div class="video-box">
+                        <video id="fifa-player" class="video-js vjs-big-play-centered" controls preload="auto" crossOrigin="anonymous"></video>
+                    </div>
+
+                    <div class="player-info">
+                        <img id="channel-logo-display" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/FIFA%2B_%282025%29.svg/960px-FIFA%2B_%282025%29.svg.png" alt="Broadcast Feed">
+                        <div>
+                            <div style="display: flex; align-items: center;">
+                                <span class="status-dot"></span>
+                                <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-green);">OFFICIAL BROADCAST FEED</span>
+                            </div>
+                            <h2 id="now-playing-title" style="margin: 5px 0 0; font-size: 1.8rem; font-family: 'Poppins';">Select a Channel</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="scroll-area">
+                    <div class="section-header"><i class="fa-solid fa-trophy"></i> <span>FIFA+ Official Streams</span></div>
+                    
+                    <div class="channel-card" onclick="streamHLS('https://a62dad94.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWV1X0ZJRkFQbHVzRW5nbGlzaF9ITFM/playlist.m3u8', 'FIFA+ HD (UK Feed)', this, 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/FIFA%2B_%282025%29.svg/960px-FIFA%2B_%282025%29.svg.png')">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/FIFA%2B_%282025%29.svg/960px-FIFA%2B_%282025%29.svg.png" class="card-img">
+                        <div class="card-info">
+                            <h4>FIFA+ HD</h4>
+                            <p>Global Feed | United Kingdom</p>
+                        </div>
+                        <span class="tag" style="background: var(--text-dim); color: #000;">720p</span>
+                    </div>
+
+                    <div class="channel-card" onclick="streamDASH('https://csm-e-cesharedlsgsin2live-97896457.bln1.yospace.com/csm/extlive/mediacorpprd01,fast-fifaplus-dash.mpd?yo.lb=700&yo.hb=6000&yo.d.ut=no&yo.av=3&yo.lpa=dur&yo.cps=b.mw.d.s.40.20.s.r&yo.up=https%3A%2F%2Ftglmp03.akamaized.net&yo.fr=true&vid=1667235', 'FIFA+ Full HD (Mediacorp)', this, 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/FIFA%2B_%282025%29.svg/960px-FIFA%2B_%282025%29.svg.png')">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/FIFA%2B_%282025%29.svg/960px-FIFA%2B_%282025%29.svg.png" class="card-img">
+                        <div class="card-info">
+                            <h4>FIFA+ HD</h4>
+                            <p>Feed by Mediacorp | Singapore</p>
+                        </div>
+                        <span class="tag" style="background: var(--accent-green); color: #000;">1080p</span>
+                    </div>
+
+                    <div class="channel-card" onclick="streamHLS('https://d2w9q46ikgrcwx.cloudfront.net/v1/sysdata_s_p_a_fifa_7/samsungheadend_us/latest/main/hls/playlist.m3u8', 'FIFA+ HD (US Feed)', this, 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/FIFA%2B_%282025%29.svg/960px-FIFA%2B_%282025%29.svg.png')">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/FIFA%2B_%282025%29.svg/960px-FIFA%2B_%282025%29.svg.png" class="card-img">
+                        <div class="card-info">
+                            <h4>FIFA+ HD</h4>
+                            <p>Global Feed | United States</p>
+                        </div>
+                        <span class="tag" style="background: var(--text-dim); color: #000;">720p</span>
+                    </div>
+
+                    <div class="section-header"><i class="fa-solid fa-satellite-dish"></i> <span>Fox Sports Streams</span></div>
+
+                    <div class="channel-card" onclick="streamHLS('https://cors-proxy.cooks.fyi/http://190.11.225.124:5000/live/fs1_hd/playlist.m3u8', 'FS1 HD', this, 'https://i.imgur.com/O9BapV9.png')">
+                        <img src="https://i.imgur.com/O9BapV9.png" class="card-img" style="background: rgba(255,255,255,0.02); padding: 4px;">
+                        <div class="card-info">
+                            <h4>FS1 HD</h4>
+                            <p>Global Feed | United States</p>
+                        </div>
+                        <span class="tag" style="background: var(--accent-green); color: #000;">1080p</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-schedule" class="page-content">
+        <div class="schedule-grid" id="schedule-container"></div>
+    </div>
+
+    <div id="page-info" class="page-content">
+        <div class="info-container">
+            <div class="info-section">
+                <h3>About Media Center Feed</h3>
+                <p>
+                    This system provides global technical distribution feeds for the World Cup event. Integrated with localized CDN endpoints ensuring low-latency high-definition broadcast streams.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+
+    <script>
+        const matchData = [
+            // Group Stage - Day 1 & 2
+            { date: "2026-06-11T19:00:00Z", day: "Thursday", team1: "Mexico", team2: "South Africa", group: "Group A" },
+            { date: "2026-06-12T02:00:00Z", day: "Friday", team1: "South Korea", team2: "Czech Republic", group: "Group A" },
+            { date: "2026-06-12T19:00:00Z", day: "Friday", team1: "Canada", team2: "Bosnia & Herz.", group: "Group B" },
+            { date: "2026-06-13T01:00:00Z", day: "Saturday", team1: "United States", team2: "Paraguay", group: "Group D" },
+            { date: "2026-06-13T19:00:00Z", day: "Saturday", team1: "Qatar", team2: "Switzerland", group: "Group B" },
+            { date: "2026-06-13T22:00:00Z", day: "Saturday", team1: "Brazil", team2: "Morocco", group: "Group C" },
+            
+            // Group Stage - Remaining Groups (Groups C to L Expanded)
+            { date: "2026-06-14T15:00:00Z", day: "Sunday", team1: "Argentina", team2: "Sweden", group: "Group E" },
+            { date: "2026-06-14T18:00:00Z", day: "Sunday", team1: "France", team2: "Australia", group: "Group F" },
+            { date: "2026-06-15T19:00:00Z", day: "Monday", team1: "Germany", team2: "Japan", group: "Group G" },
+            { date: "2026-06-15T22:00:00Z", day: "Monday", team1: "Spain", team2: "Cameroon", group: "Group H" },
+            { date: "2026-06-16T15:00:00Z", day: "Tuesday", team1: "England", team2: "Ecuador", group: "Group I" },
+            { date: "2026-06-16T18:00:00Z", day: "Tuesday", team1: "Italy", team2: "Saudi Arabia", group: "Group J" },
+            { date: "2026-06-17T19:00:00Z", day: "Wednesday", team1: "Portugal", team2: "Angola", group: "Group K" },
+            { date: "2026-06-17T22:00:00Z", day: "Wednesday", team1: "Netherlands", team2: "Tunisia", group: "Group L" },
+            { date: "2026-06-18T16:00:00Z", day: "Thursday", team1: "Belgium", team2: "Peru", group: "Group C" },
+            { date: "2026-06-18T19:00:00Z", day: "Thursday", team1: "Croatia", team2: "Ghana", group: "Group D" },
+            { date: "2026-06-19T14:00:00Z", day: "Friday", team1: "Uruguay", team2: "Scotland", group: "Group E" },
+            { date: "2026-06-19T20:00:00Z", day: "Friday", team1: "Denmark", team2: "Algeria", group: "Group F" },
+            { date: "2026-06-20T17:00:00Z", day: "Saturday", team1: "Colombia", team2: "Iran", group: "Group G" },
+            { date: "2026-06-20T21:00:00Z", day: "Saturday", team1: "Senegal", team2: "Austria", group: "Group H" },
+            { date: "2026-06-21T15:00:00Z", day: "Sunday", team1: "Morocco", team2: "Belgium", group: "Group C" },
+            { date: "2026-06-21T19:00:00Z", day: "Sunday", team1: "Paraguay", team2: "Croatia", group: "Group D" },
+            { date: "2026-06-22T18:00:00Z", day: "Monday", team1: "Sweden", team2: "Uruguay", group: "Group E" },
+            { date: "2026-06-22T21:00:00Z", day: "Monday", team1: "Australia", team2: "Denmark", group: "Group F" },
+            { date: "2026-06-23T16:00:00Z", day: "Tuesday", team1: "Japan", team2: "Colombia", group: "Group G" },
+            { date: "2026-06-23T20:00:00Z", day: "Tuesday", team1: "Cameroon", team2: "Senegal", group: "Group H" },
+            { date: "2026-06-24T17:00:00Z", day: "Wednesday", team1: "Ecuador", team2: "Wales", group: "Group I" },
+            { date: "2026-06-24T21:00:00Z", day: "Wednesday", team1: "Saudi Arabia", team2: "Ukraine", group: "Group J" },
+            { date: "2026-06-25T15:00:00Z", day: "Thursday", team1: "South Korea", team2: "Nigeria", group: "Group K" },
+            { date: "2026-06-25T19:00:00Z", day: "Thursday", team1: "Tunisia", team2: "Chile", group: "Group L" },
+
+            // Round of 32 (TBD Knockout Stage)
+            { date: "2026-06-28T18:00:00Z", day: "Sunday", team1: "Group A Winner (1A)", team2: "Group C Runner-Up (2C)", group: "Round of 32" },
+            { date: "2026-06-28T21:00:00Z", day: "Sunday", team1: "Group B Winner (1B)", team2: "3rd Place Group E/F/G", group: "Round of 32" },
+            { date: "2026-06-29T18:00:00Z", day: "Monday", team1: "Group C Winner (1C)", team2: "Group D Runner-Up (2D)", group: "Round of 32" },
+            { date: "2026-06-29T21:00:00Z", day: "Monday", team1: "Group D Winner (1D)", team2: "3rd Place Group A/B/C", group: "Round of 32" },
+            { date: "2026-06-30T17:00:00Z", day: "Tuesday", team1: "Group E Winner (1E)", team2: "Group F Runner-Up (2F)", group: "Round of 32" },
+            { date: "2026-06-30T21:00:00Z", day: "Tuesday", team1: "Group F Winner (1F)", team2: "Group E Runner-Up (2E)", group: "Round of 32" },
+            { date: "2026-07-01T18:00:00Z", day: "Wednesday", team1: "Group G Winner (1G)", team2: "Group H Runner-Up (2H)", group: "Round of 32" },
+            { date: "2026-07-01T21:00:00Z", day: "Wednesday", team1: "Group H Winner (1H)", team2: "Group G Runner-Up (2G)", group: "Round of 32" },
+            { date: "2026-07-02T18:00:00Z", day: "Thursday", team1: "Group I Winner (1I)", team2: "Group J Runner-Up (2J)", group: "Round of 32" },
+            { date: "2026-07-02T21:00:00Z", day: "Thursday", team1: "Group J Winner (1J)", team2: "Group I Runner-Up (2I)", group: "Round of 32" },
+            { date: "2026-07-03T18:00:00Z", day: "Friday", team1: "Group K Winner (1K)", team2: "Group L Runner-Up (2L)", group: "Round of 32" },
+            { date: "2026-07-03T21:00:00Z", day: "Friday", team1: "Group L Winner (1L)", team2: "Group K Runner-Up (2K)", group: "Round of 32" },
+
+            // Round of 16 (TBD)
+            { date: "2026-07-04T18:00:00Z", day: "Saturday", team1: "Winner Match 61", team2: "Winner Match 62", group: "Round of 16" },
+            { date: "2026-07-05T21:00:00Z", day: "Sunday", team1: "Winner Match 63", team2: "Winner Match 64", group: "Round of 16" },
+            { date: "2026-07-06T18:00:00Z", day: "Monday", team1: "Winner Match 65", team2: "Winner Match 66", group: "Round of 16" },
+            { date: "2026-07-07T21:00:00Z", day: "Tuesday", team1: "Winner Match 67", team2: "Winner Match 68", group: "Round of 16" },
+
+            // Quarter-Finals (TBD)
+            { date: "2026-07-09T19:00:00Z", day: "Thursday", team1: "Winner R16 Match 1", team2: "Winner R16 Match 2", group: "Quarter-Finals" },
+            { date: "2026-07-10T22:00:00Z", day: "Friday", team1: "Winner R16 Match 3", team2: "Winner R16 Match 4", group: "Quarter-Finals" },
+            { date: "2026-07-11T19:00:00Z", day: "Saturday", team1: "Winner R16 Match 5", team2: "Winner R16 Match 6", group: "Quarter-Finals" },
+            { date: "2026-07-11T23:00:00Z", day: "Saturday", team1: "Winner R16 Match 7", team2: "Winner R16 Match 8", group: "Quarter-Finals" },
+
+            // Semi-Finals (TBD)
+            { date: "2026-07-14T20:00:00Z", day: "Tuesday", team1: "Winner QF1", team2: "Winner QF2", group: "Semi-Finals" },
+            { date: "2026-07-15T20:00:00Z", day: "Wednesday", team1: "Winner QF3", team2: "Winner QF4", group: "Semi-Finals" },
+
+            // 3rd Place Play-off (TBD)
+            { date: "2026-07-18T18:00:00Z", day: "Saturday", team1: "Loser Semi-Final 1", team2: "Loser Semi-Final 2", group: "3rd Place Play-off" },
+
+            // Final (TBD)
+            { date: "2026-07-19T19:00:00Z", day: "Sunday", team1: "Winner Semi-Final 1", team2: "Winner Semi-Final 2", group: "Final" }
+        ];
+
+        function renderSchedule() {
+            const container = document.getElementById('schedule-container');
+            container.innerHTML = '';
+            matchData.forEach(m => {
+                const utcDate = new Date(m.date);
+                const gmtHours = String(utcDate.getUTCHours()).padStart(2, '0');
+                const gmtMinutes = String(utcDate.getUTCMinutes()).padStart(2, '0');
+                const gmtTimeStr = `${gmtHours}:${gmtMinutes} GMT+0`;
+                const localTimeStr = utcDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                const localDateStr = utcDate.toLocaleDateString([], { day: 'numeric', month: 'short', year: 'numeric' });
+
+                const card = document.createElement('div');
+                card.className = 'schedule-card';
+                card.innerHTML = `
+                    <div class="match-header">
+                        <span class="match-group">${m.group}</span>
+                        <span class="match-date-gmt">
+                            ${m.day} (${gmtHours}:${gmtMinutes} UTC)
+                        </span>
+                    </div>
+                    <div class="teams">
+                        <div class="team"><i class="fa-solid fa-shield-halved"></i><span>${m.team1}</span></div>
+                        <div class="vs">VS</div>
+                        <div class="team"><i class="fa-solid fa-shield-halved"></i><span>${m.team2}</span></div>
+                    </div>
+                    <div class="time-box">
+                        <div class="time-row">
+                            <span class="label">Original Time:</span>
+                            <span class="val">${gmtTimeStr}</span>
+                        </div>
+                        <div class="time-row system-time">
+                            <span class="label">Your System Time:</span>
+                            <span class="val">${localDateStr}, ${localTimeStr}</span>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function switchTab(tabId, buttonEl) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            if (tabId === 'live') document.getElementById('page-live').classList.add('active');
+            if (tabId === 'schedule') document.getElementById('page-schedule').classList.add('active');
+            if (tabId === 'info') document.getElementById('page-info').classList.add('active');
+            buttonEl.classList.add('active');
+        }
+
+        renderSchedule();
+
+        // Player Configurations
+        const player = videojs('fifa-player', { fluid: true, autoplay: false, controls: true, responsive: true });
+
+        function updateUI(title, el, logoUrl) {
+            document.getElementById('now-playing-title').innerText = title;
+            document.getElementById('channel-logo-display').src = logoUrl;
+            document.querySelectorAll('.channel-card').forEach(c => c.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        function streamHLS(url, title, el, logoUrl) { 
+            updateUI(title, el, logoUrl); 
+            player.src({ src: url, type: 'application/x-mpegURL' }); 
+            player.play(); 
+        }
+        
+        function streamDASH(url, title, el, logoUrl) { 
+            updateUI(title, el, logoUrl); 
+            player.src({ src: url, type: 'application/dash+xml' }); 
+            player.play(); 
+        }
+    </script>
+</body>
+</html>
