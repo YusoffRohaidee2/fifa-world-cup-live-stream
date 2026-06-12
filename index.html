@@ -45,21 +45,21 @@
         }
 
         header {
-            padding: 40px 20px 10px 20px;
+            padding: 30px 20px 10px 20px;
             text-align: center;
             position: relative;
         }
 
         .main-logo {
-            width: 140px;
+            width: 120px;
             filter: drop-shadow(0 0 20px rgba(255,255,255,0.2));
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         h1 {
             font-family: 'Poppins', sans-serif;
             font-weight: 800;
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             margin: 0;
             background: linear-gradient(to right, #fff, #833ab4, #00d2ff);
             -webkit-background-clip: text;
@@ -69,9 +69,9 @@
 
         .hero-desc {
             max-width: 800px;
-            margin: 15px auto;
+            margin: 10px auto;
             color: var(--text-dim);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             line-height: 1.6;
             font-weight: 300;
         }
@@ -79,11 +79,11 @@
         /* Notice Alert Banner */
         .notice-banner {
             max-width: 750px;
-            margin: 15px auto 25px;
+            margin: 15px auto 20px;
             background: rgba(255, 159, 67, 0.1);
             border: 1px solid rgba(255, 159, 67, 0.3);
             border-radius: 16px;
-            padding: 14px 20px;
+            padding: 12px 20px;
             display: flex;
             align-items: center;
             gap: 15px;
@@ -94,11 +94,11 @@
 
         .notice-banner i {
             color: var(--accent-orange);
-            font-size: 1.4rem;
+            font-size: 1.3rem;
         }
 
         .notice-text {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             line-height: 1.5;
             color: #ffdda1;
             font-weight: 500;
@@ -108,7 +108,7 @@
             display: flex;
             justify-content: center;
             gap: 12px;
-            margin: 20px auto 40px;
+            margin: 10px auto 30px;
             max-width: 780px;
             background: var(--glass);
             padding: 8px;
@@ -158,12 +158,12 @@
             display: none;
             max-width: 1600px;
             margin: 0 auto;
-            padding: 0 40px 80px;
+            padding: 0 40px 60px;
             animation: fadeIn 0.4s ease-in-out;
         }
 
         .page-content.active { display: block; }
-        .dashboard { display: grid; grid-template-columns: 1fr 400px; gap: 30px; }
+        .dashboard { display: grid; grid-template-columns: 1fr 420px; gap: 30px; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -173,6 +173,7 @@
         @media (max-width: 1200px) {
             .dashboard { grid-template-columns: 1fr; }
             .page-content { padding: 0 20px 40px; }
+            .scroll-area { max-height: 400px !important; }
         }
 
         .player-container {
@@ -190,25 +191,32 @@
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
         .sidebar { display: flex; flex-direction: column; gap: 20px; }
-        .section-header { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-main); font-weight: 600; margin: 15px 0 10px 0; display: flex; align-items: center; }
+        .section-header { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-main); font-weight: 600; margin: 5px 0 10px 0; display: flex; align-items: center; }
         .section-header i { margin-right: 10px; color: var(--accent-green); }
+
+        /* Dedicated Scroll Area for Channels */
+        .scroll-area { 
+            max-height: 72vh; 
+            overflow-y: auto; 
+            padding-right: 10px; 
+        }
+        .scroll-area::-webkit-scrollbar { width: 6px; }
+        .scroll-area::-webkit-scrollbar-track { background: transparent; }
+        .scroll-area::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+        .scroll-area::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
 
         .channel-card {
             background: #0f1315; border: 1px solid var(--glass-border); border-radius: 20px;
-            padding: 18px 20px; display: flex; align-items: center; cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; margin-bottom: 16px;
+            padding: 16px 20px; display: flex; align-items: center; cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; margin-bottom: 12px;
         }
-        .channel-card:hover { background: var(--card-hover); transform: translateY(-3px); border-color: var(--accent-blue); }
+        .channel-card:hover { background: var(--card-hover); transform: translateY(-2px); border-color: var(--accent-blue); }
         .channel-card.active { background: linear-gradient(135deg, rgba(131, 58, 180, 0.15), rgba(0, 210, 255, 0.15)); border-color: var(--accent-blue); box-shadow: 0 0 15px rgba(0, 210, 255, 0.2); }
 
         .card-img { width: 70px; height: 45px; object-fit: contain; background: rgba(255,255,255,0.05); border-radius: 12px; margin-right: 20px; padding: 5px; }
         .card-info h4 { margin: 0; font-size: 1.1rem; font-weight: 600; color: #ffffff; }
         .card-info p { margin: 4px 0 0; font-size: 0.85rem; color: var(--text-dim); }
         .tag { position: absolute; top: 0; right: 0; background: #00d2ff; color: #000; font-size: 0.7rem; font-weight: 800; padding: 6px 14px; border-radius: 0 0 0 14px; text-transform: uppercase; }
-
-        .scroll-area { max-height: 85vh; overflow-y: auto; padding-right: 10px; }
-        .scroll-area::-webkit-scrollbar { width: 5px; }
-        .scroll-area::-webkit-scrollbar-thumb { background: var(--glass-border); border-radius: 10px; }
 
         /* Schedule & Results Layout */
         .schedule-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 25px; width: 100%; }
@@ -246,10 +254,17 @@
         .card-red { color: var(--accent-red); font-size: 0.75rem; }
         .goal-icon { color: var(--accent-green); font-size: 0.75rem; }
 
+        /* Info Container & Log Changelog List */
         .info-container { max-width: 900px; margin: 0 auto; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 30px; padding: 40px; backdrop-filter: blur(10px); }
         .info-section { margin-bottom: 35px; }
+        .info-section:last-child { margin-bottom: 0; }
         .info-section h3 { font-family: 'Poppins'; font-size: 1.5rem; color: var(--accent-blue); margin-top: 0; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
         .info-section p { color: var(--text-dim); line-height: 1.7; font-size: 1.05rem; margin: 0; }
+        
+        .log-list { list-style: none; padding: 0; margin: 15px 0 0 0; }
+        .log-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; font-size: 1rem; color: var(--text-dim); line-height: 1.5; }
+        .log-item i { color: var(--accent-green); margin-top: 4px; font-size: 0.9rem; }
+        .log-date { color: #fff; font-weight: 700; background: rgba(255,255,255,0.07); padding: 2px 8px; border-radius: 6px; font-size: 0.85rem; font-family: 'Poppins'; margin-right: 5px; }
     </style>
 </head>
 <body>
@@ -262,7 +277,7 @@
         </p>
 
         <div class="notice-banner">
-            <i class="fa-solid fa-triangle-exclusion"></i>
+            <i class="fa-solid fa-triangle-exclamation"></i>
             <div class="notice-text">
                 <span data-en="Notice: Google may show a 'Phishing' warning on our Vercel mirror, but this is completely a false positive. There are absolutely no malicious scripts here. Please bear with us!" data-my="Maklum Balas: Google mungkin memaparkan amaran 'Phishing' pada pautan Vercel kami, namun ia adalah kesilapan sistem (false positive). Tiada sebarang skrip berbahaya di sini. Sila teruskan bersama kami!">Notice: Google may show a 'Phishing' warning on our Vercel mirror, but this is completely a false positive. There are absolutely no malicious scripts here. Please bear with us!</span>
             </div>
@@ -319,15 +334,6 @@
                         <span class="tag" style="background: var(--text-dim); color: #000;">720p</span>
                     </div>
 
-                    <div class="channel-card" onclick="streamDASH('https://csm-e-cesharedlsgsin2live-97896457.bln1.yospace.com/csm/extlive/mediacorpprd01,fast-fifaplus-dash.mpd?yo.lb=700&yo.hb=6000&yo.d.ut=no&yo.av=3&yo.lpa=dur&yo.cps=b.mw.d.s.40.20.s.r&yo.up=https%3A%2F%2Ftglmp03.akamaized.net&yo.fr=true&vid=1667235', 'FIFA+ Full HD (Mediacorp)', this, 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/FIFA%2B_%282025%29.svg/960px-FIFA%2B_%282025%29.svg.png')">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/FIFA%2B_%282025%29.svg/960px-FIFA%2B_%282025%29.svg.png" class="card-img">
-                        <div class="card-info">
-                            <h4>FIFA+ HD</h4>
-                            <p>Feed by Mediacorp | Singapore</p>
-                        </div>
-                        <span class="tag" style="background: var(--accent-green); color: #000;">1080p</span>
-                    </div>
-
                     <div class="channel-card" onclick="streamHLS('https://cors-proxy.cooks.fyi/https://d2w9q46ikgrcwx.cloudfront.net/v1/sysdata_s_p_a_fifa_7/samsungheadend_us/latest/main/hls/playlist.m3u8', 'FIFA+ HD (US Feed)', this, 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/FIFA%2B_%282025%29.svg/960px-FIFA%2B_%282025%29.svg.png')">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/FIFA%2B_%282025%29.svg/960px-FIFA%2B_%282025%29.svg.png" class="card-img">
                         <div class="card-info">
@@ -339,29 +345,11 @@
 
                     <div class="section-header"><i class="fa-solid fa-satellite-dish"></i> <span data-en="Fox Sports & Partners" data-my="Siaran Fox Sports & Rakan Strategik">Fox Sports & Partners</span></div>
 
-                    <div class="channel-card" onclick="streamHLS('https://cors-proxy.cooks.fyi/http://190.11.225.124:5000/live/fs1_hd/playlist.m3u8', 'FS1 HD', this, 'https://i.imgur.com/O9BapV9.png')">
-                        <img src="https://i.imgur.com/O9BapV9.png" class="card-img" style="background: rgba(255,255,255,0.02); padding: 4px;">
-                        <div class="card-info">
-                            <h4>FS1 HD</h4>
-                            <p>Global Feed | United States</p>
-                        </div>
-                        <span class="tag" style="background: var(--accent-green); color: #000;">1080p</span>
-                    </div>
-
                     <div class="channel-card" onclick="streamHLS('https://cors-proxy.cooks.fyi/http://23.237.104.106:8080/USA_FOX_DEPORTES/index.m3u8', 'FOX Deportes', this, 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/FOX_Deportes_logo.png/960px-FOX_Deportes_logo.png')">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/FOX_Deportes_logo.png/960px-FOX_Deportes_logo.png" class="card-img" style="background: rgba(255,255,255,0.02); padding: 4px;">
                         <div class="card-info">
                             <h4>FOX Deportes</h4>
                             <p>Global Feed | United States</p>
-                        </div>
-                        <span class="tag" style="background: var(--accent-green); color: #000;">1080p</span>
-                    </div>
-
-                    <div class="channel-card" onclick="streamHLS('https://dfr80qz435crc.cloudfront.net/MNOP/Amagi/Caze/Caze_TV_BR/Caze_TV.m3u8', 'CazéTV', this, 'https://upload.wikimedia.org/wikipedia/en/thumb/6/64/Caz%C3%A9TV_logo.svg/1280px-Caz%C3%A9TV_logo.svg.png')">
-                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/64/Caz%C3%A9TV_logo.svg/1280px-Caz%C3%A9TV_logo.svg.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 5px;">
-                        <div class="card-info">
-                            <h4>CazéTV</h4>
-                            <p>Global Feed | Brazil</p>
                         </div>
                         <span class="tag" style="background: var(--accent-green); color: #000;">1080p</span>
                     </div>
@@ -387,13 +375,32 @@
                     This system provides global technical distribution feeds for the World Cup event. Integrated with localized CDN endpoints ensuring low-latency high-definition broadcast streams.
                 </p>
             </div>
+
+            <div class="info-section" style="border-top: 1px solid var(--glass-border); padding-top: 30px;">
+                <h3 data-en="Update Log" data-my="Log Kemaskini"><i class="fa-solid fa-clock-rotate-left" style="color: var(--accent-orange);"></i> Update Log</h3>
+                <ul class="log-list">
+                    <li class="log-item">
+                        <i class="fa-solid fa-circle-plus"></i>
+                        <div>
+                            <span class="log-date">6/12/2026</span>
+                            <span data-en="Updated scores and match indicators for Group A fixtures (Mexico vs South Africa & Korea Republic vs Czech Republic)." data-my="Mengemaskini keputusan mata penuh perlawanan Kumpulan A (Mexico lwn Afrika Selatan & Korea Selatan lwn Republik Czech).">Updated scores and match indicators for Group A fixtures (Mexico vs South Africa & Korea Republic vs Czech Republic).</span>
+                        </div>
+                    </li>
+                    <li class="log-item">
+                        <i class="fa-solid fa-circle-plus"></i>
+                        <div>
+                            <span class="log-date">6/10/2026</span>
+                            <span data-en="Initial system initialization and deployment with automated multi-format video player core." data-my="Penyediaan dan pelancaran awal sistem bersama sokongan teras pemain video pelbagai format automatik.">Initial system initialization and deployment with automated multi-format video player core.</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
     <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
 
     <script>
-        // Upcoming matches only (Concluded matches removed from here)
         const matchData = [
             { date: "2026-06-12T19:00:00Z", day: "Friday", team1: "Canada", team2: "Bosnia & Herz.", group: "Group B" },
             { date: "2026-06-13T01:00:00Z", day: "Saturday", team1: "United States", team2: "Paraguay", group: "Group D" },
@@ -415,7 +422,7 @@
             { date: "2026-06-20T21:00:00Z", day: "Saturday", team1: "Senegal", team2: "Austria", group: "Group H" },
             { date: "2026-06-21T15:00:00Z", day: "Sunday", team1: "Morocco", team2: "Belgium", group: "Group C" },
             { date: "2026-06-21T19:00:00Z", day: "Sunday", team1: "Paraguay", team2: "Croatia", group: "Group D" },
-            { date: "2026-06-22+18:00:00Z", day: "Monday", team1: "Sweden", team2: "Uruguay", group: "Group E" },
+            { date: "2026-06-22T18:00:00Z", day: "Monday", team1: "Sweden", team2: "Uruguay", group: "Group E" },
             { date: "2026-06-22T21:00:00Z", day: "Monday", team1: "Australia", team2: "Denmark", group: "Group F" },
             { date: "2026-06-23T16:00:00Z", day: "Tuesday", team1: "Japan", team2: "Colombia", group: "Group G" },
             { date: "2026-06-23T20:00:00Z", day: "Tuesday", team1: "Cameroon", team2: "Senegal", group: "Group H" },
@@ -425,7 +432,6 @@
             { date: "2026-06-25T19:00:00Z", day: "Thursday", team1: "Tunisia", team2: "Chile", group: "Group L" }
         ];
 
-        // Concluded match metrics dataset
         const resultsData = [
             {
                 date: "2026-06-11T19:00:00Z", day: "Thursday", group: "Group A",
@@ -559,7 +565,6 @@
             renderResults();
         }
 
-        // Run render processes initialization
         renderSchedule();
         renderResults();
 
