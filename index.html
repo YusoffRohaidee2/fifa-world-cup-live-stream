@@ -293,11 +293,11 @@
                         <span class="tag" style="background: var(--accent-green); color: #000;">1080p</span>
                     </div>
 
-                    <div class="channel-card" onclick="streamHLS('https://cors-proxy.cooks.fyi/https://jmp2.uk/plu-5a74b8e1e22a61737979c6bf.m3u8', 'FOX SPORTS', this, 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/FOX_Sports_logo.svg/960px-FOX_Sports_logo.svg.png')">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/FOX_Sports_logo.svg/960px-FOX_Sports_logo.svg.png" class="card-img" style="background: rgba(255,255,255,0.02); padding: 4px;">
+                    <div class="channel-card" onclick="streamHLS('https://cors-proxy.cooks.fyi/http://23.237.104.106:8080/USA_FOX_DEPORTES/index.m3u8', 'FOX Deportes', this, 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/FOX_Deportes_logo.png/960px-FOX_Deportes_logo.png')">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/FOX_Deportes_logo.png/960px-FOX_Deportes_logo.png" class="card-img" style="background: rgba(255,255,255,0.02); padding: 4px;">
                         <div class="card-info">
-                            <h4>FOX SPORTS</h4>
-                            <p>Global Feed | Argentina</p>
+                            <h4>FOX Deportes</h4>
+                            <p>Global Feed | United States</p>
                         </div>
                         <span class="tag" style="background: var(--accent-green); color: #000;">1080p</span>
                     </div>
@@ -411,6 +411,7 @@
             document.querySelectorAll('[data-en]').forEach(el => {
                 el.innerText = el.getAttribute('data-' + currentLang);
             });
+            renderSchedule();
         }
 
         renderSchedule();
