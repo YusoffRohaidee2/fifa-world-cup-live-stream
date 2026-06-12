@@ -207,7 +207,12 @@
         
         .section-header-group { display: flex; align-items: center; gap: 12px; margin: 10px 0 10px 0; }
         .section-header-logo { height: 22px; width: auto; object-fit: contain; filter: drop-shadow(0 0 4px rgba(255,255,255,0.1)); }
+        .section-header-icon { font-size: 1.2rem; color: var(--accent-blue); filter: drop-shadow(0 0 5px rgba(0,210,255,0.3)); }
         .section-header { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-main); font-weight: 600; margin: 0; }
+        
+        /* Segment Sub-Notice Styling */
+        .section-sub-notice { font-size: 0.75rem; color: #ffbc6d; margin: -5px 0 12px 0; font-weight: 500; display: flex; align-items: flex-start; gap: 6px; opacity: 0.95; line-height: 1.4; }
+        .section-sub-notice i { margin-top: 2px; flex-shrink: 0; }
 
         /* No scroll container wrapper since it is fully visible */
         .channels-list-wrapper { display: flex; flex-direction: column; }
@@ -398,6 +403,43 @@
                         <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
                     </div>
 
+                    <div class="section-header-group">
+                        <i class="fa-solid fa-video section-header-icon"></i>
+                        <div class="section-header" data-en="Reuters & AP Live Feeds" data-my="Suapan Langsung Reuters & AP">Reuters & AP Live Feeds</div>
+                    </div>
+                    
+                    <div class="section-sub-notice">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <span data-en="Notice: These feeds provide raw news coverage (stadium views, arrivals, CCTV-style ambient angles) and will change daily." data-my="Makluman: Suapan ini menyediakan liputan berita asal (pandangan stadium, ketibaan, sudut ambien gaya CCTV) dan akan berubah setiap hari.">Notice: These feeds provide raw news coverage (stadium views, arrivals, CCTV-style ambient angles) and will change daily.</span>
+                    </div>
+
+                    <div class="channel-card" onclick="streamHLS('https://d3iwkuprshvnfk.cloudfront.net/RLSP2/HD50_500kb/chunklist.m3u8', 'Reuters Live Service [2]', this, 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Reuters_Logo.svg/1200px-Reuters_Logo.svg.png')">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Reuters_Logo.svg/1200px-Reuters_Logo.svg.png" class="card-img" style="background: #1e1e1e; padding: 6px;">
+                        <div class="card-info">
+                            <h4>Reuters Live Service [2]</h4>
+                            <p data-en="Raw News Feed | Ambient & CCTV" data-my="Suapan Berita Asal | Ambien & CCTV">Raw News Feed | Ambient & CCTV</p>
+                        </div>
+                        <span class="tag" style="background: var(--accent-green); color: #000;">1080p</span>
+                    </div>
+
+                    <div class="channel-card" onclick="streamHLS('http://1610684902.rsc.cdn77.org/SCNek2Fa6TFmNF02/live_LZhmmII6x8GR7I3ig3zQ/AP_FEED_3_2500k/chunks.m3u8', 'AP Live Choice [3]', this, 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Associated_Press_logo_2012.svg/1200px-Associated_Press_logo_2012.svg.png')">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Associated_Press_logo_2012.svg/1200px-Associated_Press_logo_2012.svg.png" class="card-img" style="background: #ffffff; padding: 6px;">
+                        <div class="card-info">
+                            <h4>AP Live Choice [3]</h4>
+                            <p data-en="Raw News Feed | Ambient & CCTV" data-my="Suapan Berita Asal | Ambien & CCTV">Raw News Feed | Ambient & CCTV</p>
+                        </div>
+                        <span class="tag" style="background: var(--text-dim); color: #000;">480p</span>
+                    </div>
+
+                    <div class="channel-card" onclick="streamHLS('http://1610684902.rsc.cdn77.org/dd20476021b1fc5dd4fe0e50fabdc2bz/live_LZhmmII6x8GR7I3ig3zQ/AP_LC04_2500k/chunks.m3u8', 'AP Live Choice [4]', this, 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Associated_Press_logo_2012.svg/1200px-Associated_Press_logo_2012.svg.png')">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Associated_Press_logo_2012.svg/1200px-Associated_Press_logo_2012.svg.png" class="card-img" style="background: #ffffff; padding: 6px;">
+                        <div class="card-info">
+                            <h4>AP Live Choice [4]</h4>
+                            <p data-en="Raw News Feed | Ambient & CCTV" data-my="Suapan Berita Asal | Ambien & CCTV">Raw News Feed | Ambient & CCTV</p>
+                        </div>
+                        <span class="tag" style="background: var(--text-dim); color: #000;">480p</span>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -427,21 +469,21 @@
                         <i class="fa-solid fa-circle-plus"></i>
                         <div>
                             <span class="log-date">6/13/2026</span>
-                            <span data-en="Optimized interface layout by removing scrolls, updating broadcast logos, and adding load alerts." data-my="Mengoptimumkan susun atur antara muka dengan membuang fungsi skrol, mengemaskini logo penyiaran, serta menambah amaran memuatkan siaran.">Optimized interface layout by removing scrolls, updating broadcast logos, and adding load alerts.</span>
+                            <span data-en="Clarified Reuters & AP feed context as raw news media (CCTV-style ambient views and arrivals notice)." data-my="Memperjelaskan konteks suapan Reuters & AP sebagai media berita asal (makluman pandangan ambien gaya CCTV dan ketibaan).">Clarified Reuters & AP feed context as raw news media (CCTV-style ambient views and arrivals notice).</span>
                         </div>
                     </li>
                     <li class="log-item">
                         <i class="fa-solid fa-circle-plus"></i>
                         <div>
                             <span class="log-date">6/13/2026</span>
-                            <span data-en="Added RTM Malaysia local distribution streams (Sukan+ HD and TV Okey HD)." data-my="Menambah suapan pengedaran tempatan RTM Malaysia (Sukan+ HD dan TV Okey HD).">Added RTM Malaysia local distribution streams (Sukan+ HD and TV Okey HD).</span>
+                            <span data-en="Integrated Reuters & AP global live agency feeds under professional video technical segment." data-my="Mengintegrasikan suapan langsung agensi global Reuters & AP di bawah segmen teknikal video profesional.">Integrated Reuters & AP global live agency feeds under professional video technical segment.</span>
                         </div>
                     </li>
                     <li class="log-item">
                         <i class="fa-solid fa-circle-plus"></i>
                         <div>
-                            <span class="log-date">6/12/2026</span>
-                            <span data-en="Updated scores and match indicators for Group A fixtures (Mexico vs South Africa & Korea Republic vs Czech Republic)." data-my="Mengemaskini keputusan mata penuh perlawanan Kumpulan A (Mexico lwn Afrika Selatan & Korea Selatan lwn Republik Czech).">Updated scores and match indicators for Group A fixtures (Mexico vs South Africa & Korea Republic vs Czech Republic).</span>
+                            <span class="log-date">6/13/2026</span>
+                            <span data-en="Optimized interface layout by removing scrolls, updating broadcast logos, and adding load alerts." data-my="Mengoptimumkan susun atur antara muka dengan membuang fungsi skrol, mengemaskini logo penyiaran, serta menambah amaran memuatkan siaran.">Optimized interface layout by removing scrolls, updating broadcast logos, and adding load alerts.</span>
                         </div>
                     </li>
                 </ul>
