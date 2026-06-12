@@ -21,6 +21,7 @@
             --accent-blue: #00d2ff;
             --accent-green: #3fffcf;
             --accent-orange: #ff9f43;
+            --accent-red: #ff4d4d;
             --text-main: #ffffff;
             --text-dim: #a0a0a0;
             --card-hover: rgba(255, 255, 255, 0.12);
@@ -75,12 +76,40 @@
             font-weight: 300;
         }
 
+        /* Notice Alert Banner */
+        .notice-banner {
+            max-width: 750px;
+            margin: 15px auto 25px;
+            background: rgba(255, 159, 67, 0.1);
+            border: 1px solid rgba(255, 159, 67, 0.3);
+            border-radius: 16px;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            backdrop-filter: blur(10px);
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .notice-banner i {
+            color: var(--accent-orange);
+            font-size: 1.4rem;
+        }
+
+        .notice-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #ffdda1;
+            font-weight: 500;
+        }
+
         .nav-tabs {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
             margin: 20px auto 40px;
-            max-width: 650px;
+            max-width: 780px;
             background: var(--glass);
             padding: 8px;
             border-radius: 20px;
@@ -92,7 +121,7 @@
             background: transparent;
             border: none;
             color: var(--text-dim);
-            padding: 12px 24px;
+            padding: 12px 20px;
             font-size: 1rem;
             font-weight: 600;
             font-family: 'Outfit';
@@ -121,7 +150,7 @@
             font-size: 0.85rem;
             font-family: 'Outfit';
             transition: 0.2s;
-            margin-left: 10px;
+            margin-left: auto;
         }
         .lang-btn:hover { background: rgba(255,255,255,0.15); }
 
@@ -181,6 +210,7 @@
         .scroll-area::-webkit-scrollbar { width: 5px; }
         .scroll-area::-webkit-scrollbar-thumb { background: var(--glass-border); border-radius: 10px; }
 
+        /* Schedule & Results Layout */
         .schedule-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 25px; width: 100%; }
         .schedule-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 24px; padding: 22px; backdrop-filter: blur(10px); transition: all 0.3s ease; position: relative; }
         .schedule-card:hover { border-color: var(--accent-purple); transform: translateY(-5px); }
@@ -195,11 +225,26 @@
         .team span { font-weight: 700; font-size: 1.1rem; text-align: center; letter-spacing: 0.5px; }
         .vs { font-family: 'Poppins'; font-weight: 800; color: var(--accent-purple); font-size: 1.2rem; background: rgba(255,255,255,0.03); padding: 5px 12px; border-radius: 10px; border: 1px solid var(--glass-border); }
         
+        .score-display { font-family: 'Poppins'; font-weight: 800; font-size: 1.8rem; color: #fff; background: rgba(255,255,255,0.05); padding: 4px 14px; border-radius: 12px; border: 1px solid var(--glass-border); }
+
         .time-box { border-top: 1px solid var(--glass-border); padding-top: 15px; display: flex; flex-direction: column; gap: 6px; }
         .time-row { display: flex; justify-content: space-between; font-size: 0.85rem; }
         .time-row .label { color: var(--text-dim); }
         .time-row .val { font-weight: 600; color: #fff; }
         .time-row.system-time .val { color: var(--accent-green); font-weight: 700; }
+
+        /* Match Stats Styling inside Results */
+        .match-details-box { background: rgba(0,0,0,0.2); border-radius: 14px; padding: 12px; margin-bottom: 12px; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.02); }
+        .detail-row { display: flex; justify-content: space-between; margin-bottom: 6px; color: var(--text-dim); }
+        .detail-row:last-child { margin-bottom: 0; }
+        .detail-row span strong { color: #fff; }
+        .events-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 8px; font-size: 0.8rem; }
+        .team-events { display: flex; flex-direction: column; gap: 3px; }
+        .team-events.right { align-items: flex-end; text-align: right; border-left: 1px solid rgba(255,255,255,0.05); padding-left: 10px; }
+        .event-item { display: flex; align-items: center; gap: 5px; }
+        .event-item.rev { flex-direction: row-reverse; }
+        .card-red { color: var(--accent-red); font-size: 0.75rem; }
+        .goal-icon { color: var(--accent-green); font-size: 0.75rem; }
 
         .info-container { max-width: 900px; margin: 0 auto; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 30px; padding: 40px; backdrop-filter: blur(10px); }
         .info-section { margin-bottom: 35px; }
@@ -215,6 +260,13 @@
         <p class="hero-desc" data-en="The official platform for FIFA World Cup 2026 media distribution, broadcasting, and technical integration services." data-my="Platform rasmi untuk pengedaran media, penyiaran, dan perkhidmatan integrasi teknikal Piala Dunia FIFA 2026.">
             The official platform for FIFA World Cup 2026 media distribution, broadcasting, and technical integration services.
         </p>
+
+        <div class="notice-banner">
+            <i class="fa-solid fa-triangle-exclusion"></i>
+            <div class="notice-text">
+                <span data-en="Notice: Google may show a 'Phishing' warning on our Vercel mirror, but this is completely a false positive. There are absolutely no malicious scripts here. Please bear with us!" data-my="Maklum Balas: Google mungkin memaparkan amaran 'Phishing' pada pautan Vercel kami, namun ia adalah kesilapan sistem (false positive). Tiada sebarang skrip berbahaya di sini. Sila teruskan bersama kami!">Notice: Google may show a 'Phishing' warning on our Vercel mirror, but this is completely a false positive. There are absolutely no malicious scripts here. Please bear with us!</span>
+            </div>
+        </div>
     </header>
 
     <div class="nav-tabs">
@@ -223,6 +275,9 @@
         </button>
         <button class="tab-btn" onclick="switchTab('schedule', this)">
             <i class="fa-solid fa-calendar-days"></i> <span data-en="Schedule" data-my="Jadual">Schedule</span>
+        </button>
+        <button class="tab-btn" onclick="switchTab('results', this)">
+            <i class="fa-solid fa-square-poll-horizontal"></i> <span data-en="Results" data-my="Keputusan">Results</span>
         </button>
         <button class="tab-btn" onclick="switchTab('info', this)">
             <i class="fa-solid fa-circle-info"></i> <span data-en="Information" data-my="Maklumat">Information</span>
@@ -320,6 +375,10 @@
         <div class="schedule-grid" id="schedule-container"></div>
     </div>
 
+    <div id="page-results" class="page-content">
+        <div class="schedule-grid" id="results-container"></div>
+    </div>
+
     <div id="page-info" class="page-content">
         <div class="info-container">
             <div class="info-section">
@@ -334,9 +393,8 @@
     <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
 
     <script>
+        // Upcoming matches only (Concluded matches removed from here)
         const matchData = [
-            { date: "2026-06-11T19:00:00Z", day: "Thursday", team1: "Mexico", team2: "South Africa", group: "Group A" },
-            { date: "2026-06-12T02:00:00Z", day: "Friday", team1: "South Korea", team2: "Czech Republic", group: "Group A" },
             { date: "2026-06-12T19:00:00Z", day: "Friday", team1: "Canada", team2: "Bosnia & Herz.", group: "Group B" },
             { date: "2026-06-13T01:00:00Z", day: "Saturday", team1: "United States", team2: "Paraguay", group: "Group D" },
             { date: "2026-06-13T19:00:00Z", day: "Saturday", team1: "Qatar", team2: "Switzerland", group: "Group B" },
@@ -357,7 +415,7 @@
             { date: "2026-06-20T21:00:00Z", day: "Saturday", team1: "Senegal", team2: "Austria", group: "Group H" },
             { date: "2026-06-21T15:00:00Z", day: "Sunday", team1: "Morocco", team2: "Belgium", group: "Group C" },
             { date: "2026-06-21T19:00:00Z", day: "Sunday", team1: "Paraguay", team2: "Croatia", group: "Group D" },
-            { date: "2026-06-22T18:00:00Z", day: "Monday", team1: "Sweden", team2: "Uruguay", group: "Group E" },
+            { date: "2026-06-22+18:00:00Z", day: "Monday", team1: "Sweden", team2: "Uruguay", group: "Group E" },
             { date: "2026-06-22T21:00:00Z", day: "Monday", team1: "Australia", team2: "Denmark", group: "Group F" },
             { date: "2026-06-23T16:00:00Z", day: "Tuesday", team1: "Japan", team2: "Colombia", group: "Group G" },
             { date: "2026-06-23T20:00:00Z", day: "Tuesday", team1: "Cameroon", team2: "Senegal", group: "Group H" },
@@ -365,6 +423,36 @@
             { date: "2026-06-24T21:00:00Z", day: "Wednesday", team1: "Saudi Arabia", team2: "Ukraine", group: "Group J" },
             { date: "2026-06-25T15:00:00Z", day: "Thursday", team1: "South Korea", team2: "Nigeria", group: "Group K" },
             { date: "2026-06-25T19:00:00Z", day: "Thursday", team1: "Tunisia", team2: "Chile", group: "Group L" }
+        ];
+
+        // Concluded match metrics dataset
+        const resultsData = [
+            {
+                date: "2026-06-11T19:00:00Z", day: "Thursday", group: "Group A",
+                team1: "Mexico", team2: "South Africa", score1: 2, score2: 0,
+                stadium: "Azteca Stadium", attendance: "80,824",
+                events1: [
+                    { type: "goal", text: "J. Quiñones (9')" },
+                    { type: "goal", text: "R. Jiménez (67')" },
+                    { type: "red", text: "C. Montes (90+2')" }
+                ],
+                events2: [
+                    { type: "red", text: "S. Sithole (49')" },
+                    { type: "red", text: "T. Zwane (84')" }
+                ]
+            },
+            {
+                date: "2026-06-12T02:00:00Z", day: "Friday", group: "Group A",
+                team1: "Korea Republic", team2: "Czech Republic", score1: 2, score2: 1,
+                stadium: "Estadio Chivas", attendance: "44,985",
+                events1: [
+                    { type: "goal", text: "I. Hwang (67')" },
+                    { type: "goal", text: "H. Oh (80')" }
+                ],
+                events2: [
+                    { type: "goal", text: "L. Krejci (59')" }
+                ]
+            }
         ];
 
         function renderSchedule() {
@@ -405,12 +493,59 @@
             });
         }
 
+        function renderResults() {
+            const container = document.getElementById('results-container');
+            container.innerHTML = '';
+            resultsData.forEach(r => {
+                const utcDate = new Date(r.date);
+                const localDateStr = utcDate.toLocaleDateString([], { day: 'numeric', month: 'short', year: 'numeric' });
+
+                let events1Html = '';
+                r.events1.forEach(e => {
+                    const icon = e.type === 'goal' ? '<i class="fa-solid fa-football goal-icon"></i>' : '<i class="fa-solid fa-square card-red"></i>';
+                    events1Html += `<div class="event-item">${icon} <span>${e.text}</span></div>`;
+                });
+
+                let events2Html = '';
+                r.events2.forEach(e => {
+                    const icon = e.type === 'goal' ? '<i class="fa-solid fa-football goal-icon"></i>' : '<i class="fa-solid fa-square card-red"></i>';
+                    events2Html += `<div class="event-item event-item.rev"><span>${e.text}</span> ${icon}</div>`;
+                });
+
+                const card = document.createElement('div');
+                card.className = 'schedule-card';
+                card.innerHTML = `
+                    <div class="match-header">
+                        <span class="match-group">${r.group}</span>
+                        <span class="match-date-gmt" style="color: var(--accent-green); font-weight:700;"><i class="fa-solid fa-circle-check"></i> FT</span>
+                    </div>
+                    <div class="teams">
+                        <div class="team"><i class="fa-solid fa-shield-halved"></i><span>${r.team1}</span></div>
+                        <div class="score-display">${r.score1} : ${r.score2}</div>
+                        <div class="team"><i class="fa-solid fa-shield-halved"></i><span>${r.team2}</span></div>
+                    </div>
+                    <div class="match-details-box">
+                        <div class="detail-row"><span>Stadium: <strong>${r.stadium}</strong></span></div>
+                        <div class="detail-row"><span>Attendance: <strong>${r.attendance}</strong></span><span>Date: <strong>${localDateStr}</strong></span></div>
+                    </div>
+                    <div class="events-list">
+                        <div class="team-events">${events1Html}</div>
+                        <div class="team-events right">${events2Html}</div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
         function switchTab(tabId, buttonEl) {
             document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            
             if (tabId === 'live') document.getElementById('page-live').classList.add('active');
             if (tabId === 'schedule') document.getElementById('page-schedule').classList.add('active');
+            if (tabId === 'results') document.getElementById('page-results').classList.add('active');
             if (tabId === 'info') document.getElementById('page-info').classList.add('active');
+            
             buttonEl.classList.add('active');
         }
 
@@ -421,9 +556,12 @@
                 el.innerText = el.getAttribute('data-' + currentLang);
             });
             renderSchedule();
+            renderResults();
         }
 
+        // Run render processes initialization
         renderSchedule();
+        renderResults();
 
         const player = videojs('fifa-player', { fluid: true, autoplay: false, controls: true, responsive: true });
 
