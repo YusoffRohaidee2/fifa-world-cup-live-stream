@@ -173,7 +173,6 @@
         @media (max-width: 1200px) {
             .dashboard { grid-template-columns: 1fr; }
             .page-content { padding: 0 20px 40px; }
-            .scroll-area { max-height: 400px !important; }
         }
 
         .player-container {
@@ -184,26 +183,34 @@
         .video-box { position: relative; width: 100%; padding-top: 56.25%; background: #000; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
         .video-js { position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important; }
 
-        .player-info { display: flex; align-items: center; margin-top: 25px; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 20px; }
+        .player-info { display: flex; flex-direction: column; gap: 15px; margin-top: 25px; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 20px; }
+        .player-main-details { display: flex; align-items: center; }
         #channel-logo-display { height: 60px; margin-right: 25px; width: 100px; object-fit: contain; }
         .status-dot { height: 10px; width: 10px; background: #3fffcf; border-radius: 50%; display: inline-block; margin-right: 10px; box-shadow: 0 0 10px #3fffcf; animation: pulse 1.5s infinite; }
+
+        /* Embedded Loading Notice Styling */
+        .player-loading-notice {
+            background: rgba(255, 159, 67, 0.08);
+            border-left: 4px solid var(--accent-orange);
+            padding: 10px 15px;
+            border-radius: 4px 12px 12px 4px;
+            font-size: 0.85rem;
+            color: #ffdca3;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
         .sidebar { display: flex; flex-direction: column; gap: 20px; }
-        .section-header { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-main); font-weight: 600; margin: 5px 0 10px 0; display: flex; align-items: center; }
-        .section-header i { margin-right: 10px; color: var(--accent-green); }
+        
+        .section-header-group { display: flex; align-items: center; gap: 12px; margin: 10px 0 10px 0; }
+        .section-header-logo { height: 22px; width: auto; object-fit: contain; filter: drop-shadow(0 0 4px rgba(255,255,255,0.1)); }
+        .section-header { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-main); font-weight: 600; margin: 0; }
 
-        /* Dedicated Scroll Area for Channels */
-        .scroll-area { 
-            max-height: 72vh; 
-            overflow-y: auto; 
-            padding-right: 10px; 
-        }
-        .scroll-area::-webkit-scrollbar { width: 6px; }
-        .scroll-area::-webkit-scrollbar-track { background: transparent; }
-        .scroll-area::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
-        .scroll-area::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
+        /* No scroll container wrapper since it is fully visible */
+        .channels-list-wrapper { display: flex; flex-direction: column; }
 
         .channel-card {
             background: #0f1315; border: 1px solid var(--glass-border); border-radius: 20px;
@@ -245,7 +252,7 @@
         .match-details-box { background: rgba(0,0,0,0.2); border-radius: 14px; padding: 12px; margin-bottom: 12px; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.02); }
         .detail-row { display: flex; justify-content: space-between; margin-bottom: 6px; color: var(--text-dim); }
         .detail-row:last-child { margin-bottom: 0; }
-        .detail-row span strong { color: #fff; }
+        .detail-row span solid strong { color: #fff; }
         .events-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 8px; font-size: 0.8rem; }
         .team-events { display: flex; flex-direction: column; gap: 3px; }
         .team-events.right { align-items: flex-end; text-align: right; border-left: 1px solid rgba(255,255,255,0.05); padding-left: 10px; }
@@ -309,24 +316,35 @@
                     </div>
 
                     <div class="player-info">
-                        <img id="channel-logo-display" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/FIFA%2B_%282025%29.svg/960px-FIFA%2B_%282025%29.svg.png" alt="Broadcast Feed">
-                        <div>
-                            <div style="display: flex; align-items: center;">
-                                <span class="status-dot"></span>
-                                <span id="feed-badge" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-green);" data-en="OFFICIAL BROADCAST FEED" data-my="SALURAN PENYIARAN RASMI">OFFICIAL BROADCAST FEED</span>
+                        <div class="player-main-details">
+                            <img id="channel-logo-display" src="https://static.wikia.nocookie.net/logopedia/images/e/ed/FIFA%2B_%28App_Icon%29.png/revision/latest/scale-to-width-down/250?cb=20221012163238" alt="Broadcast Feed">
+                            <div>
+                                <div style="display: flex; align-items: center;">
+                                    <span class="status-dot"></span>
+                                    <span id="feed-badge" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-green);" data-en="OFFICIAL BROADCAST FEED" data-my="SALURAN PENYIARAN RASMI">OFFICIAL BROADCAST FEED</span>
+                                </div>
+                                <h2 id="now-playing-title" style="margin: 5px 0 0; font-size: 1.8rem; font-family: 'Poppins';" data-en="Select a Channel" data-my="Pilih Saluran">Select a Channel</h2>
                             </div>
-                            <h2 id="now-playing-title" style="margin: 5px 0 0; font-size: 1.8rem; font-family: 'Poppins';" data-en="Select a Channel" data-my="Pilih Saluran">Select a Channel</h2>
+                        </div>
+                        
+                        <div class="player-loading-notice">
+                            <i class="fa-solid fa-circle-info" style="color: var(--accent-orange);"></i>
+                            <span data-en="Notice: Please wait a moment if the stream takes longer to load." data-my="Makluman: Sila tunggu sebentar jika siaran mengambil masa yang agak lama untuk dimuatkan.">Notice: Please wait a moment if the stream takes longer to load.</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="sidebar">
-                <div class="scroll-area">
-                    <div class="section-header"><i class="fa-solid fa-trophy"></i> <span data-en="FIFA+ Official Streams" data-my="Siaran Rasmi FIFA+">FIFA+ Official Streams</span></div>
+                <div class="channels-list-wrapper">
                     
-                    <div class="channel-card" onclick="streamHLS('https://cors-proxy.cooks.fyi/https://a62dad94.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWV1X0ZJRkFQbHVzRW5nbGlzaF9ITFM/playlist.m3u8', 'FIFA+ HD (UK Feed)', this, 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/FIFA%2B_%282025%29.svg/960px-FIFA%2B_%282025%29.svg.png')">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/FIFA%2B_%282025%29.svg/960px-FIFA%2B_%282025%29.svg.png" class="card-img">
+                    <div class="section-header-group">
+                        <img src="https://static.wikia.nocookie.net/logopedia/images/e/ed/FIFA%2B_%28App_Icon%29.png/revision/latest/scale-to-width-down/250?cb=20221012163238" class="section-header-logo">
+                        <div class="section-header" data-en="FIFA+ Official Streams" data-my="Siaran Rasmi FIFA+">FIFA+ Official Streams</div>
+                    </div>
+                    
+                    <div class="channel-card" onclick="streamHLS('https://cors-proxy.cooks.fyi/https://a62dad94.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWV1X0ZJRkFQbHVzRW5nbGlzaF9ITFM/playlist.m3u8', 'FIFA+ HD (UK Feed)', this, 'https://static.wikia.nocookie.net/logopedia/images/e/ed/FIFA%2B_%28App_Icon%29.png/revision/latest/scale-to-width-down/250?cb=20221012163238')">
+                        <img src="https://static.wikia.nocookie.net/logopedia/images/e/ed/FIFA%2B_%28App_Icon%29.png/revision/latest/scale-to-width-down/250?cb=20221012163238" class="card-img">
                         <div class="card-info">
                             <h4>FIFA+ HD</h4>
                             <p>Global Feed | United Kingdom</p>
@@ -334,8 +352,8 @@
                         <span class="tag" style="background: var(--text-dim); color: #000;">720p</span>
                     </div>
 
-                    <div class="channel-card" onclick="streamHLS('https://cors-proxy.cooks.fyi/https://d2w9q46ikgrcwx.cloudfront.net/v1/sysdata_s_p_a_fifa_7/samsungheadend_us/latest/main/hls/playlist.m3u8', 'FIFA+ HD (US Feed)', this, 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/FIFA%2B_%282025%29.svg/960px-FIFA%2B_%282025%29.svg.png')">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/FIFA%2B_%282025%29.svg/960px-FIFA%2B_%282025%29.svg.png" class="card-img">
+                    <div class="channel-card" onclick="streamHLS('https://cors-proxy.cooks.fyi/https://d2w9q46ikgrcwx.cloudfront.net/v1/sysdata_s_p_a_fifa_7/samsungheadend_us/latest/main/hls/playlist.m3u8', 'FIFA+ HD (US Feed)', this, 'https://static.wikia.nocookie.net/logopedia/images/e/ed/FIFA%2B_%28App_Icon%29.png/revision/latest/scale-to-width-down/250?cb=20221012163238')">
+                        <img src="https://static.wikia.nocookie.net/logopedia/images/e/ed/FIFA%2B_%28App_Icon%29.png/revision/latest/scale-to-width-down/250?cb=20221012163238" class="card-img">
                         <div class="card-info">
                             <h4>FIFA+ HD</h4>
                             <p>Global Feed | United States</p>
@@ -343,7 +361,10 @@
                         <span class="tag" style="background: var(--text-dim); color: #000;">720p</span>
                     </div>
 
-                    <div class="section-header"><i class="fa-solid fa-satellite-dish"></i> <span data-en="Fox Sports & Partners" data-my="Siaran Fox Sports & Rakan Strategik">Fox Sports & Partners</span></div>
+                    <div class="section-header-group">
+                        <img src="https://www.smartsheet.com/sites/default/files/Fox%20Sports%20Logo.png" class="section-header-logo">
+                        <div class="section-header" data-en="Fox Sports & Partners" data-my="Siaran Fox Sports & Rakan Strategik">Fox Sports & Partners</div>
+                    </div>
 
                     <div class="channel-card" onclick="streamHLS('https://cors-proxy.cooks.fyi/http://23.237.104.106:8080/USA_FOX_DEPORTES/index.m3u8', 'FOX Deportes', this, 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/FOX_Deportes_logo.png/960px-FOX_Deportes_logo.png')">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/FOX_Deportes_logo.png/960px-FOX_Deportes_logo.png" class="card-img" style="background: rgba(255,255,255,0.02); padding: 4px;">
@@ -354,7 +375,10 @@
                         <span class="tag" style="background: var(--accent-green); color: #000;">1080p</span>
                     </div>
 
-                    <div class="section-header"><i class="fa-solid fa-radio"></i> <span data-en="RTM Malaysia Streams" data-my="Siaran Langsung RTM">RTM Malaysia Streams</span></div>
+                    <div class="section-header-group">
+                        <img src="https://vectorise.net/logo/wp-content/uploads/2024/07/Logo-RTM-Teman-Setia-Anda-2021.png" class="section-header-logo">
+                        <div class="section-header" data-en="RTM Malaysia Streams" data-my="Siaran Langsung RTM">RTM Malaysia Streams</div>
+                    </div>
 
                     <div class="channel-card" onclick="streamHLS('https://slive.mana2.my/SukanRtm/index.m3u8', 'Sukan+ HD', this, 'https://static.wikia.nocookie.net/logopedia/images/3/33/RTM_Sukan_Plus_%282026%29.png/revision/latest/scale-to-width-down/1000?cb=20260402075508')">
                         <img src="https://static.wikia.nocookie.net/logopedia/images/3/33/RTM_Sukan_Plus_%282026%29.png/revision/latest/scale-to-width-down/1000?cb=20260402075508" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
@@ -362,7 +386,7 @@
                             <h4>Sukan+ HD</h4>
                             <p>MYTV Mana Mana | Malaysia</p>
                         </div>
-                        <span class="tag" style="background: var(--accent-blue); color: #000;">HD</span>
+                        <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
                     </div>
 
                     <div class="channel-card" onclick="streamHLS('https://slive.mana2.my/TvOkey/index.m3u8', 'TV Okey HD', this, 'https://i.imgur.com/V2jREQ5.png')">
@@ -371,7 +395,7 @@
                             <h4>TV Okey HD</h4>
                             <p>MYTV Mana Mana | Malaysia</p>
                         </div>
-                        <span class="tag" style="background: var(--accent-blue); color: #000;">HD</span>
+                        <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
                     </div>
 
                 </div>
@@ -397,8 +421,15 @@
             </div>
 
             <div class="info-section" style="border-top: 1px solid var(--glass-border); padding-top: 30px;">
-                <h3 data-en="Update Log" data-my="Log Kemaskini"><i class="fa-solid fa-clock-rotate-left" style="color: var(--accent-orange);"></i> Update Log</h3>
+                <h3 data-en="Update Log" data-my="Log Kemaskini">Update Log</h3>
                 <ul class="log-list">
+                    <li class="log-item">
+                        <i class="fa-solid fa-circle-plus"></i>
+                        <div>
+                            <span class="log-date">6/13/2026</span>
+                            <span data-en="Optimized interface layout by removing scrolls, updating broadcast logos, and adding load alerts." data-my="Mengoptimumkan susun atur antara muka dengan membuang fungsi skrol, mengemaskini logo penyiaran, serta menambah amaran memuatkan siaran.">Optimized interface layout by removing scrolls, updating broadcast logos, and adding load alerts.</span>
+                        </div>
+                    </li>
                     <li class="log-item">
                         <i class="fa-solid fa-circle-plus"></i>
                         <div>
@@ -411,13 +442,6 @@
                         <div>
                             <span class="log-date">6/12/2026</span>
                             <span data-en="Updated scores and match indicators for Group A fixtures (Mexico vs South Africa & Korea Republic vs Czech Republic)." data-my="Mengemaskini keputusan mata penuh perlawanan Kumpulan A (Mexico lwn Afrika Selatan & Korea Selatan lwn Republik Czech).">Updated scores and match indicators for Group A fixtures (Mexico vs South Africa & Korea Republic vs Czech Republic).</span>
-                        </div>
-                    </li>
-                    <li class="log-item">
-                        <i class="fa-solid fa-circle-plus"></i>
-                        <div>
-                            <span class="log-date">6/10/2026</span>
-                            <span data-en="Initial system initialization and deployment with automated multi-format video player core." data-my="Penyediaan dan pelancaran awal sistem bersama sokongan teras pemain video pelbagai format automatik.">Initial system initialization and deployment with automated multi-format video player core.</span>
                         </div>
                     </li>
                 </ul>
