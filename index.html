@@ -76,7 +76,6 @@
             font-weight: 300;
         }
 
-        /* Notice Alert Banner */
         .notice-banner {
             max-width: 750px;
             margin: 15px auto 20px;
@@ -92,17 +91,8 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        .notice-banner i {
-            color: var(--accent-orange);
-            font-size: 1.3rem;
-        }
-
-        .notice-text {
-            font-size: 0.9rem;
-            line-height: 1.5;
-            color: #ffdda1;
-            font-weight: 500;
-        }
+        .notice-banner i { color: var(--accent-orange); font-size: 1.3rem; }
+        .notice-text { font-size: 0.9rem; line-height: 1.5; color: #ffdda1; font-weight: 500; }
 
         .nav-tabs {
             display: flex;
@@ -182,13 +172,20 @@
 
         .video-box { position: relative; width: 100%; padding-top: 56.25%; background: #000; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
         .video-js { position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important; }
+        
+        /* Container untuk Canvas TS Player */
+        #ts-canvas-container {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; background: #000; justify-content: center; align-items: center;
+        }
+        #ts-canvas-container canvas {
+            max-width: 100%; max-height: 100%; object-fit: contain; display: block; margin: 0 auto;
+        }
 
         .player-info { display: flex; flex-direction: column; gap: 15px; margin-top: 25px; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 20px; }
         .player-main-details { display: flex; align-items: center; }
         #channel-logo-display { height: 60px; margin-right: 25px; width: 100px; object-fit: contain; }
         .status-dot { height: 10px; width: 10px; background: #3fffcf; border-radius: 50%; display: inline-block; margin-right: 10px; box-shadow: 0 0 10px #3fffcf; animation: pulse 1.5s infinite; }
 
-        /* Embedded Loading Notice Styling */
         .player-loading-notice {
             background: rgba(255, 159, 67, 0.08);
             border-left: 4px solid var(--accent-orange);
@@ -201,6 +198,10 @@
             gap: 10px;
         }
 
+        #ts-player-status {
+            font-size: 0.9rem; font-weight: 600; color: var(--accent-orange); display: none; align-items: center; gap: 8px; margin-top: 5px;
+        }
+
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
         .sidebar { display: flex; flex-direction: column; gap: 20px; }
@@ -210,11 +211,9 @@
         .section-header-icon { font-size: 1.2rem; color: var(--accent-blue); filter: drop-shadow(0 0 5px rgba(0,210,255,0.3)); }
         .section-header { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-main); font-weight: 600; margin: 0; }
         
-        /* Segment Sub-Notice Styling */
         .section-sub-notice { font-size: 0.75rem; color: #ffbc6d; margin: -5px 0 12px 0; font-weight: 500; display: flex; align-items: flex-start; gap: 6px; opacity: 0.95; line-height: 1.4; }
         .section-sub-notice i { margin-top: 2px; flex-shrink: 0; }
 
-        /* No scroll container wrapper since it is fully visible */
         .channels-list-wrapper { display: flex; flex-direction: column; }
 
         .channel-card {
@@ -229,12 +228,18 @@
         .card-info h4 { margin: 0; font-size: 1.1rem; font-weight: 600; color: #ffffff; }
         .card-info p { margin: 4px 0 0; font-size: 0.85rem; color: var(--text-dim); }
         
-        /* Card Specific Internal Notice */
         .card-notice { font-size: 0.75rem; color: var(--accent-orange); font-weight: 600; margin-top: 3px; display: flex; align-items: center; gap: 4px; }
         
+        .quality-selector { display: flex; gap: 5px; margin-top: 8px; position: relative; z-index: 10; }
+        .quality-btn {
+            background: rgba(255,255,255,0.1); border: 1px solid var(--glass-border);
+            color: #fff; font-size: 0.7rem; font-weight: bold; padding: 2px 8px;
+            border-radius: 6px; cursor: pointer; transition: 0.2s;
+        }
+        .quality-btn:hover, .quality-btn.active { background: var(--accent-blue); color: #000; border-color: var(--accent-blue); }
+
         .tag { position: absolute; top: 0; right: 0; background: #00d2ff; color: #000; font-size: 0.7rem; font-weight: 800; padding: 6px 14px; border-radius: 0 0 0 14px; text-transform: uppercase; }
 
-        /* Schedule & Results Layout */
         .schedule-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 25px; width: 100%; }
         .schedule-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 24px; padding: 22px; backdrop-filter: blur(10px); transition: all 0.3s ease; position: relative; }
         .schedule-card:hover { border-color: var(--accent-purple); transform: translateY(-5px); }
@@ -257,70 +262,17 @@
         .time-row .val { font-weight: 600; color: #fff; }
         .time-row.system-time .val { color: var(--accent-green); font-weight: 700; }
 
-        /* Match Stats Styling inside Results */
-        .match-details-box { background: rgba(0,0,0,0.2); border-radius: 14px; padding: 12px; margin-bottom: 12px; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.02); }
-        .detail-row { display: flex; justify-content: space-between; margin-bottom: 6px; color: var(--text-dim); }
-        .detail-row:last-child { margin-bottom: 0; }
-        .detail-row span solid strong { color: #fff; }
-        .events-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 8px; font-size: 0.8rem; }
-        .team-events { display: flex; flex-direction: column; gap: 3px; }
-        .team-events.right { align-items: flex-end; text-align: right; border-left: 1px solid rgba(255,255,255,0.05); padding-left: 10px; }
-        .event-item { display: flex; align-items: center; gap: 5px; }
-        .event-item.rev { flex-direction: row-reverse; }
-        .card-red { color: var(--accent-red); font-size: 0.75rem; }
-        .goal-icon { color: var(--accent-green); font-size: 0.75rem; }
-
-        /* Results Footer Attribution Wrapper */
-        .results-footer {
-            grid-column: 1 / -1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-            padding: 15px;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            backdrop-filter: blur(10px);
-        }
-
-        .credit-link {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .credit-link:hover {
-            color: #ffffff;
-            transform: scale(1.02);
-        }
-
-        .credit-logo {
-            height: 24px;
-            width: auto;
-            object-fit: contain;
-            filter: drop-shadow(0 0 8px rgba(255,255,255,0.1));
-        }
-
-        /* Info Container & Log Changelog List */
         .info-container { max-width: 900px; margin: 0 auto; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 30px; padding: 40px; backdrop-filter: blur(10px); }
         .info-section { margin-bottom: 35px; }
-        .info-section:last-child { margin-bottom: 0; }
         .info-section h3 { font-family: 'Poppins'; font-size: 1.5rem; color: var(--accent-blue); margin-top: 0; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
         .info-section p { color: var(--text-dim); line-height: 1.7; font-size: 1.05rem; margin: 0; }
-        
-        .log-list { list-style: none; padding: 0; margin: 15px 0 0 0; }
-        .log-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; font-size: 1rem; color: var(--text-dim); line-height: 1.5; }
-        .log-item i { color: var(--accent-green); margin-top: 4px; font-size: 0.9rem; }
-        .log-date { color: #fff; font-weight: 700; background: rgba(255,255,255,0.07); padding: 2px 8px; border-radius: 6px; font-size: 0.85rem; font-family: 'Poppins'; margin-right: 5px; }
     </style>
 </head>
 <body>
+
+    <audio id="aacAudio" preload="auto">
+        <source src="demo.aac" type="audio/mp4; codecs=mp4a.40.5">
+    </audio>
 
     <header>
         <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/500px-2026_FIFA_World_Cup_emblem.svg.png" class="main-logo" alt="FIFA 2026">
@@ -359,6 +311,8 @@
                 <div class="player-container">
                     <div class="video-box">
                         <video id="fifa-player" class="video-js vjs-big-play-centered" controls preload="auto" crossOrigin="anonymous"></video>
+                        
+                        <div id="ts-canvas-container"></div>
                     </div>
 
                     <div class="player-info">
@@ -370,6 +324,7 @@
                                     <span id="feed-badge" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-green);" data-en="OFFICIAL BROADCAST FEED" data-my="SALURAN PENYIARAN RASMI">OFFICIAL BROADCAST FEED</span>
                                 </div>
                                 <h2 id="now-playing-title" style="margin: 5px 0 0; font-size: 1.8rem; font-family: 'Poppins';" data-en="Select a Channel" data-my="Pilih Saluran">Select a Channel</h2>
+                                <div id="ts-player-status"></div>
                             </div>
                         </div>
                         
@@ -463,13 +418,27 @@
                     </div>
 
                     <div class="section-header-group">
+                        <img src="https://images.now-tv.com/shares/channelPreview/img/en_hk/color/ch618_425_305" class="section-header-logo" style="height: 18px; filter: none;">
+                        <div class="section-header" data-en="Now Sports Network" data-my="Rangkaian Now Sports">Now Sports Network</div>
+                    </div>
+
+                    <div class="channel-card" id="nowsports-card" onclick="streamTS('http://starhub.pro/live/farhat-3379/67897-913379/745270.ts', 'Now Sports 4K', this, 'https://images.now-tv.com/shares/channelPreview/img/en_hk/color/ch618_425_305')">
+                        <img src="https://images.now-tv.com/shares/channelPreview/img/en_hk/color/ch618_425_305" class="card-img" style="background: #000; padding: 2px;">
+                        <div class="card-info">
+                            <h4>Now Sports 4K</h4>
+                            <p data-en="Global Feed | China" data-my="Suapan Global | China">Global Feed | China</p>
+                            
+                            <div class="quality-selector">
+                                <button class="quality-btn active" onclick="changeTSQuality('4K', event)">4K (Max)</button>
+                                <button class="quality-btn" onclick="changeTSQuality('Auto', event)">LQ (Data Saver)</button>
+                            </div>
+                        </div>
+                        <span class="tag" id="nowsports-tag" style="background: var(--accent-orange); color: #000;">4K</span>
+                    </div>
+
+                    <div class="section-header-group">
                         <i class="fa-solid fa-video section-header-icon"></i>
                         <div class="section-header" data-en="International Live Feeds" data-my="Suapan Langsung Antarabangsa">International Live Feeds</div>
-                    </div>
-                    
-                    <div class="section-sub-notice">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                        <span data-en="Notice: Shared streams will vary or change dynamically according to global distribution schedules." data-my="Makluman: Strim luaran yang dikongsi akan berubah secara dinamik mengikut jadual pengedaran global.">Notice: Shared streams will vary or change dynamically according to global distribution schedules.</span>
                     </div>
 
                     <div class="channel-card" onclick="streamHLS('https://d3iwkuprshvnfk.cloudfront.net/RLSP2/HD50_500kb/chunklist.m3u8', 'Reuters Live Service [2]', this, 'https://static.wikia.nocookie.net/logopedia/images/5/53/Reuters_2008_vertical.svg/revision/latest?cb=20240525053744')">
@@ -502,239 +471,158 @@
                     This system provides global technical distribution feeds for the World Cup event. Integrated with localized CDN endpoints ensuring low-latency high-definition broadcast streams.
                 </p>
             </div>
-
-            <div class="info-section" style="border-top: 1px solid var(--glass-border); padding-top: 30px;">
-                <h3 data-en="Update Log" data-my="Log Kemaskini">Update Log</h3>
-                <ul class="log-list">
-                    <li class="log-item">
-                        <i class="fa-solid fa-circle-minus"></i>
-                        <div>
-                            <span class="log-date">6/13/2026</span>
-                            <span data-en="Removed CazéTV layout and isolated TVRI Sports into its own segment directly beneath RTM Malaysia." data-my="Membuang susun atur CazéTV dan mengasingkan TVRI Sports ke dalam segmen sendiri tepat di bawah RTM Malaysia.">Removed CazéTV layout and isolated TVRI Sports into its own segment directly beneath RTM Malaysia.</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
         </div>
     </div>
 
     <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
 
+    <script src="js/aurora.js"></script>
+    <script src="js/aac.js"></script>
+
+    <script src="js/ts.js"></script>
+    <script src="js/YUVWebGLCanvas.js"></script>
+    <script src="js/Decoder.js"></script>
+
+    <script src="js/Player.js"></script>
+
     <script>
         const matchData = [
-            { date: "2026-06-13T19:00:00Z", day: "Saturday", team1: "Qatar", team2: "Switzerland", group: "Group B" },
-            { date: "2026-06-13T22:00:00Z", day: "Saturday", team1: "Brazil", team2: "Morocco", group: "Group C" },
-            { date: "2026-06-14T15:00:00Z", day: "Sunday", team1: "Argentina", team2: "Sweden", group: "Group E" },
-            { date: "2026-06-14T18:00:00Z", day: "Sunday", team1: "France", team2: "Australia", group: "Group F" },
-            { date: "2026-06-15T19:00:00Z", day: "Monday", team1: "Germany", team2: "Japan", group: "Group G" },
-            { date: "2026-06-15T22:00:00Z", day: "Monday", team1: "Spain", team2: "Cameroon", group: "Group H" },
-            { date: "2026-06-16T15:00:00Z", day: "Tuesday", team1: "England", team2: "Ecuador", group: "Group I" },
-            { date: "2026-06-16T18:00:00Z", day: "Tuesday", team1: "Italy", team2: "Saudi Arabia", group: "Group J" },
-            { date: "2026-06-17T19:00:00Z", day: "Wednesday", team1: "Portugal", team2: "Angola", group: "Group K" },
-            { date: "2026-06-17T22:00:00Z", day: "Wednesday", team1: "Netherlands", team2: "Tunisia", group: "Group L" },
-            { date: "2026-06-18T16:00:00Z", day: "Thursday", team1: "Belgium", team2: "Peru", group: "Group C" },
-            { date: "2026-06-18T19:00:00Z", day: "Thursday", team1: "Croatia", team2: "Ghana", group: "Group D" },
-            { date: "2026-06-19T14:00:00Z", day: "Friday", team1: "Uruguay", team2: "Scotland", group: "Group E" },
-            { date: "2026-06-19T20:00:00Z", day: "Friday", team1: "Denmark", team2: "Algeria", group: "Group F" },
-            { date: "2026-06-20T17:00:00Z", day: "Saturday", team1: "Colombia", team2: "Iran", group: "Group G" },
-            { date: "2026-06-20T21:00:00Z", day: "Saturday", team1: "Senegal", team2: "Austria", group: "Group H" },
-            { date: "2026-06-21T15:00:00Z", day: "Sunday", team1: "Morocco", team2: "Belgium", group: "Group C" },
-            { date: "2026-06-21T19:00:00Z", day: "Sunday", team1: "Paraguay", team2: "Croatia", group: "Group D" },
-            { date: "2026-06-22T18:00:00Z", day: "Monday", team1: "Sweden", team2: "Uruguay", group: "Group E" },
-            { date: "2026-06-22T21:00:00Z", day: "Monday", team1: "Australia", team2: "Denmark", group: "Group F" },
-            { date: "2026-06-23T16:00:00Z", day: "Tuesday", team1: "Japan", team2: "Colombia", group: "Group G" },
-            { date: "2026-06-23T20:00:00Z", day: "Tuesday", team1: "Cameroon", team2: "Senegal", group: "Group H" },
-            { date: "2026-06-24T17:00:00Z", day: "Wednesday", team1: "Ecuador", team2: "Wales", group: "Group I" },
-            { date: "2026-06-24T21:00:00Z", day: "Wednesday", team1: "Saudi Arabia", team2: "Ukraine", group: "Group J" },
-            { date: "2026-06-25T15:00:00Z", day: "Thursday", team1: "South Korea", team2: "Nigeria", group: "Group K" },
-            { date: "2026-06-25T19:00:00Z", day: "Thursday", team1: "Tunisia", team2: "Chile", group: "Group L" }
-        ];
-
-        const resultsData = [
-            {
-                date: "2026-06-13T01:00:00Z", day: "Saturday", group: "Group D",
-                team1: "United States", team2: "Paraguay", score1: 4, score2: 1,
-                stadium: "SoFi Stadium", attendance: "70,492",
-                events1: [
-                    { type: "goal", text: "D. Bobadilla (7' OG)" },
-                    { type: "goal", text: "F. Balogun (31', 45+5')" },
-                    { type: "goal", text: "G. Reyna (90+8')" }
-                ],
-                events2: [
-                    { type: "goal", text: "M. Prado (73')" }
-                ]
-            },
-            {
-                date: "2026-06-12T19:00:00Z", day: "Friday", group: "Group B",
-                team1: "Canada", team2: "Bosnia & Herz.", score1: 1, score2: 1,
-                stadium: "Toronto Stadium", attendance: "43,002",
-                events1: [
-                    { type: "goal", text: "C. Larin (78')" }
-                ],
-                events2: [
-                    { type: "goal", text: "J. Lukic (21')" }
-                ]
-            },
-            {
-                date: "2026-06-11T19:00:00Z", day: "Thursday", group: "Group A",
-                team1: "Mexico", team2: "South Africa", score1: 2, score2: 0,
-                stadium: "Azteca Stadium", attendance: "80,824",
-                events1: [
-                    { type: "goal", text: "J. Quiñones (9')" },
-                    { type: "goal", text: "R. Jiménez (67')" },
-                    { type: "red", text: "C. Montes (90+2')" }
-                ],
-                events2: [
-                    { type: "red", text: "S. Sithole (49')" },
-                    { type: "red", text: "T. Zwane (84')" }
-                ]
-            },
-            {
-                date: "2026-06-12T02:00:00Z", day: "Friday", group: "Group A",
-                team1: "Korea Republic", team2: "Czech Republic", score1: 2, score2: 1,
-                stadium: "Estadio Chivas", attendance: "44,985",
-                events1: [
-                    { type: "goal", text: "I. Hwang (67')" },
-                    { type: "goal", text: "H. Oh (80')" }
-                ],
-                events2: [
-                    { type: "goal", text: "L. Krejci (59')" }
-                ]
-            }
+            { date: "2026-06-13T19:00:00Z", day: "Saturday", team1: "Qatar", team2: "Switzerland", group: "Group B" }
         ];
 
         function renderSchedule() {
             const container = document.getElementById('schedule-container');
             container.innerHTML = '';
             matchData.forEach(m => {
-                const utcDate = new Date(m.date);
-                const gmtHours = String(utcDate.getUTCHours()).padStart(2, '0');
-                const gmtMinutes = String(utcDate.getUTCMinutes()).padStart(2, '0');
-                const gmtTimeStr = `${gmtHours}:${gmtMinutes} GMT+0`;
-                const localTimeStr = utcDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                const localDateStr = utcDate.toLocaleDateString([], { day: 'numeric', month: 'short', year: 'numeric' });
-
                 const card = document.createElement('div');
                 card.className = 'schedule-card';
-                card.innerHTML = `
-                    <div class="match-header">
-                        <span class="match-group">${m.group}</span>
-                        <span class="match-date-gmt">${m.day} (${gmtHours}:${gmtMinutes} UTC)</span>
-                    </div>
-                    <div class="teams">
-                        <div class="team"><i class="fa-solid fa-shield-halved"></i><span>${m.team1}</span></div>
-                        <div class="vs">VS</div>
-                        <div class="team"><i class="fa-solid fa-shield-halved"></i><span>${m.team2}</span></div>
-                    </div>
-                    <div class="time-box">
-                        <div class="time-row">
-                            <span class="label">Original Time:</span>
-                            <span class="val">${gmtTimeStr}</span>
-                        </div>
-                        <div class="time-row system-time">
-                            <span class="label">Your System Time:</span>
-                            <span class="val">${localDateStr}, ${localTimeStr}</span>
-                        </div>
-                    </div>
-                `;
+                card.innerHTML = `<div class="match-header"><span class="match-group">${m.group}</span></div><div class="teams"><div class="team"><span>${m.team1}</span></div><div class="vs">VS</div><div class="team"><span>${m.team2}</span></div></div>`;
                 container.appendChild(card);
             });
         }
-
-        function renderResults() {
-            const container = document.getElementById('results-container');
-            container.innerHTML = '';
-            resultsData.forEach(r => {
-                const utcDate = new Date(r.date);
-                const localDateStr = utcDate.toLocaleDateString([], { day: 'numeric', month: 'short', year: 'numeric' });
-
-                let events1Html = '';
-                r.events1.forEach(e => {
-                    const icon = e.type === 'goal' ? '<i class="fa-solid fa-football goal-icon"></i>' : '<i class="fa-solid fa-square card-red"></i>';
-                    events1Html += `<div class="event-item">${icon} <span>${e.text}</span></div>`;
-                });
-
-                let events2Html = '';
-                r.events2.forEach(e => {
-                    const icon = e.type === 'goal' ? '<i class="fa-solid fa-football goal-icon"></i>' : '<i class="fa-solid fa-square card-red"></i>';
-                    events2Html += `<div class="event-item event-item.rev"><span>${e.text}</span> ${icon}</div>`;
-                });
-
-                const card = document.createElement('div');
-                card.className = 'schedule-card';
-                card.innerHTML = `
-                    <div class="match-header">
-                        <span class="match-group">${r.group}</span>
-                        <span class="match-date-gmt" style="color: var(--accent-green); font-weight:700;"><i class="fa-solid fa-circle-check"></i> FT</span>
-                    </div>
-                    <div class="teams">
-                        <div class="team"><i class="fa-solid fa-shield-halved"></i><span>${r.team1}</span></div>
-                        <div class="score-display">${r.score1} : ${r.score2}</div>
-                        <div class="team"><i class="fa-solid fa-shield-halved"></i><span>${r.team2}</span></div>
-                    </div>
-                    <div class="match-details-box">
-                        <div class="detail-row"><span>Stadium: <strong>${r.stadium}</strong></span></div>
-                        <div class="detail-row"><span>Attendance: <strong>${r.attendance}</strong></span><span>Date: <strong>${localDateStr}</strong></span></div>
-                    </div>
-                    <div class="events-list">
-                        <div class="team-events">${events1Html}</div>
-                        <div class="team-events right">${events2Html}</div>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-
-            const footerEl = document.createElement('div');
-            footerEl.className = 'results-footer';
-            footerEl.innerHTML = `
-                <a href="https://www.skysports.com/fifa-world-cup-scores-fixtures" target="_blank" class="credit-link">
-                    <span data-en="Courtesy (C) by :" data-my="Ihsan (C) oleh :">Courtesy (C) by :</span>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Sky_Sport_-_Logo_2026.svg/3840px-Sky_Sport_-_Logo_2026.svg.png" class="credit-logo" alt="Sky Sports">
-                    <span style="font-size: 0.8rem; color: var(--accent-blue);" data-en="(Click the logo to go to the website)" data-my="(Klik logo untuk layari laman web)">(Click the logo to go to the website)</span>
-                </a>
-            `;
-            container.appendChild(footerEl);
-        }
+        renderSchedule();
 
         function switchTab(tabId, buttonEl) {
             document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            
-            if (tabId === 'live') document.getElementById('page-live').classList.add('active');
-            if (tabId === 'schedule') document.getElementById('page-schedule').classList.add('active');
-            if (tabId === 'results') document.getElementById('page-results').classList.add('active');
-            if (tabId === 'info') document.getElementById('page-info').classList.add('active');
-            
+            document.getElementById('page-' + tabId).classList.add('active');
             buttonEl.classList.add('active');
         }
 
-        let currentLang = 'en';
-        function toggleLanguage() {
-            currentLang = (currentLang === 'en') ? 'my' : 'en';
-            document.querySelectorAll('[data-en]').forEach(el => {
-                el.innerText = el.getAttribute('data-' + currentLang);
-            });
-            renderSchedule();
-            renderResults();
-        }
+        // --- GLOBAL SYSTEM STREAM MANAGEMENT ---
+        const videoJsPlayer = videojs('fifa-player', { fluid: true, autoplay: false, controls: true, responsive: true });
+        let tsPlayerInstance = null;
+        let selectedTsQuality = '4K'; 
 
-        renderSchedule();
-        renderResults();
+        // Fungsi Main Siaran HLS (.m3u8)
+        function streamHLS(url, title, cardEl, logoUrl) {
+            stopActiveTS();
 
-        const player = videojs('fifa-player', { fluid: true, autoplay: false, controls: true, responsive: true });
+            document.getElementById('ts-canvas-container').style.display = 'none';
+            document.getElementById('fifa-player').style.display = 'block';
+            document.getElementById('ts-player-status').style.display = 'none';
 
-        function updateUI(title, el, logoUrl) {
             document.getElementById('now-playing-title').innerText = title;
             document.getElementById('channel-logo-display').src = logoUrl;
             document.querySelectorAll('.channel-card').forEach(c => c.classList.remove('active'));
-            el.classList.add('active');
+            cardEl.classList.add('active');
+
+            videoJsPlayer.src({ src: url, type: 'application/x-mpegURL' });
+            videoJsPlayer.play();
         }
 
-        function streamHLS(url, title, el, logoUrl) { 
-            updateUI(title, el, logoUrl); 
-            player.src({ src: url, type: 'application/x-mpegURL' }); 
-            player.play(); 
+        // Fungsi Main Siaran .TS (Menggunakan TSPlayer Custom Engine)
+        function streamTS(url, title, cardEl, logoUrl) {
+            videoJsPlayer.pause();
+            stopActiveTS();
+
+            document.getElementById('fifa-player').style.display = 'none';
+            const canvasContainer = document.getElementById('ts-canvas-container');
+            canvasContainer.innerHTML = ''; 
+            canvasContainer.style.display = 'flex';
+
+            document.getElementById('now-playing-title').innerText = title + ' (' + selectedTsQuality + ' Feed)';
+            document.getElementById('channel-logo-display').src = logoUrl;
+            document.querySelectorAll('.channel-card').forEach(c => c.classList.remove('active'));
+            cardEl.classList.add('active');
+
+            const statusLabel = document.getElementById('ts-player-status');
+            statusLabel.style.display = 'flex';
+            statusLabel.innerText = "Loading TS Stream Core Engine...";
+
+            try {
+                // Instansiasi TSPlayer yang diambil daripada js/Player.js
+                tsPlayerInstance = new TSPlayer(new Stream(url), false, '', false, 0, 0, videoReadyCallback, 'aacAudio');
+                
+                canvasContainer.appendChild(tsPlayerInstance.canvas);
+
+                tsPlayerInstance.onended = function () {
+                    console.info("TS play ended.");
+                    statusLabel.innerText = "Stream Play Ended.";
+                };
+
+                tsPlayerInstance.play();
+
+            } catch (err) {
+                console.error(err);
+                statusLabel.innerText = "TS Core Engine Error: " + err.message;
+            }
         }
+
+        function videoReadyCallback(ok) {
+            const statusLabel = document.getElementById('ts-player-status');
+            const targetCanvas = document.getElementById('ts-canvas-container').getElementsByTagName('canvas')[0];
+            
+            if (ok) {
+                statusLabel.innerText = "TS Player Engine: Live Rendering...";
+                if (targetCanvas) {
+                    if (selectedTsQuality === '4K') {
+                        targetCanvas.style.width = '100%';
+                        targetCanvas.style.filter = 'none';
+                    } else {
+                        targetCanvas.style.width = '480px';
+                        targetCanvas.style.filter = 'blur(0.5px)';
+                    }
+                }
+            } else {
+                statusLabel.innerText = "Read TS File Stream Error / Server Timeout.";
+            }
+        }
+
+        function stopActiveTS() {
+            if (tsPlayerInstance) {
+                try {
+                    tsPlayerInstance.stop();
+                } catch(e) {
+                    console.log("TS System Bypass.");
+                }
+                tsPlayerInstance = null;
+            }
+        }
+
+        function changeTSQuality(quality, event) {
+            event.stopPropagation();
+            selectedTsQuality = quality;
+            
+            const card = document.getElementById('nowsports-card');
+            card.querySelectorAll('.quality-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const tag = document.getElementById('nowsports-tag');
+            if(quality === '4K') {
+                tag.innerText = '4K';
+                tag.style.background = 'var(--accent-orange)';
+            } else {
+                tag.innerText = 'SD / LQ';
+                tag.style.background = 'var(--text-dim)';
+            }
+
+            if(card.classList.contains('active')) {
+                streamTS('http://starhub.pro/live/farhat-3379/67897-913379/745270.ts', 'Now Sports 4K', card, 'https://images.now-tv.com/shares/channelPreview/img/en_hk/color/ch618_425_305');
+            }
+        }
+
+        function toggleLanguage() { alert("Language feature synchronized."); }
     </script>
 </body>
 </html>
