@@ -173,7 +173,6 @@
         .video-box { position: relative; width: 100%; padding-top: 56.25%; background: #000; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
         .video-js { position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important; }
         
-        /* Container untuk Canvas TS Player */
         #ts-canvas-container {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; background: #000; justify-content: center; align-items: center;
         }
@@ -311,7 +310,6 @@
                 <div class="player-container">
                     <div class="video-box">
                         <video id="fifa-player" class="video-js vjs-big-play-centered" controls preload="auto" crossOrigin="anonymous"></video>
-                        
                         <div id="ts-canvas-container"></div>
                     </div>
 
@@ -422,7 +420,7 @@
                         <div class="section-header" data-en="Now Sports Network" data-my="Rangkaian Now Sports">Now Sports Network</div>
                     </div>
 
-                    <div class="channel-card" id="nowsports-card" onclick="streamTS('http://starhub.pro/live/farhat-3379/67897-913379/745270.ts', 'Now Sports 4K', this, 'https://images.now-tv.com/shares/channelPreview/img/en_hk/color/ch618_425_305')">
+                    <div class="channel-card" id="nowsports-card" onclick="streamTS('https://api.allorigins.win/raw?url=' + encodeURIComponent('http://starhub.pro/live/farhat-3379/67897-913379/745270.ts'), 'Now Sports 4K', this, 'https://images.now-tv.com/shares/channelPreview/img/en_hk/color/ch618_425_305')">
                         <img src="https://images.now-tv.com/shares/channelPreview/img/en_hk/color/ch618_425_305" class="card-img" style="background: #000; padding: 2px;">
                         <div class="card-info">
                             <h4>Now Sports 4K</h4>
@@ -476,8 +474,8 @@
 
     <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
 
-    <script src="js/aurora.js"></script>
-    <script src="js/aac.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aurora.js/0.4.3/aurora.js"></script>
+    <script src="https://rawcdn.githack.com/audiocogs/aac.js/master/aurora-aac.js"></script>
 
     <script src="js/ts.js"></script>
     <script src="js/YUVWebGLCanvas.js"></script>
@@ -509,12 +507,10 @@
             buttonEl.classList.add('active');
         }
 
-        // --- GLOBAL SYSTEM STREAM MANAGEMENT ---
         const videoJsPlayer = videojs('fifa-player', { fluid: true, autoplay: false, controls: true, responsive: true });
         let tsPlayerInstance = null;
         let selectedTsQuality = '4K'; 
 
-        // Fungsi Main Siaran HLS (.m3u8)
         function streamHLS(url, title, cardEl, logoUrl) {
             stopActiveTS();
 
@@ -531,7 +527,6 @@
             videoJsPlayer.play();
         }
 
-        // Fungsi Main Siaran .TS (Menggunakan TSPlayer Custom Engine)
         function streamTS(url, title, cardEl, logoUrl) {
             videoJsPlayer.pause();
             stopActiveTS();
@@ -551,9 +546,7 @@
             statusLabel.innerText = "Loading TS Stream Core Engine...";
 
             try {
-                // Instansiasi TSPlayer yang diambil daripada js/Player.js
                 tsPlayerInstance = new TSPlayer(new Stream(url), false, '', false, 0, 0, videoReadyCallback, 'aacAudio');
-                
                 canvasContainer.appendChild(tsPlayerInstance.canvas);
 
                 tsPlayerInstance.onended = function () {
@@ -618,7 +611,7 @@
             }
 
             if(card.classList.contains('active')) {
-                streamTS('http://starhub.pro/live/farhat-3379/67897-913379/745270.ts', 'Now Sports 4K', card, 'https://images.now-tv.com/shares/channelPreview/img/en_hk/color/ch618_425_305');
+                streamTS('https://api.allorigins.win/raw?url=' + encodeURIComponent('http://starhub.pro/live/farhat-3379/67897-913379/745270.ts'), 'Now Sports 4K', card, 'https://images.now-tv.com/shares/channelPreview/img/en_hk/color/ch618_425_305');
             }
         }
 
