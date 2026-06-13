@@ -172,13 +172,6 @@
 
         .video-box { position: relative; width: 100%; padding-top: 56.25%; background: #000; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
         .video-js { position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important; }
-        
-        #ts-canvas-container {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; background: #000; justify-content: center; align-items: center;
-        }
-        #ts-canvas-container canvas {
-            max-width: 100%; max-height: 100%; object-fit: contain; display: block; margin: 0 auto;
-        }
 
         .player-info { display: flex; flex-direction: column; gap: 15px; margin-top: 25px; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 20px; }
         .player-main-details { display: flex; align-items: center; }
@@ -195,10 +188,6 @@
             display: flex;
             align-items: center;
             gap: 10px;
-        }
-
-        #ts-player-status {
-            font-size: 0.9rem; font-weight: 600; color: var(--accent-orange); display: none; align-items: center; gap: 8px; margin-top: 5px;
         }
 
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
@@ -228,14 +217,6 @@
         .card-info p { margin: 4px 0 0; font-size: 0.85rem; color: var(--text-dim); }
         
         .card-notice { font-size: 0.75rem; color: var(--accent-orange); font-weight: 600; margin-top: 3px; display: flex; align-items: center; gap: 4px; }
-        
-        .quality-selector { display: flex; gap: 5px; margin-top: 8px; position: relative; z-index: 10; }
-        .quality-btn {
-            background: rgba(255,255,255,0.1); border: 1px solid var(--glass-border);
-            color: #fff; font-size: 0.7rem; font-weight: bold; padding: 2px 8px;
-            border-radius: 6px; cursor: pointer; transition: 0.2s;
-        }
-        .quality-btn:hover, .quality-btn.active { background: var(--accent-blue); color: #000; border-color: var(--accent-blue); }
 
         .tag { position: absolute; top: 0; right: 0; background: #00d2ff; color: #000; font-size: 0.7rem; font-weight: 800; padding: 6px 14px; border-radius: 0 0 0 14px; text-transform: uppercase; }
 
@@ -245,21 +226,11 @@
         
         .match-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
         .match-group { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--accent-blue); letter-spacing: 1px; }
-        .match-date-gmt { font-size: 0.8rem; color: var(--text-dim); font-weight: 500; }
 
         .teams { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding: 10px 0; }
         .team { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; }
-        .team i { font-size: 2.2rem; color: #fff; filter: drop-shadow(0 0 8px rgba(255,255,255,0.2)); }
         .team span { font-weight: 700; font-size: 1.1rem; text-align: center; letter-spacing: 0.5px; }
         .vs { font-family: 'Poppins'; font-weight: 800; color: var(--accent-purple); font-size: 1.2rem; background: rgba(255,255,255,0.03); padding: 5px 12px; border-radius: 10px; border: 1px solid var(--glass-border); }
-        
-        .score-display { font-family: 'Poppins'; font-weight: 800; font-size: 1.8rem; color: #fff; background: rgba(255,255,255,0.05); padding: 4px 14px; border-radius: 12px; border: 1px solid var(--glass-border); }
-
-        .time-box { border-top: 1px solid var(--glass-border); padding-top: 15px; display: flex; flex-direction: column; gap: 6px; }
-        .time-row { display: flex; justify-content: space-between; font-size: 0.85rem; }
-        .time-row .label { color: var(--text-dim); }
-        .time-row .val { font-weight: 600; color: #fff; }
-        .time-row.system-time .val { color: var(--accent-green); font-weight: 700; }
 
         .info-container { max-width: 900px; margin: 0 auto; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 30px; padding: 40px; backdrop-filter: blur(10px); }
         .info-section { margin-bottom: 35px; }
@@ -268,10 +239,6 @@
     </style>
 </head>
 <body>
-
-    <audio id="aacAudio" preload="auto">
-        <source src="demo.aac" type="audio/mp4; codecs=mp4a.40.5">
-    </audio>
 
     <header>
         <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/500px-2026_FIFA_World_Cup_emblem.svg.png" class="main-logo" alt="FIFA 2026">
@@ -310,7 +277,6 @@
                 <div class="player-container">
                     <div class="video-box">
                         <video id="fifa-player" class="video-js vjs-big-play-centered" controls preload="auto" crossOrigin="anonymous"></video>
-                        <div id="ts-canvas-container"></div>
                     </div>
 
                     <div class="player-info">
@@ -322,7 +288,6 @@
                                     <span id="feed-badge" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-green);" data-en="OFFICIAL BROADCAST FEED" data-my="SALURAN PENYIARAN RASMI">OFFICIAL BROADCAST FEED</span>
                                 </div>
                                 <h2 id="now-playing-title" style="margin: 5px 0 0; font-size: 1.8rem; font-family: 'Poppins';" data-en="Select a Channel" data-my="Pilih Saluran">Select a Channel</h2>
-                                <div id="ts-player-status"></div>
                             </div>
                         </div>
                         
@@ -416,25 +381,6 @@
                     </div>
 
                     <div class="section-header-group">
-                        <img src="https://images.now-tv.com/shares/channelPreview/img/en_hk/color/ch618_425_305" class="section-header-logo" style="height: 18px; filter: none;">
-                        <div class="section-header" data-en="Now Sports Network" data-my="Rangkaian Now Sports">Now Sports Network</div>
-                    </div>
-
-                    <div class="channel-card" id="nowsports-card" onclick="streamTS('https://api.allorigins.win/raw?url=' + encodeURIComponent('http://starhub.pro/live/farhat-3379/67897-913379/745270.ts'), 'Now Sports 4K', this, 'https://images.now-tv.com/shares/channelPreview/img/en_hk/color/ch618_425_305')">
-                        <img src="https://images.now-tv.com/shares/channelPreview/img/en_hk/color/ch618_425_305" class="card-img" style="background: #000; padding: 2px;">
-                        <div class="card-info">
-                            <h4>Now Sports 4K</h4>
-                            <p data-en="Global Feed | China" data-my="Suapan Global | China">Global Feed | China</p>
-                            
-                            <div class="quality-selector">
-                                <button class="quality-btn active" onclick="changeTSQuality('4K', event)">4K (Max)</button>
-                                <button class="quality-btn" onclick="changeTSQuality('Auto', event)">LQ (Data Saver)</button>
-                            </div>
-                        </div>
-                        <span class="tag" id="nowsports-tag" style="background: var(--accent-orange); color: #000;">4K</span>
-                    </div>
-
-                    <div class="section-header-group">
                         <i class="fa-solid fa-video section-header-icon"></i>
                         <div class="section-header" data-en="International Live Feeds" data-my="Suapan Langsung Antarabangsa">International Live Feeds</div>
                     </div>
@@ -474,15 +420,6 @@
 
     <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aurora.js/0.4.3/aurora.js"></script>
-    <script src="https://rawcdn.githack.com/audiocogs/aac.js/master/aurora-aac.js"></script>
-
-    <script src="js/ts.js"></script>
-    <script src="js/YUVWebGLCanvas.js"></script>
-    <script src="js/Decoder.js"></script>
-
-    <script src="js/Player.js"></script>
-
     <script>
         const matchData = [
             { date: "2026-06-13T19:00:00Z", day: "Saturday", team1: "Qatar", team2: "Switzerland", group: "Group B" }
@@ -508,16 +445,8 @@
         }
 
         const videoJsPlayer = videojs('fifa-player', { fluid: true, autoplay: false, controls: true, responsive: true });
-        let tsPlayerInstance = null;
-        let selectedTsQuality = '4K'; 
 
         function streamHLS(url, title, cardEl, logoUrl) {
-            stopActiveTS();
-
-            document.getElementById('ts-canvas-container').style.display = 'none';
-            document.getElementById('fifa-player').style.display = 'block';
-            document.getElementById('ts-player-status').style.display = 'none';
-
             document.getElementById('now-playing-title').innerText = title;
             document.getElementById('channel-logo-display').src = logoUrl;
             document.querySelectorAll('.channel-card').forEach(c => c.classList.remove('active'));
@@ -525,94 +454,6 @@
 
             videoJsPlayer.src({ src: url, type: 'application/x-mpegURL' });
             videoJsPlayer.play();
-        }
-
-        function streamTS(url, title, cardEl, logoUrl) {
-            videoJsPlayer.pause();
-            stopActiveTS();
-
-            document.getElementById('fifa-player').style.display = 'none';
-            const canvasContainer = document.getElementById('ts-canvas-container');
-            canvasContainer.innerHTML = ''; 
-            canvasContainer.style.display = 'flex';
-
-            document.getElementById('now-playing-title').innerText = title + ' (' + selectedTsQuality + ' Feed)';
-            document.getElementById('channel-logo-display').src = logoUrl;
-            document.querySelectorAll('.channel-card').forEach(c => c.classList.remove('active'));
-            cardEl.classList.add('active');
-
-            const statusLabel = document.getElementById('ts-player-status');
-            statusLabel.style.display = 'flex';
-            statusLabel.innerText = "Loading TS Stream Core Engine...";
-
-            try {
-                tsPlayerInstance = new TSPlayer(new Stream(url), false, '', false, 0, 0, videoReadyCallback, 'aacAudio');
-                canvasContainer.appendChild(tsPlayerInstance.canvas);
-
-                tsPlayerInstance.onended = function () {
-                    console.info("TS play ended.");
-                    statusLabel.innerText = "Stream Play Ended.";
-                };
-
-                tsPlayerInstance.play();
-
-            } catch (err) {
-                console.error(err);
-                statusLabel.innerText = "TS Core Engine Error: " + err.message;
-            }
-        }
-
-        function videoReadyCallback(ok) {
-            const statusLabel = document.getElementById('ts-player-status');
-            const targetCanvas = document.getElementById('ts-canvas-container').getElementsByTagName('canvas')[0];
-            
-            if (ok) {
-                statusLabel.innerText = "TS Player Engine: Live Rendering...";
-                if (targetCanvas) {
-                    if (selectedTsQuality === '4K') {
-                        targetCanvas.style.width = '100%';
-                        targetCanvas.style.filter = 'none';
-                    } else {
-                        targetCanvas.style.width = '480px';
-                        targetCanvas.style.filter = 'blur(0.5px)';
-                    }
-                }
-            } else {
-                statusLabel.innerText = "Read TS File Stream Error / Server Timeout.";
-            }
-        }
-
-        function stopActiveTS() {
-            if (tsPlayerInstance) {
-                try {
-                    tsPlayerInstance.stop();
-                } catch(e) {
-                    console.log("TS System Bypass.");
-                }
-                tsPlayerInstance = null;
-            }
-        }
-
-        function changeTSQuality(quality, event) {
-            event.stopPropagation();
-            selectedTsQuality = quality;
-            
-            const card = document.getElementById('nowsports-card');
-            card.querySelectorAll('.quality-btn').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            const tag = document.getElementById('nowsports-tag');
-            if(quality === '4K') {
-                tag.innerText = '4K';
-                tag.style.background = 'var(--accent-orange)';
-            } else {
-                tag.innerText = 'SD / LQ';
-                tag.style.background = 'var(--text-dim)';
-            }
-
-            if(card.classList.contains('active')) {
-                streamTS('https://api.allorigins.win/raw?url=' + encodeURIComponent('http://starhub.pro/live/farhat-3379/67897-913379/745270.ts'), 'Now Sports 4K', card, 'https://images.now-tv.com/shares/channelPreview/img/en_hk/color/ch618_425_305');
-            }
         }
 
         function toggleLanguage() { alert("Language feature synchronized."); }
