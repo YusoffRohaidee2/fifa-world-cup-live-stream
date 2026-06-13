@@ -383,24 +383,6 @@
 
             <div class="sidebar">
                 <div class="channels-list-wrapper">
-                    
-                    <div class="section-header-group">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/TVRI_Sport_2022.svg/1280px-TVRI_Sport_2022.svg.png" class="section-header-logo">
-                        <div class="section-header" data-en="TVRI Indonesia" data-my="Saluran TVRI Indonesia">TVRI Indonesia</div>
-                    </div>
-
-                    <div class="channel-card" onclick="streamHLS('https://ott-balancer.tvri.go.id/live/eds/SportHD/hls/SportHD.m3u8', 'TVRI SPORTS', this, 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/TVRI_Sport_2022.svg/1280px-TVRI_Sport_2022.svg.png')">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/TVRI_Sport_2022.svg/1280px-TVRI_Sport_2022.svg.png" class="card-img" style="background: #ffffff; padding: 5px;">
-                        <div class="card-info">
-                            <h4>TVRI SPORTS</h4>
-                            <p data-en="Global Feed | Indonesia" data-my="Suapan Global | Indonesia">Global Feed | Indonesia</p>
-                            <div class="card-notice">
-                                <i class="fa-solid fa-stopwatch"></i>
-                                <span data-en="Matchdays Only" data-my="Hanya Pada Hari Perlawanan">Matchdays Only</span>
-                            </div>
-                        </div>
-                        <span class="tag" style="background: var(--accent-green); color: #000;">1080p</span>
-                    </div>
 
                     <div class="section-header-group">
                         <img src="https://static.wikia.nocookie.net/logopedia/images/e/ed/FIFA%2B_%28App_Icon%29.png/revision/latest/scale-to-width-down/250?cb=20221012163238" class="section-header-logo">
@@ -462,6 +444,19 @@
                         <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
                     </div>
 
+                    <div class="channel-card" onclick="streamHLS('https://ott-balancer.tvri.go.id/live/eds/SportHD/hls/SportHD.m3u8', 'TVRI SPORTS', this, 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/TVRI_Sport_2022.svg/1280px-TVRI_Sport_2022.svg.png')">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/TVRI_Sport_2022.svg/1280px-TVRI_Sport_2022.svg.png" class="card-img" style="background: #ffffff; padding: 5px;">
+                        <div class="card-info">
+                            <h4>TVRI SPORTS</h4>
+                            <p data-en="Global Feed | Indonesia" data-my="Suapan Global | Indonesia">Global Feed | Indonesia</p>
+                            <div class="card-notice">
+                                <i class="fa-solid fa-stopwatch"></i>
+                                <span data-en="Matchdays Only" data-my="Hanya Pada Hari Perlawanan">Matchdays Only</span>
+                            </div>
+                        </div>
+                        <span class="tag" style="background: var(--accent-green); color: #000;">1080p</span>
+                    </div>
+
                     <div class="section-header-group">
                         <i class="fa-solid fa-video section-header-icon"></i>
                         <div class="section-header" data-en="International Live Feeds" data-my="Suapan Langsung Antarabangsa">International Live Feeds</div>
@@ -470,15 +465,6 @@
                     <div class="section-sub-notice">
                         <i class="fa-solid fa-triangle-exclamation"></i>
                         <span data-en="Notice: Shared streams will vary or change dynamically according to global distribution schedules." data-my="Makluman: Strim luaran yang dikongsi akan berubah secara dinamik mengikut jadual pengedaran global.">Notice: Shared streams will vary or change dynamically according to global distribution schedules.</span>
-                    </div>
-
-                    <div class="channel-card" onclick="streamHLS('https://dfr80qz435crc.cloudfront.net/MNOP/Amagi/Caze/Caze_TV_BR/540p-vtt/index.m3u8', 'CazéTV 1', this, 'https://upload.wikimedia.org/wikipedia/en/6/64/Caz%C3%A9TV_logo.svg')">
-                        <img src="https://upload.wikimedia.org/wikipedia/en/6/64/Caz%C3%A9TV_logo.svg" class="card-img" style="background: rgba(255,255,255,0.05); padding: 5px;">
-                        <div class="card-info">
-                            <h4>CazéTV 1</h4>
-                            <p data-en="Live Event Feed | Brazil" data-my="Suapan Acara Langsung | Brazil">Live Event Feed | Brazil</p>
-                        </div>
-                        <span class="tag" style="background: var(--accent-orange); color: #000;">540p</span>
                     </div>
 
                     <div class="channel-card" onclick="streamHLS('https://d3iwkuprshvnfk.cloudfront.net/RLSP2/HD50_500kb/chunklist.m3u8', 'Reuters Live Service [2]', this, 'https://static.wikia.nocookie.net/logopedia/images/5/53/Reuters_2008_vertical.svg/revision/latest?cb=20240525053744')">
@@ -516,10 +502,10 @@
                 <h3 data-en="Update Log" data-my="Log Kemaskini">Update Log</h3>
                 <ul class="log-list">
                     <li class="log-item">
-                        <i class="fa-solid fa-circle-plus"></i>
+                        <i class="fa-solid fa-circle-minus"></i>
                         <div>
                             <span class="log-date">6/13/2026</span>
-                            <span data-en="Switched CazéTV 1 endpoint to the optimized 540p-vtt sub-manifest and updated vector asset logo branding." data-my="Menukar pautan utama CazéTV 1 kepada sub-manifes 540p-vtt yang dioptimumkan serta mengemas kini logo aset vektor penjenamaan baru.">Switched CazéTV 1 endpoint to the optimized 540p-vtt sub-manifest and updated vector asset logo branding.</span>
+                            <span data-en="Removed CazéTV stream layout and shifted TVRI Sports under RTM Malaysia Streams segment." data-my="Membuang susun atur penstriman CazéTV dan memindahkan TVRI Sports ke bawah segmen RTM Malaysia Streams.">Removed CazéTV stream layout and shifted TVRI Sports under RTM Malaysia Streams segment.</span>
                         </div>
                     </li>
                     <li class="log-item">
@@ -700,7 +686,6 @@
                 container.appendChild(card);
             });
 
-            // Append courtesy attribution footer at the bottom of the results grid
             const footerEl = document.createElement('div');
             footerEl.className = 'results-footer';
             footerEl.innerHTML = `
@@ -750,12 +735,6 @@
         function streamHLS(url, title, el, logoUrl) { 
             updateUI(title, el, logoUrl); 
             player.src({ src: url, type: 'application/x-mpegURL' }); 
-            player.play(); 
-        }
-        
-        function streamDASH(url, title, el, logoUrl) { 
-            updateUI(title, el, logoUrl); 
-            player.src({ src: url, type: 'application/dash+xml' }); 
             player.play(); 
         }
     </script>
