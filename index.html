@@ -270,6 +270,43 @@
         .card-red { color: var(--accent-red); font-size: 0.75rem; }
         .goal-icon { color: var(--accent-green); font-size: 0.75rem; }
 
+        /* Results Footer Attribution Wrapper */
+        .results-footer {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .credit-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .credit-link:hover {
+            color: #ffffff;
+            transform: scale(1.02);
+        }
+
+        .credit-logo {
+            height: 24px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 8px rgba(255,255,255,0.1));
+        }
+
         /* Info Container & Log Changelog List */
         .info-container { max-width: 900px; margin: 0 auto; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 30px; padding: 40px; backdrop-filter: blur(10px); }
         .info-section { margin-bottom: 35px; }
@@ -348,11 +385,29 @@
                 <div class="channels-list-wrapper">
                     
                     <div class="section-header-group">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/TVRI_Sport_2022.svg/1280px-TVRI_Sport_2022.svg.png" class="section-header-logo">
+                        <div class="section-header" data-en="TVRI Indonesia" data-my="Saluran TVRI Indonesia">TVRI Indonesia</div>
+                    </div>
+
+                    <div class="channel-card" onclick="streamHLS('https://ott-balancer.tvri.go.id/live/eds/SportHD/hls/SportHD.m3u8', 'TVRI SPORTS', this, 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/TVRI_Sport_2022.svg/1280px-TVRI_Sport_2022.svg.png')">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/TVRI_Sport_2022.svg/1280px-TVRI_Sport_2022.svg.png" class="card-img" style="background: #ffffff; padding: 5px;">
+                        <div class="card-info">
+                            <h4>TVRI SPORTS</h4>
+                            <p data-en="Global Feed | Indonesia" data-my="Suapan Global | Indonesia">Global Feed | Indonesia</p>
+                            <div class="card-notice">
+                                <i class="fa-solid fa-stopwatch"></i>
+                                <span data-en="Matchdays Only" data-my="Hanya Pada Hari Perlawanan">Matchdays Only</span>
+                            </div>
+                        </div>
+                        <span class="tag" style="background: var(--accent-green); color: #000;">1080p</span>
+                    </div>
+
+                    <div class="section-header-group">
                         <img src="https://static.wikia.nocookie.net/logopedia/images/e/ed/FIFA%2B_%28App_Icon%29.png/revision/latest/scale-to-width-down/250?cb=20221012163238" class="section-header-logo">
                         <div class="section-header" data-en="FIFA+ Official Streams" data-my="Siaran Rasmi FIFA+">FIFA+ Official Streams</div>
                     </div>
                     
-                    <div class="channel-card" onclick="streamHLS('https://cors-proxy.cooks.fyi/https://a62dad94.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWV1X0ZJRkFQbHVzRW5nbGlzaF9ITFM/playlist.m3u8', 'FIFA+ HD (UK Feed)', this, 'https://static.wikia.nocookie.net/logopedia/images/e/ed/FIFA%2B_%28App_Icon%29.png/revision/latest/scale-to-width-down/250?cb=20221012163238')">
+                    <div class="channel-card" onclick="streamHLS('https://a62dad94.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWV1X0ZJRkFQbHVzRW5nbGlzaF9ITFM/playlist.m3u8', 'FIFA+ HD (UK Feed)', this, 'https://static.wikia.nocookie.net/logopedia/images/e/ed/FIFA%2B_%28App_Icon%29.png/revision/latest/scale-to-width-down/250?cb=20221012163238')">
                         <img src="https://static.wikia.nocookie.net/logopedia/images/e/ed/FIFA%2B_%28App_Icon%29.png/revision/latest/scale-to-width-down/250?cb=20221012163238" class="card-img">
                         <div class="card-info">
                             <h4>FIFA+ HD</h4>
@@ -361,7 +416,7 @@
                         <span class="tag" style="background: var(--text-dim); color: #000;">720p</span>
                     </div>
 
-                    <div class="channel-card" onclick="streamHLS('https://cors-proxy.cooks.fyi/https://d2w9q46ikgrcwx.cloudfront.net/v1/sysdata_s_p_a_fifa_7/samsungheadend_us/latest/main/hls/playlist.m3u8', 'FIFA+ HD (US Feed)', this, 'https://static.wikia.nocookie.net/logopedia/images/e/ed/FIFA%2B_%28App_Icon%29.png/revision/latest/scale-to-width-down/250?cb=20221012163238')">
+                    <div class="channel-card" onclick="streamHLS('https://d2w9q46ikgrcwx.cloudfront.net/v1/sysdata_s_p_a_fifa_7/samsungheadend_us/latest/main/hls/playlist.m3u8', 'FIFA+ HD (US Feed)', this, 'https://static.wikia.nocookie.net/logopedia/images/e/ed/FIFA%2B_%28App_Icon%29.png/revision/latest/scale-to-width-down/250?cb=20221012163238')">
                         <img src="https://static.wikia.nocookie.net/logopedia/images/e/ed/FIFA%2B_%28App_Icon%29.png/revision/latest/scale-to-width-down/250?cb=20221012163238" class="card-img">
                         <div class="card-info">
                             <h4>FIFA+ HD</h4>
@@ -375,7 +430,7 @@
                         <div class="section-header" data-en="Fox Sports & Partners" data-my="Siaran Fox Sports & Rakan Strategik">Fox Sports & Partners</div>
                     </div>
 
-                    <div class="channel-card" onclick="streamHLS('https://cors-proxy.cooks.fyi/http://23.237.104.106:8080/USA_FOX_DEPORTES/index.m3u8', 'FOX Deportes', this, 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/FOX_Deportes_logo.png/960px-FOX_Deportes_logo.png')">
+                    <div class="channel-card" onclick="streamHLS('http://23.237.104.106:8080/USA_FOX_DEPORTES/index.m3u8', 'FOX Deportes', this, 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/FOX_Deportes_logo.png/960px-FOX_Deportes_logo.png')">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/FOX_Deportes_logo.png/960px-FOX_Deportes_logo.png" class="card-img" style="background: rgba(255,255,255,0.02); padding: 4px;">
                         <div class="card-info">
                             <h4>FOX Deportes</h4>
@@ -417,17 +472,13 @@
                         <span data-en="Notice: Shared streams will vary or change dynamically according to global distribution schedules." data-my="Makluman: Strim luaran yang dikongsi akan berubah secara dinamik mengikut jadual pengedaran global.">Notice: Shared streams will vary or change dynamically according to global distribution schedules.</span>
                     </div>
 
-                    <div class="channel-card" onclick="streamHLS('https://ott-balancer.tvri.go.id/live/eds/SportHD/hls/SportHD.m3u8', 'TVRI SPORTS', this, 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/TVRI_Sport_logo_2019.svg/1200px-TVRI_Sport_logo_2019.svg.png')">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/TVRI_Sport_logo_2019.svg/1200px-TVRI_Sport_logo_2019.svg.png" class="card-img" style="background: #ffffff; padding: 5px;">
+                    <div class="channel-card" onclick="streamHLS('https://dfr80qz435crc.cloudfront.net/MNOP/Amagi/Caze/Caze_TV_BR/Caze_TV.m3u8', 'CazéTV 1', this, 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Caz%C3%A9TV_logo.png')">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Caz%C3%A9TV_logo.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 5px;">
                         <div class="card-info">
-                            <h4>TVRI SPORTS</h4>
-                            <p data-en="Global Feed | Indonesia" data-my="Suapan Global | Indonesia">Global Feed | Indonesia</p>
-                            <div class="card-notice">
-                                <i class="fa-solid fa-stopwatch"></i>
-                                <span data-en="Matchdays Only" data-my="Hanya Pada Hari Perlawanan">Matchdays Only</span>
-                            </div>
+                            <h4>CazéTV 1</h4>
+                            <p data-en="Live Event Feed | Brazil" data-my="Suapan Acara Langsung | Brazil">Live Event Feed | Brazil</p>
                         </div>
-                        <span class="tag" style="background: var(--accent-green); color: #000;">1080p</span>
+                        <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
                     </div>
 
                     <div class="channel-card" onclick="streamHLS('https://d3iwkuprshvnfk.cloudfront.net/RLSP2/HD50_500kb/chunklist.m3u8', 'Reuters Live Service [2]', this, 'https://static.wikia.nocookie.net/logopedia/images/5/53/Reuters_2008_vertical.svg/revision/latest?cb=20240525053744')">
@@ -468,21 +519,14 @@
                         <i class="fa-solid fa-circle-plus"></i>
                         <div>
                             <span class="log-date">6/13/2026</span>
-                            <span data-en="Updated Reuters logo to vertical 2008 version." data-my="Mengemas kini logo Reuters ke versi menegak 2008.">Updated Reuters logo to vertical 2008 version.</span>
+                            <span data-en="Restored CazéTV 1 stream endpoint directly from live distribution manifest vectors." data-my="Mengembalikan semula suapan strim CazéTV 1 terus daripada vektor manifes pengedaran langsung.">Restored CazéTV 1 stream endpoint directly from live distribution manifest vectors.</span>
                         </div>
                     </li>
                     <li class="log-item">
-                        <i class="fa-solid fa-circle-plus"></i>
+                        <i class="fa-solid fa-circle-minus"></i>
                         <div>
                             <span class="log-date">6/13/2026</span>
-                            <span data-en="Replaced AP feeds with TVRI Sports Indonesia, featuring custom conditional matchday-only alerts." data-my="Menggantikan suapan AP kepada TVRI Sports Indonesia berserta amaran bersyarat hari perlawanan khusus.">Replaced AP feeds with TVRI Sports Indonesia, featuring custom conditional matchday-only alerts.</span>
-                        </div>
-                    </li>
-                    <li class="log-item">
-                        <i class="fa-solid fa-circle-plus"></i>
-                        <div>
-                            <span class="log-date">6/13/2026</span>
-                            <span data-en="Clarified Reuters & AP feed context as raw news media (CCTV-style ambient views and arrivals notice)." data-my="Memperjelaskan konteks suapan Reuters & AP sebagai media berita asal (makluman pandangan ambien gaya CCTV dan ketibaan).">Clarified Reuters & AP feed context as raw news media (CCTV-style ambient views and arrivals notice).</span>
+                            <span data-en="Removed CORS reverse proxy prefixes from streaming URLs to establish native direct connection endpoints." data-my="Membuang awalan proksi terbalik CORS pada pautan penstriman untuk sambungan terus ke titik akhir asal.">Removed CORS reverse proxy prefixes from streaming URLs to establish native direct connection endpoints.</span>
                         </div>
                     </li>
                 </ul>
@@ -494,8 +538,6 @@
 
     <script>
         const matchData = [
-            { date: "2026-06-12T19:00:00Z", day: "Friday", team1: "Canada", team2: "Bosnia & Herz.", group: "Group B" },
-            { date: "2026-06-13T01:00:00Z", day: "Saturday", team1: "United States", team2: "Paraguay", group: "Group D" },
             { date: "2026-06-13T19:00:00Z", day: "Saturday", team1: "Qatar", team2: "Switzerland", group: "Group B" },
             { date: "2026-06-13T22:00:00Z", day: "Saturday", team1: "Brazil", team2: "Morocco", group: "Group C" },
             { date: "2026-06-14T15:00:00Z", day: "Sunday", team1: "Argentina", team2: "Sweden", group: "Group E" },
@@ -525,6 +567,30 @@
         ];
 
         const resultsData = [
+            {
+                date: "2026-06-13T01:00:00Z", day: "Saturday", group: "Group D",
+                team1: "United States", team2: "Paraguay", score1: 4, score2: 1,
+                stadium: "SoFi Stadium", attendance: "70,492",
+                events1: [
+                    { type: "goal", text: "D. Bobadilla (7' OG)" },
+                    { type: "goal", text: "F. Balogun (31', 45+5')" },
+                    { type: "goal", text: "G. Reyna (90+8')" }
+                ],
+                events2: [
+                    { type: "goal", text: "M. Prado (73')" }
+                ]
+            },
+            {
+                date: "2026-06-12T19:00:00Z", day: "Friday", group: "Group B",
+                team1: "Canada", team2: "Bosnia & Herz.", score1: 1, score2: 1,
+                stadium: "Toronto Stadium", attendance: "43,002",
+                events1: [
+                    { type: "goal", text: "C. Larin (78')" }
+                ],
+                events2: [
+                    { type: "goal", text: "J. Lukic (21')" }
+                ]
+            },
             {
                 date: "2026-06-11T19:00:00Z", day: "Thursday", group: "Group A",
                 team1: "Mexico", team2: "South Africa", score1: 2, score2: 0,
@@ -633,6 +699,18 @@
                 `;
                 container.appendChild(card);
             });
+
+            // Append courtesy attribution footer at the bottom of the results grid
+            const footerEl = document.createElement('div');
+            footerEl.className = 'results-footer';
+            footerEl.innerHTML = `
+                <a href="https://www.skysports.com/fifa-world-cup-scores-fixtures" target="_blank" class="credit-link">
+                    <span data-en="Courtesy (C) by :" data-my="Ihsan (C) oleh :">Courtesy (C) by :</span>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Sky_Sport_-_Logo_2026.svg/3840px-Sky_Sport_-_Logo_2026.svg.png" class="credit-logo" alt="Sky Sports">
+                    <span style="font-size: 0.8rem; color: var(--accent-blue);" data-en="(Click the logo to go to the website)" data-my="(Klik logo untuk layari laman web)">(Click the logo to go to the website)</span>
+                </a>
+            `;
+            container.appendChild(footerEl);
         }
 
         function switchTab(tabId, buttonEl) {
