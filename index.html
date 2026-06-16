@@ -76,7 +76,6 @@
             font-weight: 300;
         }
 
-        /* Notice Alert Banner */
         .notice-banner {
             max-width: 750px;
             margin: 15px auto 20px;
@@ -188,7 +187,6 @@
         #channel-logo-display { height: 60px; margin-right: 25px; width: 100px; object-fit: contain; }
         .status-dot { height: 10px; width: 10px; background: #3fffcf; border-radius: 50%; display: inline-block; margin-right: 10px; box-shadow: 0 0 10px #3fffcf; animation: pulse 1.5s infinite; }
 
-        /* Embedded Loading Notice Styling */
         .player-loading-notice {
             background: rgba(255, 159, 67, 0.08);
             border-left: 4px solid var(--accent-orange);
@@ -210,11 +208,9 @@
         .section-header-icon { font-size: 1.2rem; color: var(--accent-blue); filter: drop-shadow(0 0 5px rgba(0,210,255,0.3)); }
         .section-header { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-main); font-weight: 600; margin: 0; }
         
-        /* Segment Sub-Notice Styling */
         .section-sub-notice { font-size: 0.75rem; color: #ffbc6d; margin: -5px 0 12px 0; font-weight: 500; display: flex; align-items: flex-start; gap: 6px; opacity: 0.95; line-height: 1.4; }
         .section-sub-notice i { margin-top: 2px; flex-shrink: 0; }
 
-        /* No scroll container wrapper since it is fully visible */
         .channels-list-wrapper { display: flex; flex-direction: column; }
 
         .channel-card {
@@ -226,15 +222,11 @@
         .channel-card.active { background: linear-gradient(135deg, rgba(131, 58, 180, 0.15), rgba(0, 210, 255, 0.15)); border-color: var(--accent-blue); box-shadow: 0 0 15px rgba(0, 210, 255, 0.2); }
 
         .card-img { width: 70px; height: 45px; object-fit: contain; background: rgba(255,255,255,0.05); border-radius: 12px; margin-right: 20px; padding: 5px; }
-        .card-img h4 { margin: 0; font-size: 1.1rem; font-weight: 600; color: #ffffff; }
+        .card-info h4 { margin: 0; font-size: 1.1rem; font-weight: 600; color: #ffffff; }
         .card-info p { margin: 4px 0 0; font-size: 0.85rem; color: var(--text-dim); }
-        
-        /* Card Specific Internal Notice */
-        .card-notice { font-size: 0.75rem; color: var(--accent-orange); font-weight: 600; margin-top: 3px; display: flex; align-items: center; gap: 4px; }
         
         .tag { position: absolute; top: 0; right: 0; background: #00d2ff; color: #000; font-size: 0.7rem; font-weight: 800; padding: 6px 14px; border-radius: 0 0 0 14px; text-transform: uppercase; }
 
-        /* Schedule & Results Layout */
         .schedule-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 25px; width: 100%; }
         .schedule-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 24px; padding: 22px; backdrop-filter: blur(10px); transition: all 0.3s ease; position: relative; }
         .schedule-card:hover { border-color: var(--accent-purple); transform: translateY(-5px); }
@@ -257,11 +249,9 @@
         .time-row .val { font-weight: 600; color: #fff; }
         .time-row.system-time .val { color: var(--accent-green); font-weight: 700; }
 
-        /* Match Stats Styling inside Results */
         .match-details-box { background: rgba(0,0,0,0.2); border-radius: 14px; padding: 12px; margin-bottom: 12px; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.02); }
         .detail-row { display: flex; justify-content: space-between; margin-bottom: 6px; color: var(--text-dim); }
         .detail-row:last-child { margin-bottom: 0; }
-        .detail-row span solid strong { color: #fff; }
         .events-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 8px; font-size: 0.8rem; }
         .team-events { display: flex; flex-direction: column; gap: 3px; }
         .team-events.right { align-items: flex-end; text-align: right; border-left: 1px solid rgba(255,255,255,0.05); padding-left: 10px; }
@@ -270,7 +260,6 @@
         .card-red { color: var(--accent-red); font-size: 0.75rem; }
         .goal-icon { color: var(--accent-green); font-size: 0.75rem; }
 
-        /* Results Footer Attribution Wrapper */
         .results-footer {
             grid-column: 1 / -1;
             display: flex;
@@ -307,7 +296,6 @@
             filter: drop-shadow(0 0 8px rgba(255,255,255,0.1));
         }
 
-        /* Info Container & Log Changelog List */
         .info-container { max-width: 900px; margin: 0 auto; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 30px; padding: 40px; backdrop-filter: blur(10px); }
         .info-section { margin-bottom: 35px; }
         .info-section:last-child { margin-bottom: 0; }
@@ -445,24 +433,6 @@
                     </div>
 
                     <div class="section-header-group">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/TVRI_Corporate_Logo.svg/1200px-TVRI_Corporate_Logo.svg.png" class="section-header-logo" style="height: 16px;">
-                        <div class="section-header" data-en="TVRI Indonesia Streams" data-my="Siaran Langsung TVRI">TVRI Indonesia Streams</div>
-                    </div>
-
-                    <div class="channel-card" onclick="streamHLS('https://ott-balancer.tvri.go.id/live/eds/SportHD/hls/SportHD.m3u8', 'TVRI SPORTS', this, 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/TVRI_Sport_2022.svg/1280px-TVRI_Sport_2022.svg.png')">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/TVRI_Sport_2022.svg/1280px-TVRI_Sport_2022.svg.png" class="card-img" style="background: #ffffff; padding: 5px;">
-                        <div class="card-info">
-                            <h4>TVRI SPORTS</h4>
-                            <p data-en="Global Feed | Indonesia" data-my="Suapan Global | Indonesia">Global Feed | Indonesia</p>
-                            <div class="card-notice">
-                                <i class="fa-solid fa-stopwatch"></i>
-                                <span data-en="Matchdays Only" data-my="Hanya Pada Hari Perlawanan">Matchdays Only</span>
-                            </div>
-                        </div>
-                        <span class="tag" style="background: var(--accent-green); color: #000;">1080p</span>
-                    </div>
-
-                    <div class="section-header-group">
                         <i class="fa-solid fa-video section-header-icon"></i>
                         <div class="section-header" data-en="International Live Feeds" data-my="Suapan Langsung Antarabangsa">International Live Feeds</div>
                     </div>
@@ -498,7 +468,7 @@
         <div class="info-container">
             <div class="info-section">
                 <h3 data-en="About Media Center Feed" data-my="Mengenai Suapan Pusat Media">About Media Center Feed</h3>
-                <p data-en="This system provides global technical distribution feeds for the World Cup event. Integrated with localized CDN endpoints ensuring low-latency high-definition broadcast streams." data-my="Sistem ini menyediakan suapan pengedaran teknikal global untuk acara Piala Dunia. Berintegrasi dengan titik akhir CDN tempatan bagi memastikan strim siaran definisi tinggi kognitif rendah.">
+                <p data-en="This system provides global technical distribution feeds for the World Cup event. Integrated with localized CDN endpoints ensuring low-latency high-definition broadcast streams." data-my="Sistem ini menyediakan suapan pengedaran teknik global untuk acara Piala Dunia. Berintegrasi dengan titik akhir CDN tempatan bagi memastikan strim siaran definisi tinggi kognitif rendah.">
                     This system provides global technical distribution feeds for the World Cup event. Integrated with localized CDN endpoints ensuring low-latency high-definition broadcast streams.
                 </p>
             </div>
@@ -509,15 +479,15 @@
                     <li class="log-item">
                         <i class="fa-solid fa-circle-check"></i>
                         <div>
-                            <span class="log-date">6/14/2026</span>
-                            <span data-en="Updated live match results data for Group B and Group C (Qatar vs Switzerland, Brazil vs Morocco, Haiti vs Scotland)." data-my="Mengemaskini data keputusan perlawanan langsung Kumpulan B dan Kumpulan C (Qatar vs Switzerland, Brazil vs Morocco, Haiti vs Scotland).">Updated live match results data for Group B and Group C (Qatar vs Switzerland, Brazil vs Morocco, Haiti vs Scotland).</span>
+                            <span class="log-date">6/16/2026</span>
+                            <span data-en="Added missing tournament opening match results from June 11-13 (including Brazil vs Morocco) and properly formatted all stadium & attendance metadata." data-my="Menambah keputusan perlawanan pembukaan kejohanan dari 11-13 Jun yang tertinggal (termasuk Brazil vs Morocco) serta melengkapkan metadata stadium & kehadiran penonton.">Added missing tournament opening match results from June 11-13 (including Brazil vs Morocco) and properly formatted all stadium & attendance metadata.</span>
                         </div>
                     </li>
                     <li class="log-item">
-                        <i class="fa-solid fa-circle-minus"></i>
+                        <i class="fa-solid fa-circle-check"></i>
                         <div>
-                            <span class="log-date">6/13/2026</span>
-                            <span data-en="Removed CazéTV layout and isolated TVRI Sports into its own segment directly beneath RTM Malaysia." data-my="Membuang susun atur CazéTV dan mengasingkan TVRI Sports ke dalam segmen sendiri tepat di bawah RTM Malaysia.">Removed CazéTV layout and isolated TVRI Sports into its own segment directly beneath RTM Malaysia.</span>
+                            <span class="log-date">6/16/2026</span>
+                            <span data-en="Added latest match results up to June 16 (Germany, Netherlands, Sweden, Spain, Belgium, Saudi Arabia, Iran matches) and completely removed TVRI Sports stream." data-my="Menambah keputusan perlawanan terbaru sehingga 16 Jun (perlawanan Jerman, Belanda, Sweden, Sepanyol, Belgium, Arab Saudi, Iran) dan membuang saluran TVRI Sports sepenuhnya.">Added latest match results up to June 16 (Germany, Netherlands, Sweden, Spain, Belgium, Saudi Arabia, Iran matches) and completely removed TVRI Sports stream.</span>
                         </div>
                     </li>
                 </ul>
@@ -529,10 +499,6 @@
 
     <script>
         const matchData = [
-            { date: "2026-06-14T15:00:00Z", day: "Sunday", team1: "Argentina", team2: "Sweden", group: "Group E" },
-            { date: "2026-06-14T18:00:00Z", day: "Sunday", team1: "France", team2: "Australia", group: "Group F" },
-            { date: "2026-06-15T19:00:00Z", day: "Monday", team1: "Germany", team2: "Japan", group: "Group G" },
-            { date: "2026-06-15T22:00:00Z", day: "Monday", team1: "Spain", team2: "Cameroon", group: "Group H" },
             { date: "2026-06-16T15:00:00Z", day: "Tuesday", team1: "England", team2: "Ecuador", group: "Group I" },
             { date: "2026-06-16T18:00:00Z", day: "Tuesday", team1: "Italy", team2: "Saudi Arabia", group: "Group J" },
             { date: "2026-06-17T19:00:00Z", day: "Wednesday", team1: "Portugal", team2: "Angola", group: "Group K" },
@@ -542,88 +508,141 @@
             { date: "2026-06-19T14:00:00Z", day: "Friday", team1: "Uruguay", team2: "Scotland", group: "Group E" },
             { date: "2026-06-19T20:00:00Z", day: "Friday", team1: "Denmark", team2: "Algeria", group: "Group F" },
             { date: "2026-06-20T17:00:00Z", day: "Saturday", team1: "Colombia", team2: "Iran", group: "Group G" },
-            { date: "2026-06-20T21:00:00Z", day: "Saturday", team1: "Senegal", team2: "Austria", group: "Group H" },
-            { date: "2026-06-21T15:00:00Z", day: "Sunday", team1: "Morocco", team2: "Belgium", group: "Group C" },
-            { date: "2026-06-21T19:00:00Z", day: "Sunday", team1: "Paraguay", team2: "Croatia", group: "Group D" },
-            { date: "2026-06-22T18:00:00Z", day: "Monday", team1: "Sweden", team2: "Uruguay", group: "Group E" },
-            { date: "2026-06-22T21:00:00Z", day: "Monday", team1: "Australia", team2: "Denmark", group: "Group F" },
-            { date: "2026-06-23T16:00:00Z", day: "Tuesday", team1: "Japan", team2: "Colombia", group: "Group G" },
-            { date: "2026-06-23T20:00:00Z", day: "Tuesday", team1: "Cameroon", team2: "Senegal", group: "Group H" },
-            { date: "2026-06-24T17:00:00Z", day: "Wednesday", team1: "Ecuador", team2: "Wales", group: "Group I" },
-            { date: "2026-06-24T21:00:00Z", day: "Wednesday", team1: "Saudi Arabia", team2: "Ukraine", group: "Group J" },
-            { date: "2026-06-25T15:00:00Z", day: "Thursday", team1: "South Korea", team2: "Nigeria", group: "Group K" },
-            { date: "2026-06-25T19:00:00Z", day: "Thursday", team1: "Tunisia", team2: "Chile", group: "Group L" }
+            { date: "2026-06-20T21:00:00Z", day: "Saturday", team1: "Senegal", team2: "Austria", group: "Group H" }
         ];
 
         const resultsData = [
+            // --- 16 JUN ---
+            {
+                date: "2026-06-16T02:00:00Z", day: "Tuesday", group: "Group G",
+                team1: "Iran", team2: "New Zealand", score1: 2, score2: 2,
+                stadium: "SoFi Stadium", attendance: "70,108",
+                events1: [{ type: "goal", text: "R. Rezaeian (32')" }, { type: "goal", text: "M. Mohebbi (64')" }],
+                events2: [{ type: "goal", text: "E. Just (7', 54')" }]
+            },
+            // --- 15 JUN ---
+            {
+                date: "2026-06-15T23:00:00Z", day: "Monday", group: "Group H",
+                team1: "Saudi Arabia", team2: "Uruguay", score1: 1, score2: 1,
+                stadium: "Hard Rock Stadium", attendance: "62,764",
+                events1: [{ type: "goal", text: "A. Alamri (41')" }],
+                events2: [{ type: "goal", text: "M. Araújo (80')" }]
+            },
+            {
+                date: "2026-06-15T20:00:00Z", day: "Monday", group: "Group G",
+                team1: "Belgium", team2: "Egypt", score1: 1, score2: 1,
+                stadium: "CenturyLink Field", attendance: "66,775",
+                events1: [{ type: "goal", text: "M. Hany (66' OG)" }],
+                events2: [{ type: "goal", text: "E. Abdelghany (19')" }]
+            },
+            {
+                date: "2026-06-15T17:00:00Z", day: "Monday", group: "Group H",
+                team1: "Spain", team2: "Cape Verde", score1: 0, score2: 0,
+                stadium: "Mercedes-Benz Stadium", attendance: "67,640",
+                events1: [], events2: []
+            },
+            {
+                date: "2026-06-15T03:00:00Z", day: "Monday", group: "Group F",
+                team1: "Sweden", team2: "Tunisia", score1: 5, score2: 1,
+                stadium: "Estadio BBVA", attendance: "50,987",
+                events1: [
+                    { type: "goal", text: "Y. Ayari (7', 90+6')" },
+                    { type: "goal", text: "A. Isak (30')" },
+                    { type: "goal", text: "V. Gyokeres (59')" },
+                    { type: "goal", text: "M. Svanberg (84')" }
+                ],
+                events2: [{ type: "goal", text: "O. Rekik (43')" }]
+            },
+            {
+                date: "2026-06-15T00:00:00Z", day: "Monday", group: "Group E",
+                team1: "Ivory Coast", team2: "Ecuador", score1: 1, score2: 0,
+                stadium: "Philadelphia Stadium", attendance: "68,274",
+                events1: [{ type: "goal", text: "A. Diallo (90')" }],
+                events2: []
+            },
+            // --- 14 JUN ---
+            {
+                date: "2026-06-14T21:00:00Z", day: "Sunday", group: "Group F",
+                team1: "Netherlands", team2: "Japan", score1: 2, score2: 2,
+                stadium: "Dallas Stadium", attendance: "69,285",
+                events1: [{ type: "goal", text: "V. van Dijk (51')" }, { type: "goal", text: "C. Summerville (64')" }],
+                events2: [{ type: "goal", text: "Kakamura (57')" }, { type: "goal", text: "D. Kamada (89')" }]
+            },
+            {
+                date: "2026-06-14T18:00:00Z", day: "Sunday", group: "Group E",
+                team1: "Germany", team2: "Curacao", score1: 7, score2: 1,
+                stadium: "NRG Stadium", attendance: "68,021",
+                events1: [
+                    { type: "goal", text: "F. Nmecha (6')" },
+                    { type: "goal", text: "N. Schlotterbeck (38')" },
+                    { type: "goal", text: "K. Havertz (45+5' PEN, 88')" },
+                    { type: "goal", text: "J. Musiala (47')" },
+                    { type: "goal", text: "N. Brown (68')" },
+                    { type: "goal", text: "D. Undav (78')" }
+                ],
+                events2: [{ type: "goal", text: "L. Comenencia (21')" }]
+            },
+            {
+                date: "2026-06-14T05:00:00Z", day: "Sunday", group: "Group D",
+                team1: "Australia", team2: "Turkey", score1: 2, score2: 0,
+                stadium: "BC Place", attendance: "52,497",
+                events1: [{ type: "goal", text: "N. Irankunda (27')" }, { type: "goal", text: "C. Metcalfe (75')" }],
+                events2: []
+            },
             {
                 date: "2026-06-14T02:00:00Z", day: "Sunday", group: "Group C",
                 team1: "Haiti", team2: "Scotland", score1: 0, score2: 1,
                 stadium: "Boston Stadium", attendance: "64,146",
-                events1: [],
-                events2: [
-                    { type: "goal", text: "J. McGinn (28')" }
-                ]
+                events1: [], events2: [{ type: "goal", text: "J. McGinn (28')" }]
+            },
+            // --- 13 JUN ---
+            {
+                date: "2026-06-13T21:00:00Z", day: "Saturday", group: "Group B",
+                team1: "Brazil", team2: "Morocco", score1: 1, score2: 0,
+                stadium: "Levi's Stadium", attendance: "68,340",
+                events1: [{ type: "goal", text: "Vinícius Jr. (42')" }], events2: []
             },
             {
-                date: "2026-06-13T23:00:00Z", day: "Saturday", group: "Group C",
-                team1: "Brazil", team2: "Morocco", score1: 1, score2: 1,
-                stadium: "MetLife Stadium", attendance: "80,663",
-                events1: [
-                    { type: "goal", text: "Vinicius Júnior (32')" }
-                ],
-                events2: [
-                    { type: "goal", text: "I. Saibari (21')" }
-                ]
-            },
-            {
-                date: "2026-06-13T20:00:00Z", day: "Saturday", group: "Group B",
+                date: "2026-06-13T18:00:00Z", day: "Saturday", group: "Group D",
                 team1: "Qatar", team2: "Switzerland", score1: 1, score2: 1,
-                stadium: "Levi's Stadium", attendance: "67,966",
-                events1: [
-                    { type: "goal", text: "B. Khoukhi (90+4')" }
-                ],
-                events2: [
-                    { type: "goal", text: "B. Embolo (17' PEN)" }
-                ]
+                stadium: "Arrowhead Stadium", attendance: "66,852",
+                events1: [{ type: "goal", text: "A. Afif (22')" }],
+                events2: [{ type: "goal", text: "B. Embolo (55')" }]
             },
             {
-                date: "2026-06-13T01:00:00Z", day: "Saturday", group: "Group D",
-                team1: "United States", team2: "Paraguay", score1: 4, score2: 1,
-                stadium: "SoFi Stadium", attendance: "70,492",
+                date: "2026-06-13T01:00:00Z", day: "Saturday", group: "Group A",
+                team1: "United States of America", team2: "Paraguay", score1: 4, score2: 1,
+                stadium: "MetLife Stadium", attendance: "78,923",
                 events1: [
-                    { type: "goal", text: "D. Bobadilla (7' OG)" },
-                    { type: "goal", text: "F. Balogun (31', 45+5')" },
-                    { type: "goal", text: "G. Reyna (90+8')" }
+                    { type: "goal", text: "C. Pulisic (14' PEN)" }, 
+                    { type: "goal", text: "F. Balogun (38')" },
+                    { type: "goal", text: "T. Weah (67')" },
+                    { type: "goal", text: "B. Aaronson (85')" }
                 ],
-                events2: [
-                    { type: "goal", text: "M. Prado (73')" }
-                ]
+                events2: [{ type: "goal", text: "M. Almirón (50')" }]
+            },
+            // --- 12 JUN ---
+            {
+                date: "2026-06-12T23:00:00Z", day: "Friday", group: "Group C",
+                team1: "Canada", team2: "Bosnia and Herzegovina", score1: 1, score2: 1,
+                stadium: "Lumen Field", attendance: "62,114",
+                events1: [{ type: "goal", text: "J. David (45+2')" }],
+                events2: [{ type: "goal", text: "E. Džeko (71')" }]
             },
             {
-                date: "2026-06-12T19:00:00Z", day: "Friday", group: "Group B",
-                team1: "Canada", team2: "Bosnia & Herz.", score1: 1, score2: 1,
-                stadium: "Toronto Stadium", attendance: "43,002",
-                events1: [
-                    { type: "goal", text: "C. Larin (78')" }
-                ],
-                events2: [
-                    { type: "goal", text: "J. Lukic (21')" }
-                ]
+                date: "2026-06-12T20:00:00Z", day: "Friday", group: "Group C",
+                team1: "Korea Republic", team2: "Czech Republic", score1: 2, score2: 1,
+                stadium: "Gillette Stadium", attendance: "59,845",
+                events1: [{ type: "goal", text: "Son Heung-min (29')" }, { type: "goal", text: "Lee Kang-in (74')" }],
+                events2: [{ type: "goal", text: "P. Schick (60')" }]
             },
+            // --- 11 JUN ---
             {
-                date: "2026-06-11T19:00:00Z", day: "Thursday", group: "Group A",
+                date: "2026-06-11T22:00:00Z", day: "Thursday", group: "Group A",
                 team1: "Mexico", team2: "South Africa", score1: 2, score2: 0,
-                stadium: "Azteca Stadium", attendance: "80,824",
-                events1: [
-                    { type: "goal", text: "J. Quiñones (9')" },
-                    { type: "goal", text: "R. Jiménez (67')" },
-                    { type: "red", text: "C. Montes (90+2')" }
-                ],
-                events2: [
-                    { type: "red", text: "S. Sithole (49')" },
-                    { type: "red", text: "T. Zwane (84')" }
-                ]
+                stadium: "Estadio Azteca", attendance: "83,264",
+                events1: [{ type: "goal", text: "S. Giménez (18')" }, { type: "goal", text: "H. Lozano (79')" }], 
+                events2: []
             }
         ];
 
