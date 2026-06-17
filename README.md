@@ -16,6 +16,14 @@ An advanced, high-performance web platform designed for low-latency technical me
 
 * **Premium Glassmorphism Interface** Boasts a cutting-edge, cyber-inspired dark mode layout styled with high-fidelity blur backdrops, responsive grid layouts, status pulse telemetry indicators, and custom smooth-scrolling containers.
 
+## Watch Live Replay & Highlights
+
+You can access the live replay & highlights through RTM Klik (Malaysia only because RTM just strengthen the Geo-Blocking System)
+
+🔗 **Match Highlights:** [https://rtmklik.rtm.gov.my/viewAll/category/4100?title=%E2%81%A0Match+Highlights]
+
+🔗 **Full Match Replay:** [https://rtmklik.rtm.gov.my/viewAll/category/4097?title=%E2%81%A0FIFA+Match+Replay]
+
 ## 🌐 Live Deployments
 
 You can access the live operational dashboard on either of the mirror networks below:
