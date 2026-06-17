@@ -108,13 +108,12 @@
             justify-content: center;
             gap: 12px;
             margin: 10px auto 30px;
-            max-width: 900px;
+            max-width: 850px;
             background: var(--glass);
             padding: 8px;
             border-radius: 20px;
             border: 1px solid var(--glass-border);
             backdrop-filter: blur(10px);
-            flex-wrap: wrap;
         }
 
         .tab-btn {
@@ -209,9 +208,6 @@
         .section-header-icon { font-size: 1.2rem; color: var(--accent-blue); filter: drop-shadow(0 0 5px rgba(0,210,255,0.3)); }
         .section-header { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-main); font-weight: 600; margin: 0; }
         
-        .section-sub-notice { font-size: 0.75rem; color: #ffbc6d; margin: -5px 0 12px 0; font-weight: 500; display: flex; align-items: flex-start; gap: 6px; opacity: 0.95; line-height: 1.4; }
-        .section-sub-notice i { margin-top: 2px; flex-shrink: 0; }
-
         .channels-list-wrapper { display: flex; flex-direction: column; }
 
         .channel-card {
@@ -228,31 +224,26 @@
         
         .tag { position: absolute; top: 0; right: 0; background: #00d2ff; color: #000; font-size: 0.7rem; font-weight: 800; padding: 6px 14px; border-radius: 0 0 0 14px; text-transform: uppercase; }
 
+        /* Schedule & Results Shared Grid Layout */
         .schedule-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 25px; width: 100%; }
-        .schedule-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 24px; padding: 22px; backdrop-filter: blur(10px); transition: all 0.3s ease; position: relative; }
+        .schedule-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 24px; padding: 22px; backdrop-filter: blur(10px); transition: all 0.3s ease; position: relative; display: flex; flex-direction: column; justify-content: space-between; }
         .schedule-card:hover { border-color: var(--accent-purple); transform: translateY(-5px); }
         
         .match-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
         .match-group { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--accent-blue); letter-spacing: 1px; }
-        .match-date-gmt { font-size: 0.8rem; color: var(--text-dim); font-weight: 500; }
 
         .teams { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding: 10px 0; }
         .team { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; }
         .team i { font-size: 2.2rem; color: #fff; filter: drop-shadow(0 0 8px rgba(255,255,255,0.2)); }
         .team span { font-weight: 700; font-size: 1.1rem; text-align: center; letter-spacing: 0.5px; }
-        .vs { font-family: 'Poppins'; font-weight: 800; color: var(--accent-purple); font-size: 1.2rem; background: rgba(255,255,255,0.03); padding: 5px 12px; border-radius: 10px; border: 1px solid var(--glass-border); }
         
         .score-display { font-family: 'Poppins'; font-weight: 800; font-size: 1.8rem; color: #fff; background: rgba(255,255,255,0.05); padding: 4px 14px; border-radius: 12px; border: 1px solid var(--glass-border); }
-
-        .time-box { border-top: 1px solid var(--glass-border); padding-top: 15px; display: flex; flex-direction: column; gap: 6px; }
-        .time-row { display: flex; justify-content: space-between; font-size: 0.85rem; }
-        .time-row .label { color: var(--text-dim); }
-        .time-row .val { font-weight: 600; color: #fff; }
-        .time-row.system-time .val { color: var(--accent-green); font-weight: 700; }
+        .vs-badge { font-family: 'Poppins'; font-weight: 600; font-size: 0.9rem; color: var(--text-dim); background: rgba(255,255,255,0.03); padding: 4px 12px; border-radius: 10px; border: 1px solid var(--glass-border); text-transform: uppercase; }
 
         .match-details-box { background: rgba(0,0,0,0.2); border-radius: 14px; padding: 12px; margin-bottom: 12px; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.02); }
-        .detail-row { display: flex; justify-content: space-between; margin-bottom: 6px; color: var(--text-dim); }
+        .detail-row { display: flex; justify-content: space-between; margin-bottom: 6px; color: var(--text-dim); line-height: 1.4; }
         .detail-row:last-child { margin-bottom: 0; }
+        
         .events-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 8px; font-size: 0.8rem; }
         .team-events { display: flex; flex-direction: column; gap: 3px; }
         .team-events.right { align-items: flex-end; text-align: right; border-left: 1px solid rgba(255,255,255,0.05); padding-left: 10px; }
@@ -307,22 +298,6 @@
         .log-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; font-size: 1rem; color: var(--text-dim); line-height: 1.5; }
         .log-item i { color: var(--accent-green); margin-top: 4px; font-size: 0.9rem; }
         .log-date { color: #fff; font-weight: 700; background: rgba(255,255,255,0.07); padding: 2px 8px; border-radius: 6px; font-size: 0.85rem; font-family: 'Poppins'; margin-right: 5px; }
-
-        /* STANDINGS NEW TABLES STYLE */
-        .standings-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(450px, 1fr)); gap: 30px; width: 100%; }
-        .group-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 24px; padding: 20px; backdrop-filter: blur(10px); }
-        .group-card h3 { font-family: 'Poppins'; font-weight: 700; font-size: 1.2rem; color: #fff; margin: 0 0 2px 0; }
-        .updated-time { font-size: 0.75rem; color: var(--text-dim); margin-bottom: 15px; display: block; font-weight: 500; }
-        .table-responsive { width: 100%; overflow-x: auto; }
-        .standings-table { width: 100%; border-collapse: collapse; text-align: center; font-size: 0.9rem; min-width: 400px; }
-        .standings-table th { padding: 10px 6px; color: var(--text-dim); font-weight: 600; font-size: 0.8rem; border-bottom: 1px solid var(--glass-border); text-transform: uppercase; }
-        .standings-table td { padding: 12px 6px; border-bottom: 1px solid rgba(255,255,255,0.03); font-weight: 500; }
-        .standings-table th.th-team, .standings-table td.td-team { text-align: left; padding-left: 10px; }
-        .standings-table tr:last-child td { border-bottom: none; }
-        .pos-num { font-weight: 700; display: inline-block; width: 18px; color: var(--text-dim); }
-        tr:nth-child(1) .pos-num, tr:nth-child(2) .pos-num { color: var(--accent-green); }
-        .team-name { color: #fff; font-weight: 600; margin-left: 5px; }
-        .td-pts { font-weight: 700 !important; color: var(--accent-blue); }
     </style>
 </head>
 <body>
@@ -352,16 +327,12 @@
         <button class="tab-btn" onclick="switchTab('results', this)">
             <i class="fa-solid fa-square-poll-horizontal"></i> <span data-en="Results" data-my="Keputusan">Results</span>
         </button>
-        <button class="tab-btn" onclick="switchTab('standings', this)">
-            <i class="fa-solid fa-table-list"></i> <span data-en="Standings" data-my="Kedudukan">Standings</span>
-        </button>
         <button class="tab-btn" onclick="switchTab('info', this)">
             <i class="fa-solid fa-circle-info"></i> <span data-en="Information" data-my="Maklumat">Information</span>
         </button>
         <button class="lang-btn" onclick="toggleLanguage()">EN / MY</button>
     </div>
 
-    <!-- LIVE STREAM CONTENT -->
     <div id="page-live" class="page-content active">
         <div class="dashboard">
             <div class="player-section">
@@ -372,7 +343,7 @@
 
                     <div class="player-info">
                         <div class="player-main-details">
-                            <img id="channel-logo-display" src="https://static.wikia.nocookie.net/logopedia/images/e/ed/FIFA%2B_%28App_Icon%29.png/revision/latest/scale-to-width-down/250?cb=20221012163238" alt="Broadcast Feed">
+                            <img id="channel-logo-display" src="https://i.imgur.com/CGlzsD5.png" alt="Broadcast Feed">
                             <div>
                                 <div style="display: flex; align-items: center;">
                                     <span class="status-dot"></span>
@@ -392,46 +363,7 @@
 
             <div class="sidebar">
                 <div class="channels-list-wrapper">
-                    <!-- FIFA+ Section -->
-                    <div class="section-header-group">
-                        <img src="https://static.wikia.nocookie.net/logopedia/images/e/ed/FIFA%2B_%28App_Icon%29.png/revision/latest/scale-to-width-down/250?cb=20221012163238" class="section-header-logo">
-                        <div class="section-header" data-en="FIFA+ Official Streams" data-my="Siaran Rasmi FIFA+">FIFA+ Official Streams</div>
-                    </div>
-                    
-                    <div class="channel-card" onclick="streamHLS('https://a62dad94.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWV1X0ZJRkFQbHVzRW5nbGlzaF9ITFM/playlist.m3u8', 'FIFA+ HD (UK Feed)', this, 'https://static.wikia.nocookie.net/logopedia/images/e/ed/FIFA%2B_%28App_Icon%29.png/revision/latest/scale-to-width-down/250?cb=20221012163238')">
-                        <img src="https://static.wikia.nocookie.net/logopedia/images/e/ed/FIFA%2B_%28App_Icon%29.png/revision/latest/scale-to-width-down/250?cb=20221012163238" class="card-img">
-                        <div class="card-info">
-                            <h4>FIFA+ HD</h4>
-                            <p>Global Feed | United Kingdom</p>
-                        </div>
-                        <span class="tag" style="background: var(--text-dim); color: #000;">720p</span>
-                    </div>
 
-                    <div class="channel-card" onclick="streamHLS('https://d2w9q46ikgrcwx.cloudfront.net/v1/sysdata_s_p_a_fifa_7/samsungheadend_us/latest/main/hls/playlist.m3u8', 'FIFA+ HD (US Feed)', this, 'https://static.wikia.nocookie.net/logopedia/images/e/ed/FIFA%2B_%28App_Icon%29.png/revision/latest/scale-to-width-down/250?cb=20221012163238')">
-                        <img src="https://static.wikia.nocookie.net/logopedia/images/e/ed/FIFA%2B_%28App_Icon%29.png/revision/latest/scale-to-width-down/250?cb=20221012163238" class="card-img">
-                        <div class="card-info">
-                            <h4>FIFA+ HD</h4>
-                            <p>Global Feed | United States</p>
-                        </div>
-                        <span class="tag" style="background: var(--text-dim); color: #000;">720p</span>
-                    </div>
-
-                    <!-- Fox Sports Section -->
-                    <div class="section-header-group">
-                        <img src="https://www.smartsheet.com/sites/default/files/Fox%20Sports%20Logo.png" class="section-header-logo">
-                        <div class="section-header" data-en="Fox Sports & Partners" data-my="Siaran Fox Sports & Rakan Strategik">Fox Sports & Partners</div>
-                    </div>
-
-                    <div class="channel-card" onclick="streamHLS('http://23.237.104.106:8080/USA_FOX_DEPORTES/index.m3u8', 'FOX Deportes', this, 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/FOX_Deportes_logo.png/960px-FOX_Deportes_logo.png')">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/FOX_Deportes_logo.png/960px-FOX_Deportes_logo.png" class="card-img" style="background: rgba(255,255,255,0.02); padding: 4px;">
-                        <div class="card-info">
-                            <h4>FOX Deportes</h4>
-                            <p>Global Feed | United States</p>
-                        </div>
-                        <span class="tag" style="background: var(--accent-green); color: #000;">1080p</span>
-                    </div>
-
-                    <!-- RTM Malaysia Section -->
                     <div class="section-header-group">
                         <img src="https://vectorise.net/logo/wp-content/uploads/2024/07/Logo-RTM-Teman-Setia-Anda-2021.png" class="section-header-logo">
                         <div class="section-header" data-en="RTM Malaysia Streams" data-my="Siaran Langsung RTM">RTM Malaysia Streams</div>
@@ -455,51 +387,38 @@
                         <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
                     </div>
 
-                    <!-- International Live Feeds Section -->
                     <div class="section-header-group">
                         <i class="fa-solid fa-video section-header-icon"></i>
-                        <div class="section-header" data-en="International Live Feeds" data-my="Suapan Langsung Antarabangsa">International Live Feeds</div>
-                    </div>
-                    
-                    <div class="section-sub-notice">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                        <span data-en="Notice: Shared streams will vary or change dynamically according to global distribution schedules." data-my="Makluman: Strim luaran yang dikongsi akan berubah secara dinamik mengikut jadual pengedaran global.">Notice: Shared streams will vary or change dynamically according to global distribution schedules.</span>
+                        <div class="section-header" data-en="RTB Live Streams" data-my="Siaran Langsung RTB">RTB Live Streams</div>
                     </div>
 
-                    <div class="channel-card" onclick="streamHLS('https://d3iwkuprshvnfk.cloudfront.net/RLSP2/HD50_500kb/chunklist.m3u8', 'Reuters Live Service [2]', this, 'https://static.wikia.nocookie.net/logopedia/images/5/53/Reuters_2008_vertical.svg/revision/latest?cb=20240525053744')">
-                        <img src="https://static.wikia.nocookie.net/logopedia/images/5/53/Reuters_2008_vertical.svg/revision/latest?cb=20240525053744" class="card-img" style="background: #ffffff; padding: 5px;">
+                    <div class="channel-card" onclick="streamHLS('https://d1211whpimeups.cloudfront.net/smil:rtbgo/playlist.m3u8', 'RTB GO', this, 'https://i.imgur.com/CGlzsD5.png')">
+                        <img src="https://i.imgur.com/CGlzsD5.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
                         <div class="card-info">
-                            <h4>Reuters Live Service [2]</h4>
-                            <p data-en="Raw News Feed | Ambient & CCTV" data-my="Suapan Berita Asal | Ambien & CCTV">Raw News Feed | Ambient & CCTV</p>
+                            <h4>RTB GO</h4>
+                            <p data-en="Global Feed | Brunei" data-my="Suapan Global | Brunei">Global Feed | Brunei</p>
                         </div>
-                        <span class="tag" style="background: var(--accent-green); color: #000;">1080p</span>
+                        <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- SCHEDULE CONTENT -->
     <div id="page-schedule" class="page-content">
         <div class="schedule-grid" id="schedule-container"></div>
     </div>
 
-    <!-- RESULTS CONTENT -->
     <div id="page-results" class="page-content">
         <div class="schedule-grid" id="results-container"></div>
     </div>
 
-    <!-- STANDINGS TABLES CONTENT -->
-    <div id="page-standings" class="page-content">
-        <div class="standings-grid" id="standings-container"></div>
-    </div>
-
-    <!-- INFORMATION CONTENT -->
     <div id="page-info" class="page-content">
         <div class="info-container">
             <div class="info-section">
                 <h3 data-en="About Media Center Feed" data-my="Mengenai Suapan Pusat Media">About Media Center Feed</h3>
-                <p data-en="This system provides global technical distribution feeds for the World Cup event. Integrated with localized CDN endpoints ensuring low-latency high-definition broadcast streams." data-my="Sistem ini menyediakan suapan pengedaran teknik global untuk acara Piala Dunia. Berintegrasi dengan titik akhir CDN tempatan bagi memastikan strim siaran definisi tinggi kognitif rendah.">
+                <p data-en="This system provides global technical distribution feeds for the World Cup event. Integrated with localized CDN endpoints ensuring low-latency high-definition broadcast streams." data-my="Sistem ini menyediakan suapan pengedaran teknikal global untuk acara Piala Dunia. Berintegrasi dengan titik akhir CDN tempatan bagi memastikan strim siaran definisi tinggi kognitif rendah.">
                     This system provides global technical distribution feeds for the World Cup event. Integrated with localized CDN endpoints ensuring low-latency high-definition broadcast streams.
                 </p>
             </div>
@@ -508,17 +427,10 @@
                 <h3 data-en="Update Log" data-my="Log Kemaskini">Update Log</h3>
                 <ul class="log-list">
                     <li class="log-item">
-                        <i class="fa-solid fa-circle-check"></i>
+                        <i class="fa-solid fa-circle-plus"></i>
                         <div>
-                            <span class="log-date">6/16/2026</span>
-                            <span data-en="Added dynamic FIFA World Cup Groups Standings tab (Group A to Group L) containing real-time values." data-my="Menambah tab Kedudukan Kumpulan Piala Dunia FIFA dinamik (Kumpulan A hingga Kumpulan L) bersama nilai masa nyata.">Added dynamic FIFA World Cup Groups Standings tab (Group A to Group L) containing real-time values.</span>
-                        </div>
-                    </li>
-                    <li class="log-item">
-                        <i class="fa-solid fa-circle-check"></i>
-                        <div>
-                            <span class="log-date">6/16/2026</span>
-                            <span data-en="Added missing tournament opening match results from June 11-13 (including Brazil vs Morocco) and properly formatted all stadium & attendance metadata." data-my="Menambah keputusan perlawanan pembukaan kejohanan dari 11-13 Jun yang tertinggal (termasuk Brazil vs Morocco) serta melengkapkan metadata stadium & kehadiran penonton.">Added missing tournament opening match results from June 11-13 (including Brazil vs Morocco) and properly formatted all stadium & attendance metadata.</span>
+                            <span class="log-date">6/17/2026</span>
+                            <span data-en="Added a dedicated 'Schedule' tab synchronized with the user's system time, and reversed the display order of the 'Results' tab." data-my="Menambah tab khas 'Jadual' (Schedule) yang disegerakkan mengikut masa sistem peranti, dan menyusun semula turutan tab 'Keputusan' (Results) secara terbalik.">Added a dedicated 'Schedule' tab synchronized with the user's system time, and reversed the display order of the 'Results' tab.</span>
                         </div>
                     </li>
                 </ul>
@@ -529,242 +441,325 @@
     <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
 
     <script>
-        const matchData = [
-            { date: "2026-06-16T15:00:00Z", day: "Tuesday", team1: "England", team2: "Ecuador", group: "Group L" },
-            { date: "2026-06-16T18:00:00Z", day: "Tuesday", team1: "Italy", team2: "Saudi Arabia", group: "Group J" },
-            { date: "2026-06-17T19:00:00Z", day: "Wednesday", team1: "Portugal", team2: "Angola", group: "Group K" },
-            { date: "2026-06-17T22:00:00Z", day: "Wednesday", team1: "Netherlands", team2: "Tunisia", group: "Group F" },
-            { date: "2026-06-18T16:00:00Z", day: "Thursday", team1: "Belgium", team2: "Peru", group: "Group G" },
-            { date: "2026-06-18T19:00:00Z", day: "Thursday", team1: "Croatia", team2: "Ghana", group: "Group L" },
-            { date: "2026-06-19T14:00:00Z", day: "Friday", team1: "Uruguay", team2: "Scotland", group: "Group H" },
-            { date: "2026-06-19T20:00:00Z", day: "Friday", team1: "Denmark", team2: "Algeria", group: "Group J" },
-            { date: "2026-06-20T17:00:00Z", day: "Saturday", team1: "Colombia", team2: "Iran", group: "Group K" },
-            { date: "2026-06-20T21:00:00Z", day: "Saturday", team1: "Senegal", team2: "Austria", group: "Group I" }
+        // Schedule data in GMT+0
+        const scheduleData = [
+            { date: "2026-06-17T18:00:00Z", team1: "Portugal", team2: "DR Congo" },
+            { date: "2026-06-17T21:00:00Z", team1: "England", team2: "Croatia" },
+            { date: "2026-06-18T00:00:00Z", team1: "Ghana", team2: "Panama" },
+            { date: "2026-06-18T03:00:00Z", team1: "Uzbekistan", team2: "Colombia" },
+            { date: "2026-06-18T17:00:00Z", team1: "Czech Republic", team2: "South Africa" },
+            { date: "2026-06-18T20:00:00Z", team1: "Switzerland", team2: "Bosnia and Herz." },
+            { date: "2026-06-18T23:00:00Z", team1: "Canada", team2: "Qatar" },
+            { date: "2026-06-19T02:00:00Z", team1: "Mexico", team2: "Korea Republic" },
+            { date: "2026-06-19T20:00:00Z", team1: "United States", team2: "Australia" },
+            { date: "2026-06-19T21:00:00Z", team1: "Scotland", team2: "Morocco" },
+            { date: "2026-06-20T01:30:00Z", team1: "Brazil", team2: "Haiti" },
+            { date: "2026-06-20T04:00:00Z", team1: "Turkey", team2: "Paraguay" },
+            { date: "2026-06-20T18:00:00Z", team1: "Netherlands", team2: "Sweden" },
+            { date: "2026-06-20T21:00:00Z", team1: "Germany", team2: "Ivory Coast" },
+            { date: "2026-06-21T01:00:00Z", team1: "Ecuador", team2: "Curacao" },
+            { date: "2026-06-21T05:00:00Z", team1: "Tunisia", team2: "Japan" },
+            { date: "2026-06-21T17:00:00Z", team1: "Spain", team2: "Saudi Arabia" },
+            { date: "2026-06-21T20:00:00Z", team1: "Belgium", team2: "Iran" },
+            { date: "2026-06-21T23:00:00Z", team1: "Uruguay", team2: "Cape Verde" },
+            { date: "2026-06-22T02:00:00Z", team1: "New Zealand", team2: "Egypt" },
+            { date: "2026-06-22T18:00:00Z", team1: "Argentina", team2: "Austria" },
+            { date: "2026-06-22T22:00:00Z", team1: "France", team2: "Iraq" },
+            { date: "2026-06-23T01:00:00Z", team1: "Norway", team2: "Senegal" },
+            { date: "2026-06-23T04:00:00Z", team1: "Jordan", team2: "Algeria" },
+            { date: "2026-06-23T18:00:00Z", team1: "Portugal", team2: "Uzbekistan" },
+            { date: "2026-06-23T21:00:00Z", team1: "England", team2: "Ghana" },
+            { date: "2026-06-24T00:00:00Z", team1: "Panama", team2: "Croatia" },
+            { date: "2026-06-24T03:00:00Z", team1: "Colombia", team2: "DR Congo" },
+            { date: "2026-06-24T20:00:00Z", team1: "Bosnia and Herz.", team2: "Qatar" },
+            { date: "2026-06-24T20:00:00Z", team1: "Switzerland", team2: "Canada" },
+            { date: "2026-06-24T23:00:00Z", team1: "Morocco", team2: "Haiti" },
+            { date: "2026-06-24T23:00:00Z", team1: "Scotland", team2: "Brazil" },
+            { date: "2026-06-25T02:00:00Z", team1: "Czech Republic", team2: "Mexico" },
+            { date: "2026-06-25T02:00:00Z", team1: "South Africa", team2: "Korea Republic" },
+            { date: "2026-06-25T21:00:00Z", team1: "Curacao", team2: "Ivory Coast" },
+            { date: "2026-06-25T21:00:00Z", team1: "Ecuador", team2: "Germany" },
+            { date: "2026-06-26T00:00:00Z", team1: "Japan", team2: "Sweden" },
+            { date: "2026-06-26T00:00:00Z", team1: "Tunisia", team2: "Netherlands" },
+            { date: "2026-06-26T03:00:00Z", team1: "Paraguay", team2: "Australia" },
+            { date: "2026-06-26T03:00:00Z", team1: "Turkey", team2: "United States" },
+            { date: "2026-06-26T20:00:00Z", team1: "Norway", team2: "France" },
+            { date: "2026-06-26T20:00:00Z", team1: "Senegal", team2: "Iraq" },
+            { date: "2026-06-27T01:00:00Z", team1: "Cape Verde", team2: "Saudi Arabia" },
+            { date: "2026-06-27T01:00:00Z", team1: "Uruguay", team2: "Spain" },
+            { date: "2026-06-27T04:00:00Z", team1: "Egypt", team2: "Iran" },
+            { date: "2026-06-27T04:00:00Z", team1: "New Zealand", team2: "Belgium" },
+            { date: "2026-06-27T22:00:00Z", team1: "Croatia", team2: "Ghana" },
+            { date: "2026-06-27T22:00:00Z", team1: "Panama", team2: "England" },
+            { date: "2026-06-28T00:30:00Z", team1: "Colombia", team2: "Portugal" },
+            { date: "2026-06-28T00:30:00Z", team1: "DR Congo", team2: "Uzbekistan" },
+            { date: "2026-06-28T03:00:00Z", team1: "Algeria", team2: "Austria" },
+            { date: "2026-06-28T03:00:00Z", team1: "Jordan", team2: "Argentina" },
+            { date: "2026-06-28T20:00:00Z", team1: "Group A 2nd Place", team2: "Group B 2nd Place" },
+            { date: "2026-06-29T18:00:00Z", team1: "Group C Winner", team2: "Group F 2nd Place" },
+            { date: "2026-06-29T21:30:00Z", team1: "Group E Winner", team2: "3rd Place A/B/C/D/F" },
+            { date: "2026-06-30T02:00:00Z", team1: "Group F Winner", team2: "Group C 2nd Place" },
+            { date: "2026-06-30T18:00:00Z", team1: "Group E 2nd Place", team2: "Group I 2nd Place" },
+            { date: "2026-06-30T22:00:00Z", team1: "Group I Winner", team2: "3rd Place C/D/F/G/H" },
+            { date: "2026-07-01T02:00:00Z", team1: "Group A Winner", team2: "3rd Place C/E/F/H/I" },
+            { date: "2026-07-01T17:00:00Z", team1: "Group L Winner", team2: "3rd Place E/H/I/J/K" },
+            { date: "2026-07-01T21:00:00Z", team1: "Group G Winner", team2: "3rd Place A/E/H/I/J" },
+            { date: "2026-07-02T01:00:00Z", team1: "Group D Winner", team2: "3rd Place B/E/F/I/J" },
+            { date: "2026-07-02T20:00:00Z", team1: "Group H Winner", team2: "Group J 2nd Place" },
+            { date: "2026-07-03T00:00:00Z", team1: "Group K 2nd Place", team2: "Group L 2nd Place" },
+            { date: "2026-07-03T04:00:00Z", team1: "Group B Winner", team2: "3rd Place E/F/G/I/J" },
+            { date: "2026-07-03T19:00:00Z", team1: "Group D 2nd Place", team2: "Group G 2nd Place" },
+            { date: "2026-07-03T23:00:00Z", team1: "Group J Winner", team2: "Group H 2nd Place" },
+            { date: "2026-07-04T02:30:00Z", team1: "Group K Winner", team2: "3rd Place D/E/I/J/L" },
+            { date: "2026-07-04T18:00:00Z", team1: "R32 Match 1 Winner", team2: "R32 Match 3 Winner" },
+            { date: "2026-07-04T22:00:00Z", team1: "R32 Match 2 Winner", team2: "R32 Match 5 Winner" },
+            { date: "2026-07-05T21:00:00Z", team1: "R32 Match 4 Winner", team2: "R32 Match 6 Winner" },
+            { date: "2026-07-06T01:00:00Z", team1: "R32 Match 7 Winner", team2: "R32 Match 8 Winner" },
+            { date: "2026-07-06T20:00:00Z", team1: "R32 Match 11 Winner", team2: "R32 Match 12 Winner" },
+            { date: "2026-07-07T01:00:00Z", team1: "R32 Match 9 Winner", team2: "R32 Match 10 Winner" },
+            { date: "2026-07-07T17:00:00Z", team1: "R32 Match 14 Winner", team2: "R32 Match 16 Winner" },
+            { date: "2026-07-07T21:00:00Z", team1: "R32 Match 13 Winner", team2: "R32 Match 15 Winner" },
+            { date: "2026-07-09T21:00:00Z", team1: "R16 Match 1 Winner", team2: "R16 Match 2 Winner" },
+            { date: "2026-07-10T20:00:00Z", team1: "R16 Match 5 Winner", team2: "R16 Match 6 Winner" },
+            { date: "2026-07-11T22:00:00Z", team1: "R16 Match 3 Winner", team2: "R16 Match 4 Winner" },
+            { date: "2026-07-12T02:00:00Z", team1: "R16 Match 7 Winner", team2: "R16 Match 8 Winner" },
+            { date: "2026-07-14T20:00:00Z", team1: "QF Match 1 Winner", team2: "QF Match 2 Winner" },
+            { date: "2026-07-15T20:00:00Z", team1: "QF Match 3 Winner", team2: "QF Match 4 Winner" },
+            { date: "2026-07-18T22:00:00Z", team1: "SF Match 1 Loser", team2: "SF Match 2 Loser" },
+            { date: "2026-07-19T20:00:00Z", team1: "SF Match 1 Winner", team2: "SF Match 2 Winner" }
         ];
 
+        // Results data array
         const resultsData = [
-            // --- 16 JUN ---
             {
-                date: "2026-06-16T02:00:00Z", day: "Tuesday", group: "Group G",
-                team1: "Iran", team2: "New Zealand", score1: 2, score2: 2,
-                stadium: "SoFi Stadium", attendance: "70,108",
-                events1: [{ type: "goal", text: "R. Rezaeian (32')" }, { type: "goal", text: "M. Mohebbi (64')" }],
-                events2: [{ type: "goal", text: "E. Just (7', 54')" }]
-            },
-            // --- 15 JUN ---
-            {
-                date: "2026-06-15T23:00:00Z", day: "Monday", group: "Group H",
-                team1: "Saudi Arabia", team2: "Uruguay", score1: 1, score2: 1,
-                stadium: "Hard Rock Stadium", attendance: "62,764",
-                events1: [{ type: "goal", text: "A. Alamri (41')" }],
-                events2: [{ type: "goal", text: "M. Araújo (80')" }]
+                date: "2026-06-11T20:00:00Z", group: "Group A",
+                team1: "Mexico", team2: "South Africa", score1: 2, score2: 0,
+                stadium: "Azteca Stadium", attendance: "80,824",
+                events1: [
+                    { type: "goal", text: "J. Quiñones (9')" },
+                    { type: "goal", text: "R. Jiménez (67')" },
+                    { type: "red", text: "C. Montes (90+2')" }
+                ],
+                events2: [
+                    { type: "red", text: "S. Sithole (49')" },
+                    { type: "red", text: "T. Zwane (84')" }
+                ]
             },
             {
-                date: "2026-06-15T20:00:00Z", day: "Monday", group: "Group G",
-                team1: "Belgium", team2: "Egypt", score1: 1, score2: 1,
-                stadium: "CenturyLink Field", attendance: "66,775",
-                events1: [{ type: "goal", text: "M. Hany (66' OG)" }],
-                events2: [{ type: "goal", text: "E. Abdelghany (19')" }]
+                date: "2026-06-12T03:00:00Z", group: "Group A",
+                team1: "Korea Republic", team2: "Czech Republic", score1: 2, score2: 1,
+                stadium: "Estadio Chivas", attendance: "44,985",
+                events1: [
+                    { type: "goal", text: "I. Hwang (67')" },
+                    { type: "goal", text: "H. Oh (80')" }
+                ],
+                events2: [
+                    { type: "goal", text: "L. Krejci (59')" }
+                ]
             },
             {
-                date: "2026-06-15T17:00:00Z", day: "Monday", group: "Group H",
-                team1: "Spain", team2: "Cape Verde", score1: 0, score2: 0,
-                stadium: "Mercedes-Benz Stadium", attendance: "67,640",
-                events1: [], events2: []
+                date: "2026-06-12T20:00:00Z", group: "Group B",
+                team1: "Canada", team2: "Bosnia and Herz.", score1: 1, score2: 1,
+                stadium: "Toronto Stadium", attendance: "43,002",
+                events1: [
+                    { type: "goal", text: "C. Larin (78')" }
+                ],
+                events2: [
+                    { type: "goal", text: "J. Lukic (21')" }
+                ]
             },
             {
-                date: "2026-06-15T03:00:00Z", day: "Monday", group: "Group F",
-                team1: "Sweden", team2: "Tunisia", score1: 5, score2: 1,
-                stadium: "Estadio BBVA", attendance: "50,987",
-                events1: [{ type: "goal", text: "Y. Ayari (7', 90+6')" }, { type: "goal", text: "A. Isak (30')" }, { type: "goal", text: "V. Gyokeres (59')" }, { type: "goal", text: "M. Svanberg (84')" }],
-                events2: [{ type: "goal", text: "O. Rekik (43')" }]
+                date: "2026-06-13T02:00:00Z", group: "Group D",
+                team1: "United States", team2: "Paraguay", score1: 4, score2: 1,
+                stadium: "SoFi Stadium", attendance: "70,492",
+                events1: [
+                    { type: "goal", text: "D. Bobadilla (7' OG)" },
+                    { type: "goal", text: "F. Balogun (31', 45+5')" },
+                    { type: "goal", text: "G. Reyna (90+8')" }
+                ],
+                events2: [
+                    { type: "goal", text: "M. Prado (73')" }
+                ]
             },
             {
-                date: "2026-06-15T00:00:00Z", day: "Monday", group: "Group E",
-                team1: "Ivory Coast", team2: "Ecuador", score1: 1, score2: 0,
-                stadium: "Philadelphia Stadium", attendance: "68,274",
-                events1: [{ type: "goal", text: "A. Diallo (90')" }], events2: []
-            },
-            // --- 14 JUN ---
-            {
-                date: "2026-06-14T21:00:00Z", day: "Sunday", group: "Group F",
-                team1: "Netherlands", team2: "Japan", score1: 2, score2: 2,
-                stadium: "Dallas Stadium", attendance: "69,285",
-                events1: [{ type: "goal", text: "V. van Dijk (51')" }, { type: "goal", text: "C. Summerville (64')" }],
-                events2: [{ type: "goal", text: "Kakamura (57')" }, { type: "goal", text: "D. Kamada (89')" }]
+                date: "2026-06-13T20:00:00Z", group: "Group B",
+                team1: "Qatar", team2: "Switzerland", score1: 1, score2: 1,
+                stadium: "Levi's Stadium", attendance: "67,966",
+                events1: [
+                    { type: "goal", text: "B. Khoukhi (90+4')" }
+                ],
+                events2: [
+                    { type: "goal", text: "B. Embolo (17' Pen)" }
+                ]
             },
             {
-                date: "2026-06-14T18:00:00Z", day: "Sunday", group: "Group E",
-                team1: "Germany", team2: "Curacao", score1: 7, score2: 1,
-                stadium: "NRG Stadium", attendance: "68,021",
-                events1: [{ type: "goal", text: "F. Nmecha (6')" }, { type: "goal", text: "N. Schlotterbeck (38')" }, { type: "goal", text: "K. Havertz (45+5' PEN, 88')" }, { type: "goal", text: "J. Musiala (47')" }, { type: "goal", text: "N. Brown (68')" }, { type: "goal", text: "D. Undav (78')" }],
-                events2: [{ type: "goal", text: "L. Comenencia (21')" }]
+                date: "2026-06-13T23:00:00Z", group: "Group C",
+                team1: "Brazil", team2: "Morocco", score1: 1, score2: 1,
+                stadium: "MetLife Stadium", attendance: "80,663",
+                events1: [
+                    { type: "goal", text: "Vinicius Jr. (32')" }
+                ],
+                events2: [
+                    { type: "goal", text: "I. Saibari (21')" }
+                ]
             },
             {
-                date: "2026-06-14T05:00:00Z", day: "Sunday", group: "Group D",
-                team1: "Australia", team2: "Turkey", score1: 2, score2: 0,
-                stadium: "BC Place", attendance: "52,497",
-                events1: [{ type: "goal", text: "N. Irankunda (27')" }, { type: "goal", text: "C. Metcalfe (75')" }], events2: []
-            },
-            {
-                date: "2026-06-14T02:00:00Z", day: "Sunday", group: "Group C",
+                date: "2026-06-14T02:00:00Z", group: "Group C",
                 team1: "Haiti", team2: "Scotland", score1: 0, score2: 1,
                 stadium: "Boston Stadium", attendance: "64,146",
-                events1: [], events2: [{ type: "goal", text: "J. McGinn (28')" }]
-            },
-            // --- 13 JUN ---
-            {
-                date: "2026-06-13T21:00:00Z", day: "Saturday", group: "Group B",
-                team1: "Brazil", team2: "Morocco", score1: 1, score2: 0,
-                stadium: "Levi's Stadium", attendance: "68,340",
-                events1: [{ type: "goal", text: "Vinícius Jr. (42')" }], events2: []
+                events1: [],
+                events2: [
+                    { type: "goal", text: "J. McGinn (28')" }
+                ]
             },
             {
-                date: "2026-06-13T18:00:00Z", day: "Saturday", group: "Group D",
-                team1: "Qatar", team2: "Switzerland", score1: 1, score2: 1,
-                stadium: "Arrowhead Stadium", attendance: "66,852",
-                events1: [{ type: "goal", text: "A. Afif (22')" }],
-                events2: [{ type: "goal", text: "B. Embolo (55')" }]
-            },
-            {
-                date: "2026-06-13T01:00:00Z", day: "Saturday", group: "Group A",
-                team1: "United States of America", team2: "Paraguay", score1: 4, score2: 1,
-                stadium: "MetLife Stadium", attendance: "78,923",
-                events1: [{ type: "goal", text: "C. Pulisic (14' PEN)" }, { type: "goal", text: "F. Balogun (38')" }, { type: "goal", text: "T. Weah (67')" }, { type: "goal", text: "B. Aaronson (85')" }],
-                events2: [{ type: "goal", text: "M. Almirón (50')" }]
-            },
-            // --- 12 JUN ---
-            {
-                date: "2026-06-12T23:00:00Z", day: "Friday", group: "Group C",
-                team1: "Canada", team2: "Bosnia and Herzegovina", score1: 1, score2: 1,
-                stadium: "Lumen Field", attendance: "62,114",
-                events1: [{ type: "goal", text: "J. David (45+2')" }],
-                events2: [{ type: "goal", text: "E. Džeko (71')" }]
-            },
-            {
-                date: "2026-06-12T20:00:00Z", day: "Friday", group: "Group C",
-                team1: "Korea Republic", team2: "Czech Republic", score1: 2, score2: 1,
-                stadium: "Gillette Stadium", attendance: "59,845",
-                events1: [{ type: "goal", text: "Son Heung-min (29')" }, { type: "goal", text: "Lee Kang-in (74')" }],
-                events2: [{ type: "goal", text: "P. Schick (60')" }]
-            },
-            // --- 11 JUN ---
-            {
-                date: "2026-06-11T22:00:00Z", day: "Thursday", group: "Group A",
-                team1: "Mexico", team2: "South Africa", score1: 2, score2: 0,
-                stadium: "Estadio Azteca", attendance: "83,264",
-                events1: [{ type: "goal", text: "S. Giménez (18')" }, { type: "goal", text: "H. Lozano (79')" }], 
+                date: "2026-06-14T05:00:00Z", group: "Group D",
+                team1: "Australia", team2: "Turkey", score1: 2, score2: 0,
+                stadium: "BC Place", attendance: "52,497",
+                events1: [
+                    { type: "goal", text: "N. Irankunda (27')" },
+                    { type: "goal", text: "C. Metcalfe (75')" }
+                ],
                 events2: []
-            }
-        ];
-
-        const standingsData = [
+            },
             {
-                group: "Group A", lastUpdated: "16 June, 8:57am",
-                teams: [
-                    { pos: 1, name: "Mexico", pl: 1, w: 1, d: 0, l: 0, f: 2, a: 0, gd: "+2", pts: 3 },
-                    { pos: 2, name: "Korea Republic", pl: 1, w: 1, d: 0, l: 0, f: 2, a: 1, gd: "+1", pts: 3 },
-                    { pos: 3, name: "Czech Republic", pl: 1, w: 0, d: 0, l: 1, f: 1, a: 2, gd: "-1", pts: 0 },
-                    { pos: 4, name: "South Africa", pl: 1, w: 0, d: 0, l: 1, f: 0, a: 2, gd: "-2", pts: 0 }
+                date: "2026-06-14T18:00:00Z", group: "Group E",
+                team1: "Germany", team2: "Curacao", score1: 7, score2: 1,
+                stadium: "NRG Stadium", attendance: "68,021",
+                events1: [
+                    { type: "goal", text: "F. Nmecha (6')" },
+                    { type: "goal", text: "N. Schlotterbeck (38')" },
+                    { type: "goal", text: "K. Havertz (45+5' Pen, 88')" },
+                    { type: "goal", text: "J. Musiala (47')" },
+                    { type: "goal", text: "N. Brown (68')" },
+                    { type: "goal", text: "D. Undav (78')" }
+                ],
+                events2: [
+                    { type: "goal", text: "L. Comenencia (21')" }
                 ]
             },
             {
-                group: "Group B", lastUpdated: "16 June, 8:57am",
-                teams: [
-                    { pos: 1, name: "Brazil", pl: 1, w: 1, d: 0, l: 0, f: 1, a: 0, gd: "+1", pts: 3 },
-                    { pos: 2, name: "Switzerland", pl: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
-                    { pos: 3, name: "Qatar", pl: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
-                    { pos: 4, name: "Morocco", pl: 1, w: 0, d: 0, l: 1, f: 0, a: 1, gd: "-1", pts: 0 }
+                date: "2026-06-14T21:00:00Z", group: "Group F",
+                team1: "Netherlands", team2: "Japan", score1: 2, score2: 2,
+                stadium: "Dallas Stadium", attendance: "69,285",
+                events1: [
+                    { type: "goal", text: "V. van Dijk (51')" },
+                    { type: "goal", text: "C. Summerville (64')" }
+                ],
+                events2: [
+                    { type: "goal", text: "K. Nakamura (57')" },
+                    { type: "goal", text: "D. Kamada (89')" }
                 ]
             },
             {
-                group: "Group C", lastUpdated: "16 June, 8:57am",
-                teams: [
-                    { pos: 1, name: "Korea Republic", pl: 1, w: 1, d: 0, l: 0, f: 2, a: 1, gd: "+1", pts: 3 },
-                    { pos: 2, name: "Canada", pl: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
-                    { pos: 3, name: "Bosnia and Herzegovina", pl: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
-                    { pos: 4, name: "Czech Republic", pl: 1, w: 0, d: 0, l: 1, f: 1, a: 2, gd: "-1", pts: 0 }
+                date: "2026-06-15T00:00:00Z", group: "Group E",
+                team1: "Ivory Coast", team2: "Ecuador", score1: 1, score2: 0,
+                stadium: "Philadelphia Stadium", attendance: "68,274",
+                events1: [
+                    { type: "goal", text: "A. Diallo (90')" }
+                ],
+                events2: []
+            },
+            {
+                date: "2026-06-15T03:00:00Z", group: "Group F",
+                team1: "Sweden", team2: "Tunisia", score1: 5, score2: 1,
+                stadium: "Estadio BBVA", attendance: "50,987",
+                events1: [
+                    { type: "goal", text: "Y. Ayari (7', 90+6')" },
+                    { type: "goal", text: "A. Isak (30')" },
+                    { type: "goal", text: "V. Gyokeres (59')" },
+                    { type: "goal", text: "M. Svanberg (84')" }
+                ],
+                events2: [
+                    { type: "goal", text: "O. Rekik (43')" }
                 ]
             },
             {
-                group: "Group D", lastUpdated: "16 June, 8:57am",
-                teams: [
-                    { pos: 1, name: "United States of America", pl: 1, w: 1, d: 0, l: 0, f: 4, a: 1, gd: "+3", pts: 3 },
-                    { pos: 2, name: "Australia", pl: 1, w: 1, d: 0, l: 0, f: 2, a: 0, gd: "+2", pts: 3 },
-                    { pos: 3, name: "Qatar", pl: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
-                    { pos: 4, name: "Switzerland", pl: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 }
+                date: "2026-06-15T17:00:00Z", group: "Group H",
+                team1: "Spain", team2: "Cape Verde", score1: 0, score2: 0,
+                stadium: "Mercedes-Benz Stadium", attendance: "67,640",
+                events1: [],
+                events2: []
+            },
+            {
+                date: "2026-06-15T20:00:00Z", group: "Group G",
+                team1: "Belgium", team2: "Egypt", score1: 1, score2: 1,
+                stadium: "CenturyLink Field", attendance: "66,775",
+                events1: [
+                    { type: "goal", text: "M. Hany (66' OG)" }
+                ],
+                events2: [
+                    { type: "goal", text: "E. Abdelghany (19')" }
                 ]
             },
             {
-                group: "Group E", lastUpdated: "16 June, 8:57am",
-                teams: [
-                    { pos: 1, name: "Germany", pl: 1, w: 1, d: 0, l: 0, f: 7, a: 1, gd: "+6", pts: 3 },
-                    { pos: 2, name: "Ivory Coast", pl: 1, w: 1, d: 0, l: 0, f: 1, a: 0, gd: "+1", pts: 3 },
-                    { pos: 3, name: "Ecuador", pl: 1, w: 0, d: 0, l: 1, f: 0, a: 1, gd: "-1", pts: 0 },
-                    { pos: 4, name: "Curacao", pl: 1, w: 0, d: 0, l: 1, f: 1, a: 7, gd: "-6", pts: 0 }
+                date: "2026-06-15T23:00:00Z", group: "Group H",
+                team1: "Saudi Arabia", team2: "Uruguay", score1: 1, score2: 1,
+                stadium: "Hard Rock Stadium", attendance: "62,764",
+                events1: [
+                    { type: "goal", text: "A. Alamri (41')" }
+                ],
+                events2: [
+                    { type: "goal", text: "M. Araújo (80')" }
                 ]
             },
             {
-                group: "Group F", lastUpdated: "16 June, 8:57am",
-                teams: [
-                    { pos: 1, name: "Sweden", pl: 1, w: 1, d: 0, l: 0, f: 5, a: 1, gd: "+4", pts: 3 },
-                    { pos: 2, name: "Japan", pl: 1, w: 0, d: 1, l: 0, f: 2, a: 2, gd: "0", pts: 1 },
-                    { pos: 3, name: "Netherlands", pl: 1, w: 0, d: 1, l: 0, f: 2, a: 2, gd: "0", pts: 1 },
-                    { pos: 4, name: "Tunisia", pl: 1, w: 0, d: 0, l: 1, f: 1, a: 5, gd: "-4", pts: 0 }
+                date: "2026-06-16T02:00:00Z", group: "Group G",
+                team1: "Iran", team2: "New Zealand", score1: 2, score2: 2,
+                stadium: "SoFi Stadium", attendance: "70,108",
+                events1: [
+                    { type: "goal", text: "R. Rezaeian (32')" },
+                    { type: "goal", text: "M. Mohebbi (64')" }
+                ],
+                events2: [
+                    { type: "goal", text: "E. Just (7', 54')" }
                 ]
             },
             {
-                group: "Group G", lastUpdated: "16 June, 8:57am",
-                teams: [
-                    { pos: 1, name: "New Zealand", pl: 1, w: 0, d: 1, l: 0, f: 2, a: 2, gd: "0", pts: 1 },
-                    { pos: 2, name: "Iran", pl: 1, w: 0, d: 1, l: 0, f: 2, a: 2, gd: "0", pts: 1 },
-                    { pos: 3, name: "Belgium", pl: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
-                    { pos: 4, name: "Egypt", pl: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 }
+                date: "2026-06-16T20:00:00Z", group: "Group I",
+                team1: "France", team2: "Senegal", score1: 3, score2: 1,
+                stadium: "MetLife Stadium", attendance: "80,545",
+                events1: [
+                    { type: "goal", text: "K. Mbappe (66', 90+6')" },
+                    { type: "goal", text: "B. Barcola (82')" }
+                ],
+                events2: [
+                    { type: "goal", text: "I. Mbaye (90+5')" }
                 ]
             },
             {
-                group: "Group H", lastUpdated: "16 June, 8:57am",
-                teams: [
-                    { pos: 1, name: "Uruguay", pl: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
-                    { pos: 2, name: "Saudi Arabia", pl: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
-                    { pos: 3, name: "Spain", pl: 1, w: 0, d: 1, l: 0, f: 0, a: 0, gd: "0", pts: 1 },
-                    { pos: 4, name: "Cape Verde", pl: 1, w: 0, d: 1, l: 0, f: 0, a: 0, gd: "0", pts: 1 }
+                date: "2026-06-16T23:00:00Z", group: "Group I",
+                team1: "Iraq", team2: "Norway", score1: 1, score2: 4,
+                stadium: "Boston Stadium", attendance: "63,106",
+                events1: [
+                    { type: "goal", text: "A. Hussein (39')" }
+                ],
+                events2: [
+                    { type: "goal", text: "E. Haaland (29', 43')" },
+                    { type: "goal", text: "L. Ostigard (76')" },
+                    { type: "goal", text: "A. Hussein (90+6' OG)" }
                 ]
             },
             {
-                group: "Group I", lastUpdated: "16 June, 8:57am",
-                teams: [
-                    { pos: 1, name: "France", pl: 0, w: 0, d: 0, l: 0, f: 0, a: 0, gd: "0", pts: 0 },
-                    { pos: 2, name: "Senegal", pl: 0, w: 0, d: 0, l: 0, f: 0, a: 0, gd: "0", pts: 0 },
-                    { pos: 3, name: "Iraq", pl: 0, w: 0, d: 0, l: 0, f: 0, a: 0, gd: "0", pts: 0 },
-                    { pos: 4, name: "Norway", pl: 0, w: 0, d: 0, l: 0, f: 0, a: 0, gd: "0", pts: 0 }
-                ]
+                date: "2026-06-17T02:00:00Z", group: "Group J",
+                team1: "Argentina", team2: "Algeria", score1: 3, score2: 0,
+                stadium: "GEHA Field", attendance: "69,045",
+                events1: [
+                    { type: "goal", text: "L. Messi (17', 60', 76')" }
+                ],
+                events2: []
             },
             {
-                group: "Group J", lastUpdated: "16 June, 8:57am",
-                teams: [
-                    { pos: 1, name: "Argentina", pl: 0, w: 0, d: 0, l: 0, f: 0, a: 0, gd: "0", pts: 0 },
-                    { pos: 2, name: "Algeria", pl: 0, w: 0, d: 0, l: 0, f: 0, a: 0, gd: "0", pts: 0 },
-                    { pos: 3, name: "Austria", pl: 0, w: 0, d: 0, l: 0, f: 0, a: 0, gd: "0", pts: 0 },
-                    { pos: 4, name: "Jordan", pl: 0, w: 0, d: 0, l: 0, f: 0, a: 0, gd: "0", pts: 0 }
-                ]
-            },
-            {
-                group: "Group K", lastUpdated: "16 June, 8:57am",
-                teams: [
-                    { pos: 1, name: "Portugal", pl: 0, w: 0, d: 0, l: 0, f: 0, a: 0, gd: "0", pts: 0 },
-                    { pos: 2, name: "DR Congo", pl: 0, w: 0, d: 0, l: 0, f: 0, a: 0, gd: "0", pts: 0 },
-                    { pos: 3, name: "Uzbekistan", pl: 0, w: 0, d: 0, l: 0, f: 0, a: 0, gd: "0", pts: 0 },
-                    { pos: 4, name: "Colombia", pl: 0, w: 0, d: 0, l: 0, f: 0, a: 0, gd: "0", pts: 0 }
-                ]
-            },
-            {
-                group: "Group L", lastUpdated: "16 June, 8:57am",
-                teams: [
-                    { pos: 1, name: "England", pl: 0, w: 0, d: 0, l: 0, f: 0, a: 0, gd: "0", pts: 0 },
-                    { pos: 2, name: "Croatia", pl: 0, w: 0, d: 0, l: 0, f: 0, a: 0, gd: "0", pts: 0 },
-                    { pos: 3, name: "Ghana", pl: 0, w: 0, d: 0, l: 0, f: 0, a: 0, gd: "0", pts: 0 },
-                    { pos: 4, name: "Panama", pl: 0, w: 0, d: 0, l: 0, f: 0, a: 0, gd: "0", pts: 0 }
+                date: "2026-06-17T05:00:00Z", group: "Group J",
+                team1: "Austria", team2: "Jordan", score1: 3, score2: 1,
+                stadium: "Levi's Stadium", attendance: "68,527",
+                events1: [
+                    { type: "goal", text: "R. Schmid (21')" },
+                    { type: "goal", text: "Y. Al Arab (76' OG)" },
+                    { type: "goal", text: "M. Arnautovic (90+12' Pen)" }
+                ],
+                events2: [
+                    { type: "goal", text: "A. Al Olwan (50')" }
                 ]
             }
         ];
@@ -772,35 +767,30 @@
         function renderSchedule() {
             const container = document.getElementById('schedule-container');
             container.innerHTML = '';
-            matchData.forEach(m => {
-                const utcDate = new Date(m.date);
-                const gmtHours = String(utcDate.getUTCHours()).padStart(2, '0');
-                const gmtMinutes = String(utcDate.getUTCMinutes()).padStart(2, '0');
-                const gmtTimeStr = `${gmtHours}:${gmtMinutes} GMT+0`;
-                const localTimeStr = utcDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                const localDateStr = utcDate.toLocaleDateString([], { day: 'numeric', month: 'short', year: 'numeric' });
+            
+            scheduleData.forEach(s => {
+                const localDate = new Date(s.date);
+                const dateOptions = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+                const timeOptions = { hour: 'numeric', minute: '2-digit', hour12: true };
+                
+                const localDateStr = localDate.toLocaleDateString([], dateOptions);
+                const localTimeStr = localDate.toLocaleTimeString([], timeOptions);
 
                 const card = document.createElement('div');
                 card.className = 'schedule-card';
                 card.innerHTML = `
                     <div class="match-header">
-                        <span class="match-group">${m.group}</span>
-                        <span class="match-date-gmt">${m.day} (${gmtHours}:${gmtMinutes} UTC)</span>
+                        <span class="match-group" data-en="UPCOMING FIXTURE" data-my="PERLAWANAN AKAN DATANG">UPCOMING FIXTURE</span>
+                        <span style="color: var(--accent-orange); font-weight: 600; font-size: 0.85rem;"><i class="fa-regular fa-clock"></i> Scheduled</span>
                     </div>
                     <div class="teams">
-                        <div class="team"><i class="fa-solid fa-shield-halved"></i><span>${m.team1}</span></div>
-                        <div class="vs">VS</div>
-                        <div class="team"><i class="fa-solid fa-shield-halved"></i><span>${m.team2}</span></div>
+                        <div class="team"><i class="fa-solid fa-shield-halved"></i><span>${s.team1}</span></div>
+                        <div class="vs-badge">VS</div>
+                        <div class="team"><i class="fa-solid fa-shield-halved"></i><span>${s.team2}</span></div>
                     </div>
-                    <div class="time-box">
-                        <div class="time-row">
-                            <span class="label">Original Time:</span>
-                            <span class="val">${gmtTimeStr}</span>
-                        </div>
-                        <div class="time-row system-time">
-                            <span class="label">Your System Time:</span>
-                            <span class="val">${localDateStr}, ${localTimeStr}</span>
-                        </div>
+                    <div class="match-details-box" style="margin-bottom:0;">
+                        <div class="detail-row"><span><i class="fa-solid fa-calendar" style="margin-right:5px; color:var(--accent-blue);"></i> Tarikh: <strong>${localDateStr}</strong></span></div>
+                        <div class="detail-row"><span><i class="fa-solid fa-clock" style="margin-right:5px; color:var(--accent-blue);"></i> Masa (Sistem): <strong>${localTimeStr}</strong></span></div>
                     </div>
                 `;
                 container.appendChild(card);
@@ -810,7 +800,11 @@
         function renderResults() {
             const container = document.getElementById('results-container');
             container.innerHTML = '';
-            resultsData.forEach(r => {
+            
+            // Urutan diterbalikkan: Salinan baru disusun dari tarikh terkini (atas) ke tarikh awal (bawah)
+            const reversedResults = [...resultsData].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            reversedResults.forEach(r => {
                 const utcDate = new Date(r.date);
                 const localDateStr = utcDate.toLocaleDateString([], { day: 'numeric', month: 'short', year: 'numeric' });
 
@@ -843,8 +837,8 @@
                         <div class="detail-row"><span>Attendance: <strong>${Number(r.attendance.replace(/,/g, '')).toLocaleString()}</strong></span><span>Date: <strong>${localDateStr}</strong></span></div>
                     </div>
                     <div class="events-list">
-                        <div class="team-events">${events1Html || '<span style="color:rgba(255,255,255,0.2); font-size:0.75rem;">-</span>'}</div>
-                        <div class="team-events right">${events2Html || '<span style="color:rgba(255,255,255,0.2); font-size:0.75rem;">-</span>'}</div>
+                        <div class="team-events">${events1Html}</div>
+                        <div class="team-events right">${events2Html}</div>
                     </div>
                 `;
                 container.appendChild(card);
@@ -862,57 +856,6 @@
             container.appendChild(footerEl);
         }
 
-        function renderStandings() {
-            const container = document.getElementById('standings-container');
-            container.innerHTML = '';
-            standingsData.forEach(g => {
-                let rowsHtml = '';
-                g.teams.forEach(t => {
-                    rowsHtml += `
-                        <tr>
-                            <td class="td-team"><span class="pos-num">${t.pos}</span><span class="team-name">${t.name}</span></td>
-                            <td>${t.pl}</td>
-                            <td>${t.w}</td>
-                            <td>${t.d}</td>
-                            <td>${t.l}</td>
-                            <td>${t.f}</td>
-                            <td>${t.a}</td>
-                            <td>${t.gd}</td>
-                            <td class="td-pts">${t.pts}</td>
-                        </tr>
-                    `;
-                });
-
-                const groupCard = document.createElement('div');
-                groupCard.className = 'group-card';
-                groupCard.innerHTML = `
-                    <h3>FIFA World Cup - ${g.group}</h3>
-                    <span class="updated-time" data-en="Last updated: ${g.lastUpdated}" data-my="Kemaskini terakhir: ${g.lastUpdated}">Last updated: ${g.lastUpdated}</span>
-                    <div class="table-responsive">
-                        <table class="standings-table">
-                            <thead>
-                                <tr>
-                                    <th class="th-team" style="width: 40%">Team</th>
-                                    <th>Pl</th>
-                                    <th>W</th>
-                                    <th>D</th>
-                                    <th>L</th>
-                                    <th>F</th>
-                                    <th>A</th>
-                                    <th>GD</th>
-                                    <th>Pts</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${rowsHtml}
-                            </tbody>
-                        </table>
-                    </div>
-                `;
-                container.appendChild(groupCard);
-            });
-        }
-
         function switchTab(tabId, buttonEl) {
             document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -920,7 +863,6 @@
             if (tabId === 'live') document.getElementById('page-live').classList.add('active');
             if (tabId === 'schedule') document.getElementById('page-schedule').classList.add('active');
             if (tabId === 'results') document.getElementById('page-results').classList.add('active');
-            if (tabId === 'standings') document.getElementById('page-standings').classList.add('active');
             if (tabId === 'info') document.getElementById('page-info').classList.add('active');
             
             buttonEl.classList.add('active');
@@ -934,12 +876,11 @@
             });
             renderSchedule();
             renderResults();
-            renderStandings();
         }
 
+        // Initial running functions
         renderSchedule();
         renderResults();
-        renderStandings();
 
         const player = videojs('fifa-player', { fluid: true, autoplay: false, controls: true, responsive: true });
 
