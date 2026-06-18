@@ -453,10 +453,6 @@
     <script>
         // Schedule data in GMT+0
         const scheduleData = [
-            { date: "2026-06-17T18:00:00Z", team1: "Portugal", team2: "DR Congo" },
-            { date: "2026-06-17T21:00:00Z", team1: "England", team2: "Croatia" },
-            { date: "2026-06-18T00:00:00Z", team1: "Ghana", team2: "Panama" },
-            { date: "2026-06-18T03:00:00Z", team1: "Uzbekistan", team2: "Colombia" },
             { date: "2026-06-18T17:00:00Z", team1: "Czech Republic", team2: "South Africa" },
             { date: "2026-06-18T20:00:00Z", team1: "Switzerland", team2: "Bosnia and Herz." },
             { date: "2026-06-18T23:00:00Z", team1: "Canada", team2: "Qatar" },
@@ -540,7 +536,7 @@
         ];
 
         // Results data array
-        const resultsData = [
+const resultsData = [
             {
                 date: "2026-06-11T20:00:00Z", group: "Group A",
                 team1: "Mexico", team2: "South Africa", score1: 2, score2: 0,
@@ -771,9 +767,56 @@
                 events2: [
                     { type: "goal", text: "A. Al Olwan (50')" }
                 ]
+            },
+            {
+                date: "2026-06-17T18:00:00Z", group: "Group K",
+                team1: "Portugal", team2: "DR Congo", score1: 1, score2: 1,
+                stadium: "NRG Stadium", attendance: "68,777",
+                events1: [
+                    { type: "goal", text: "J Neves (6')" }
+                ],
+                events2: [
+                    { type: "goal", text: "Y Wissa (45+5')" }
+                ]
+            },
+            {
+                date: "2026-06-17T21:00:00Z", group: "Group L",
+                team1: "England", team2: "Croatia", score1: 4, score2: 2,
+                stadium: "Dallas Stadium", attendance: "70,389",
+                events1: [
+                    { type: "goal", text: "H Kane (12' Pen, 42')" },
+                    { type: "goal", text: "J Bellingham (47')" },
+                    { type: "goal", text: "M Rashford (85')" }
+                ],
+                events2: [
+                    { type: "goal", text: "M Baturina (36')" },
+                    { type: "goal", text: "P Musa (45+5')" }
+                ]
+            },
+            {
+                date: "2026-06-18T00:00:00Z", group: "Group L",
+                team1: "Ghana", team2: "Panama", score1: 1, score2: 0,
+                stadium: "Toronto Stadium", attendance: "42,942",
+                events1: [
+                    { type: "goal", text: "C Yirenkyi (90+5')" }
+                ],
+                events2: []
+            },
+            {
+                date: "2026-06-18T03:00:00Z", group: "Group K",
+                team1: "Uzbekistan", team2: "Colombia", score1: 1, score2: 3,
+                stadium: "Azteca Stadium", attendance: "80,824",
+                events1: [
+                    { type: "goal", text: "A Fayzullaev (60')" }
+                ],
+                events2: [
+                    { type: "goal", text: "D Muñoz (40')" },
+                    { type: "goal", text: "L Díaz (65')" },
+                    { type: "goal", text: "J Campaz (90+9')" }
+                ]
             }
         ];
-
+        
         function renderSchedule() {
             const container = document.getElementById('schedule-container');
             container.innerHTML = '';
