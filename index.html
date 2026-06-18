@@ -891,11 +891,25 @@
             el.classList.add('active');
         }
 
-        function streamHLS(url, title, el, logoUrl) { 
-            updateUI(title, el, logoUrl); 
-            player.src({ src: url, type: 'application/x-mpegURL' }); 
-            player.play(); 
-        }
+function streamHLS(url, title, el, logoUrl) { 
+    updateUI(title, el, logoUrl); 
+    
+    player.reset(); 
+    
+    // Konfigurasi khas untuk melepasi sekatan token/CORS jika disokong
+    player.src({ 
+        src: url, 
+        type: 'application/x-mpegURL',
+        withCredentials: false // Ubah jadi true jika strim memerlukan cookies/token rasmi
+    }); 
+    
+    player.load();
+    player.ready(function() {
+        player.play().catch(function(error) {
+            console.log("Strim disekat oleh sekatan CORS Cloudfront RTB Go:", error);
+        });
+    });
+}
     </script>
 </body>
 </html>
