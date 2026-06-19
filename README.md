@@ -30,4 +30,4 @@ You can access the live operational dashboard on either of the mirror networks b
 
 🔗 **GitHub Pages Link:** [https://yusoffrohaidee2.github.io/fifa-world-cup-live-stream/](https://yusoffrohaidee2.github.io/fifa-world-cup-live-stream/)
 
-🔗 **Vercel Mirror Link:** [https://fifa-world-cup-live-stream-website.vercel.app/[(https://fifa-world-cup-live-stream-website.vercel.app/)
+🔗 **Vercel Mirror Link:** [https://fifa-world-cup-live-stream-website.vercel.app/](https://fifa-world-cup-live-stream-website.vercel.app/)
