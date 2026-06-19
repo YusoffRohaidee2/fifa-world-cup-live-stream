@@ -28,6 +28,6 @@ You can access the live replay & highlights through RTM Klik (Malaysia only beca
 
 You can access the live operational dashboard on either of the mirror networks below:
 
-🔗 **GitHub Pages Link:** [https://yusoffrohaidee2.github.io/fifa-world-cup-live-stream/](https://yusoffrohaidee2.github.io/fifa-world-cup-live-stream/)
+🔗 **Vercel Mirror Link (MAIN) :** [https://fifa-world-cup-live-stream-website.vercel.app/](https://fifa-world-cup-live-stream-website.vercel.app/)
 
-🔗 **Vercel Mirror Link:** [https://fifa-world-cup-live-stream-website.vercel.app/](https://fifa-world-cup-live-stream-website.vercel.app/)
+🔗 **GitHub Pages Link (BACKUP) :** [https://yusoffrohaidee2.github.io/fifa-world-cup-live-stream/](https://yusoffrohaidee2.github.io/fifa-world-cup-live-stream/)
