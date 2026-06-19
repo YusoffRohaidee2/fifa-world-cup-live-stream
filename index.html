@@ -108,7 +108,7 @@
             justify-content: center;
             gap: 12px;
             margin: 10px auto 30px;
-            max-width: 850px;
+            max-width: 950px;
             background: var(--glass);
             padding: 8px;
             border-radius: 20px;
@@ -298,6 +298,19 @@
         .log-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; font-size: 1rem; color: var(--text-dim); line-height: 1.5; }
         .log-item i { color: var(--accent-green); margin-top: 4px; font-size: 0.9rem; }
         .log-date { color: #fff; font-weight: 700; background: rgba(255,255,255,0.07); padding: 2px 8px; border-radius: 6px; font-size: 0.85rem; font-family: 'Poppins'; margin-right: 5px; }
+
+        /* Standings Specific Styles */
+        .standings-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 25px; width: 100%; }
+        .standings-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 24px; padding: 20px; backdrop-filter: blur(10px); }
+        .standings-card h3 { font-family: 'Poppins'; font-size: 1.2rem; color: var(--accent-blue); margin-top: 0; margin-bottom: 12px; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px;}
+        .standings-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; text-align: left; }
+        .standings-table th { color: var(--text-dim); font-weight: 600; padding: 6px 4px; text-transform: uppercase; font-size: 0.75rem; }
+        .standings-table td { padding: 8px 4px; border-bottom: 1px solid rgba(255,255,255,0.03); color: #e0e0e0; }
+        .standings-table tr:last-child td { border-bottom: none; }
+        .standings-table .text-center { text-align: center; }
+        .standings-table .font-bold { font-weight: 700; color: #fff; }
+        .standings-table .team-name { font-weight: 500; display: flex; align-items: center; gap: 6px; }
+        .standings-update-time { font-size: 0.75rem; color: var(--text-dim); margin-bottom: 15px; display: block; }
     </style>
 </head>
 <body>
@@ -326,6 +339,9 @@
         </button>
         <button class="tab-btn" onclick="switchTab('results', this)">
             <i class="fa-solid fa-square-poll-horizontal"></i> <span data-en="Results" data-my="Keputusan">Results</span>
+        </button>
+        <button class="tab-btn" onclick="switchTab('standings', this)">
+            <i class="fa-solid fa-list-ol"></i> <span data-en="Standings" data-my="Kedudukan">Standings</span>
         </button>
         <button class="tab-btn" onclick="switchTab('info', this)">
             <i class="fa-solid fa-circle-info"></i> <span data-en="Information" data-my="Maklumat">Information</span>
@@ -414,6 +430,11 @@
         <div class="schedule-grid" id="results-container"></div>
     </div>
 
+    <div id="page-standings" class="page-content">
+        <span class="standings-update-time"><i class="fa-regular fa-clock"></i> <span data-en="Last updated: 19 June, 7:33am" data-my="Kemaskini terakhir: 19 Jun, 7:33 pagi">Last updated: 19 June, 7:33am</span></span>
+        <div class="standings-grid" id="standings-container"></div>
+    </div>
+
     <div id="page-info" class="page-content">
         <div class="info-container">
             <div class="info-section">
@@ -426,6 +447,13 @@
             <div class="info-section" style="border-top: 1px solid var(--glass-border); padding-top: 30px;">
                 <h3 data-en="Update Log" data-my="Log Kemaskini">Update Log</h3>
                 <ul class="log-list">
+                    <li class="log-item">
+                        <i class="fa-solid fa-circle-plus"></i>
+                        <div>
+                            <span class="log-date">6/19/2026</span>
+                            <span data-en="Added Standings tab containing Group A to Group L team rankings data." data-my="Menambah tab Kedudukan (Standings) yang mengandungi data ranking pasukan dari Kumpulan A sehingga Kumpulan L.">Added Standings tab containing Group A to Group L team rankings data.</span>
+                        </div>
+                    </li>
                     <li class="log-item">
                         <i class="fa-solid fa-circle-plus"></i>
                         <div>
@@ -521,8 +549,8 @@
             { date: "2026-07-19T20:00:00Z", team1: "SF Match 1 Winner", team2: "SF Match 2 Winner" }
         ];
 
-// Results data array
-const resultsData = [
+        // Results data array
+        const resultsData = [
             {
                 date: "2026-06-11T20:00:00Z", group: "Group A",
                 team1: "Mexico", team2: "South Africa", score1: 2, score2: 0,
@@ -851,6 +879,82 @@ const resultsData = [
                 events2: []
             }
         ];
+
+        // Standings raw data mapping
+        const standingsData = [
+            { group: "Group A", teams: [
+                { name: "Mexico", p: 2, w: 2, d: 0, l: 0, f: 3, a: 0, gd: "+3", pts: 6 },
+                { name: "Korea Republic", p: 2, w: 1, d: 0, l: 1, f: 2, a: 2, gd: "0", pts: 3 },
+                { name: "Czech Republic", p: 2, w: 0, d: 1, l: 1, f: 2, a: 3, gd: "-1", pts: 1 },
+                { name: "South Africa", p: 2, w: 0, d: 1, l: 1, f: 1, a: 3, gd: "-2", pts: 1 }
+            ]},
+            { group: "Group B", teams: [
+                { name: "Canada", p: 2, w: 1, d: 1, l: 0, f: 7, a: 1, gd: "+6", pts: 4 },
+                { name: "Switzerland", p: 2, w: 1, d: 1, l: 0, f: 5, a: 2, gd: "+3", pts: 4 },
+                { name: "Bosnia and Herzegovina", p: 2, w: 0, d: 1, l: 1, f: 2, a: 5, gd: "-3", pts: 1 },
+                { name: "Qatar", p: 2, w: 0, d: 1, l: 1, f: 1, a: 7, gd: "-6", pts: 1 }
+            ]},
+            { group: "Group C", teams: [
+                { name: "Scotland", p: 1, w: 1, d: 0, l: 0, f: 1, a: 0, gd: "+1", pts: 3 },
+                { name: "Morocco", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
+                { name: "Brazil", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
+                { name: "Haiti", p: 1, w: 0, d: 0, l: 1, f: 0, a: 1, gd: "-1", pts: 0 }
+            ]},
+            { group: "Group D", teams: [
+                { name: "United States of America", p: 1, w: 1, d: 0, l: 0, f: 4, a: 1, gd: "+3", pts: 3 },
+                { name: "Australia", p: 1, w: 1, d: 0, l: 0, f: 2, a: 0, gd: "+2", pts: 3 },
+                { name: "Turkey", p: 1, w: 0, d: 0, l: 1, f: 0, a: 2, gd: "-2", pts: 0 },
+                { name: "Paraguay", p: 1, w: 0, d: 0, l: 1, f: 1, a: 4, gd: "-3", pts: 0 }
+            ]},
+            { group: "Group E", teams: [
+                { name: "Germany", p: 1, w: 1, d: 0, l: 0, f: 7, a: 1, gd: "+6", pts: 3 },
+                { name: "Ivory Coast", p: 1, w: 1, d: 0, l: 0, f: 1, a: 0, gd: "+1", pts: 3 },
+                { name: "Ecuador", p: 1, w: 0, d: 0, l: 1, f: 0, a: 1, gd: "-1", pts: 0 },
+                { name: "Curacao", p: 1, w: 0, d: 0, l: 1, f: 1, a: 7, gd: "-6", pts: 0 }
+            ]},
+            { group: "Group F", teams: [
+                { name: "Sweden", p: 1, w: 1, d: 0, l: 0, f: 5, a: 1, gd: "+4", pts: 3 },
+                { name: "Japan", p: 1, w: 0, d: 1, l: 0, f: 2, a: 2, gd: "0", pts: 1 },
+                { name: "Netherlands", p: 1, w: 0, d: 1, l: 0, f: 2, a: 2, gd: "0", pts: 1 },
+                { name: "Tunisia", p: 1, w: 0, d: 0, l: 1, f: 1, a: 5, gd: "-4", pts: 0 }
+            ]},
+            { group: "Group G", teams: [
+                { name: "New Zealand", p: 1, w: 0, d: 1, l: 0, f: 2, a: 2, gd: "0", pts: 1 },
+                { name: "Iran", p: 1, w: 0, d: 1, l: 0, f: 2, a: 2, gd: "0", pts: 1 },
+                { name: "Belgium", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
+                { name: "Egypt", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 }
+            ]},
+            { group: "Group H", teams: [
+                { name: "Uruguay", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
+                { name: "Saudi Arabia", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
+                { name: "Spain", p: 1, w: 0, d: 1, l: 0, f: 0, a: 0, gd: "0", pts: 1 },
+                { name: "Cape Verde", p: 1, w: 0, d: 1, l: 0, f: 0, a: 0, gd: "0", pts: 1 }
+            ]},
+            { group: "Group I", teams: [
+                { name: "Norway", p: 1, w: 1, d: 0, l: 0, f: 4, a: 1, gd: "+3", pts: 3 },
+                { name: "France", p: 1, w: 1, d: 0, l: 0, f: 3, a: 1, gd: "+2", pts: 3 },
+                { name: "Senegal", p: 1, w: 0, d: 0, l: 1, f: 1, a: 3, gd: "-2", pts: 0 },
+                { name: "Iraq", p: 1, w: 0, d: 0, l: 1, f: 1, a: 4, gd: "-3", pts: 0 }
+            ]},
+            { group: "Group J", teams: [
+                { name: "Argentina", p: 1, w: 1, d: 0, l: 0, f: 3, a: 0, gd: "+3", pts: 3 },
+                { name: "Austria", p: 1, w: 1, d: 0, l: 0, f: 3, a: 1, gd: "+2", pts: 3 },
+                { name: "Jordan", p: 1, w: 0, d: 0, l: 1, f: 1, a: 3, gd: "-2", pts: 0 },
+                { name: "Algeria", p: 1, w: 0, d: 0, l: 1, f: 0, a: 3, gd: "-3", pts: 0 }
+            ]},
+            { group: "Group K", teams: [
+                { name: "Colombia", p: 1, w: 1, d: 0, l: 0, f: 3, a: 1, gd: "+2", pts: 3 },
+                { name: "DR Congo", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
+                { name: "Portugal", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
+                { name: "Uzbekistan", p: 1, w: 0, d: 0, l: 1, f: 1, a: 3, gd: "-2", pts: 0 }
+            ]},
+            { group: "Group L", teams: [
+                { name: "England", p: 1, w: 1, d: 0, l: 0, f: 4, a: 2, gd: "+2", pts: 3 },
+                { name: "Ghana", p: 1, w: 1, d: 0, l: 0, f: 1, a: 0, gd: "+1", pts: 3 },
+                { name: "Panama", p: 1, w: 0, d: 0, l: 1, f: 0, a: 1, gd: "-1", pts: 0 },
+                { name: "Croatia", p: 1, w: 0, d: 0, l: 1, f: 2, a: 4, gd: "-2", pts: 0 }
+            ]}
+        ];
         
         function renderSchedule() {
             const container = document.getElementById('schedule-container');
@@ -889,7 +993,6 @@ const resultsData = [
             const container = document.getElementById('results-container');
             container.innerHTML = '';
             
-            // Urutan diterbalikkan: Salinan baru disusun dari tarikh terkini (atas) ke tarikh awal (bawah)
             const reversedResults = [...resultsData].sort((a, b) => new Date(b.date) - new Date(a.date));
 
             reversedResults.forEach(r => {
@@ -944,6 +1047,60 @@ const resultsData = [
             container.appendChild(footerEl);
         }
 
+        function renderStandings() {
+            const container = document.getElementById('standings-container');
+            container.innerHTML = '';
+
+            standingsData.forEach(g => {
+                const card = document.createElement('div');
+                card.className = 'standings-card';
+                
+                let rowsHtml = '';
+                g.teams.forEach((t, index) => {
+                    rowsHtml += `
+                        <tr>
+                            <td class="font-bold text-center" style="width:25px;">${index + 1}</td>
+                            <td class="team-name">${t.name}</td>
+                            <td class="text-center">${t.p}</td>
+                            <td class="text-center">${t.w}</td>
+                            <td class="text-center">${t.d}</td>
+                            <td class="text-center">${t.l}</td>
+                            <td class="text-center">${t.f}</td>
+                            <td class="text-center">${t.a}</td>
+                            <td class="text-center">${t.gd}</td>
+                            <td class="font-bold text-center" style="color:var(--accent-blue);">${t.pts}</td>
+                        </tr>
+                    `;
+                });
+
+                card.innerHTML = `
+                    <h3 data-en="${g.group}" data-my="Kumpulan ${g.group.split(' ')[1]}">${g.group}</h3>
+                    <div style="overflow-x:auto;">
+                        <table class="standings-table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th data-en="Team" data-my="Pasukan">Team</th>
+                                    <th class="text-center" title="Played">PL</th>
+                                    <th class="text-center" title="Won">W</th>
+                                    <th class="text-center" title="Drawn">D</th>
+                                    <th class="text-center" title="Lost">L</th>
+                                    <th class="text-center" title="Goals For">F</th>
+                                    <th class="text-center" title="Goals Against">A</th>
+                                    <th class="text-center" title="Goal Difference">GD</th>
+                                    <th class="text-center" title="Points">PTS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${rowsHtml}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
         function switchTab(tabId, buttonEl) {
             document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -951,6 +1108,7 @@ const resultsData = [
             if (tabId === 'live') document.getElementById('page-live').classList.add('active');
             if (tabId === 'schedule') document.getElementById('page-schedule').classList.add('active');
             if (tabId === 'results') document.getElementById('page-results').classList.add('active');
+            if (tabId === 'standings') document.getElementById('page-standings').classList.add('active');
             if (tabId === 'info') document.getElementById('page-info').classList.add('active');
             
             buttonEl.classList.add('active');
@@ -964,11 +1122,13 @@ const resultsData = [
             });
             renderSchedule();
             renderResults();
+            renderStandings();
         }
 
         // Initial running functions
         renderSchedule();
         renderResults();
+        renderStandings();
 
         const player = videojs('fifa-player', { fluid: true, autoplay: false, controls: true, responsive: true });
         
@@ -979,25 +1139,24 @@ const resultsData = [
             el.classList.add('active');
         }
 
-function streamHLS(url, title, el, logoUrl) { 
-    updateUI(title, el, logoUrl); 
-    
-    player.reset(); 
-    
-    // Konfigurasi khas untuk melepasi sekatan token/CORS jika disokong
-    player.src({ 
-        src: url, 
-        type: 'application/x-mpegURL',
-        withCredentials: false // Ubah jadi true jika strim memerlukan cookies/token rasmi
-    }); 
-    
-    player.load();
-    player.ready(function() {
-        player.play().catch(function(error) {
-            console.log("Strim disekat oleh sekatan CORS Cloudfront RTB Go:", error);
-        });
-    });
-}
+        function streamHLS(url, title, el, logoUrl) { 
+            updateUI(title, el, logoUrl); 
+            
+            player.reset(); 
+            
+            player.src({ 
+                src: url, 
+                type: 'application/x-mpegURL',
+                withCredentials: false
+            }); 
+            
+            player.load();
+            player.ready(function() {
+                player.play().catch(function(error) {
+                    console.log("Strim disekat oleh sekatan CORS Cloudfront RTB Go:", error);
+                });
+            });
+        }
     </script>
 </body>
 </html>
