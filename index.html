@@ -321,13 +321,6 @@
         <p class="hero-desc" data-en="The official platform for FIFA World Cup 2026 media distribution, broadcasting, and technical integration services." data-my="Platform rasmi untuk pengedaran media, penyiaran, dan perkhidmatan integrasi teknikal Piala Dunia FIFA 2026.">
             The official platform for FIFA World Cup 2026 media distribution, broadcasting, and technical integration services.
         </p>
-
-        <div class="notice-banner">
-            <i class="fa-solid fa-triangle-exclamation"></i>
-            <div class="notice-text">
-                <span data-en="Notice: Google may show a 'Phishing' warning on our Vercel mirror, but this is completely a false positive. There are absolutely no malicious scripts here. Please bear with us!" data-my="Maklum Balas: Google mungkin memaparkan amaran 'Phishing' pada pautan Vercel kami, namun ia adalah kesilapan sistem (false positive). Tiada sebarang skrip berbahaya di sini. Sila teruskan bersama kami!">Notice: Google may show a 'Phishing' warning on our Vercel mirror, but this is completely a false positive. There are absolutely no malicious scripts here. Please bear with us!</span>
-            </div>
-        </div>
     </header>
 
     <div class="nav-tabs">
@@ -471,10 +464,6 @@
     <script>
         // Schedule data in GMT+0
         const scheduleData = [
-            { date: "2026-06-19T20:00:00Z", team1: "United States", team2: "Australia" },
-            { date: "2026-06-19T21:00:00Z", team1: "Scotland", team2: "Morocco" },
-            { date: "2026-06-20T01:30:00Z", team1: "Brazil", team2: "Haiti" },
-            { date: "2026-06-20T04:00:00Z", team1: "Turkey", team2: "Paraguay" },
             { date: "2026-06-20T18:00:00Z", team1: "Netherlands", team2: "Sweden" },
             { date: "2026-06-20T21:00:00Z", team1: "Germany", team2: "Ivory Coast" },
             { date: "2026-06-21T01:00:00Z", team1: "Ecuador", team2: "Curacao" },
@@ -549,7 +538,7 @@
             { date: "2026-07-19T20:00:00Z", team1: "SF Match 1 Winner", team2: "SF Match 2 Winner" }
         ];
 
-        // Results data array
+// Results data array
         const resultsData = [
             {
                 date: "2026-06-11T20:00:00Z", group: "Group A",
@@ -877,11 +866,71 @@
                     { type: "goal", text: "L. Romo (50')" }
                 ],
                 events2: []
+            },
+            {
+                date: "2026-06-19T20:00:00Z", group: "Group D",
+                team1: "United States", team2: "Australia", score1: 2, score2: 0,
+                stadium: "Lumen Field", attendance: "66,925",
+                events1: [
+                    { type: "goal", text: "C Burgess (11' OG)" },
+                    { type: "goal", text: "A Freeman (43')" }
+                ],
+                events2: []
+            },
+            {
+                date: "2026-06-19T23:00:00Z", group: "Group C",
+                team1: "Scotland", team2: "Morocco", score1: 0, score2: 1,
+                stadium: "Boston Stadium", attendance: "64,146",
+                events1: [],
+                events2: [
+                    { type: "goal", text: "I Saibari Ben El Basra (2')" }
+                ]
+            },
+            {
+                date: "2026-06-20T01:30:00Z", group: "Group C",
+                team1: "Brazil", team2: "Haiti", score1: 3, score2: 0,
+                stadium: "Philadelphia Stadium", attendance: "68,324",
+                events1: [
+                    { type: "goal", text: "M Cunha (23', 36')" },
+                    { type: "goal", text: "Vinicius Júnior (45+3')" }
+                ],
+                events2: []
+            },
+            {
+                date: "2026-06-20T04:00:00Z", group: "Group D",
+                team1: "Turkey", team2: "Paraguay", score1: 0, score2: 1,
+                stadium: "Levi's Stadium", attendance: "68,827",
+                events1: [],
+                events2: [
+                    { type: "goal", text: "M Galarza (2')" },
+                    { type: "red", text: "M Almirón (45+3')" }
+                ]
             }
         ];
 
-        // Standings raw data mapping
+// Standings raw data mapping
         const standingsData = [
+            /* ========================================== *
+             * GROUP 3RDS                    *
+             * ========================================== */
+            { group: "Group 3rds", teams: [
+                { name: "Scotland", p: 2, w: 1, d: 0, l: 1, f: 1, a: 1, gd: "0", pts: 3 },
+                { name: "Paraguay", p: 2, w: 1, d: 0, l: 1, f: 2, a: 4, gd: "-2", pts: 3 },
+                { name: "Netherlands", p: 1, w: 0, d: 1, l: 0, f: 2, a: 2, gd: "0", pts: 1 },
+                { name: "Belgium", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
+                { name: "Portugal", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
+                { name: "Spain", p: 1, w: 0, d: 1, l: 0, f: 0, a: 0, gd: "0", pts: 1 },
+                { name: "Czech Republic", p: 2, w: 0, d: 1, l: 1, f: 2, a: 3, gd: "-1", pts: 1 },
+                { name: "Bosnia and Herzegovina", p: 2, w: 0, d: 1, l: 1, f: 2, a: 5, gd: "-3", pts: 1 },
+                { name: "Ecuador", p: 1, w: 0, d: 0, l: 1, f: 0, a: 1, gd: "-1", pts: 0 },
+                { name: "Panama", p: 1, w: 0, d: 0, l: 1, f: 0, a: 1, gd: "-1", pts: 0 },
+                { name: "Jordan", p: 1, w: 0, d: 0, l: 1, f: 1, a: 3, gd: "-2", pts: 0 },
+                { name: "Senegal", p: 1, w: 0, d: 0, l: 1, f: 1, a: 3, gd: "-2", pts: 0 }
+            ]},
+
+            /* ========================================== *
+             * PERINGKAT KUMPULAN            *
+             * ========================================== */
             { group: "Group A", teams: [
                 { name: "Mexico", p: 2, w: 2, d: 0, l: 0, f: 3, a: 0, gd: "+3", pts: 6 },
                 { name: "Korea Republic", p: 2, w: 1, d: 0, l: 1, f: 2, a: 2, gd: "0", pts: 3 },
@@ -895,16 +944,16 @@
                 { name: "Qatar", p: 2, w: 0, d: 1, l: 1, f: 1, a: 7, gd: "-6", pts: 1 }
             ]},
             { group: "Group C", teams: [
-                { name: "Scotland", p: 1, w: 1, d: 0, l: 0, f: 1, a: 0, gd: "+1", pts: 3 },
-                { name: "Morocco", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
-                { name: "Brazil", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
-                { name: "Haiti", p: 1, w: 0, d: 0, l: 1, f: 0, a: 1, gd: "-1", pts: 0 }
+                { name: "Brazil", p: 2, w: 1, d: 1, l: 0, f: 4, a: 1, gd: "+3", pts: 4 },
+                { name: "Morocco", p: 2, w: 1, d: 1, l: 0, f: 2, a: 1, gd: "+1", pts: 4 },
+                { name: "Scotland", p: 2, w: 1, d: 0, l: 1, f: 1, a: 1, gd: "0", pts: 3 },
+                { name: "Haiti", p: 2, w: 0, d: 0, l: 2, f: 0, a: 4, gd: "-4", pts: 0 }
             ]},
             { group: "Group D", teams: [
-                { name: "United States of America", p: 1, w: 1, d: 0, l: 0, f: 4, a: 1, gd: "+3", pts: 3 },
-                { name: "Australia", p: 1, w: 1, d: 0, l: 0, f: 2, a: 0, gd: "+2", pts: 3 },
-                { name: "Turkey", p: 1, w: 0, d: 0, l: 1, f: 0, a: 2, gd: "-2", pts: 0 },
-                { name: "Paraguay", p: 1, w: 0, d: 0, l: 1, f: 1, a: 4, gd: "-3", pts: 0 }
+                { name: "United States of America", p: 2, w: 2, d: 0, l: 0, f: 6, a: 1, gd: "+5", pts: 6 },
+                { name: "Australia", p: 2, w: 1, d: 0, l: 1, f: 2, a: 2, gd: "0", pts: 3 },
+                { name: "Paraguay", p: 2, w: 1, d: 0, l: 1, f: 2, a: 4, gd: "-2", pts: 3 },
+                { name: "Turkey", p: 2, w: 0, d: 0, l: 2, f: 0, a: 3, gd: "-3", pts: 0 }
             ]},
             { group: "Group E", teams: [
                 { name: "Germany", p: 1, w: 1, d: 0, l: 0, f: 7, a: 1, gd: "+6", pts: 3 },
