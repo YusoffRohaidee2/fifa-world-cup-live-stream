@@ -370,41 +370,171 @@
                 </div>
             </div>
 
-   <div class="sidebar">
+<div class="sidebar">
     <div class="channels-list-wrapper">
 
-        <!-- BEIN Sports Streams Segment -->
+        <!-- ========================================== -->
+        <!-- FOX Streams Segment (TOP)                  -->
+        <!-- ========================================== -->
         <div class="section-header-group">
-            <img src="https://play-lh.googleusercontent.com/leGZnOjI3z8w5acn2QJMsa9xi2pOhNZCAmYefnBZ59nxvL_Ipc-qqbTUzhsHZkKhwepSxQ4A5OizBZN3y3nb" class="section-header-logo">
-            <div class="section-header" data-en="BEIN Sports Streams" data-my="Saluran BEIN Sports">BEIN Sports Streams</div>
+            <!-- Menggunakan emoji/icon alternatif sebagai placeholder logo mengikut nama segmen jika tiada logo rasmi -->
+            <div class="section-header-icon" style="font-size: 20px; margin-right: 10px;">📺</div>
+            <div class="section-header" data-en="FOX Streams" data-my="Saluran FOX">FOX Streams</div>
         </div>
 
-        <!-- Channel 1: Bein Sports 4K -->
-        <div class="channel-card" onclick="streamHLS('https://inproviszon.st/bein4k.m3u8', 'Bein Sports 4K', this, 'https://i.imgur.com/TTxh9tZ.png')">
-            <img src="https://i.imgur.com/TTxh9tZ.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+        <!-- Fox (East) HD -->
+        <div class="channel-card" onclick="streamHLS('https://cors-proxy.cooks.fyi/http://84.17.50.102/fox/index.m3u8', 'Fox (East) HD', this, 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Fox_Networks_Group_US_logo.svg/960px-Fox_Networks_Group_US_logo.svg.png')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Fox_Networks_Group_US_logo.svg/960px-Fox_Networks_Group_US_logo.svg.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
             <div class="card-info">
-                <h4>Bein Sports 4K</h4>
-                <p>(Commentary in Arabic)</p>
-                <p style="font-size: 0.85rem; color: var(--text-dim);">Global Feed | MENA</p>
+                <h4>Fox (East) HD</h4>
+                <p style="font-size: 0.85rem; color: var(--text-dim);">Global Feed | USA</p>
             </div>
-            <span class="tag" style="background: var(--accent-blue); color: #000;">4K</span>
+            <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
         </div>
 
-        <!-- Channel Baru: Bein Sports 1 France -->
-        <div class="channel-card" onclick="streamHLS('https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8', 'Bein Sports 1', this, 'https://i.imgur.com/Vtk2cGI.png')">
+        <!-- Fox Sports 1 HD -->
+        <div class="channel-card" onclick="streamHLS('https://d1jzu95oc8fgt3.cloudfront.net/FOX_Sports1080p.m3u8', 'Fox Sports 1 HD', this, 'https://i.imgur.com/O9BapV9.png')">
+            <img src="https://i.imgur.com/O9BapV9.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+            <div class="card-info">
+                <h4>Fox Sports 1 HD</h4>
+                <p style="font-size: 0.85rem; color: var(--text-dim);">Global Feed | USA</p>
+            </div>
+            <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
+        </div>
+
+        <!-- Fox Sports 2 HD -->
+        <div class="channel-card" onclick="streamHLS('https://trs1.aynaott.com/foxsports2/tracks-v1a1/mono.ts.m3u8', 'Fox Sports 2 HD', this, 'https://i.imgur.com/LHtxKI8.png')">
+            <img src="https://i.imgur.com/LHtxKI8.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+            <div class="card-info">
+                <h4>Fox Sports 2 HD</h4>
+                <p style="font-size: 0.85rem; color: var(--text-dim);">Global Feed | USA</p>
+            </div>
+            <span class="tag" style="background: var(--accent-blue); color: #000;">720p</span>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- Unite8 Sports Streams Segment              -->
+        <!-- ========================================== -->
+        <div class="section-header-group">
+            <div class="section-header-icon" style="font-size: 20px; margin-right: 10px;">⚽</div>
+            <div class="section-header" data-en="Unite8 Sports Streams" data-my="Saluran Unite8 Sports">Unite8 Sports Streams</div>
+        </div>
+
+        <!-- Unite8 Sports 2 HD -->
+        <div class="channel-card" onclick="streamHLS('https://trs1.aynaott.com/ptvsports/tracks-v1a1/mono.ts.m3u8', 'Unite8 Sports 2 HD', this, 'https://dtil.tmsimg.com/assets/GNLZZGG00358PX5.png?lock=720x540')">
+            <img src="https://dtil.tmsimg.com/assets/GNLZZGG00358PX5.png?lock=720x540" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+            <div class="card-info">
+                <h4>Unite8 Sports 2 HD</h4>
+                <p>(Commentary in English)</p>
+                <p style="font-size: 0.85rem; color: var(--text-dim);">Global Feed | India</p>
+            </div>
+            <span class="tag" style="background: var(--accent-blue); color: #000;">720p</span>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- TSports Streams Segment                     -->
+        <!-- ========================================== -->
+        <div class="section-header-group">
+            <div class="section-header-icon" style="font-size: 20px; margin-right: 10px;">🏆</div>
+            <div class="section-header" data-en="TSports Streams" data-my="Saluran TSports">TSports Streams</div>
+        </div>
+
+        <!-- TSports HD -->
+        <div class="channel-card" onclick="streamHLS('https://trs1.aynaott.com/tsports/tracks-v1a1/mono.ts.m3u8', 'TSports HD', this, 'https://i.imgur.com/2JzlorD.png')">
+            <img src="https://i.imgur.com/2JzlorD.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+            <div class="card-info">
+                <h4>TSports HD</h4>
+                <p>(Commentary in English)</p>
+                <p style="font-size: 0.85rem; color: var(--text-dim);">Global Feed | India</p>
+            </div>
+            <span class="tag" style="background: var(--accent-blue); color: #000;">720p</span>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- CCTV Streams Segment                       -->
+        <!-- ========================================== -->
+        <div class="section-header-group">
+            <div class="section-header-icon" style="font-size: 20px; margin-right: 10px;">🎥</div>
+            <div class="section-header" data-en="CCTV Streams" data-my="Saluran CCTV">CCTV Streams</div>
+        </div>
+
+        <!-- CCTV5 HD -->
+        <div class="channel-card" onclick="streamHLS('https://live13a.jynrrs.com/live/20233432.m3u8', 'CCTV5 HD', this, 'https://i.imgur.com/nbmnGwE.png')">
+            <img src="https://i.imgur.com/nbmnGwE.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+            <div class="card-info">
+                <h4>CCTV5 HD</h4>
+                <p style="font-size: 0.85rem; color: var(--text-dim);">Global Feed | China</p>
+            </div>
+            <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- ELTA Sports Streams Segment                -->
+        <!-- ========================================== -->
+        <div class="section-header-group">
+            <div class="section-header-icon" style="font-size: 20px; margin-right: 10px;">🏃</div>
+            <div class="section-header" data-en="ELTA Sports Streams" data-my="Saluran ELTA Sports">ELTA Sports Streams</div>
+        </div>
+
+        <!-- ELTA Sports HD -->
+        <div class="channel-card" onclick="streamHLS('https://live13a.jynrrs.com/live/16697898.m3u8', 'ELTA Sports HD', this, '')">
+            <div class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 10px;">No Logo</div>
+            <div class="card-info">
+                <h4>ELTA Sports HD</h4>
+                <p style="font-size: 0.85rem; color: var(--text-dim);">Global Feed | China</p>
+            </div>
+            <span class="tag" style="background: var(--accent-blue); color: #000;">720p</span>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VTV Streams Segment                        -->
+        <!-- ========================================== -->
+        <div class="section-header-group">
+            <div class="section-header-icon" style="font-size: 20px; margin-right: 10px;">🔴</div>
+            <div class="section-header" data-en="VTV Streams" data-my="Saluran VTV">VTV Streams</div>
+        </div>
+
+        <!-- VTV 3 HD -->
+        <div class="channel-card" onclick="streamHLS('https://vtvgolive-failover.vtvdigital.vn/vtvgo/vtv3-manifest.m3u8', 'VTV 3 HD', this, 'https://i.imgur.com/4lJG1fu.png')">
+            <img src="https://i.imgur.com/4lJG1fu.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+            <div class="card-info">
+                <h4>VTV 3 HD</h4>
+                <p style="font-size: 0.85rem; color: var(--text-dim);">Global Feed | Vietnam</p>
+            </div>
+            <span class="tag" style="background: var(--accent-blue); color: #000;">720p</span>
+        </div>
+
+        <!-- VTV 6 HD -->
+        <div class="channel-card" onclick="streamHLS('https://vtvgolive-failover.vtvdigital.vn/vtvgo/vtv6tt-manifest.m3u8', 'VTV 6 HD', this, 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/VTV6_logo_2026_final.svg/960px-VTV6_logo_2026_final.svg.png')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/VTV6_logo_2026_final.svg/960px-VTV6_logo_2026_final.svg.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+            <div class="card-info">
+                <h4>VTV 6 HD</h4>
+                <p style="font-size: 0.85rem; color: var(--text-dim);">Global Feed | Vietnam</p>
+            </div>
+            <span class="tag" style="background: var(--accent-blue); color: #000;">720p</span>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- BeIN Sports Streams Segment (END)          -->
+        <!-- ========================================== -->
+        <div class="section-header-group">
+            <!-- Hanya segmen BeIN Sports sahaja yang dikekalkan logo imej asal asal -->
+            <img src="https://play-lh.googleusercontent.com/leGZnOjI3z8w5acn2QJMsa9xi2pOhNZCAmYefnBZ59nxvL_Ipc-qqbTUzhsHZkKhwepSxQ4A5OizBZN3y3nb" class="section-header-logo">
+            <div class="section-header" data-en="BeIN Sports Streams" data-my="Saluran BeIN Sports">BeIN Sports Streams</div>
+        </div>
+
+        <!-- BeIN Sports 1 HD -->
+        <div class="channel-card" onclick="streamHLS('https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8', 'BeIN Sports 1 HD', this, 'https://i.imgur.com/Vtk2cGI.png')">
             <img src="https://i.imgur.com/Vtk2cGI.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
             <div class="card-info">
-                <h4>Bein Sports 1</h4>
-                <p>(Commentary in French)</p>
+                <h4>BeIN Sports 1 HD</h4>
                 <p style="font-size: 0.85rem; color: var(--text-dim);">Global Feed | France</p>
             </div>
-            <span class="tag" style="background: var(--accent-blue); color: #000;">HD</span>
+            <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
         </div>
 
-    </div>
-</div>
-    </div>
-</div>
+    </div> <!-- Penutup channels-list-wrapper -->
+</div> <!-- Penutup sidebar -->
             
     <div id="page-schedule" class="page-content">
         <div class="schedule-grid" id="schedule-container"></div>
