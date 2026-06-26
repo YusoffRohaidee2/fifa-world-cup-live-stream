@@ -1185,101 +1185,140 @@ const resultsData = [
         ];
 
 // Standings raw data mapping
-        const standingsData = [
-            /* ========================================== *
-             * GROUP 3RDS                    *
-             * ========================================== */
-            { group: "Group 3rds", teams: [
-                { name: "Scotland", p: 2, w: 1, d: 0, l: 1, f: 1, a: 1, gd: "0", pts: 3 },
-                { name: "Paraguay", p: 2, w: 1, d: 0, l: 1, f: 2, a: 4, gd: "-2", pts: 3 },
-                { name: "Netherlands", p: 1, w: 0, d: 1, l: 0, f: 2, a: 2, gd: "0", pts: 1 },
-                { name: "Belgium", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
-                { name: "Portugal", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
-                { name: "Spain", p: 1, w: 0, d: 1, l: 0, f: 0, a: 0, gd: "0", pts: 1 },
-                { name: "Czech Republic", p: 2, w: 0, d: 1, l: 1, f: 2, a: 3, gd: "-1", pts: 1 },
-                { name: "Bosnia and Herzegovina", p: 2, w: 0, d: 1, l: 1, f: 2, a: 5, gd: "-3", pts: 1 },
-                { name: "Ecuador", p: 1, w: 0, d: 0, l: 1, f: 0, a: 1, gd: "-1", pts: 0 },
-                { name: "Panama", p: 1, w: 0, d: 0, l: 1, f: 0, a: 1, gd: "-1", pts: 0 },
-                { name: "Jordan", p: 1, w: 0, d: 0, l: 1, f: 1, a: 3, gd: "-2", pts: 0 },
-                { name: "Senegal", p: 1, w: 0, d: 0, l: 1, f: 1, a: 3, gd: "-2", pts: 0 }
-            ]},
+const standingsData = [
+    /* ========================================== *
+     * GROUP 3RDS                                 *
+     * ========================================== */
+    { 
+        group: "Group 3rds", 
+        teams: [
+            { rank: 1, name: "Sweden", p: 3, w: 1, d: 1, l: 1, f: 7, a: 7, gd: 0, pts: 4 },
+            { rank: 2, name: "Ecuador", p: 3, w: 1, d: 1, l: 1, f: 2, a: 2, gd: 0, pts: 4 },
+            { rank: 3, name: "Bosnia and Herzegovina", p: 3, w: 1, d: 1, l: 1, f: 5, a: 6, gd: -1, pts: 4 },
+            { rank: 4, name: "Paraguay", p: 3, w: 1, d: 1, l: 1, f: 2, a: 4, gd: -2, pts: 4 },
+            { rank: 5, name: "Croatia", p: 2, w: 1, d: 0, l: 1, f: 3, a: 4, gd: -1, pts: 3 },
+            { rank: 6, name: "Korea Republic", p: 3, w: 1, d: 0, l: 2, f: 2, a: 3, gd: -1, pts: 3 },
+            { rank: 7, name: "Algeria", p: 2, w: 1, d: 0, l: 1, f: 2, a: 4, gd: -2, pts: 3 },
+            { rank: 8, name: "Scotland", p: 3, w: 1, d: 0, l: 2, f: 1, a: 4, gd: -3, pts: 3 },
+            { rank: 9, name: "Cape Verde", p: 2, w: 0, d: 2, l: 0, f: 2, a: 2, gd: 0, pts: 2 },
+            { rank: 10, name: "Belgium", p: 2, w: 0, d: 2, l: 0, f: 1, a: 1, gd: 0, pts: 2 },
+            { rank: 11, name: "DR Congo", p: 2, w: 0, d: 1, l: 1, f: 1, a: 2, gd: -1, pts: 1 },
+            { rank: 12, name: "Senegal", p: 2, w: 0, d: 0, l: 2, f: 3, a: 6, gd: -3, pts: 0 }
+        ]
+    },
 
-            /* ========================================== *
-             * PERINGKAT KUMPULAN            *
-             * ========================================== */
-            { group: "Group A", teams: [
-                { name: "Mexico", p: 2, w: 2, d: 0, l: 0, f: 3, a: 0, gd: "+3", pts: 6 },
-                { name: "Korea Republic", p: 2, w: 1, d: 0, l: 1, f: 2, a: 2, gd: "0", pts: 3 },
-                { name: "Czech Republic", p: 2, w: 0, d: 1, l: 1, f: 2, a: 3, gd: "-1", pts: 1 },
-                { name: "South Africa", p: 2, w: 0, d: 1, l: 1, f: 1, a: 3, gd: "-2", pts: 1 }
-            ]},
-            { group: "Group B", teams: [
-                { name: "Canada", p: 2, w: 1, d: 1, l: 0, f: 7, a: 1, gd: "+6", pts: 4 },
-                { name: "Switzerland", p: 2, w: 1, d: 1, l: 0, f: 5, a: 2, gd: "+3", pts: 4 },
-                { name: "Bosnia and Herzegovina", p: 2, w: 0, d: 1, l: 1, f: 2, a: 5, gd: "-3", pts: 1 },
-                { name: "Qatar", p: 2, w: 0, d: 1, l: 1, f: 1, a: 7, gd: "-6", pts: 1 }
-            ]},
-            { group: "Group C", teams: [
-                { name: "Brazil", p: 2, w: 1, d: 1, l: 0, f: 4, a: 1, gd: "+3", pts: 4 },
-                { name: "Morocco", p: 2, w: 1, d: 1, l: 0, f: 2, a: 1, gd: "+1", pts: 4 },
-                { name: "Scotland", p: 2, w: 1, d: 0, l: 1, f: 1, a: 1, gd: "0", pts: 3 },
-                { name: "Haiti", p: 2, w: 0, d: 0, l: 2, f: 0, a: 4, gd: "-4", pts: 0 }
-            ]},
-            { group: "Group D", teams: [
-                { name: "United States of America", p: 2, w: 2, d: 0, l: 0, f: 6, a: 1, gd: "+5", pts: 6 },
-                { name: "Australia", p: 2, w: 1, d: 0, l: 1, f: 2, a: 2, gd: "0", pts: 3 },
-                { name: "Paraguay", p: 2, w: 1, d: 0, l: 1, f: 2, a: 4, gd: "-2", pts: 3 },
-                { name: "Turkey", p: 2, w: 0, d: 0, l: 2, f: 0, a: 3, gd: "-3", pts: 0 }
-            ]},
-            { group: "Group E", teams: [
-                { name: "Germany", p: 1, w: 1, d: 0, l: 0, f: 7, a: 1, gd: "+6", pts: 3 },
-                { name: "Ivory Coast", p: 1, w: 1, d: 0, l: 0, f: 1, a: 0, gd: "+1", pts: 3 },
-                { name: "Ecuador", p: 1, w: 0, d: 0, l: 1, f: 0, a: 1, gd: "-1", pts: 0 },
-                { name: "Curacao", p: 1, w: 0, d: 0, l: 1, f: 1, a: 7, gd: "-6", pts: 0 }
-            ]},
-            { group: "Group F", teams: [
-                { name: "Sweden", p: 1, w: 1, d: 0, l: 0, f: 5, a: 1, gd: "+4", pts: 3 },
-                { name: "Japan", p: 1, w: 0, d: 1, l: 0, f: 2, a: 2, gd: "0", pts: 1 },
-                { name: "Netherlands", p: 1, w: 0, d: 1, l: 0, f: 2, a: 2, gd: "0", pts: 1 },
-                { name: "Tunisia", p: 1, w: 0, d: 0, l: 1, f: 1, a: 5, gd: "-4", pts: 0 }
-            ]},
-            { group: "Group G", teams: [
-                { name: "New Zealand", p: 1, w: 0, d: 1, l: 0, f: 2, a: 2, gd: "0", pts: 1 },
-                { name: "Iran", p: 1, w: 0, d: 1, l: 0, f: 2, a: 2, gd: "0", pts: 1 },
-                { name: "Belgium", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
-                { name: "Egypt", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 }
-            ]},
-            { group: "Group H", teams: [
-                { name: "Uruguay", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
-                { name: "Saudi Arabia", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
-                { name: "Spain", p: 1, w: 0, d: 1, l: 0, f: 0, a: 0, gd: "0", pts: 1 },
-                { name: "Cape Verde", p: 1, w: 0, d: 1, l: 0, f: 0, a: 0, gd: "0", pts: 1 }
-            ]},
-            { group: "Group I", teams: [
-                { name: "Norway", p: 1, w: 1, d: 0, l: 0, f: 4, a: 1, gd: "+3", pts: 3 },
-                { name: "France", p: 1, w: 1, d: 0, l: 0, f: 3, a: 1, gd: "+2", pts: 3 },
-                { name: "Senegal", p: 1, w: 0, d: 0, l: 1, f: 1, a: 3, gd: "-2", pts: 0 },
-                { name: "Iraq", p: 1, w: 0, d: 0, l: 1, f: 1, a: 4, gd: "-3", pts: 0 }
-            ]},
-            { group: "Group J", teams: [
-                { name: "Argentina", p: 1, w: 1, d: 0, l: 0, f: 3, a: 0, gd: "+3", pts: 3 },
-                { name: "Austria", p: 1, w: 1, d: 0, l: 0, f: 3, a: 1, gd: "+2", pts: 3 },
-                { name: "Jordan", p: 1, w: 0, d: 0, l: 1, f: 1, a: 3, gd: "-2", pts: 0 },
-                { name: "Algeria", p: 1, w: 0, d: 0, l: 1, f: 0, a: 3, gd: "-3", pts: 0 }
-            ]},
-            { group: "Group K", teams: [
-                { name: "Colombia", p: 1, w: 1, d: 0, l: 0, f: 3, a: 1, gd: "+2", pts: 3 },
-                { name: "DR Congo", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
-                { name: "Portugal", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
-                { name: "Uzbekistan", p: 1, w: 0, d: 0, l: 1, f: 1, a: 3, gd: "-2", pts: 0 }
-            ]},
-            { group: "Group L", teams: [
-                { name: "England", p: 1, w: 1, d: 0, l: 0, f: 4, a: 2, gd: "+2", pts: 3 },
-                { name: "Ghana", p: 1, w: 1, d: 0, l: 0, f: 1, a: 0, gd: "+1", pts: 3 },
-                { name: "Panama", p: 1, w: 0, d: 0, l: 1, f: 0, a: 1, gd: "-1", pts: 0 },
-                { name: "Croatia", p: 1, w: 0, d: 0, l: 1, f: 2, a: 4, gd: "-2", pts: 0 }
-            ]}
-        ];
+    /* ========================================== *
+     * PERINGKAT KUMPULAN                         *
+     * ========================================== */
+    { 
+        group: "Group A", 
+        teams: [
+            { rank: 1, name: "Mexico", p: 3, w: 3, d: 0, l: 0, f: 6, a: 0, gd: 6, pts: 9 },
+            { rank: 2, name: "South Africa", p: 3, w: 1, d: 1, l: 1, f: 2, a: 3, gd: -1, pts: 4 },
+            { rank: 3, name: "Korea Republic", p: 3, w: 1, d: 0, l: 2, f: 2, a: 3, gd: -1, pts: 3 },
+            { rank: 4, name: "Czech Republic", p: 3, w: 0, d: 1, l: 2, f: 2, a: 6, gd: -4, pts: 1 }
+        ]
+    },
+    { 
+        group: "Group B", 
+        teams: [
+            { rank: 1, name: "Switzerland", p: 3, w: 2, d: 1, l: 0, f: 7, a: 3, gd: 4, pts: 7 },
+            { rank: 2, name: "Canada", p: 3, w: 1, d: 1, l: 1, f: 8, a: 3, gd: 5, pts: 4 },
+            { rank: 3, name: "Bosnia and Herzegovina", p: 3, w: 1, d: 1, l: 1, f: 5, a: 6, gd: -1, pts: 4 },
+            { rank: 4, name: "Qatar", p: 3, w: 0, d: 1, l: 2, f: 2, a: 10, gd: -8, pts: 1 }
+        ]
+    },
+    { 
+        group: "Group C", 
+        teams: [
+            { rank: 1, name: "Brazil", p: 3, w: 2, d: 1, l: 0, f: 7, a: 1, gd: 6, pts: 7 },
+            { rank: 2, name: "Morocco", p: 3, w: 2, d: 1, l: 0, f: 6, a: 3, gd: 3, pts: 7 },
+            { rank: 3, name: "Scotland", p: 3, w: 1, d: 0, l: 2, f: 1, a: 4, gd: -3, pts: 3 },
+            { rank: 4, name: "Haiti", p: 3, w: 0, d: 0, l: 3, f: 2, a: 8, gd: -6, pts: 0 }
+        ]
+    },
+    { 
+        group: "Group D", 
+        teams: [
+            { rank: 1, name: "United States of America", p: 3, w: 2, d: 0, l: 1, f: 8, a: 4, gd: 4, pts: 6 },
+            { rank: 2, name: "Australia", p: 3, w: 1, d: 1, l: 1, f: 2, a: 2, gd: 0, pts: 4 },
+            { rank: 3, name: "Paraguay", p: 3, w: 1, d: 1, l: 1, f: 2, a: 4, gd: -2, pts: 4 },
+            { rank: 4, name: "Turkey", p: 3, w: 1, d: 0, l: 2, f: 3, a: 5, gd: -2, pts: 3 }
+        ]
+    },
+    { 
+        group: "Group E", 
+        teams: [
+            { rank: 1, name: "Germany", p: 3, w: 2, d: 0, l: 1, f: 10, a: 4, gd: 6, pts: 6 },
+            { rank: 2, name: "Ivory Coast", p: 3, w: 2, d: 0, l: 1, f: 4, a: 2, gd: 2, pts: 6 },
+            { rank: 3, name: "Ecuador", p: 3, w: 1, d: 1, l: 1, f: 2, a: 2, gd: 0, pts: 4 },
+            { rank: 4, name: "Curacao", p: 3, w: 0, d: 1, l: 2, f: 1, a: 9, gd: -8, pts: 1 }
+        ]
+    },
+    { 
+        group: "Group F", 
+        teams: [
+            { rank: 1, name: "Netherlands", p: 3, w: 2, d: 1, l: 0, f: 10, a: 4, gd: 6, pts: 7 },
+            { rank: 2, name: "Japan", p: 3, w: 1, d: 2, l: 0, f: 7, a: 3, gd: 4, pts: 5 },
+            { rank: 3, name: "Sweden", p: 3, w: 1, d: 1, l: 1, f: 7, a: 7, gd: 0, pts: 4 },
+            { rank: 4, name: "Tunisia", p: 3, w: 0, d: 0, l: 3, f: 2, a: 12, gd: -10, pts: 0 }
+        ]
+    },
+    { 
+        group: "Group G", 
+        teams: [
+            { rank: 1, name: "Egypt", p: 2, w: 1, d: 1, l: 0, f: 4, a: 2, gd: 2, pts: 4 },
+            { rank: 2, name: "Iran", p: 2, w: 0, d: 2, l: 0, f: 2, a: 2, gd: 0, pts: 2 },
+            { rank: 3, name: "Belgium", p: 2, w: 0, d: 2, l: 0, f: 1, a: 1, gd: 0, pts: 2 },
+            { rank: 4, name: "New Zealand", p: 2, w: 0, d: 1, l: 1, f: 3, a: 5, gd: -2, pts: 1 }
+        ]
+    },
+    { 
+        group: "Group H", 
+        teams: [
+            { rank: 1, name: "Spain", p: 2, w: 1, d: 1, l: 0, f: 4, a: 0, gd: 4, pts: 4 },
+            { rank: 2, name: "Uruguay", p: 2, w: 0, d: 2, l: 0, f: 3, a: 3, gd: 0, pts: 2 },
+            { rank: 3, name: "Cape Verde", p: 2, w: 0, d: 2, l: 0, f: 2, a: 2, gd: 0, pts: 2 },
+            { rank: 4, name: "Saudi Arabia", p: 2, w: 0, d: 1, l: 1, f: 1, a: 5, gd: -4, pts: 1 }
+        ]
+    },
+    { 
+        group: "Group I", 
+        teams: [
+            { rank: 1, name: "France", p: 2, w: 2, d: 0, l: 0, f: 6, a: 1, gd: 5, pts: 6 },
+            { rank: 2, name: "Norway", p: 2, w: 2, d: 0, l: 0, f: 7, a: 3, gd: 4, pts: 6 },
+            { rank: 3, name: "Senegal", p: 2, w: 0, d: 0, l: 2, f: 3, a: 6, gd: -3, pts: 0 },
+            { rank: 4, name: "Iraq", p: 2, w: 0, d: 0, l: 2, f: 1, a: 7, gd: -6, pts: 0 }
+        ]
+    },
+    { 
+        group: "Group J", 
+        teams: [
+            { rank: 1, name: "Argentina", p: 2, w: 2, d: 0, l: 0, f: 5, a: 0, gd: 5, pts: 6 },
+            { rank: 2, name: "Austria", p: 2, w: 1, d: 0, l: 1, f: 3, a: 3, gd: 0, pts: 3 },
+            { rank: 3, name: "Algeria", p: 2, w: 1, d: 0, l: 1, f: 2, a: 4, gd: -2, pts: 3 },
+            { rank: 4, name: "Jordan", p: 2, w: 0, d: 0, l: 2, f: 2, a: 5, gd: -3, pts: 0 }
+        ]
+    },
+    { 
+        group: "Group K", 
+        teams: [
+            { rank: 1, name: "Colombia", p: 2, w: 2, d: 0, l: 0, f: 4, a: 1, gd: 3, pts: 6 },
+            { rank: 2, name: "Portugal", p: 2, w: 1, d: 1, l: 0, f: 6, a: 1, gd: 5, pts: 4 },
+            { rank: 3, name: "DR Congo", p: 2, w: 0, d: 1, l: 1, f: 1, a: 2, gd: -1, pts: 1 },
+            { rank: 4, name: "Uzbekistan", p: 2, w: 0, d: 0, l: 2, f: 1, a: 8, gd: -7, pts: 0 }
+        ]
+    },
+    { 
+        group: "Group L", 
+        teams: [
+            { rank: 1, name: "England", p: 2, w: 1, d: 1, l: 0, f: 4, a: 2, gd: 2, pts: 4 },
+            { rank: 2, name: "Ghana", p: 2, w: 1, d: 1, l: 0, f: 1, a: 0, gd: 1, pts: 4 },
+            { rank: 3, name: "Croatia", p: 2, w: 1, d: 0, l: 1, f: 3, a: 4, gd: -1, pts: 3 },
+            { rank: 4, name: "Panama", p: 2, w: 0, d: 0, l: 2, f: 0, a: 2, gd: -2, pts: 0 }
+        ]
+    }
+];
         
         function renderSchedule() {
             const container = document.getElementById('schedule-container');
