@@ -370,45 +370,50 @@
                 </div>
             </div>
 
-            <div class="sidebar">
+<div class="sidebar">
                 <div class="channels-list-wrapper">
 
-                    <div class="section-header-group">
-                        <img src="https://vectorise.net/logo/wp-content/uploads/2024/07/Logo-RTM-Teman-Setia-Anda-2021.png" class="section-header-logo">
-                        <div class="section-header" data-en="RTM Malaysia Streams" data-my="Siaran Langsung RTM">RTM Malaysia Streams</div>
-                    </div>
-
-                    <div class="channel-card" onclick="streamHLS('https://slive.mana2.my/SukanRtm/index.m3u8', 'Sukan+ HD', this, 'https://static.wikia.nocookie.net/logopedia/images/3/33/RTM_Sukan_Plus_%282026%29.png/revision/latest/scale-to-width-down/1000?cb=20260402075508')">
-                        <img src="https://static.wikia.nocookie.net/logopedia/images/3/33/RTM_Sukan_Plus_%282026%29.png/revision/latest/scale-to-width-down/1000?cb=20260402075508" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
-                        <div class="card-info">
-                            <h4>Sukan+ HD</h4>
-                            <p>MYTV Mana Mana | Malaysia</p>
-                        </div>
-                        <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
-                    </div>
-
-                    <div class="channel-card" onclick="streamHLS('https://slive.mana2.my/TvOkey/index.m3u8', 'TV Okey HD', this, 'https://i.imgur.com/V2jREQ5.png')">
-                        <img src="https://i.imgur.com/V2jREQ5.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
-                        <div class="card-info">
-                            <h4>TV Okey HD</h4>
-                            <p>MYTV Mana Mana | Malaysia</p>
-                        </div>
-                        <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
-                    </div>
-
+                    <!-- FOX Sports Streams Segment -->
                     <div class="section-header-group">
                         <i class="fa-solid fa-video section-header-icon"></i>
-                        <div class="section-header" data-en="RTB Live Streams" data-my="Siaran Langsung RTB">RTB Live Streams</div>
+                        <div class="section-header" data-en="FOX Sports Streams" data-my="Siaran Langsung FOX Sports">FOX Sports Streams</div>
                     </div>
 
-                    <div class="channel-card" onclick="streamHLS('https://d1211whpimeups.cloudfront.net/smil:rtbgo/playlist.m3u8', 'RTB GO', this, 'https://i.imgur.com/CGlzsD5.png')">
-                        <img src="https://i.imgur.com/CGlzsD5.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+                    <div class="channel-card" onclick="streamHLS('https://d1jzu95oc8fgt3.cloudfront.net/FOX_Sports1080p.m3u8', 'FOX Sports 1 HD', this, 'https://i.imgur.com/O9BapV9.png')">
+                        <img src="https://i.imgur.com/O9BapV9.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
                         <div class="card-info">
-                            <h4>RTB GO</h4>
-                            <p data-en="Global Feed | Brunei" data-my="Suapan Global | Brunei" style="margin-bottom: 5px;">Global Feed | Brunei</p>
-                    </div>
+                            <h4>FOX Sports 1 HD</h4>
+                            <p data-en="Global Feed | USA" data-my="Suapan Global | USA" style="margin-bottom: 5px;">Global Feed | USA</p>
+                        </div>
                         <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
                     </div>
+
+                    <div class="channel-card" onclick="streamHLS('https://trs1.aynaott.com/foxsports2/tracks-v1a1/mono.ts.m3u8', 'FOX Sports 2', this, 'https://i.imgur.com/LHtxKI8.png')">
+                        <img src="https://i.imgur.com/LHtxKI8.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+                        <div class="card-info">
+                            <h4>FOX Sports 2</h4>
+                            <p data-en="Global Feed | USA" data-my="Suapan Global | USA" style="margin-bottom: 5px;">Global Feed | USA</p>
+                        </div>
+                        <span class="tag" style="background: var(--accent-blue); color: #000;">720p</span>
+                    </div>
+
+                    <!-- TSports Streams Segment -->
+                    <div class="section-header-group">
+                        <i class="fa-solid fa-video section-header-icon"></i>
+                        <div class="section-header" data-en="TSports Streams" data-my="Siaran Langsung TSports">TSports Streams</div>
+                    </div>
+
+                    <div class="channel-card" onclick="streamHLS('https://trs1.aynaott.com/tsports/tracks-v1a1/mono.ts.m3u8', 'TSports HD', this, 'https://i.imgur.com/2JzlorD.png')">
+                        <img src="https://i.imgur.com/2JzlorD.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+                        <div class="card-info">
+                            <h4>TSports HD</h4>
+                            <p data-en="Global Feed | Bangladesh (Commentary in English)" data-my="Suapan Global | Bangladesh (Ulasan Bahasa Inggeris)" style="margin-bottom: 5px;">Global Feed | Bangladesh (Commentary in English)</p>
+                        </div>
+                        <span class="tag" style="background: var(--accent-blue); color: #000;">720p</span>
+                    </div>
+
+                </div>
+            </div>
 
                 </div>
             </div>
@@ -424,7 +429,7 @@
     </div>
 
     <div id="page-standings" class="page-content">
-        <span class="standings-update-time"><i class="fa-regular fa-clock"></i> <span data-en="Last updated: 19 June, 7:33am" data-my="Kemaskini terakhir: 19 Jun, 7:33 pagi">Last updated: 19 June, 7:33am</span></span>
+        <span class="standings-update-time"><i class="fa-regular fa-clock"></i> <span data-en="Last updated: 26 June, 6:15pm" data-my="Kemaskini terakhir: 26 Jun, 6:15 petang">Last updated: 26 June, 6:15pm</span></span>
         <div class="standings-grid" id="standings-container"></div>
     </div>
 
@@ -436,25 +441,6 @@
                     This system provides global technical distribution feeds for the World Cup event. Integrated with localized CDN endpoints ensuring low-latency high-definition broadcast streams.
                 </p>
             </div>
-
-            <div class="info-section" style="border-top: 1px solid var(--glass-border); padding-top: 30px;">
-                <h3 data-en="Update Log" data-my="Log Kemaskini">Update Log</h3>
-                <ul class="log-list">
-                    <li class="log-item">
-                        <i class="fa-solid fa-circle-plus"></i>
-                        <div>
-                            <span class="log-date">6/19/2026</span>
-                            <span data-en="Added Standings tab containing Group A to Group L team rankings data." data-my="Menambah tab Kedudukan (Standings) yang mengandungi data ranking pasukan dari Kumpulan A sehingga Kumpulan L.">Added Standings tab containing Group A to Group L team rankings data.</span>
-                        </div>
-                    </li>
-                    <li class="log-item">
-                        <i class="fa-solid fa-circle-plus"></i>
-                        <div>
-                            <span class="log-date">6/17/2026</span>
-                            <span data-en="Added a dedicated 'Schedule' tab synchronized with the user's system time, and reversed the display order of the 'Results' tab." data-my="Menambah tab khas 'Jadual' (Schedule) yang disegerakkan mengikut masa sistem peranti, dan menyusun semula turutan tab 'Keputusan' (Results) secara terbalik.">Added a dedicated 'Schedule' tab synchronized with the user's system time, and reversed the display order of the 'Results' tab.</span>
-                        </div>
-                    </li>
-                </ul>
             </div>
         </div>
     </div>
