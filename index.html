@@ -1251,6 +1251,12 @@ const standingsData = [
     }
 ];
         
+<script>
+        // ==========================================
+        // DATA ARRAYS (JANGAN UBAH BAHAGIAN ATAS INI)
+        // ==========================================
+        // Sila pastikan scheduleData, resultsData dan standingsData anda ada di atas ini ditutup dengan ];
+
         function renderSchedule() {
             const container = document.getElementById('schedule-container');
             container.innerHTML = '';
@@ -1385,7 +1391,7 @@ const standingsData = [
                                     <th class="text-center" title="Goal Difference">GD</th>
                                     <th class="text-center" title="Points">PTS</th>
                                 </tr>
-                            </thead>
+                            </tbody>
                             <tbody>
                                 ${rowsHtml}
                             </tbody>
@@ -1396,18 +1402,17 @@ const standingsData = [
             });
         }
 
-function switchTab(tabId, buttonEl) {
-    document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    
-    // Kod ini secara automatik akan cari id yang sepadan tanpa perlu banyak 'if'
-    const targetPage = document.getElementById('page-' + tabId);
-    if (targetPage) {
-        targetPage.classList.add('active');
-    }
-    
-    buttonEl.classList.add('active');
-}
+        function switchTab(tabId, buttonEl) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            
+            const targetPage = document.getElementById('page-' + tabId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+            
+            buttonEl.classList.add('active');
+        }
 
         let currentLang = 'en';
         function toggleLanguage() {
