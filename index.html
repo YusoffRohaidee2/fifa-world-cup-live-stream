@@ -378,16 +378,6 @@
                         <i class="fa-solid fa-video section-header-icon"></i>
                         <div class="section-header" data-en="FOX Sports Streams" data-my="Siaran Langsung FOX Sports">FOX Sports Streams</div>
                     </div>
-
-                    <div class="channel-card" onclick="streamHLS('https://d1jzu95oc8fgt3.cloudfront.net/FOX_Sports1080p.m3u8', 'FOX Sports 1 HD', this, 'https://i.imgur.com/O9BapV9.png')">
-                        <img src="https://i.imgur.com/O9BapV9.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
-                        <div class="card-info">
-                            <h4>FOX Sports 1 HD</h4>
-                            <p data-en="Global Feed | USA" data-my="Suapan Global | USA" style="margin-bottom: 5px;">Global Feed | USA</p>
-                        </div>
-                        <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
-                    </div>
-
                     <div class="channel-card" onclick="streamHLS('https://trs1.aynaott.com/foxsports2/tracks-v1a1/mono.ts.m3u8', 'FOX Sports 2', this, 'https://i.imgur.com/LHtxKI8.png')">
                         <img src="https://i.imgur.com/LHtxKI8.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
                         <div class="card-info">
@@ -396,24 +386,6 @@
                         </div>
                         <span class="tag" style="background: var(--accent-blue); color: #000;">720p</span>
                     </div>
-
-                    <!-- TSports Streams Segment -->
-                    <div class="section-header-group">
-                        <i class="fa-solid fa-video section-header-icon"></i>
-                        <div class="section-header" data-en="TSports Streams" data-my="Siaran Langsung TSports">TSports Streams</div>
-                    </div>
-
-                    <div class="channel-card" onclick="streamHLS('https://trs1.aynaott.com/tsports/tracks-v1a1/mono.ts.m3u8', 'TSports HD', this, 'https://i.imgur.com/2JzlorD.png')">
-                        <img src="https://i.imgur.com/2JzlorD.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
-                        <div class="card-info">
-                            <h4>TSports HD</h4>
-                            <p data-en="Global Feed | Bangladesh (Commentary in English)" data-my="Suapan Global | Bangladesh (Ulasan Bahasa Inggeris)" style="margin-bottom: 5px;">Global Feed | Bangladesh (Commentary in English)</p>
-                        </div>
-                        <span class="tag" style="background: var(--accent-blue); color: #000;">720p</span>
-                    </div>
-
-                </div>
-            </div>
 
                 </div>
             </div>
@@ -450,12 +422,6 @@
     <script>
         // Schedule data in GMT+0
         const scheduleData = [
-            { date: "2026-06-26T20:00:00Z", team1: "Norway", team2: "France" },
-            { date: "2026-06-26T20:00:00Z", team1: "Senegal", team2: "Iraq" },
-            { date: "2026-06-27T01:00:00Z", team1: "Cape Verde", team2: "Saudi Arabia" },
-            { date: "2026-06-27T01:00:00Z", team1: "Uruguay", team2: "Spain" },
-            { date: "2026-06-27T04:00:00Z", team1: "Egypt", team2: "Iran" },
-            { date: "2026-06-27T04:00:00Z", team1: "New Zealand", team2: "Belgium" },
             { date: "2026-06-27T22:00:00Z", team1: "Croatia", team2: "Ghana" },
             { date: "2026-06-27T22:00:00Z", team1: "Panama", team2: "England" },
             { date: "2026-06-28T00:30:00Z", team1: "Colombia", team2: "Portugal" },
@@ -1167,144 +1133,129 @@ const resultsData = [
                     { type: "goal", text: "A Trusty (3')" },
                     { type: "goal", text: "S Berhalter (49')" }
                 ]
+
+                {
+                date: "2026-06-26T20:00:00Z", group: "Group I",
+                team1: "Norway", team2: "France", score1: 1, score2: 4,
+                stadium: "Boston Stadium", attendance: "64,146",
+                events1: [
+                    { type: "goal", text: "T Aasgaard (21')" }
+                ],
+                events2: [
+                    { type: "goal", text: "O Dembélé (7', 20', 32')" },
+                    { type: "goal", text: "D Doué (90+4')" }
+                ]
+            },
+            {
+                date: "2026-06-26T20:00:00Z", group: "Group I",
+                team1: "Senegal", team2: "Iraq", score1: 5, score2: 0,
+                stadium: "Toronto Stadium", attendance: "43,036",
+                events1: [
+                    { type: "goal", text: "M Diarra (4')" },
+                    { type: "goal", text: "I Sarr (56')" },
+                    { type: "goal", text: "P Gueye (59', 71')" },
+                    { type: "goal", text: "I Ndiaye (82')" }
+                ],
+                events2: [
+                    { type: "red", text: "R Sulaka (13')" }
+                ]
+            },
+            {
+                date: "2026-06-27T01:00:00Z", group: "Group H",
+                team1: "Cape Verde", team2: "Saudi Arabia", score1: 0, score2: 0,
+                stadium: "NRG Stadium", attendance: "68,278",
+                events1: [],
+                events2: []
+            },
+            {
+                date: "2026-06-27T01:00:00Z", group: "Group H",
+                team1: "Uruguay", team2: "Spain", score1: 0, score2: 1,
+                stadium: "Estadio Chivas", attendance: "45,065",
+                events1: [
+                    { type: "red", text: "A Canobbio (90+5')" }
+                ],
+                events2: [
+                    { type: "goal", text: "A Baena (42')" }
+                ]
+            },
+            {
+                date: "2026-06-27T04:00:00Z", group: "Group G",
+                team1: "Egypt", team2: "Iran", score1: 1, score2: 1,
+                stadium: "Lumen Field", attendance: "66,925",
+                events1: [
+                    { type: "goal", text: "M Hassan (5')" }
+                ],
+                events2: [
+                    { type: "goal", text: "R Rezaeian (14')" }
+                ]
+            },
+            {
+                date: "2026-06-27T04:00:00Z", group: "Group G",
+                team1: "New Zealand", team2: "Belgium", score1: 1, score2: 5,
+                stadium: "BC Place", attendance: "52,497",
+                events1: [
+                    { type: "goal", text: "E Just (84')" }
+                ],
+                events2: [
+                    { type: "goal", text: "L Trossard (28', 50')" },
+                    { type: "goal", text: "K De Bruyne (66')" },
+                    { type: "goal", text: "R Lukaku (86')" },
+                    { type: "goal", text: "A Saelemaekers (90+4')" }
+                ]
+            }
             }
         ];
 
-// Standings raw data mapping
-const standingsData = [
-    /* ========================================== *
-     * GROUP 3RDS                                 *
-     * ========================================== */
-    { 
-        group: "Group 3rds", 
-        teams: [
-            { rank: 1, name: "Sweden", p: 3, w: 1, d: 1, l: 1, f: 7, a: 7, gd: 0, pts: 4 },
-            { rank: 2, name: "Ecuador", p: 3, w: 1, d: 1, l: 1, f: 2, a: 2, gd: 0, pts: 4 },
-            { rank: 3, name: "Bosnia and Herzegovina", p: 3, w: 1, d: 1, l: 1, f: 5, a: 6, gd: -1, pts: 4 },
-            { rank: 4, name: "Paraguay", p: 3, w: 1, d: 1, l: 1, f: 2, a: 4, gd: -2, pts: 4 },
-            { rank: 5, name: "Croatia", p: 2, w: 1, d: 0, l: 1, f: 3, a: 4, gd: -1, pts: 3 },
-            { rank: 6, name: "Korea Republic", p: 3, w: 1, d: 0, l: 2, f: 2, a: 3, gd: -1, pts: 3 },
-            { rank: 7, name: "Algeria", p: 2, w: 1, d: 0, l: 1, f: 2, a: 4, gd: -2, pts: 3 },
-            { rank: 8, name: "Scotland", p: 3, w: 1, d: 0, l: 2, f: 1, a: 4, gd: -3, pts: 3 },
-            { rank: 9, name: "Cape Verde", p: 2, w: 0, d: 2, l: 0, f: 2, a: 2, gd: 0, pts: 2 },
-            { rank: 10, name: "Belgium", p: 2, w: 0, d: 2, l: 0, f: 1, a: 1, gd: 0, pts: 2 },
-            { rank: 11, name: "DR Congo", p: 2, w: 0, d: 1, l: 1, f: 1, a: 2, gd: -1, pts: 1 },
-            { rank: 12, name: "Senegal", p: 2, w: 0, d: 0, l: 2, f: 3, a: 6, gd: -3, pts: 0 }
-        ]
-    },
+/* ========================================== *
+ * GROUP 3RDS
+ * ========================================== */
+{
+    group: "Group 3rds",
+    teams: [
+        { rank: 1, name: "Sweden", p: 3, w: 1, d: 1, l: 1, f: 7, a: 7, gd: 0, pts: 4 },
+        { rank: 2, name: "Ecuador", p: 3, w: 1, d: 1, l: 1, f: 2, a: 2, gd: 0, pts: 4 },
+        { rank: 3, name: "Bosnia and Herzegovina", p: 3, w: 1, d: 1, l: 1, f: 5, a: 6, gd: -1, pts: 4 },
+        { rank: 4, name: "Paraguay", p: 3, w: 1, d: 1, l: 1, f: 2, a: 4, gd: -2, pts: 4 },
+        { rank: 5, name: "Senegal", p: 3, w: 1, d: 0, l: 2, f: 8, a: 6, gd: 2, pts: 3 },
+        { rank: 6, name: "Iran", p: 3, w: 0, d: 3, l: 0, f: 3, a: 3, gd: 0, pts: 3 },
+        { rank: 7, name: "Croatia", p: 2, w: 1, d: 0, l: 1, f: 3, a: 4, gd: -1, pts: 3 },
+        { rank: 8, name: "Korea Republic", p: 3, w: 1, d: 0, l: 2, f: 2, a: 3, gd: -1, pts: 3 },
+        { rank: 9, name: "Algeria", p: 2, w: 1, d: 0, l: 1, f: 2, a: 4, gd: -2, pts: 3 },
+        { rank: 10, name: "Scotland", p: 3, w: 1, d: 0, l: 2, f: 1, a: 4, gd: -3, pts: 3 },
+        { rank: 11, name: "Uruguay", p: 3, w: 0, d: 2, l: 1, f: 3, a: 4, gd: -1, pts: 2 },
+        { rank: 12, name: "DR Congo", p: 2, w: 0, d: 1, l: 1, f: 1, a: 2, gd: -1, pts: 1 }
+    ]
+},
 
-    /* ========================================== *
-     * PERINGKAT KUMPULAN                         *
-     * ========================================== */
-    { 
-        group: "Group A", 
-        teams: [
-            { rank: 1, name: "Mexico", p: 3, w: 3, d: 0, l: 0, f: 6, a: 0, gd: 6, pts: 9 },
-            { rank: 2, name: "South Africa", p: 3, w: 1, d: 1, l: 1, f: 2, a: 3, gd: -1, pts: 4 },
-            { rank: 3, name: "Korea Republic", p: 3, w: 1, d: 0, l: 2, f: 2, a: 3, gd: -1, pts: 3 },
-            { rank: 4, name: "Czech Republic", p: 3, w: 0, d: 1, l: 2, f: 2, a: 6, gd: -4, pts: 1 }
-        ]
-    },
-    { 
-        group: "Group B", 
-        teams: [
-            { rank: 1, name: "Switzerland", p: 3, w: 2, d: 1, l: 0, f: 7, a: 3, gd: 4, pts: 7 },
-            { rank: 2, name: "Canada", p: 3, w: 1, d: 1, l: 1, f: 8, a: 3, gd: 5, pts: 4 },
-            { rank: 3, name: "Bosnia and Herzegovina", p: 3, w: 1, d: 1, l: 1, f: 5, a: 6, gd: -1, pts: 4 },
-            { rank: 4, name: "Qatar", p: 3, w: 0, d: 1, l: 2, f: 2, a: 10, gd: -8, pts: 1 }
-        ]
-    },
-    { 
-        group: "Group C", 
-        teams: [
-            { rank: 1, name: "Brazil", p: 3, w: 2, d: 1, l: 0, f: 7, a: 1, gd: 6, pts: 7 },
-            { rank: 2, name: "Morocco", p: 3, w: 2, d: 1, l: 0, f: 6, a: 3, gd: 3, pts: 7 },
-            { rank: 3, name: "Scotland", p: 3, w: 1, d: 0, l: 2, f: 1, a: 4, gd: -3, pts: 3 },
-            { rank: 4, name: "Haiti", p: 3, w: 0, d: 0, l: 3, f: 2, a: 8, gd: -6, pts: 0 }
-        ]
-    },
-    { 
-        group: "Group D", 
-        teams: [
-            { rank: 1, name: "United States of America", p: 3, w: 2, d: 0, l: 1, f: 8, a: 4, gd: 4, pts: 6 },
-            { rank: 2, name: "Australia", p: 3, w: 1, d: 1, l: 1, f: 2, a: 2, gd: 0, pts: 4 },
-            { rank: 3, name: "Paraguay", p: 3, w: 1, d: 1, l: 1, f: 2, a: 4, gd: -2, pts: 4 },
-            { rank: 4, name: "Turkey", p: 3, w: 1, d: 0, l: 2, f: 3, a: 5, gd: -2, pts: 3 }
-        ]
-    },
-    { 
-        group: "Group E", 
-        teams: [
-            { rank: 1, name: "Germany", p: 3, w: 2, d: 0, l: 1, f: 10, a: 4, gd: 6, pts: 6 },
-            { rank: 2, name: "Ivory Coast", p: 3, w: 2, d: 0, l: 1, f: 4, a: 2, gd: 2, pts: 6 },
-            { rank: 3, name: "Ecuador", p: 3, w: 1, d: 1, l: 1, f: 2, a: 2, gd: 0, pts: 4 },
-            { rank: 4, name: "Curacao", p: 3, w: 0, d: 1, l: 2, f: 1, a: 9, gd: -8, pts: 1 }
-        ]
-    },
-    { 
-        group: "Group F", 
-        teams: [
-            { rank: 1, name: "Netherlands", p: 3, w: 2, d: 1, l: 0, f: 10, a: 4, gd: 6, pts: 7 },
-            { rank: 2, name: "Japan", p: 3, w: 1, d: 2, l: 0, f: 7, a: 3, gd: 4, pts: 5 },
-            { rank: 3, name: "Sweden", p: 3, w: 1, d: 1, l: 1, f: 7, a: 7, gd: 0, pts: 4 },
-            { rank: 4, name: "Tunisia", p: 3, w: 0, d: 0, l: 3, f: 2, a: 12, gd: -10, pts: 0 }
-        ]
-    },
-    { 
-        group: "Group G", 
-        teams: [
-            { rank: 1, name: "Egypt", p: 2, w: 1, d: 1, l: 0, f: 4, a: 2, gd: 2, pts: 4 },
-            { rank: 2, name: "Iran", p: 2, w: 0, d: 2, l: 0, f: 2, a: 2, gd: 0, pts: 2 },
-            { rank: 3, name: "Belgium", p: 2, w: 0, d: 2, l: 0, f: 1, a: 1, gd: 0, pts: 2 },
-            { rank: 4, name: "New Zealand", p: 2, w: 0, d: 1, l: 1, f: 3, a: 5, gd: -2, pts: 1 }
-        ]
-    },
-    { 
-        group: "Group H", 
-        teams: [
-            { rank: 1, name: "Spain", p: 2, w: 1, d: 1, l: 0, f: 4, a: 0, gd: 4, pts: 4 },
-            { rank: 2, name: "Uruguay", p: 2, w: 0, d: 2, l: 0, f: 3, a: 3, gd: 0, pts: 2 },
-            { rank: 3, name: "Cape Verde", p: 2, w: 0, d: 2, l: 0, f: 2, a: 2, gd: 0, pts: 2 },
-            { rank: 4, name: "Saudi Arabia", p: 2, w: 0, d: 1, l: 1, f: 1, a: 5, gd: -4, pts: 1 }
-        ]
-    },
-    { 
-        group: "Group I", 
-        teams: [
-            { rank: 1, name: "France", p: 2, w: 2, d: 0, l: 0, f: 6, a: 1, gd: 5, pts: 6 },
-            { rank: 2, name: "Norway", p: 2, w: 2, d: 0, l: 0, f: 7, a: 3, gd: 4, pts: 6 },
-            { rank: 3, name: "Senegal", p: 2, w: 0, d: 0, l: 2, f: 3, a: 6, gd: -3, pts: 0 },
-            { rank: 4, name: "Iraq", p: 2, w: 0, d: 0, l: 2, f: 1, a: 7, gd: -6, pts: 0 }
-        ]
-    },
-    { 
-        group: "Group J", 
-        teams: [
-            { rank: 1, name: "Argentina", p: 2, w: 2, d: 0, l: 0, f: 5, a: 0, gd: 5, pts: 6 },
-            { rank: 2, name: "Austria", p: 2, w: 1, d: 0, l: 1, f: 3, a: 3, gd: 0, pts: 3 },
-            { rank: 3, name: "Algeria", p: 2, w: 1, d: 0, l: 1, f: 2, a: 4, gd: -2, pts: 3 },
-            { rank: 4, name: "Jordan", p: 2, w: 0, d: 0, l: 2, f: 2, a: 5, gd: -3, pts: 0 }
-        ]
-    },
-    { 
-        group: "Group K", 
-        teams: [
-            { rank: 1, name: "Colombia", p: 2, w: 2, d: 0, l: 0, f: 4, a: 1, gd: 3, pts: 6 },
-            { rank: 2, name: "Portugal", p: 2, w: 1, d: 1, l: 0, f: 6, a: 1, gd: 5, pts: 4 },
-            { rank: 3, name: "DR Congo", p: 2, w: 0, d: 1, l: 1, f: 1, a: 2, gd: -1, pts: 1 },
-            { rank: 4, name: "Uzbekistan", p: 2, w: 0, d: 0, l: 2, f: 1, a: 8, gd: -7, pts: 0 }
-        ]
-    },
-    { 
-        group: "Group L", 
-        teams: [
-            { rank: 1, name: "England", p: 2, w: 1, d: 1, l: 0, f: 4, a: 2, gd: 2, pts: 4 },
-            { rank: 2, name: "Ghana", p: 2, w: 1, d: 1, l: 0, f: 1, a: 0, gd: 1, pts: 4 },
-            { rank: 3, name: "Croatia", p: 2, w: 1, d: 0, l: 1, f: 3, a: 4, gd: -1, pts: 3 },
-            { rank: 4, name: "Panama", p: 2, w: 0, d: 0, l: 2, f: 0, a: 2, gd: -2, pts: 0 }
-        ]
-    }
-];
+{
+    group: "Group G",
+    teams: [
+        { rank: 1, name: "Belgium", p: 3, w: 1, d: 2, l: 0, f: 6, a: 2, gd: 4, pts: 5 },
+        { rank: 2, name: "Egypt", p: 3, w: 1, d: 2, l: 0, f: 5, a: 3, gd: 2, pts: 5 },
+        { rank: 3, name: "Iran", p: 3, w: 0, d: 3, l: 0, f: 3, a: 3, gd: 0, pts: 3 },
+        { rank: 4, name: "New Zealand", p: 3, w: 0, d: 1, l: 2, f: 4, a: 10, gd: -6, pts: 1 }
+    ]
+},
+
+{
+    group: "Group H",
+    teams: [
+        { rank: 1, name: "Spain", p: 3, w: 2, d: 1, l: 0, f: 5, a: 0, gd: 5, pts: 7 },
+        { rank: 2, name: "Cape Verde", p: 3, w: 0, d: 3, l: 0, f: 2, a: 2, gd: 0, pts: 3 },
+        { rank: 3, name: "Uruguay", p: 3, w: 0, d: 2, l: 1, f: 3, a: 4, gd: -1, pts: 2 },
+        { rank: 4, name: "Saudi Arabia", p: 3, w: 0, d: 2, l: 1, f: 1, a: 5, gd: -4, pts: 2 }
+    ]
+},
+
+{
+    group: "Group I",
+    teams: [
+        { rank: 1, name: "France", p: 3, w: 3, d: 0, l: 0, f: 10, a: 2, gd: 8, pts: 9 },
+        { rank: 2, name: "Norway", p: 3, w: 2, d: 0, l: 1, f: 8, a: 7, gd: 1, pts: 6 },
+        { rank: 3, name: "Senegal", p: 3, w: 1, d: 0, l: 2, f: 8, a: 6, gd: 2, pts: 3 },
+        { rank: 4, name: "Iraq", p: 3, w: 0, d: 0, l: 3, f: 1, a: 12, gd: -11, pts: 0 }
+    ]
+}
         
         function renderSchedule() {
             const container = document.getElementById('schedule-container');
