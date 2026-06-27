@@ -506,374 +506,745 @@
 
 
 // Results data array
-        const resultsData = [
-            {
-                date: "2026-06-11T20:00:00Z", group: "Group A",
-                team1: "Mexico", team2: "South Africa", score1: 2, score2: 0,
-                stadium: "Azteca Stadium", attendance: "80,824",
-                events1: [
-                    { type: "goal", text: "J. Quiñones (9')" },
-                    { type: "goal", text: "R. Jiménez (67')" },
-                    { type: "red", text: "C. Montes (90+2')" }
-                ],
-                events2: [
-                    { type: "red", text: "S. Sithole (49')" },
-                    { type: "red", text: "T. Zwane (84')" }
-                ]
-            },
-            {
-                date: "2026-06-12T03:00:00Z", group: "Group A",
-                team1: "Korea Republic", team2: "Czech Republic", score1: 2, score2: 1,
-                stadium: "Estadio Chivas", attendance: "44,985",
-                events1: [
-                    { type: "goal", text: "I. Hwang (67')" },
-                    { type: "goal", text: "H. Oh (80')" }
-                ],
-                events2: [
-                    { type: "goal", text: "L. Krejci (59')" }
-                ]
-            },
-            {
-                date: "2026-06-12T20:00:00Z", group: "Group B",
-                team1: "Canada", team2: "Bosnia and Herz.", score1: 1, score2: 1,
-                stadium: "Toronto Stadium", attendance: "43,002",
-                events1: [
-                    { type: "goal", text: "C. Larin (78')" }
-                ],
-                events2: [
-                    { type: "goal", text: "J. Lukic (21')" }
-                ]
-            },
-            {
-                date: "2026-06-13T02:00:00Z", group: "Group D",
-                team1: "United States", team2: "Paraguay", score1: 4, score2: 1,
-                stadium: "SoFi Stadium", attendance: "70,492",
-                events1: [
-                    { type: "goal", text: "D. Bobadilla (7' OG)" },
-                    { type: "goal", text: "F. Balogun (31', 45+5')" },
-                    { type: "goal", text: "G. Reyna (90+8')" }
-                ],
-                events2: [
-                    { type: "goal", text: "M. Prado (73')" }
-                ]
-            },
-            {
-                date: "2026-06-13T20:00:00Z", group: "Group B",
-                team1: "Qatar", team2: "Switzerland", score1: 1, score2: 1,
-                stadium: "Levi's Stadium", attendance: "67,966",
-                events1: [
-                    { type: "goal", text: "B. Khoukhi (90+4')" }
-                ],
-                events2: [
-                    { type: "goal", text: "B. Embolo (17' Pen)" }
-                ]
-            },
-            {
-                date: "2026-06-13T23:00:00Z", group: "Group C",
-                team1: "Brazil", team2: "Morocco", score1: 1, score2: 1,
-                stadium: "MetLife Stadium", attendance: "80,663",
-                events1: [
-                    { type: "goal", text: "Vinicius Jr. (32')" }
-                ],
-                events2: [
-                    { type: "goal", text: "I. Saibari (21')" }
-                ]
-            },
-            {
-                date: "2026-06-14T02:00:00Z", group: "Group C",
-                team1: "Haiti", team2: "Scotland", score1: 0, score2: 1,
-                stadium: "Boston Stadium", attendance: "64,146",
-                events1: [],
-                events2: [
-                    { type: "goal", text: "J. McGinn (28')" }
-                ]
-            },
-            {
-                date: "2026-06-14T05:00:00Z", group: "Group D",
-                team1: "Australia", team2: "Turkey", score1: 2, score2: 0,
-                stadium: "BC Place", attendance: "52,497",
-                events1: [
-                    { type: "goal", text: "N. Irankunda (27')" },
-                    { type: "goal", text: "C. Metcalfe (75')" }
-                ],
-                events2: []
-            },
-            {
-                date: "2026-06-14T18:00:00Z", group: "Group E",
-                team1: "Germany", team2: "Curacao", score1: 7, score2: 1,
-                stadium: "NRG Stadium", attendance: "68,021",
-                events1: [
-                    { type: "goal", text: "F. Nmecha (6')" },
-                    { type: "goal", text: "N. Schlotterbeck (38')" },
-                    { type: "goal", text: "K. Havertz (45+5' Pen, 88')" },
-                    { type: "goal", text: "J. Musiala (47')" },
-                    { type: "goal", text: "N. Brown (68')" },
-                    { type: "goal", text: "D. Undav (78')" }
-                ],
-                events2: [
-                    { type: "goal", text: "L. Comenencia (21')" }
-                ]
-            },
-            {
-                date: "2026-06-14T21:00:00Z", group: "Group F",
-                team1: "Netherlands", team2: "Japan", score1: 2, score2: 2,
-                stadium: "Dallas Stadium", attendance: "69,285",
-                events1: [
-                    { type: "goal", text: "V. van Dijk (51')" },
-                    { type: "goal", text: "C. Summerville (64')" }
-                ],
-                events2: [
-                    { type: "goal", text: "K. Nakamura (57')" },
-                    { type: "goal", text: "D. Kamada (89')" }
-                ]
-            },
-            {
-                date: "2026-06-15T00:00:00Z", group: "Group E",
-                team1: "Ivory Coast", team2: "Ecuador", score1: 1, score2: 0,
-                stadium: "Philadelphia Stadium", attendance: "68,274",
-                events1: [
-                    { type: "goal", text: "A. Diallo (90')" }
-                ],
-                events2: []
-            },
-            {
-                date: "2026-06-15T03:00:00Z", group: "Group F",
-                team1: "Sweden", team2: "Tunisia", score1: 5, score2: 1,
-                stadium: "Estadio BBVA", attendance: "50,987",
-                events1: [
-                    { type: "goal", text: "Y. Ayari (7', 90+6')" },
-                    { type: "goal", text: "A. Isak (30')" },
-                    { type: "goal", text: "V. Gyokeres (59')" },
-                    { type: "goal", text: "M. Svanberg (84')" }
-                ],
-                events2: [
-                    { type: "goal", text: "O. Rekik (43')" }
-                ]
-            },
-            {
-                date: "2026-06-15T17:00:00Z", group: "Group H",
-                team1: "Spain", team2: "Cape Verde", score1: 0, score2: 0,
-                stadium: "Mercedes-Benz Stadium", attendance: "67,640",
-                events1: [],
-                events2: []
-            },
-            {
-                date: "2026-06-15T20:00:00Z", group: "Group G",
-                team1: "Belgium", team2: "Egypt", score1: 1, score2: 1,
-                stadium: "CenturyLink Field", attendance: "66,775",
-                events1: [
-                    { type: "goal", text: "M. Hany (66' OG)" }
-                ],
-                events2: [
-                    { type: "goal", text: "E. Abdelghany (19')" }
-                ]
-            },
-            {
-                date: "2026-06-15T23:00:00Z", group: "Group H",
-                team1: "Saudi Arabia", team2: "Uruguay", score1: 1, score2: 1,
-                stadium: "Hard Rock Stadium", attendance: "62,764",
-                events1: [
-                    { type: "goal", text: "A. Alamri (41')" }
-                ],
-                events2: [
-                    { type: "goal", text: "M. Araújo (80')" }
-                ]
-            },
-            {
-                date: "2026-06-16T02:00:00Z", group: "Group G",
-                team1: "Iran", team2: "New Zealand", score1: 2, score2: 2,
-                stadium: "SoFi Stadium", attendance: "70,108",
-                events1: [
-                    { type: "goal", text: "R. Rezaeian (32')" },
-                    { type: "goal", text: "M. Mohebbi (64')" }
-                ],
-                events2: [
-                    { type: "goal", text: "E. Just (7', 54')" }
-                ]
-            },
-            {
-                date: "2026-06-16T20:00:00Z", group: "Group I",
-                team1: "France", team2: "Senegal", score1: 3, score2: 1,
-                stadium: "MetLife Stadium", attendance: "80,545",
-                events1: [
-                    { type: "goal", text: "K. Mbappe (66', 90+6')" },
-                    { type: "goal", text: "B. Barcola (82')" }
-                ],
-                events2: [
-                    { type: "goal", text: "I. Mbaye (90+5')" }
-                ]
-            },
-            {
-                date: "2026-06-16T23:00:00Z", group: "Group I",
-                team1: "Iraq", team2: "Norway", score1: 1, score2: 4,
-                stadium: "Boston Stadium", attendance: "63,106",
-                events1: [
-                    { type: "goal", text: "A. Hussein (39')" }
-                ],
-                events2: [
-                    { type: "goal", text: "E. Haaland (29', 43')" },
-                    { type: "goal", text: "L. Ostigard (76')" },
-                    { type: "goal", text: "A. Hussein (90+6' OG)" }
-                ]
-            },
-            {
-                date: "2026-06-17T02:00:00Z", group: "Group J",
-                team1: "Argentina", team2: "Algeria", score1: 3, score2: 0,
-                stadium: "GEHA Field", attendance: "69,045",
-                events1: [
-                    { type: "goal", text: "L. Messi (17', 60', 76')" }
-                ],
-                events2: []
-            },
-            {
-                date: "2026-06-17T05:00:00Z", group: "Group J",
-                team1: "Austria", team2: "Jordan", score1: 3, score2: 1,
-                stadium: "Levi's Stadium", attendance: "68,527",
-                events1: [
-                    { type: "goal", text: "R. Schmid (21')" },
-                    { type: "goal", text: "Y. Al Arab (76' OG)" },
-                    { type: "goal", text: "M. Arnautovic (90+12' Pen)" }
-                ],
-                events2: [
-                    { type: "goal", text: "A. Al Olwan (50')" }
-                ]
-            },
-            {
-                date: "2026-06-17T18:00:00Z", group: "Group K",
-                team1: "Portugal", team2: "DR Congo", score1: 1, score2: 1,
-                stadium: "NRG Stadium", attendance: "68,777",
-                events1: [
-                    { type: "goal", text: "J Neves (6')" }
-                ],
-                events2: [
-                    { type: "goal", text: "Y Wissa (45+5')" }
-                ]
-            },
-            {
-                date: "2026-06-17T21:00:00Z", group: "Group L",
-                team1: "England", team2: "Croatia", score1: 4, score2: 2,
-                stadium: "Dallas Stadium", attendance: "70,389",
-                events1: [
-                    { type: "goal", text: "H Kane (12' Pen, 42')" },
-                    { type: "goal", text: "J Bellingham (47')" },
-                    { type: "goal", text: "M Rashford (85')" }
-                ],
-                events2: [
-                    { type: "goal", text: "M Baturina (36')" },
-                    { type: "goal", text: "P Musa (45+5')" }
-                ]
-            },
-            {
-                date: "2026-06-18T00:00:00Z", group: "Group L",
-                team1: "Ghana", team2: "Panama", score1: 1, score2: 0,
-                stadium: "Toronto Stadium", attendance: "42,942",
-                events1: [
-                    { type: "goal", text: "C Yirenkyi (90+5')" }
-                ],
-                events2: []
-            },
-            {
-                date: "2026-06-18T03:00:00Z", group: "Group K",
-                team1: "Uzbekistan", team2: "Colombia", score1: 1, score2: 3,
-                stadium: "Azteca Stadium", attendance: "80,824",
-                events1: [
-                    { type: "goal", text: "A Fayzullaev (60')" }
-                ],
-                events2: [
-                    { type: "goal", text: "D Muñoz (40')" },
-                    { type: "goal", text: "L Díaz (65')" },
-                    { type: "goal", text: "J Campaz (90+9')" }
-                ]
-            },
-            {
-                date: "2026-06-18T17:00:00Z", group: "Group A",
-                team1: "Czech Republic", team2: "South Africa", score1: 1, score2: 1,
-                stadium: "Mercedes-Benz Stadium", attendance: "67,442",
-                events1: [
-                    { type: "goal", text: "M. Sadilek (6')" }
-                ],
-                events2: [
-                    { type: "goal", text: "T. Mokoena (83' Pen)" }
-                ]
-            },
-            {
-                date: "2026-06-18T20:00:00Z", group: "Group B",
-                team1: "Switzerland", team2: "Bosnia and Herz.", score1: 4, score2: 1,
-                stadium: "SoFi Stadium", attendance: "70,026",
-                events1: [
-                    { type: "goal", text: "J. Manzambi (74', 90')" },
-                    { type: "goal", text: "R. Vargas (84')" },
-                    { type: "goal", text: "G. Xhaka (90+7' Pen)" }
-                ],
-                events2: [
-                    { type: "red", text: "T. Muharemovic (80')" },
-                    { type: "goal", text: "E. Mahmic (90+3')" }
-                ]
-            },
-            {
-                date: "2026-06-18T23:00:00Z", group: "Group B",
-                team1: "Canada", team2: "Qatar", score1: 6, score2: 0,
-                stadium: "BC Place", attendance: "52,497",
-                events1: [
-                    { type: "goal", text: "C. Larin (16')" },
-                    { type: "goal", text: "J. David (29', 45+3', 90+2')" },
-                    { type: "goal", text: "N. Saliba (64')" },
-                    { type: "goal", text: "M. Al Mannai (75' OG)" }
-                ],
-                events2: [
-                    { type: "red", text: "H. M. Ahmed (33')" },
-                    { type: "red", text: "A. Madibo (53')" }
-                ]
-            },
-            {
-                date: "2026-06-19T02:00:00Z", group: "Group A",
-                team1: "Mexico", team2: "Korea Republic", score1: 1, score2: 0,
-                stadium: "Estadio Chivas", attendance: "45,522",
-                events1: [
-                    { type: "goal", text: "L. Romo (50')" }
-                ],
-                events2: []
-            },
-            {
-                date: "2026-06-19T20:00:00Z", group: "Group D",
-                team1: "United States", team2: "Australia", score1: 2, score2: 0,
-                stadium: "Lumen Field", attendance: "66,925",
-                events1: [
-                    { type: "goal", text: "C Burgess (11' OG)" },
-                    { type: "goal", text: "A Freeman (43')" }
-                ],
-                events2: []
-            },
-            {
-                date: "2026-06-19T23:00:00Z", group: "Group C",
-                team1: "Scotland", team2: "Morocco", score1: 0, score2: 1,
-                stadium: "Boston Stadium", attendance: "64,146",
-                events1: [],
-                events2: [
-                    { type: "goal", text: "I Saibari Ben El Basra (2')" }
-                ]
-            },
-            {
-                date: "2026-06-20T01:30:00Z", group: "Group C",
-                team1: "Brazil", team2: "Haiti", score1: 3, score2: 0,
-                stadium: "Philadelphia Stadium", attendance: "68,324",
-                events1: [
-                    { type: "goal", text: "M Cunha (23', 36')" },
-                    { type: "goal", text: "Vinicius Júnior (45+3')" }
-                ],
-                events2: []
-            },
-            {
-                date: "2026-06-20T04:00:00Z", group: "Group D",
-                team1: "Turkey", team2: "Paraguay", score1: 0, score2: 1,
-                stadium: "Levi's Stadium", attendance: "68,827",
-                events1: [],
-                events2: [
-                    { type: "goal", text: "M Galarza (2')" },
-                    { type: "red", text: "M Almirón (45+3')" }
-                ]
-            }
-        ];
+const resultsData = [
+    {
+        date: "2026-06-11T20:00:00Z", group: "Group A",
+        team1: "Mexico", team2: "South Africa", score1: 2, score2: 0,
+        stadium: "Azteca Stadium", attendance: "80,824",
+        events1: [
+            { type: "goal", text: "J. Quiñones (9')" },
+            { type: "goal", text: "R. Jiménez (67')" },
+            { type: "red", text: "C. Montes (90+2')" }
+        ],
+        events2: [
+            { type: "red", text: "S. Sithole (49')" },
+            { type: "red", text: "T. Zwane (84')" }
+        ]
+    },
+    {
+        date: "2026-06-12T03:00:00Z", group: "Group A",
+        team1: "Korea Republic", team2: "Czech Republic", score1: 2, score2: 1,
+        stadium: "Estadio Chivas", attendance: "44,985",
+        events1: [
+            { type: "goal", text: "I. Hwang (67')" },
+            { type: "goal", text: "H. Oh (80')" }
+        ],
+        events2: [
+            { type: "goal", text: "L. Krejci (59')" }
+        ]
+    },
+    {
+        date: "2026-06-12T20:00:00Z", group: "Group B",
+        team1: "Canada", team2: "Bosnia and Herz.", score1: 1, score2: 1,
+        stadium: "Toronto Stadium", attendance: "43,002",
+        events1: [
+            { type: "goal", text: "C. Larin (78')" }
+        ],
+        events2: [
+            { type: "goal", text: "J. Lukic (21')" }
+        ]
+    },
+    {
+        date: "2026-06-13T02:00:00Z", group: "Group D",
+        team1: "United States", team2: "Paraguay", score1: 4, score2: 1,
+        stadium: "SoFi Stadium", attendance: "70,492",
+        events1: [
+            { type: "goal", text: "D. Bobadilla (7' OG)" },
+            { type: "goal", text: "F. Balogun (31', 45+5')" },
+            { type: "goal", text: "G. Reyna (90+8')" }
+        ],
+        events2: [
+            { type: "goal", text: "M. Prado (73')" }
+        ]
+    },
+    {
+        date: "2026-06-13T20:00:00Z", group: "Group B",
+        team1: "Qatar", team2: "Switzerland", score1: 1, score2: 1,
+        stadium: "Levi's Stadium", attendance: "67,966",
+        events1: [
+            { type: "goal", text: "B. Khoukhi (90+4')" }
+        ],
+        events2: [
+            { type: "goal", text: "B. Embolo (17' Pen)" }
+        ]
+    },
+    {
+        date: "2026-06-13T23:00:00Z", group: "Group C",
+        team1: "Brazil", team2: "Morocco", score1: 1, score2: 1,
+        stadium: "MetLife Stadium", attendance: "80,663",
+        events1: [
+            { type: "goal", text: "Vinicius Jr. (32')" }
+        ],
+        events2: [
+            { type: "goal", text: "I. Saibari (21')" }
+        ]
+    },
+    {
+        date: "2026-06-14T02:00:00Z", group: "Group C",
+        team1: "Haiti", team2: "Scotland", score1: 0, score2: 1,
+        stadium: "Boston Stadium", attendance: "64,146",
+        events1: [],
+        events2: [
+            { type: "goal", text: "J. McGinn (28')" }
+        ]
+    },
+    {
+        date: "2026-06-14T05:00:00Z", group: "Group D",
+        team1: "Australia", team2: "Turkey", score1: 2, score2: 0,
+        stadium: "BC Place", attendance: "52,497",
+        events1: [
+            { type: "goal", text: "N. Irankunda (27')" },
+            { type: "goal", text: "C. Metcalfe (75')" }
+        ],
+        events2: []
+    },
+    {
+        date: "2026-06-14T18:00:00Z", group: "Group E",
+        team1: "Germany", team2: "Curacao", score1: 7, score2: 1,
+        stadium: "NRG Stadium", attendance: "68,021",
+        events1: [
+            { type: "goal", text: "F. Nmecha (6')" },
+            { type: "goal", text: "N. Schlotterbeck (38')" },
+            { type: "goal", text: "K. Havertz (45+5' Pen, 88')" },
+            { type: "goal", text: "J. Musiala (47')" },
+            { type: "goal", text: "N. Brown (68')" },
+            { type: "goal", text: "D. Undav (78')" }
+        ],
+        events2: [
+            { type: "goal", text: "L. Comenencia (21')" }
+        ]
+    },
+    {
+        date: "2026-06-14T21:00:00Z", group: "Group F",
+        team1: "Netherlands", team2: "Japan", score1: 2, score2: 2,
+        stadium: "Dallas Stadium", attendance: "69,285",
+        events1: [
+            { type: "goal", text: "V. van Dijk (51')" },
+            { type: "goal", text: "C. Summerville (64')" }
+        ],
+        events2: [
+            { type: "goal", text: "K. Nakamura (57')" },
+            { type: "goal", text: "D. Kamada (89')" }
+        ]
+    },
+    {
+        date: "2026-06-15T00:00:00Z", group: "Group E",
+        team1: "Ivory Coast", team2: "Ecuador", score1: 1, score2: 0,
+        stadium: "Philadelphia Stadium", attendance: "68,274",
+        events1: [
+            { type: "goal", text: "A. Diallo (90')" }
+        ],
+        events2: []
+    },
+    {
+        date: "2026-06-15T03:00:00Z", group: "Group F",
+        team1: "Sweden", team2: "Tunisia", score1: 5, score2: 1,
+        stadium: "Estadio BBVA", attendance: "50,987",
+        events1: [
+            { type: "goal", text: "Y. Ayari (7', 90+6')" },
+            { type: "goal", text: "A. Isak (30')" },
+            { type: "goal", text: "V. Gyokeres (59')" },
+            { type: "goal", text: "M. Svanberg (84')" }
+        ],
+        events2: [
+            { type: "goal", text: "O. Rekik (43')" }
+        ]
+    },
+    {
+        date: "2026-06-15T17:00:00Z", group: "Group H",
+        team1: "Spain", team2: "Cape Verde", score1: 0, score2: 0,
+        stadium: "Mercedes-Benz Stadium", attendance: "67,640",
+        events1: [],
+        events2: []
+    },
+    {
+        date: "2026-06-15T20:00:00Z", group: "Group G",
+        team1: "Belgium", team2: "Egypt", score1: 1, score2: 1,
+        stadium: "CenturyLink Field", attendance: "66,775",
+        events1: [
+            { type: "goal", text: "M. Hany (66' OG)" }
+        ],
+        events2: [
+            { type: "goal", text: "E. Abdelghany (19')" }
+        ]
+    },
+    {
+        date: "2026-06-15T23:00:00Z", group: "Group H",
+        team1: "Saudi Arabia", team2: "Uruguay", score1: 1, score2: 1,
+        stadium: "Hard Rock Stadium", attendance: "62,764",
+        events1: [
+            { type: "goal", text: "A. Alamri (41')" }
+        ],
+        events2: [
+            { type: "goal", text: "M. Araújo (80')" }
+        ]
+    },
+    {
+        date: "2026-06-16T02:00:00Z", group: "Group G",
+        team1: "Iran", team2: "New Zealand", score1: 2, score2: 2,
+        stadium: "SoFi Stadium", attendance: "70,108",
+        events1: [
+            { type: "goal", text: "R. Rezaeian (32')" },
+            { type: "goal", text: "M. Mohebbi (64')" }
+        ],
+        events2: [
+            { type: "goal", text: "E. Just (7', 54')" }
+        ]
+    },
+    {
+        date: "2026-06-16T20:00:00Z", group: "Group I",
+        team1: "France", team2: "Senegal", score1: 3, score2: 1,
+        stadium: "MetLife Stadium", attendance: "80,545",
+        events1: [
+            { type: "goal", text: "K. Mbappe (66', 90+6')" },
+            { type: "goal", text: "B. Barcola (82')" }
+        ],
+        events2: [
+            { type: "goal", text: "I. Mbaye (90+5')" }
+        ]
+    },
+    {
+        date: "2026-06-16T23:00:00Z", group: "Group I",
+        team1: "Iraq", team2: "Norway", score1: 1, score2: 4,
+        stadium: "Boston Stadium", attendance: "63,106",
+        events1: [
+            { type: "goal", text: "A. Hussein (39')" }
+        ],
+        events2: [
+            { type: "goal", text: "E. Haaland (29', 43')" },
+            { type: "goal", text: "L. Ostigard (76')" },
+            { type: "goal", text: "A. Hussein (90+6' OG)" }
+        ]
+    },
+    {
+        date: "2026-06-17T02:00:00Z", group: "Group J",
+        team1: "Argentina", team2: "Algeria", score1: 3, score2: 0,
+        stadium: "GEHA Field", attendance: "69,045",
+        events1: [
+            { type: "goal", text: "L. Messi (17', 60', 76')" }
+        ],
+        events2: []
+    },
+    {
+        date: "2026-06-17T05:00:00Z", group: "Group J",
+        team1: "Austria", team2: "Jordan", score1: 3, score2: 1,
+        stadium: "Levi's Stadium", attendance: "68,527",
+        events1: [
+            { type: "goal", text: "R. Schmid (21')" },
+            { type: "goal", text: "Y. Al Arab (76' OG)" },
+            { type: "goal", text: "M. Arnautovic (90+12' Pen)" }
+        ],
+        events2: [
+            { type: "goal", text: "A. Al Olwan (50')" }
+        ]
+    },
+    {
+        date: "2026-06-17T18:00:00Z", group: "Group K",
+        team1: "Portugal", team2: "DR Congo", score1: 1, score2: 1,
+        stadium: "NRG Stadium", attendance: "68,777",
+        events1: [
+            { type: "goal", text: "J Neves (6')" }
+        ],
+        events2: [
+            { type: "goal", text: "Y Wissa (45+5')" }
+        ]
+    },
+    {
+        date: "2026-06-17T21:00:00Z", group: "Group L",
+        team1: "England", team2: "Croatia", score1: 4, score2: 2,
+        stadium: "Dallas Stadium", attendance: "70,389",
+        events1: [
+            { type: "goal", text: "H Kane (12' Pen, 42')" },
+            { type: "goal", text: "J Bellingham (47')" },
+            { type: "goal", text: "M Rashford (85')" }
+        ],
+        events2: [
+            { type: "goal", text: "M Baturina (36')" },
+            { type: "goal", text: "P Musa (45+5')" }
+        ]
+    },
+    {
+        date: "2026-06-18T00:00:00Z", group: "Group L",
+        team1: "Ghana", team2: "Panama", score1: 1, score2: 0,
+        stadium: "Toronto Stadium", attendance: "42,942",
+        events1: [
+            { type: "goal", text: "C Yirenkyi (90+5')" }
+        ],
+        events2: []
+    },
+    {
+        date: "2026-06-18T03:00:00Z", group: "Group K",
+        team1: "Uzbekistan", team2: "Colombia", score1: 1, score2: 3,
+        stadium: "Azteca Stadium", attendance: "80,824",
+        events1: [
+            { type: "goal", text: "A Fayzullaev (60')" }
+        ],
+        events2: [
+            { type: "goal", text: "D Muñoz (40')" },
+            { type: "goal", text: "L Díaz (65')" },
+            { type: "goal", text: "J Campaz (90+9')" }
+        ]
+    },
+    {
+        date: "2026-06-18T17:00:00Z", group: "Group A",
+        team1: "Czech Republic", team2: "South Africa", score1: 1, score2: 1,
+        stadium: "Mercedes-Benz Stadium", attendance: "67,442",
+        events1: [
+            { type: "goal", text: "M. Sadilek (6')" }
+        ],
+        events2: [
+            { type: "goal", text: "T. Mokoena (83' Pen)" }
+        ]
+    },
+    {
+        date: "2026-06-18T20:00:00Z", group: "Group B",
+        team1: "Switzerland", team2: "Bosnia and Herz.", score1: 4, score2: 1,
+        stadium: "SoFi Stadium", attendance: "70,026",
+        events1: [
+            { type: "goal", text: "J. Manzambi (74', 90')" },
+            { type: "goal", text: "R. Vargas (84')" },
+            { type: "goal", text: "G. Xhaka (90+7' Pen)" }
+        ],
+        events2: [
+            { type: "red", text: "T. Muharemovic (80')" },
+            { type: "goal", text: "E. Mahmic (90+3')" }
+        ]
+    },
+    {
+        date: "2026-06-18T23:00:00Z", group: "Group B",
+        team1: "Canada", team2: "Qatar", score1: 6, score2: 0,
+        stadium: "BC Place", attendance: "52,497",
+        events1: [
+            { type: "goal", text: "C. Larin (16')" },
+            { type: "goal", text: "J. David (29', 45+3', 90+2')" },
+            { type: "goal", text: "N. Saliba (64')" },
+            { type: "goal", text: "M. Al Mannai (75' OG)" }
+        ],
+        events2: [
+            { type: "red", text: "H. M. Ahmed (33')" },
+            { type: "red", text: "A. Madibo (53')" }
+        ]
+    },
+    {
+        date: "2026-06-19T02:00:00Z", group: "Group A",
+        team1: "Mexico", team2: "Korea Republic", score1: 1, score2: 0,
+        stadium: "Estadio Chivas", attendance: "45,522",
+        events1: [
+            { type: "goal", text: "L. Romo (50')" }
+        ],
+        events2: []
+    },
+    {
+        date: "2026-06-19T20:00:00Z", group: "Group D",
+        team1: "United States", team2: "Australia", score1: 2, score2: 0,
+        stadium: "Lumen Field", attendance: "66,925",
+        events1: [
+            { type: "goal", text: "C Burgess (11' OG)" },
+            { type: "goal", text: "A Freeman (43')" }
+        ],
+        events2: []
+    },
+    {
+        date: "2026-06-19T23:00:00Z", group: "Group C",
+        team1: "Scotland", team2: "Morocco", score1: 0, score2: 1,
+        stadium: "Boston Stadium", attendance: "64,146",
+        events1: [],
+        events2: [
+            { type: "goal", text: "I Saibari Ben El Basra (2')" }
+        ]
+    },
+    {
+        date: "2026-06-20T01:30:00Z", group: "Group C",
+        team1: "Brazil", team2: "Haiti", score1: 3, score2: 0,
+        stadium: "Philadelphia Stadium", attendance: "68,324",
+        events1: [
+            { type: "goal", text: "M Cunha (23', 36')" },
+            { type: "goal", text: "Vinicius Júnior (45+3')" }
+        ],
+        events2: []
+    },
+    {
+        date: "2026-06-20T04:00:00Z", group: "Group D",
+        team1: "Turkey", team2: "Paraguay", score1: 0, score2: 1,
+        stadium: "Levi's Stadium", attendance: "68,827",
+        events1: [],
+        events2: [
+            { type: "goal", text: "M Galarza (2')" },
+            { type: "red", text: "M Almirón (45+3')" }
+        ]
+    },
+    {
+        date: "2026-06-20T10:00:00Z", group: "Group F",
+        team1: "Netherlands", team2: "Sweden", score1: 5, score2: 1,
+        stadium: "NRG Stadium", attendance: "68,777",
+        events1: [
+            { type: "goal", text: "B Brobbey (5', 17')" },
+            { type: "goal", text: "C Gakpo (47', 54')" },
+            { type: "goal", text: "C Summerville (89')" }
+        ],
+        events2: [
+            { type: "goal", text: "A Elanga (59')" }
+        ]
+    },
+    {
+        date: "2026-06-20T13:00:00Z", group: "Group E",
+        team1: "Germany", team2: "Ivory Coast", score1: 2, score2: 1,
+        stadium: "Toronto Stadium", attendance: "43,036",
+        events1: [
+            { type: "goal", text: "D Undav (68', 90+4')" }
+        ],
+        events2: [
+            { type: "goal", text: "F Kessié (30')" }
+        ]
+    },
+    {
+        date: "2026-06-20T17:00:00Z", group: "Group E",
+        team1: "Ecuador", team2: "Curacao", score1: 0, score2: 0,
+        stadium: "GEHA Field at Arrowhead Stadium", attendance: "68,598",
+        events1: [],
+        events2: []
+    },
+    {
+        date: "2026-06-20T21:00:00Z", group: "Group F",
+        team1: "Tunisia", team2: "Japan", score1: 0, score2: 4,
+        stadium: "Estadio BBVA", attendance: "51,243",
+        events1: [],
+        events2: [
+            { type: "goal", text: "D Kamada (4')" },
+            { type: "goal", text: "A Ueda (31', 83')" },
+            { type: "goal", text: "J Ito (69')" }
+        ]
+    },
+    {
+        date: "2026-06-21T09:00:00Z", group: "Group H",
+        team1: "Spain", team2: "Saudi Arabia", score1: 4, score2: 0,
+        stadium: "Mercedes-Benz Stadium", attendance: "68,239",
+        events1: [
+            { type: "goal", text: "L Yamal (10')" },
+            { type: "goal", text: "M Oyarzabal (21', 24')" },
+            { type: "goal", text: "H Altambakti (49' OG)" }
+        ],
+        events2: []
+    },
+    {
+        date: "2026-06-21T12:00:00Z", group: "Group G",
+        team1: "Belgium", team2: "Iran", score1: 0, score2: 0,
+        stadium: "SoFi Stadium", attendance: "70,317",
+        events1: [
+            { type: "red", text: "N Ngoy (66')" }
+        ],
+        events2: []
+    },
+    {
+        date: "2026-06-21T15:00:00Z", group: "Group H",
+        team1: "Uruguay", team2: "Cape Verde", score1: 2, score2: 2,
+        stadium: "Hard Rock Stadium", attendance: "64,003",
+        events1: [
+            { type: "goal", text: "M Araújo (44')" },
+            { type: "goal", text: "A Canobbio (45+6')" }
+        ],
+        events2: [
+            { type: "goal", text: "K Gonçalves Pereira de Pina (21')" },
+            { type: "goal", text: "H Oliveira Alves Varela (61')" }
+        ]
+    },
+    {
+        date: "2026-06-21T18:00:00Z", group: "Group G",
+        team1: "New Zealand", team2: "Egypt", score1: 1, score2: 3,
+        stadium: "BC Place", attendance: "52,497",
+        events1: [
+            { type: "goal", text: "F Surman (15')" }
+        ],
+        events2: [
+            { type: "goal", text: "M Zaki Abdelraouf (58')" },
+            { type: "goal", text: "M Salah (67')" },
+            { type: "goal", text: "Trezeguet (82')" }
+        ]
+    },
+    {
+        date: "2026-06-22T10:00:00Z", group: "Group J",
+        team1: "Argentina", team2: "Austria", score1: 2, score2: 0,
+        stadium: "Dallas Stadium", attendance: "70,649",
+        events1: [
+            { type: "goal", text: "L Messi (38', 90+5')" }
+        ],
+        events2: []
+    },
+    {
+        date: "2026-06-22T14:00:00Z", group: "Group I",
+        team1: "France", team2: "Iraq", score1: 3, score2: 0,
+        stadium: "Philadelphia Stadium", attendance: "68,324",
+        events1: [
+            { type: "goal", text: "K Mbappe (14', 54')" },
+            { type: "goal", text: "O Dembélé (66')" }
+        ],
+        events2: []
+    },
+    {
+        date: "2026-06-22T17:00:00Z", group: "Group I",
+        team1: "Norway", team2: "Senegal", score1: 3, score2: 2,
+        stadium: "MetLife Stadium", attendance: "80,663",
+        events1: [
+            { type: "goal", text: "M Pedersen (43')" },
+            { type: "goal", text: "E Haaland (48', 58')" }
+        ],
+        events2: [
+            { type: "goal", text: "I Sarr (53', 90+3')" }
+        ]
+    },
+    {
+        date: "2026-06-22T20:00:00Z", group: "Group J",
+        team1: "Jordan", team2: "Algeria", score1: 1, score2: 2,
+        stadium: "Levi's Stadium", attendance: "68,371",
+        events1: [
+            { type: "goal", text: "N Al Rashdan (36')" }
+        ],
+        events2: [
+            { type: "goal", text: "A Benbouali (69')" },
+            { type: "goal", text: "A Gouiri (82')" }
+        ]
+    },
+    {
+        date: "2026-06-23T10:00:00Z", group: "Group K",
+        team1: "Portugal", team2: "Uzbekistan", score1: 5, score2: 0,
+        stadium: "NRG Stadium", attendance: "68,777",
+        events1: [
+            { type: "goal", text: "C Ronaldo (6', 39')" },
+            { type: "goal", text: "N Mendes (17')" },
+            { type: "goal", text: "A Nematov (60' OG)" },
+            { type: "goal", text: "R Leão (87')" }
+        ],
+        events2: []
+    },
+    {
+        date: "2026-06-23T13:00:00Z", group: "Group L",
+        team1: "England", team2: "Ghana", score1: 0, score2: 0,
+        stadium: "Boston Stadium", attendance: "63,983",
+        events1: [],
+        events2: []
+    },
+    {
+        date: "2026-06-23T16:00:00Z", group: "Group L",
+        team1: "Panama", team2: "Croatia", score1: 0, score2: 1,
+        stadium: "Toronto Stadium", attendance: "43,036",
+        events1: [],
+        events2: [
+            { type: "goal", text: "A Budimir (54')" }
+        ]
+    },
+    {
+        date: "2026-06-23T19:00:00Z", group: "Group K",
+        team1: "Colombia", team2: "DR Congo", score1: 1, score2: 0,
+        stadium: "Estadio Chivas", attendance: "45,358",
+        events1: [
+            { type: "goal", text: "D Muñoz (76')" }
+        ],
+        events2: []
+    },
+    {
+        date: "2026-06-24T12:00:00Z", group: "Group B",
+        team1: "Bosnia and Herzegovina", team2: "Qatar", score1: 3, score2: 1,
+        stadium: "Lumen Field", attendance: "66,925",
+        events1: [
+            { type: "goal", text: "K Alajbegovic (29')" },
+            { type: "goal", text: "M Abunad (34' OG)" },
+            { type: "goal", text: "E Mahmic (80')" }
+        ],
+        events2: [
+            { type: "goal", text: "H Al Haidous (42')" }
+        ]
+    },
+    {
+        date: "2026-06-24T12:00:00Z", group: "Group B",
+        team1: "Switzerland", team2: "Canada", score1: 2, score2: 1,
+        stadium: "BC Place", attendance: "52,497",
+        events1: [
+            { type: "goal", text: "R Vargas (46')" },
+            { type: "goal", text: "J Manzambi (57')" }
+        ],
+        events2: [
+            { type: "goal", text: "P David (76')" }
+        ]
+    },
+    {
+        date: "2026-06-24T15:00:00Z", group: "Group C",
+        team1: "Morocco", team2: "Haiti", score1: 4, score2: 2,
+        stadium: "Mercedes-Benz Stadium", attendance: "68,239",
+        events1: [
+            { type: "goal", text: "A Hakimi (39')" },
+            { type: "goal", text: "I Saibari Ben El Basra (45+1')" },
+            { type: "goal", text: "S Rahimi (78')" },
+            { type: "goal", text: "G Yassine (89')" }
+        ],
+        events2: [
+            { type: "goal", text: "Y Bounou (10' OG)" },
+            { type: "goal", text: "W Isidor (43')" }
+        ]
+    },
+    {
+        date: "2026-06-24T15:00:00Z", group: "Group C",
+        team1: "Scotland", team2: "Brazil", score1: 0, score2: 3,
+        stadium: "Hard Rock Stadium", attendance: "64,478",
+        events1: [],
+        events2: [
+            { type: "goal", text: "Vinicius Júnior (7', 45+3')" },
+            { type: "goal", text: "M Cunha (60')" }
+        ]
+    },
+    {
+        date: "2026-06-24T18:00:00Z", group: "Group A",
+        team1: "Czech Republic", team2: "Mexico", score1: 0, score2: 3,
+        stadium: "Azteca Stadium", attendance: "80,824",
+        events1: [],
+        events2: [
+            { type: "goal", text: "M Chávez (55')" },
+            { type: "goal", text: "J Quiñones (61')" },
+            { type: "goal", text: "Á Fidalgo Fernández (90+4')" }
+        ]
+    },
+    {
+        date: "2026-06-24T18:00:00Z", group: "Group A",
+        team1: "South Africa", team2: "Korea Republic", score1: 1, score2: 0,
+        stadium: "Estadio BBVA", attendance: "51,243",
+        events1: [
+            { type: "goal", text: "T Maseko (63')" }
+        ],
+        events2: []
+    },
+    {
+        date: "2026-06-25T13:00:00Z", group: "Group E",
+        team1: "Curacao", team2: "Ivory Coast", score1: 0, score2: 2,
+        stadium: "Philadelphia Stadium", attendance: "68,324",
+        events1: [],
+        events2: [
+            { type: "goal", text: "N Pepe (7', 64')" }
+        ]
+    },
+    {
+        date: "2026-06-25T13:00:00Z", group: "Group E",
+        team1: "Ecuador", team2: "Germany", score1: 2, score2: 1,
+        stadium: "MetLife Stadium", attendance: "80,663",
+        events1: [
+            { type: "goal", text: "N Angulo (9')" },
+            { type: "goal", text: "G Plata (77')" }
+        ],
+        events2: [
+            { type: "goal", text: "L Sané (2')" }
+        ]
+    },
+    {
+        date: "2026-06-25T16:00:00Z", group: "Group F",
+        team1: "Japan", team2: "Sweden", score1: 1, score2: 1,
+        stadium: "Dallas Stadium", attendance: "70,137",
+        events1: [
+            { type: "goal", text: "D Maeda (56')" }
+        ],
+        events2: [
+            { type: "regular", text: "A Elanga (62')" }
+        ]
+    },
+    {
+        date: "2026-06-25T16:00:00Z", group: "Group F",
+        team1: "Tunisia", team2: "Netherlands", score1: 1, score2: 3,
+        stadium: "GEHA Field at Arrowhead Stadium", attendance: "68,391",
+        events1: [
+            { type: "goal", text: "H Mastouri (54')" }
+        ],
+        events2: [
+            { type: "goal", text: "E Skhiri (3' OG)" },
+            { type: "goal", text: "B Brobbey (7')" },
+            { type: "goal", text: "J van Hecke (62')" }
+        ]
+    },
+    {
+        date: "2026-06-25T19:00:00Z", group: "Group D",
+        team1: "Paraguay", team2: "Australia", score1: 0, score2: 0,
+        stadium: "Levi's Stadium", attendance: "68,827",
+        events1: [],
+        events2: []
+    },
+    {
+        date: "2026-06-25T19:00:00Z", group: "Group D",
+        team1: "Turkey", team2: "United States of America", score1: 3, score2: 2,
+        stadium: "SoFi Stadium", attendance: "70,492",
+        events1: [
+            { type: "goal", text: "A Guler (10')" },
+            { type: "goal", text: "B Yilmaz (31')" },
+            { type: "goal", text: "K Ayhan (90+8')" }
+        ],
+        events2: [
+            { type: "goal", text: "A Trusty (3')" },
+            { type: "goal", text: "S Berhalter (49')" }
+        ]
+    },
+    {
+        date: "2026-06-26T20:00:00Z", group: "Group I",
+        team1: "Norway", team2: "France", score1: 1, score2: 4,
+        stadium: "Boston Stadium", attendance: "64,146",
+        events1: [
+            { type: "goal", text: "T Aasgaard (21')" }
+        ],
+        events2: [
+            { type: "goal", text: "O Dembélé (7', 20', 32')" },
+            { type: "goal", text: "D Doué (90+4')" }
+        ]
+    },
+    {
+        date: "2026-06-26T20:00:00Z", group: "Group I",
+        team1: "Senegal", team2: "Iraq", score1: 5, score2: 0,
+        stadium: "Toronto Stadium", attendance: "43,036",
+        events1: [
+            { type: "goal", text: "M Diarra (4')" },
+            { type: "goal", text: "I Sarr (56')" },
+            { type: "goal", text: "P Gueye (59', 71')" },
+            { type: "goal", text: "I Ndiaye (82')" }
+        ],
+        events2: [
+            { type: "red", text: "R Sulaka (13')" }
+        ]
+    },
+    {
+        date: "2026-06-27T01:00:00Z", group: "Group H",
+        team1: "Cape Verde", team2: "Saudi Arabia", score1: 0, score2: 0,
+        stadium: "NRG Stadium", attendance: "68,278",
+        events1: [],
+        events2: []
+    },
+    {
+        date: "2026-06-27T01:00:00Z", group: "Group H",
+        team1: "Uruguay", team2: "Spain", score1: 0, score2: 1,
+        stadium: "Estadio Chivas", attendance: "45,065",
+        events1: [
+            { type: "red", text: "A Canobbio (90+5')" }
+        ],
+        events2: [
+            { type: "goal", text: "A Baena (42')" }
+        ]
+    },
+    {
+        date: "2026-06-27T04:00:00Z", group: "Group G",
+        team1: "Egypt", team2: "Iran", score1: 1, score2: 1,
+        stadium: "Lumen Field", attendance: "66,925",
+        events1: [
+            { type: "goal", text: "M Hassan (5')" }
+        ],
+        events2: [
+            { type: "goal", text: "R Rezaeian (14')" }
+        ]
+    },
+    {
+        date: "2026-06-27T04:00:00Z", group: "Group G",
+        team1: "New Zealand", team2: "Belgium", score1: 1, score2: 5,
+        stadium: "BC Place", attendance: "52,497",
+        events1: [{ type: "goal", text: "E Just (84')" }],
+        events2: [
+            { type: "goal", text: "L Trossard (28', 50')" },
+            { type: "goal", text: "K De Bruyne (66')" },
+            { type: "raw", text: "R Lukaku (86')" },
+            { type: "goal", text: "A Saelemaekers (90+4')" }
+        ]
+    }
+];
 
 // Standings raw data mapping
         const standingsData = [
@@ -881,96 +1252,97 @@
              * GROUP 3RDS                    *
              * ========================================== */
             { group: "Group 3rds", teams: [
-                { name: "Scotland", p: 2, w: 1, d: 0, l: 1, f: 1, a: 1, gd: "0", pts: 3 },
-                { name: "Paraguay", p: 2, w: 1, d: 0, l: 1, f: 2, a: 4, gd: "-2", pts: 3 },
-                { name: "Netherlands", p: 1, w: 0, d: 1, l: 0, f: 2, a: 2, gd: "0", pts: 1 },
-                { name: "Belgium", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
-                { name: "Portugal", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
-                { name: "Spain", p: 1, w: 0, d: 1, l: 0, f: 0, a: 0, gd: "0", pts: 1 },
-                { name: "Czech Republic", p: 2, w: 0, d: 1, l: 1, f: 2, a: 3, gd: "-1", pts: 1 },
-                { name: "Bosnia and Herzegovina", p: 2, w: 0, d: 1, l: 1, f: 2, a: 5, gd: "-3", pts: 1 },
-                { name: "Ecuador", p: 1, w: 0, d: 0, l: 1, f: 0, a: 1, gd: "-1", pts: 0 },
-                { name: "Panama", p: 1, w: 0, d: 0, l: 1, f: 0, a: 1, gd: "-1", pts: 0 },
-                { name: "Jordan", p: 1, w: 0, d: 0, l: 1, f: 1, a: 3, gd: "-2", pts: 0 },
-                { name: "Senegal", p: 1, w: 0, d: 0, l: 1, f: 1, a: 3, gd: "-2", pts: 0 }
+                { name: "Sweden", p: 3, w: 1, d: 1, l: 1, f: 7, a: 7, gd: "0", pts: 4 },
+                { name: "Ecuador", p: 3, w: 1, d: 1, l: 1, f: 2, a: 2, gd: "0", pts: 4 },
+                { name: "Bosnia and Herzegovina", p: 3, w: 1, d: 1, l: 1, f: 5, a: 6, gd: "-1", pts: 4 },
+                { name: "Paraguay", p: 3, w: 1, d: 1, l: 1, f: 2, a: 4, gd: "-2", pts: 4 },
+                { name: "Senegal", p: 3, w: 1, d: 0, l: 2, f: 8, a: 6, gd: "+2", pts: 3 },
+                { name: "Iran", p: 3, w: 0, d: 3, l: 0, f: 3, a: 3, gd: "0", pts: 3 },
+                { name: "Croatia", p: 2, w: 1, d: 0, l: 1, f: 3, a: 4, gd: "-1", pts: 3 },
+                { name: "Korea Republic", p: 3, w: 1, d: 0, l: 2, f: 2, a: 3, gd: "-1", pts: 3 },
+                { name: "Algeria", p: 2, w: 1, d: 0, l: 1, f: 2, a: 4, gd: "-2", pts: 3 },
+                { name: "Scotland", p: 3, w: 1, d: 0, l: 2, f: 1, a: 4, gd: "-3", pts: 3 },
+                { name: "Uruguay", p: 3, w: 0, d: 2, l: 1, f: 3, a: 4, gd: "-1", pts: 2 },
+                { name: "DR Congo", p: 2, w: 0, d: 1, l: 1, f: 1, a: 2, gd: "-1", pts: 1 }
             ]},
 
             /* ========================================== *
              * PERINGKAT KUMPULAN            *
              * ========================================== */
             { group: "Group A", teams: [
-                { name: "Mexico", p: 2, w: 2, d: 0, l: 0, f: 3, a: 0, gd: "+3", pts: 6 },
-                { name: "Korea Republic", p: 2, w: 1, d: 0, l: 1, f: 2, a: 2, gd: "0", pts: 3 },
-                { name: "Czech Republic", p: 2, w: 0, d: 1, l: 1, f: 2, a: 3, gd: "-1", pts: 1 },
-                { name: "South Africa", p: 2, w: 0, d: 1, l: 1, f: 1, a: 3, gd: "-2", pts: 1 }
+                { name: "Mexico", p: 3, w: 3, d: 0, l: 0, f: 6, a: 0, gd: "+6", pts: 9 },
+                { name: "South Africa", p: 3, w: 1, d: 1, l: 1, f: 2, a: 3, gd: "-1", pts: 4 },
+                { name: "Korea Republic", p: 3, w: 1, d: 0, l: 2, f: 2, a: 3, gd: "-1", pts: 3 },
+                { name: "Czech Republic", p: 3, w: 0, d: 1, l: 2, f: 2, a: 6, gd: "-4", pts: 1 }
             ]},
             { group: "Group B", teams: [
-                { name: "Canada", p: 2, w: 1, d: 1, l: 0, f: 7, a: 1, gd: "+6", pts: 4 },
-                { name: "Switzerland", p: 2, w: 1, d: 1, l: 0, f: 5, a: 2, gd: "+3", pts: 4 },
-                { name: "Bosnia and Herzegovina", p: 2, w: 0, d: 1, l: 1, f: 2, a: 5, gd: "-3", pts: 1 },
-                { name: "Qatar", p: 2, w: 0, d: 1, l: 1, f: 1, a: 7, gd: "-6", pts: 1 }
+                { name: "Switzerland", p: 3, w: 2, d: 1, l: 0, f: 7, a: 3, gd: "+4", pts: 7 },
+                { name: "Canada", p: 3, w: 1, d: 1, l: 1, f: 8, a: 3, gd: "+5", pts: 4 },
+                { name: "Bosnia and Herzegovina", p: 3, w: 1, d: 1, l: 1, f: 5, a: 6, gd: "-1", pts: 4 },
+                { name: "Qatar", p: 3, w: 0, d: 1, l: 2, f: 2, a: 10, gd: "-8", pts: 1 }
             ]},
             { group: "Group C", teams: [
-                { name: "Brazil", p: 2, w: 1, d: 1, l: 0, f: 4, a: 1, gd: "+3", pts: 4 },
-                { name: "Morocco", p: 2, w: 1, d: 1, l: 0, f: 2, a: 1, gd: "+1", pts: 4 },
-                { name: "Scotland", p: 2, w: 1, d: 0, l: 1, f: 1, a: 1, gd: "0", pts: 3 },
-                { name: "Haiti", p: 2, w: 0, d: 0, l: 2, f: 0, a: 4, gd: "-4", pts: 0 }
+                { name: "Brazil", p: 3, w: 2, d: 1, l: 0, f: 7, a: 1, gd: "+6", pts: 7 },
+                { name: "Morocco", p: 3, w: 2, d: 1, l: 0, f: 6, a: 3, gd: "+3", pts: 7 },
+                { name: "Scotland", p: 3, w: 1, d: 0, l: 2, f: 1, a: 4, gd: "-3", pts: 3 },
+                { name: "Haiti", p: 3, w: 0, d: 0, l: 3, f: 2, a: 8, gd: "-6", pts: 0 }
             ]},
             { group: "Group D", teams: [
-                { name: "United States of America", p: 2, w: 2, d: 0, l: 0, f: 6, a: 1, gd: "+5", pts: 6 },
-                { name: "Australia", p: 2, w: 1, d: 0, l: 1, f: 2, a: 2, gd: "0", pts: 3 },
-                { name: "Paraguay", p: 2, w: 1, d: 0, l: 1, f: 2, a: 4, gd: "-2", pts: 3 },
-                { name: "Turkey", p: 2, w: 0, d: 0, l: 2, f: 0, a: 3, gd: "-3", pts: 0 }
+                { name: "United States of America", p: 3, w: 2, d: 0, l: 1, f: 8, a: 4, gd: "+4", pts: 6 },
+                { name: "Australia", p: 3, w: 1, d: 1, l: 1, f: 2, a: 2, gd: "0", pts: 4 },
+                { name: "Paraguay", p: 3, w: 1, d: 1, l: 1, f: 2, a: 4, gd: "-2", pts: 4 },
+                { name: "Turkey", p: 3, w: 1, d: 0, l: 2, f: 3, a: 5, gd: "-2", pts: 3 }
             ]},
             { group: "Group E", teams: [
-                { name: "Germany", p: 1, w: 1, d: 0, l: 0, f: 7, a: 1, gd: "+6", pts: 3 },
-                { name: "Ivory Coast", p: 1, w: 1, d: 0, l: 0, f: 1, a: 0, gd: "+1", pts: 3 },
-                { name: "Ecuador", p: 1, w: 0, d: 0, l: 1, f: 0, a: 1, gd: "-1", pts: 0 },
-                { name: "Curacao", p: 1, w: 0, d: 0, l: 1, f: 1, a: 7, gd: "-6", pts: 0 }
+                { name: "Germany", p: 3, w: 2, d: 0, l: 1, f: 10, a: 4, gd: "+6", pts: 6 },
+                { name: "Ivory Coast", p: 3, w: 2, d: 0, l: 1, f: 4, a: 2, gd: "+2", pts: 6 },
+                { name: "Ecuador", p: 3, w: 1, d: 1, l: 1, f: 2, a: 2, gd: "0", pts: 4 },
+                { name: "Curacao", p: 3, w: 0, d: 1, l: 2, f: 1, a: 9, gd: "-8", pts: 1 }
             ]},
             { group: "Group F", teams: [
-                { name: "Sweden", p: 1, w: 1, d: 0, l: 0, f: 5, a: 1, gd: "+4", pts: 3 },
-                { name: "Japan", p: 1, w: 0, d: 1, l: 0, f: 2, a: 2, gd: "0", pts: 1 },
-                { name: "Netherlands", p: 1, w: 0, d: 1, l: 0, f: 2, a: 2, gd: "0", pts: 1 },
-                { name: "Tunisia", p: 1, w: 0, d: 0, l: 1, f: 1, a: 5, gd: "-4", pts: 0 }
+                { name: "Netherlands", p: 3, w: 2, d: 1, l: 0, f: 10, a: 4, gd: "+6", pts: 7 },
+                { name: "Japan", p: 3, w: 1, d: 2, l: 0, f: 7, a: 3, gd: "+4", pts: 5 },
+                { name: "Sweden", p: 3, w: 1, d: 1, l: 1, f: 7, a: 7, gd: "0", pts: 4 },
+                { name: "Tunisia", p: 3, w: 0, d: 0, l: 3, f: 2, a: 12, gd: "-10", pts: 0 }
             ]},
             { group: "Group G", teams: [
-                { name: "New Zealand", p: 1, w: 0, d: 1, l: 0, f: 2, a: 2, gd: "0", pts: 1 },
-                { name: "Iran", p: 1, w: 0, d: 1, l: 0, f: 2, a: 2, gd: "0", pts: 1 },
-                { name: "Belgium", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
-                { name: "Egypt", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 }
+                { name: "Belgium", p: 3, w: 1, d: 2, l: 0, f: 6, a: 2, gd: "+4", pts: 5 },
+                { name: "Egypt", p: 3, w: 1, d: 2, l: 0, f: 5, a: 3, gd: "+2", pts: 5 },
+                { name: "Iran", p: 3, w: 0, d: 3, l: 0, f: 3, a: 3, gd: "0", pts: 3 },
+                { name: "New Zealand", p: 3, w: 0, d: 1, l: 2, f: 4, a: 10, gd: "-6", pts: 1 }
             ]},
             { group: "Group H", teams: [
-                { name: "Uruguay", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
-                { name: "Saudi Arabia", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
-                { name: "Spain", p: 1, w: 0, d: 1, l: 0, f: 0, a: 0, gd: "0", pts: 1 },
-                { name: "Cape Verde", p: 1, w: 0, d: 1, l: 0, f: 0, a: 0, gd: "0", pts: 1 }
+                { name: "Spain", p: 3, w: 2, d: 1, l: 0, f: 5, a: 0, gd: "+5", pts: 7 },
+                { name: "Cape Verde", p: 3, w: 0, d: 3, l: 0, f: 2, a: 2, gd: "0", pts: 3 },
+                { name: "Uruguay", p: 3, w: 0, d: 2, l: 1, f: 3, a: 4, gd: "-1", pts: 2 },
+                { name: "Saudi Arabia", p: 3, w: 0, d: 2, l: 1, f: 1, a: 5, gd: "-4", pts: 2 }
             ]},
             { group: "Group I", teams: [
-                { name: "Norway", p: 1, w: 1, d: 0, l: 0, f: 4, a: 1, gd: "+3", pts: 3 },
-                { name: "France", p: 1, w: 1, d: 0, l: 0, f: 3, a: 1, gd: "+2", pts: 3 },
-                { name: "Senegal", p: 1, w: 0, d: 0, l: 1, f: 1, a: 3, gd: "-2", pts: 0 },
-                { name: "Iraq", p: 1, w: 0, d: 0, l: 1, f: 1, a: 4, gd: "-3", pts: 0 }
+                { name: "France", p: 3, w: 3, d: 0, l: 0, f: 10, a: 2, gd: "+8", pts: 9 },
+                { name: "Norway", p: 3, w: 2, d: 0, l: 1, f: 8, a: 7, gd: "+1", pts: 6 },
+                { name: "Senegal", p: 3, w: 1, d: 0, l: 2, f: 8, a: 6, gd: "+2", pts: 3 },
+                { name: "Iraq", p: 3, w: 0, d: 0, l: 3, f: 1, a: 12, gd: "-11", pts: 0 }
             ]},
             { group: "Group J", teams: [
-                { name: "Argentina", p: 1, w: 1, d: 0, l: 0, f: 3, a: 0, gd: "+3", pts: 3 },
-                { name: "Austria", p: 1, w: 1, d: 0, l: 0, f: 3, a: 1, gd: "+2", pts: 3 },
-                { name: "Jordan", p: 1, w: 0, d: 0, l: 1, f: 1, a: 3, gd: "-2", pts: 0 },
-                { name: "Algeria", p: 1, w: 0, d: 0, l: 1, f: 0, a: 3, gd: "-3", pts: 0 }
+                { name: "Argentina", p: 2, w: 2, d: 0, l: 0, f: 5, a: 0, gd: "+5", pts: 6 },
+                { name: "Austria", p: 2, w: 1, d: 0, l: 1, f: 3, a: 3, gd: "0", pts: 3 },
+                { name: "Algeria", p: 2, w: 1, d: 0, l: 1, f: 2, a: 4, gd: "-2", pts: 3 },
+                { name: "Jordan", p: 2, w: 0, d: 0, l: 2, f: 2, a: 5, gd: "-3", pts: 0 }
             ]},
             { group: "Group K", teams: [
-                { name: "Colombia", p: 1, w: 1, d: 0, l: 0, f: 3, a: 1, gd: "+2", pts: 3 },
-                { name: "DR Congo", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
-                { name: "Portugal", p: 1, w: 0, d: 1, l: 0, f: 1, a: 1, gd: "0", pts: 1 },
-                { name: "Uzbekistan", p: 1, w: 0, d: 0, l: 1, f: 1, a: 3, gd: "-2", pts: 0 }
+                { name: "Colombia", p: 2, w: 2, d: 0, l: 0, f: 4, a: 1, gd: "+3", pts: 6 },
+                { name: "Portugal", p: 2, w: 1, d: 1, l: 0, f: 6, a: 1, gd: "+5", pts: 4 },
+                { name: "DR Congo", p: 2, w: 0, d: 1, l: 1, f: 1, a: 2, gd: "-1", pts: 1 },
+                { name: "Uzbekistan", p: 2, w: 0, d: 0, l: 2, f: 1, a: 8, gd: "-7", pts: 0 }
             ]},
             { group: "Group L", teams: [
-                { name: "England", p: 1, w: 1, d: 0, l: 0, f: 4, a: 2, gd: "+2", pts: 3 },
-                { name: "Ghana", p: 1, w: 1, d: 0, l: 0, f: 1, a: 0, gd: "+1", pts: 3 },
-                { name: "Panama", p: 1, w: 0, d: 0, l: 1, f: 0, a: 1, gd: "-1", pts: 0 },
-                { name: "Croatia", p: 1, w: 0, d: 0, l: 1, f: 2, a: 4, gd: "-2", pts: 0 }
+                { name: "England", p: 2, w: 1, d: 1, l: 0, f: 4, a: 2, gd: "+2", pts: 4 },
+                { name: "Ghana", p: 2, w: 1, d: 1, l: 0, f: 1, a: 0, gd: "+1", pts: 4 },
+                { name: "Croatia", p: 2, w: 1, d: 0, l: 1, f: 3, a: 4, gd: "-1", pts: 3 },
+                { name: "Panama", p: 2, w: 0, d: 0, l: 2, f: 0, a: 2, gd: "-2", pts: 0 }
             ]}
         ];
+
         
         function renderSchedule() {
             const container = document.getElementById('schedule-container');
