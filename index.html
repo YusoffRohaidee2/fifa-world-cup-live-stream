@@ -455,7 +455,7 @@
     </div>
 
     <div id="page-standings" class="page-content">
-        <span class="standings-update-time"><i class="fa-regular fa-clock"></i> <span data-en="Last updated: 27 June, 6:00pm" data-my="Kemaskini terakhir: 27 Jun, 6:00 petang">Last updated: 27 June, 6:00pm</span></span>
+        <span class="standings-update-time"><i class="fa-regular fa-clock"></i> <span data-en="Last updated: 28 June, 7:28am" data-my="Kemaskini terakhir: 28 Jun, 7:28 pagi">Last updated: 28 June, 7:28am</span></span>
         <div class="standings-grid" id="standings-container"></div>
     </div>
 
@@ -495,12 +495,6 @@
     <script>
         // Schedule data in GMT+0
         const scheduleData = [
-            { date: "2026-06-27T22:00:00Z", team1: "Croatia", team2: "Ghana" },
-            { date: "2026-06-27T22:00:00Z", team1: "Panama", team2: "England" },
-            { date: "2026-06-28T00:30:00Z", team1: "Colombia", team2: "Portugal" },
-            { date: "2026-06-28T00:30:00Z", team1: "DR Congo", team2: "Uzbekistan" },
-            { date: "2026-06-28T03:00:00Z", team1: "Algeria", team2: "Austria" },
-            { date: "2026-06-28T03:00:00Z", team1: "Jordan", team2: "Argentina" },
             { date: "2026-06-28T20:00:00Z", team1: "South Africa", team2: "Canada" },
             { date: "2026-06-29T18:00:00Z", team1: "Brazil", team2: "Japan" },
             { date: "2026-06-29T21:30:00Z", team1: "Germany", team2: "Paraguay" },
@@ -1274,27 +1268,94 @@ const resultsData = [
             { type: "raw", text: "R Lukaku (86')" },
             { type: "goal", text: "A Saelemaekers (90+4')" }
         ]
+    },
+    {
+        date: "2026-06-27T22:00:00Z", group: "Group L",
+        team1: "Croatia", team2: "Ghana", score1: 2, score2: 1,
+        stadium: "Philadelphia Stadium", attendance: "68,324",
+        events1: [
+            { type: "goal", text: "P Sucic (31')" },
+            { type: "goal", text: "N Vlasic (83')" }
+        ],
+        events2: [
+            { type: "goal", text: "D Luckassen (73')" }
+        ]
+    },
+    {
+        date: "2026-06-27T22:00:00Z", group: "Group L",
+        team1: "Panama", team2: "England", score1: 0, score2: 2,
+        stadium: "MetLife Stadium", attendance: "80,663",
+        events1: [],
+        events2: [
+            { type: "goal", text: "J Bellingham (62')" },
+            { type: "goal", text: "H Kane (67')" }
+        ]
+    },
+    {
+        date: "2026-06-28T00:30:00Z", group: "Group K",
+        team1: "Colombia", team2: "Portugal", score1: 0, score2: 0,
+        stadium: "Hard Rock Stadium", attendance: "64,478",
+        events1: [],
+        events2: []
+    },
+    {
+        date: "2026-06-28T00:30:00Z", group: "Group K",
+        team1: "DR Congo", team2: "Uzbekistan", score1: 3, score2: 1,
+        stadium: "Mercedes-Benz Stadium", attendance: "68,239",
+        events1: [
+            { type: "goal", text: "Y Wissa (68' Pen, 90+1')" },
+            { type: "goal", text: "F Mayele (78')" }
+        ],
+        events2: [
+            { type: "goal", text: "E Shomurodov (10')" }
+        ]
+    },
+    {
+        date: "2026-06-28T03:00:00Z", group: "Group J",
+        team1: "Algeria", team2: "Austria", score1: 3, score2: 3,
+        stadium: "GEHA Field at Arrowhead Stadium", attendance: "69,045",
+        events1: [
+            { type: "goal", text: "R Belghali (45')" },
+            { type: "goal", text: "R Mahrez (60', 90+3')" }
+        ],
+        events2: [
+            { type: "goal", text: "M Arnautovic (28')" },
+            { type: "goal", text: "M Sabitzer (55')" },
+            { type: "goal", text: "S Kalajdzic (90+6')" }
+        ]
+    },
+    {
+        date: "2026-06-28T03:00:00Z", group: "Group J",
+        team1: "Jordan", team2: "Argentina", score1: 1, score2: 3,
+        stadium: "Dallas Stadium", attendance: "70,649",
+        events1: [
+            { type: "goal", text: "M Al-Taamari (55')" }
+        ],
+        events2: [
+            { type: "goal", text: "G Lo Celso (19')" },
+            { type: "goal", text: "L Martínez (31' Pen)" },
+            { type: "goal", text: "L Messi (80')" }
+        ]
     }
 ];
-
 // Standings raw data mapping
         const standingsData = [
             /* ========================================== *
              * GROUP 3RDS                    *
              * ========================================== */
             { group: "Group 3rds", teams: [
+                { name: "DR Congo", p: 3, w: 1, d: 1, l: 1, f: 4, a: 3, gd: "+1", pts: 4 },
                 { name: "Sweden", p: 3, w: 1, d: 1, l: 1, f: 7, a: 7, gd: "0", pts: 4 },
+                { name: "Ghana", p: 3, w: 1, d: 1, l: 1, f: 2, a: 2, gd: "0", pts: 4 },
                 { name: "Ecuador", p: 3, w: 1, d: 1, l: 1, f: 2, a: 2, gd: "0", pts: 4 },
                 { name: "Bosnia and Herzegovina", p: 3, w: 1, d: 1, l: 1, f: 5, a: 6, gd: "-1", pts: 4 },
+                { name: "Algeria", p: 3, w: 1, d: 1, l: 1, f: 5, a: 7, gd: "-2", pts: 4 },
                 { name: "Paraguay", p: 3, w: 1, d: 1, l: 1, f: 2, a: 4, gd: "-2", pts: 4 },
                 { name: "Senegal", p: 3, w: 1, d: 0, l: 2, f: 8, a: 6, gd: "+2", pts: 3 },
                 { name: "Iran", p: 3, w: 0, d: 3, l: 0, f: 3, a: 3, gd: "0", pts: 3 },
-                { name: "Croatia", p: 2, w: 1, d: 0, l: 1, f: 3, a: 4, gd: "-1", pts: 3 },
                 { name: "Korea Republic", p: 3, w: 1, d: 0, l: 2, f: 2, a: 3, gd: "-1", pts: 3 },
-                { name: "Algeria", p: 2, w: 1, d: 0, l: 1, f: 2, a: 4, gd: "-2", pts: 3 },
                 { name: "Scotland", p: 3, w: 1, d: 0, l: 2, f: 1, a: 4, gd: "-3", pts: 3 },
-                { name: "Uruguay", p: 3, w: 0, d: 2, l: 1, f: 3, a: 4, gd: "-1", pts: 2 },
-                { name: "DR Congo", p: 2, w: 0, d: 1, l: 1, f: 1, a: 2, gd: "-1", pts: 1 }
+                { name: "Uruguay", p: 3, w: 0, d: 2, l: 1, f: 3, a: 4, gd: "-1", pts: 2 }
             ]},
 
             /* ========================================== *
@@ -1355,22 +1416,22 @@ const resultsData = [
                 { name: "Iraq", p: 3, w: 0, d: 0, l: 3, f: 1, a: 12, gd: "-11", pts: 0 }
             ]},
             { group: "Group J", teams: [
-                { name: "Argentina", p: 2, w: 2, d: 0, l: 0, f: 5, a: 0, gd: "+5", pts: 6 },
-                { name: "Austria", p: 2, w: 1, d: 0, l: 1, f: 3, a: 3, gd: "0", pts: 3 },
-                { name: "Algeria", p: 2, w: 1, d: 0, l: 1, f: 2, a: 4, gd: "-2", pts: 3 },
-                { name: "Jordan", p: 2, w: 0, d: 0, l: 2, f: 2, a: 5, gd: "-3", pts: 0 }
+                { name: "Argentina", p: 3, w: 3, d: 0, l: 0, f: 8, a: 1, gd: "+7", pts: 9 },
+                { name: "Austria", p: 3, w: 1, d: 1, l: 1, f: 6, a: 6, gd: "0", pts: 4 },
+                { name: "Algeria", p: 3, w: 1, d: 1, l: 1, f: 5, a: 7, gd: "-2", pts: 4 },
+                { name: "Jordan", p: 3, w: 0, d: 0, l: 3, f: 3, a: 8, gd: "-5", pts: 0 }
             ]},
             { group: "Group K", teams: [
-                { name: "Colombia", p: 2, w: 2, d: 0, l: 0, f: 4, a: 1, gd: "+3", pts: 6 },
-                { name: "Portugal", p: 2, w: 1, d: 1, l: 0, f: 6, a: 1, gd: "+5", pts: 4 },
-                { name: "DR Congo", p: 2, w: 0, d: 1, l: 1, f: 1, a: 2, gd: "-1", pts: 1 },
-                { name: "Uzbekistan", p: 2, w: 0, d: 0, l: 2, f: 1, a: 8, gd: "-7", pts: 0 }
+                { name: "Colombia", p: 3, w: 2, d: 1, l: 0, f: 4, a: 1, gd: "+3", pts: 7 },
+                { name: "Portugal", p: 3, w: 1, d: 2, l: 0, f: 6, a: 1, gd: "+5", pts: 5 },
+                { name: "DR Congo", p: 3, w: 1, d: 1, l: 1, f: 4, a: 3, gd: "+1", pts: 4 },
+                { name: "Uzbekistan", p: 3, w: 0, d: 0, l: 3, f: 2, a: 11, gd: "-9", pts: 0 }
             ]},
             { group: "Group L", teams: [
-                { name: "England", p: 2, w: 1, d: 1, l: 0, f: 4, a: 2, gd: "+2", pts: 4 },
-                { name: "Ghana", p: 2, w: 1, d: 1, l: 0, f: 1, a: 0, gd: "+1", pts: 4 },
-                { name: "Croatia", p: 2, w: 1, d: 0, l: 1, f: 3, a: 4, gd: "-1", pts: 3 },
-                { name: "Panama", p: 2, w: 0, d: 0, l: 2, f: 0, a: 2, gd: "-2", pts: 0 }
+                { name: "England", p: 3, w: 2, d: 1, l: 0, f: 6, a: 2, gd: "+4", pts: 7 },
+                { name: "Croatia", p: 3, w: 2, d: 0, l: 1, f: 5, a: 5, gd: "0", pts: 6 },
+                { name: "Ghana", p: 3, w: 1, d: 1, l: 1, f: 2, a: 2, gd: "0", pts: 4 },
+                { name: "Panama", p: 3, w: 0, d: 0, l: 3, f: 0, a: 4, gd: "-4", pts: 0 }
             ]}
         ];
 
