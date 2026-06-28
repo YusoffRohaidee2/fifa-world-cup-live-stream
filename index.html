@@ -441,11 +441,11 @@
                 <p>Global Feed | Colombia<br><small>Commentary in local language</small></p>
             </div>
             <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
-        </div>
-        
-         </div>
+        </div>  
+</div>
     </div>
 </div>
+</div> <!-- tutup #page-live -->
 
     <div id="page-schedule" class="page-content">
         <div class="schedule-grid" id="schedule-container"></div>
@@ -1489,7 +1489,7 @@ const resultsData = [
                 let events2Html = '';
                 r.events2.forEach(e => {
                     const icon = e.type === 'goal' ? '<i class="fa-solid fa-football goal-icon"></i>' : '<i class="fa-solid fa-square card-red"></i>';
-                    events2Html += `<div class="event-item event-item.rev"><span>${e.text}</span> ${icon}</div>`;
+                    events2Html += `<div class="event-item rev"> <span>${e.text}</span> ${icon}</div>`;
                 });
 
                 const card = document.createElement('div');
