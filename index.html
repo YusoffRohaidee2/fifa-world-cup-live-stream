@@ -1601,6 +1601,39 @@ const resultsData = [
             ]}
         ];
 
+        function renderSchedule() {
+            const container = document.getElementById('schedule-container');
+            container.innerHTML = '';
+            
+            scheduleData.forEach(s => {
+                const localDate = new Date(s.date);
+                const dateOptions = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+                const timeOptions = { hour: 'numeric', minute: '2-digit', hour12: true };
+                
+                const localDateStr = localDate.toLocaleDateString([], dateOptions);
+                const localTimeStr = localDate.toLocaleTimeString([], timeOptions);
+
+                const card = document.createElement('div');
+                card.className = 'schedule-card';
+                card.innerHTML = `
+                    <div class="match-header">
+                        <span class="match-group" data-en="UPCOMING FIXTURE" data-my="PERLAWANAN AKAN DATANG">UPCOMING FIXTURE</span>
+                        <span style="color: var(--accent-orange); font-weight: 600; font-size: 0.85rem;"><i class="fa-regular fa-clock"></i> Scheduled</span>
+                    </div>
+                    <div class="teams">
+                        <div class="team"><i class="fa-solid fa-shield-halved"></i><span>${s.team1}</span></div>
+                        <div class="vs-badge">VS</div>
+                        <div class="team"><i class="fa-solid fa-shield-halved"></i><span>${s.team2}</span></div>
+                    </div>
+                    <div class="match-details-box" style="margin-bottom:0;">
+                        <div class="detail-row"><span><i class="fa-solid fa-calendar" style="margin-right:5px; color:var(--accent-blue);"></i> Tarikh: <strong>${localDateStr}</strong></span></div>
+                        <div class="detail-row"><span><i class="fa-solid fa-clock" style="margin-right:5px; color:var(--accent-blue);"></i> Masa (Sistem): <strong>${localTimeStr}</strong></span></div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
         
 function renderResults() {
     const container = document.getElementById('results-container');
