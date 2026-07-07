@@ -1819,6 +1819,18 @@ function renderResults() {
             el.classList.add('active');
         }
 
+        function streamEmbed(url, title, element, logo) {
+    // Tukar target mengikut ID kontena video / iframe dalam template kau
+    const videoContainer = document.getElementById('video-player-container'); 
+    
+    videoContainer.innerHTML = `
+        <iframe src="${url}" 
+                style="width: 100%; height: 100%; border: none;" 
+                allowfullscreen 
+                allow="autoplay; encrypted-media">
+        </iframe>`;
+}
+
         function streamHLS(url, title, el, logoUrl) { 
             updateUI(title, el, logoUrl); 
             
