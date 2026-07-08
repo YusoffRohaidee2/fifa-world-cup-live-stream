@@ -1823,56 +1823,63 @@ function renderResults() {
 }
 
 function streamHLS(url, title, el, logoUrl) { 
-    updateUI(title, el, logoUrl); 
-    
-    player.reset(); 
-    
-    // 1. Detect type berdasarkan hujung URL
-    let streamType = 'application/x-mpegURL'; // Default HLS
-    let streamKeySystems = null;
-
-    if (url.includes('.mpd')) {
-        streamType = 'application/dash+xml'; // Tukar ke DASH kalau fail .mpd
+    try {
+        updateUI(title, el, logoUrl); 
         
-        // 2. Set ClearKey DRM setup kalau ada parameter clearkey kat URL
-        if (url.includes('drmScheme=clearkey') || url.includes('clearkey')) {
-            // Nota: Kau kena ada key & kid yang betul kat sini!
-            streamKeySystems = {
-                'org.w3.clearkey': {
-                    'audio/mp4': {
-                        'initDataTypes': ['cenc'],
-                        'videoCapabilities': [{ 'contentType': 'video/mp4; codecs="avc1.4d401f"' }]
-                    }
-                }
-            };
+        if (typeof player !== 'undefined' && player.reset) {
+            player.reset(); 
         }
-    } 
-    
-    // 3. Sumbat masuk dalam player src secara dinamik
-    let srcOptions = { 
-        src: url, 
-        type: streamType,
-        withCredentials: false
-    };
+        
+        // 1. Detect type berdasarkan hujung URL
+        let streamType = 'application/x-mpegURL'; // Default HLS
+        let streamKeySystems = null;
 
-    // Kalau ada DRM, Video.js perlukan info keySystems ni
-    if (streamKeySystems) {
-        srcOptions.keySystems = streamKeySystems;
-    }
-
-    player.src(srcOptions);
-    player.play().catch(function(error) {
-        console.log("Autoplay sekat atau stream error: ", error);
-    });
-}
+        if (url && url.includes('.mpd')) {
+            streamType = 'application/dash+xml'; // Tukar ke DASH kalau fail .mpd
             
-            player.load();
-            player.ready(function() {
-                player.play().catch(function(error) {
-                    console.log("Strim disekat oleh sekatan CORS Cloudfront RTB Go:", error);
-                });
-            });
+            // 2. Set ClearKey DRM setup kalau ada parameter clearkey kat URL
+            if (url.includes('drmScheme=clearkey') || url.includes('clearkey')) {
+                // Sila isi KID dan KEY yang sah di dalam objek 'clearkeys' di bawah jika ada
+                streamKeySystems = {
+                    'org.w3.clearkey': {
+                        'clearkeys': {
+                            // 'KID_HEX': 'KEY_HEX'
+                        },
+                        'audio/mp4': {
+                            'initDataTypes': ['cenc'],
+                            'videoCapabilities': [{ 'contentType': 'video/mp4; codecs="avc1.4d401f"' }]
+                        }
+                    }
+                };
+            }
+        } 
+        
+        // 3. Sumbat masuk dalam player src secara dinamik
+        let srcOptions = { 
+            src: url, 
+            type: streamType,
+            withCredentials: false
+        };
+
+        // Kalau ada DRM, Video.js perlukan info keySystems ni
+        if (streamKeySystems) {
+            srcOptions.keySystems = streamKeySystems;
         }
+
+        player.src(srcOptions);
+        player.load();
+
+        // 4. Play bila player dah sedia
+        player.ready(function() {
+            player.play().catch(function(error) {
+                console.log("Strim disekat (CORS / Autoplay policy):", error);
+            });
+        });
+
+    } catch (error) {
+        console.error("Ralat kritikal pada fungsi streamHLS:", error);
+    }
+}
     </script>
 </body>
 </html>
