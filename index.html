@@ -462,7 +462,7 @@ const scheduleData = [
     { date: "2026-07-09T20:00:00Z", team1: "France", team2: "Morocco" },
     { date: "2026-07-10T19:00:00Z", team1: "Spain", team2: "Belgium" },
     { date: "2026-07-11T21:00:00Z", team1: "Norway", team2: "England" },
-    { date: "2026-07-12T01:00:00Z", team1: "R16 Match 7 Winner", team2: "R16 Match 8 Winner" },
+    { date: "2026-07-12T01:00:00Z", team1: "Argentina", team2: "Switzerland" },
     { date: "2026-07-14T19:00:00Z", team1: "QF Match 1 Winner", team2: "QF Match 2 Winner" },
     { date: "2026-07-15T19:00:00Z", team1: "QF Match 3 Winner", team2: "QF Match 4 Winner" },
     { date: "2026-07-18T21:00:00Z", team1: "SF Match 1 Loser", team2: "SF Match 2 Loser" },
@@ -1515,6 +1515,28 @@ const resultsData = [
             { type: "goal", text: "H. Vanaken (57')" },
             { type: "goal", text: "R. Lukaku (90+3')" }
         ]
+    },
+    {
+        date: "2026-07-07T17:00:00Z", group: "Round of 16",
+        team1: "Argentina", team2: "Egypt", score1: 3, score2: 2,
+        stadium: "Mercedes-Benz Stadium", attendance: "68,239",
+        events1: [
+            { type: "goal", text: "C. Romero (79')" },
+            { type: "goal", text: "L. Messi (83')" },
+            { type: "goal", text: "E. Fernández (90+2')" }
+        ],
+        events2: [
+            { type: "goal", text: "Y. Ibrahim El Hanafi (15')" },
+            { type: "goal", text: "M. Zaki Abdelraouf (67')" }
+        ]
+    },
+    {
+        date: "2026-07-07T21:00:00Z", group: "Round of 16",
+        team1: "Switzerland", team2: "Colombia", score1: 0, score2: 0,
+        stadium: "BC Place", attendance: "52,497",
+        penalties: { team1: 4, team2: 3, winner: "Switzerland" },
+        events1: [],
+        events2: []
     }
 ];
 // Standings raw data mapping
