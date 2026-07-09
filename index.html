@@ -1822,75 +1822,85 @@ function renderResults() {
         renderResults();
         renderStandings();
 
-const player = videojs('fifa-player', { fluid: true, autoplay: false, controls: true, responsive: true });
+// 1. Pastikan player di-declare sebagai 'let' supaya boleh diganti semula nilainya nanti
+let player = videojs('fifa-player', { fluid: true, autoplay: false, controls: true, responsive: true });
 
 function updateUI(title, el, logoUrl) {
-    document.getElementById('now-playing-title').innerText = title;
-    document.getElementById('channel-logo-display').src = logoUrl;
+    if (document.getElementById('now-playing-title')) {
+        document.getElementById('now-playing-title').innerText = title;
+    }
+    if (document.getElementById('channel-logo-display')) {
+        document.getElementById('channel-logo-display').src = logoUrl;
+    }
     document.querySelectorAll('.channel-card').forEach(c => c.classList.remove('active'));
-    el.classList.add('active');
+    if (el) {
+        el.classList.add('active');
+    }
 }
 
 function streamEmbed(url, title, element, logo) {
-    // 1. Kemas kini tajuk, logo, dan status 'active' pada kad saluran
     try {
-        if (typeof updateUI === 'function') {
-            updateUI(title, element, logo);
+        // Kemas kini UI (Tajuk & Highlight Kad)
+        updateUI(title, element, logo);
+        
+        // Pause player Video.js dengan selamat kalau dia tengah main
+        if (player && typeof player.pause === 'function') {
+            try { player.pause(); } catch(e) {}
         }
-    } catch (e) {
-        console.error("Gagal mengemas kini UI:", e);
-    }
+        
+        const videoContainer = document.getElementById('video-player-container'); 
+        if (!videoContainer) return;
 
-    const videoContainer = document.getElementById('video-player-container'); 
-    
-    // 2. Pastikan Video.js player di-pause jika sedang bermain di latar belakang
-    if (typeof player !== 'undefined' && player && typeof player.pause === 'function' && !player.paused()) {
-        player.pause();
+        // Masukkan iframe ke dalam kontena
+        videoContainer.innerHTML = `
+            <iframe src="${url}" 
+                    style="width: 100%; height: 100%; border: none; min-height: 450px;" 
+                    allowfullscreen 
+                    allow="autoplay; encrypted-media">
+            </iframe>`;
+    } catch (error) {
+        console.error("Ralat pada streamEmbed:", error);
     }
-    
-    // 3. Masukkan iframe ke dalam kontena
-    videoContainer.innerHTML = `
-        <iframe src="${url}" 
-                style="width: 100%; height: 100%; border: none; min-height: 450px;" 
-                allowfullscreen 
-                allow="autoplay; encrypted-media">
-        </iframe>`;
 }
 
 function streamHLS(url, title, el, logoUrl) { 
     try {
-        // --- 1. KESAN PENGGUNAAN IFRAME / PHP ---
-        // Jika URL mengandungi .php, .html, atau embed, terus lencongkan ke streamEmbed
+        // DETECT AUTOMATIK: Kalau klik link .php/.html, hantar terus ke streamEmbed
         if (url && (url.includes('.php') || url.includes('.html') || url.includes('embed'))) {
             streamEmbed(url, title, el, logoUrl);
-            return; // Hentikan fungsi di sini supaya baki kod Video.js di bawah tidak berjalan
+            return; 
         }
 
         updateUI(title, el, logoUrl); 
         
-        // --- 2. PULIHKAN SEMULA PLAYER JIKA SEBELUM INI ADA IFRAME ---
         const videoContainer = document.getElementById('video-player-container');
-        if (videoContainer && videoContainer.querySelector('iframe')) {
-            // Ganti semula isi kontena dengan elemen asal video tag Video.js
+        if (!videoContainer) return;
+
+        // JIKA SEBELUM INI ADA IFRAME: Kita buang iframe dan buat balik tag video untuk Video.js
+        if (videoContainer.querySelector('iframe') || !document.getElementById('fifa-player')) {
+            // Dispose player lama dengan selamat kalau ada
+            if (player && typeof player.dispose === 'function') {
+                try { player.dispose(); } catch(e) {}
+            }
+            
+            // Re-create balik HTML tag <video>
             videoContainer.innerHTML = `<video id="fifa-player" class="video-js vjs-default-skin" controls preload="auto" style="width:100%; height:100%;"></video>`;
             
-            // Set semula global variable 'player' dengan instance baru
-            window.player = videojs('fifa-player', { fluid: true, autoplay: false, controls: true, responsive: true });
+            // Re-initialize player dan simpan dalam global variable 'player'
+            player = videojs('fifa-player', { fluid: true, autoplay: false, controls: true, responsive: true });
         }
 
-        // Reset player sedia ada sebelum sumbat stream baru
-        if (typeof player !== 'undefined' && player && player.reset) {
+        // Reset player sedia ada sebelum masuk stream baru
+        if (player && typeof player.reset === 'function') {
             player.reset(); 
         }
         
-        // Detect type berdasarkan hujung URL
         let streamType = 'application/x-mpegURL'; // Default HLS
         let streamKeySystems = null;
 
         if (url && url.includes('.mpd')) {
-            streamType = 'application/dash+xml'; // Tukar ke DASH kalau fail .mpd
+            streamType = 'application/dash+xml'; 
             
-            // Set ClearKey DRM setup kalau ada parameter clearkey kat URL
             if (url.includes('drmScheme=clearkey') || url.includes('clearkey')) {
                 streamKeySystems = {
                     'org.w3.clearkey': {
@@ -1904,7 +1914,6 @@ function streamHLS(url, title, el, logoUrl) {
             }
         } 
         
-        // Sumbat masuk dalam player src secara dinamik
         let srcOptions = { 
             src: url, 
             type: streamType,
@@ -1918,10 +1927,9 @@ function streamHLS(url, title, el, logoUrl) {
         player.src(srcOptions);
         player.load();
 
-        // Play bila player dah sedia
         player.ready(function() {
             player.play().catch(function(error) {
-                console.log("Strim disekat (CORS / Autoplay policy):", error);
+                console.log("Autoplay disekat:", error);
             });
         });
 
