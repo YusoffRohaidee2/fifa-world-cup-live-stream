@@ -1832,15 +1832,23 @@ function updateUI(title, el, logoUrl) {
 }
 
 function streamEmbed(url, title, element, logo) {
-    // Ambil elemen Video.js player container untuk disembunyikan / diganti
+    // 1. Kemas kini tajuk, logo, dan status 'active' pada kad saluran
+    try {
+        if (typeof updateUI === 'function') {
+            updateUI(title, element, logo);
+        }
+    } catch (e) {
+        console.error("Gagal mengemas kini UI:", e);
+    }
+
     const videoContainer = document.getElementById('video-player-container'); 
     
-    // Pastikan Video.js player di-pause jika sedang bermain di latar belakang
-    if (typeof player !== 'undefined' && !player.paused()) {
+    // 2. Pastikan Video.js player di-pause jika sedang bermain di latar belakang
+    if (typeof player !== 'undefined' && player && typeof player.pause === 'function' && !player.paused()) {
         player.pause();
     }
     
-    // Masukkan iframe ke dalam kontena
+    // 3. Masukkan iframe ke dalam kontena
     videoContainer.innerHTML = `
         <iframe src="${url}" 
                 style="width: 100%; height: 100%; border: none; min-height: 450px;" 
@@ -1851,36 +1859,38 @@ function streamEmbed(url, title, element, logo) {
 
 function streamHLS(url, title, el, logoUrl) { 
     try {
-        updateUI(title, el, logoUrl); 
-        
-        // --- PENAMBAHAN: KESAN PENGGUNAAN IFRAME / PHP ---
-        // Jika URL mengandungi .php, .html, atau embed, terus gunakan streamEmbed
+        // --- 1. KESAN PENGGUNAAN IFRAME / PHP ---
+        // Jika URL mengandungi .php, .html, atau embed, terus lencongkan ke streamEmbed
         if (url && (url.includes('.php') || url.includes('.html') || url.includes('embed'))) {
             streamEmbed(url, title, el, logoUrl);
-            return; // Hentikan fungsi di sini supaya Video.js tidak crash
-        }
-        
-        // Semak semula jika sebelum ini ada iframe, kita pulihkan balik elemen video untuk Video.js
-        const videoContainer = document.getElementById('video-player-container');
-        if (videoContainer && videoContainer.querySelector('iframe')) {
-            // Ganti semula isi kontena dengan elemen asal video tag Video.js jika perlu
-            // (Nota: Pastikan ID kontena/susunan tag HTML asal anda menyokong ini)
-            videoContainer.innerHTML = `<video id="fifa-player" class="video-js vjs-default-skin" controls preload="auto" style="width:100%; height:100%;"></video>`;
-            videojs('fifa-player', { fluid: true, autoplay: false, controls: true, responsive: true });
+            return; // Hentikan fungsi di sini supaya baki kod Video.js di bawah tidak berjalan
         }
 
-        if (typeof player !== 'undefined' && player.reset) {
+        updateUI(title, el, logoUrl); 
+        
+        // --- 2. PULIHKAN SEMULA PLAYER JIKA SEBELUM INI ADA IFRAME ---
+        const videoContainer = document.getElementById('video-player-container');
+        if (videoContainer && videoContainer.querySelector('iframe')) {
+            // Ganti semula isi kontena dengan elemen asal video tag Video.js
+            videoContainer.innerHTML = `<video id="fifa-player" class="video-js vjs-default-skin" controls preload="auto" style="width:100%; height:100%;"></video>`;
+            
+            // Set semula global variable 'player' dengan instance baru
+            window.player = videojs('fifa-player', { fluid: true, autoplay: false, controls: true, responsive: true });
+        }
+
+        // Reset player sedia ada sebelum sumbat stream baru
+        if (typeof player !== 'undefined' && player && player.reset) {
             player.reset(); 
         }
         
-        // 1. Detect type berdasarkan hujung URL
+        // Detect type berdasarkan hujung URL
         let streamType = 'application/x-mpegURL'; // Default HLS
         let streamKeySystems = null;
 
         if (url && url.includes('.mpd')) {
             streamType = 'application/dash+xml'; // Tukar ke DASH kalau fail .mpd
             
-            // 2. Set ClearKey DRM setup kalau ada parameter clearkey kat URL
+            // Set ClearKey DRM setup kalau ada parameter clearkey kat URL
             if (url.includes('drmScheme=clearkey') || url.includes('clearkey')) {
                 streamKeySystems = {
                     'org.w3.clearkey': {
@@ -1894,7 +1904,7 @@ function streamHLS(url, title, el, logoUrl) {
             }
         } 
         
-        // 3. Sumbat masuk dalam player src secara dinamik
+        // Sumbat masuk dalam player src secara dinamik
         let srcOptions = { 
             src: url, 
             type: streamType,
@@ -1908,7 +1918,7 @@ function streamHLS(url, title, el, logoUrl) {
         player.src(srcOptions);
         player.load();
 
-        // 4. Play bila player dah sedia
+        // Play bila player dah sedia
         player.ready(function() {
             player.play().catch(function(error) {
                 console.log("Strim disekat (CORS / Autoplay policy):", error);
