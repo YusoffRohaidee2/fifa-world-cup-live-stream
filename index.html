@@ -372,6 +372,21 @@
 
 <div class="sidebar">
     <div class="channels-list-wrapper">
+
+        <!-- SEGMEN: BDIXTV24 LIVE FEED -->
+        <div class="section-header-group">
+            <div class="section-header" data-en="BDIXTV24 Live Feed" data-my="Siaran Langsung BDIXTV24">BDIXTV24 Live Feed</div>
+        </div>
+
+        <!-- Server 1 -->
+        <div class="channel-card" onclick="streamEmbed('https://bdixtv24.live/live/Football1.php', 'Server 1', this, 'https://bdixtv24.live/wp-content/uploads/2025/02/cropped-fv-1.png')">
+            <img src="https://bdixtv24.live/wp-content/uploads/2025/02/cropped-fv-1.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+            <div class="card-info">
+                <h4>Server 1</h4>
+                <p>BDIXTV24 Feed<br><small>Live Sports Streaming</small></p>
+            </div>
+            <span class="tag" style="background: var(--accent-blue); color: #000;">1080pHD</span>
+        </div>
         
         <!-- SEGMEN: BEIN SPORTS -->
         <div class="section-header-group">
@@ -1807,22 +1822,28 @@ function renderResults() {
         renderResults();
         renderStandings();
 
-        const player = videojs('fifa-player', { fluid: true, autoplay: false, controls: true, responsive: true });
-        
-        function updateUI(title, el, logoUrl) {
-            document.getElementById('now-playing-title').innerText = title;
-            document.getElementById('channel-logo-display').src = logoUrl;
-            document.querySelectorAll('.channel-card').forEach(c => c.classList.remove('active'));
-            el.classList.add('active');
-        }
+const player = videojs('fifa-player', { fluid: true, autoplay: false, controls: true, responsive: true });
 
-        function streamEmbed(url, title, element, logo) {
-    // Tukar target mengikut ID kontena video / iframe dalam template kau
+function updateUI(title, el, logoUrl) {
+    document.getElementById('now-playing-title').innerText = title;
+    document.getElementById('channel-logo-display').src = logoUrl;
+    document.querySelectorAll('.channel-card').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+}
+
+function streamEmbed(url, title, element, logo) {
+    // Ambil elemen Video.js player container untuk disembunyikan / diganti
     const videoContainer = document.getElementById('video-player-container'); 
     
+    // Pastikan Video.js player di-pause jika sedang bermain di latar belakang
+    if (typeof player !== 'undefined' && !player.paused()) {
+        player.pause();
+    }
+    
+    // Masukkan iframe ke dalam kontena
     videoContainer.innerHTML = `
         <iframe src="${url}" 
-                style="width: 100%; height: 100%; border: none;" 
+                style="width: 100%; height: 100%; border: none; min-height: 450px;" 
                 allowfullscreen 
                 allow="autoplay; encrypted-media">
         </iframe>`;
@@ -1832,6 +1853,22 @@ function streamHLS(url, title, el, logoUrl) {
     try {
         updateUI(title, el, logoUrl); 
         
+        // --- PENAMBAHAN: KESAN PENGGUNAAN IFRAME / PHP ---
+        // Jika URL mengandungi .php, .html, atau embed, terus gunakan streamEmbed
+        if (url && (url.includes('.php') || url.includes('.html') || url.includes('embed'))) {
+            streamEmbed(url, title, el, logoUrl);
+            return; // Hentikan fungsi di sini supaya Video.js tidak crash
+        }
+        
+        // Semak semula jika sebelum ini ada iframe, kita pulihkan balik elemen video untuk Video.js
+        const videoContainer = document.getElementById('video-player-container');
+        if (videoContainer && videoContainer.querySelector('iframe')) {
+            // Ganti semula isi kontena dengan elemen asal video tag Video.js jika perlu
+            // (Nota: Pastikan ID kontena/susunan tag HTML asal anda menyokong ini)
+            videoContainer.innerHTML = `<video id="fifa-player" class="video-js vjs-default-skin" controls preload="auto" style="width:100%; height:100%;"></video>`;
+            videojs('fifa-player', { fluid: true, autoplay: false, controls: true, responsive: true });
+        }
+
         if (typeof player !== 'undefined' && player.reset) {
             player.reset(); 
         }
@@ -1845,12 +1882,9 @@ function streamHLS(url, title, el, logoUrl) {
             
             // 2. Set ClearKey DRM setup kalau ada parameter clearkey kat URL
             if (url.includes('drmScheme=clearkey') || url.includes('clearkey')) {
-                // Sila isi KID dan KEY yang sah di dalam objek 'clearkeys' di bawah jika ada
                 streamKeySystems = {
                     'org.w3.clearkey': {
-                        'clearkeys': {
-                            // 'KID_HEX': 'KEY_HEX'
-                        },
+                        'clearkeys': {},
                         'audio/mp4': {
                             'initDataTypes': ['cenc'],
                             'videoCapabilities': [{ 'contentType': 'video/mp4; codecs="avc1.4d401f"' }]
@@ -1867,7 +1901,6 @@ function streamHLS(url, title, el, logoUrl) {
             withCredentials: false
         };
 
-        // Kalau ada DRM, Video.js perlukan info keySystems ni
         if (streamKeySystems) {
             srcOptions.keySystems = streamKeySystems;
         }
