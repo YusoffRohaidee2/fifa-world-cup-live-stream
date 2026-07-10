@@ -1698,8 +1698,8 @@ const resultsData = [
                         <div class="team"><i class="fa-solid fa-shield-halved"></i><span>${s.team2}</span></div>
                     </div>
                     <div class="match-details-box" style="margin-bottom:0;">
-                        <div class="detail-row"><span><i class="fa-solid fa-calendar" style="margin-right:5px; color:var(--accent-blue);"></i> Tarikh: <strong>${localDateStr}</strong></span></div>
-                        <div class="detail-row"><span><i class="fa-solid fa-clock" style="margin-right:5px; color:var(--accent-blue);"></i> Masa (Sistem): <strong>${localTimeStr}</strong></span></div>
+                        <div class="detail-row"><span><i class="fa-solid fa-calendar" style="margin-right:5px; color:var(--accent-blue);"></i> Date: <strong>${localDateStr}</strong></span></div>
+                        <div class="detail-row"><span><i class="fa-solid fa-clock" style="margin-right:5px; color:var(--accent-blue);"></i> Time: <strong>${localTimeStr}</strong></span></div>
                     </div>
                 `;
                 container.appendChild(card);
@@ -1753,7 +1753,7 @@ function renderResults() {
     footerEl.className = 'results-footer';
     footerEl.innerHTML = `
         <a href="https://www.skysports.com/fifa-world-cup-scores-fixtures" target="_blank" class="credit-link">
-            <span data-en="Courtesy (C) by :" data-my="Ihsan oleh :">Courtesy by :</span>
+            <span data-en="Courtesy by :" data-my="Ihsan oleh :">Courtesy by :</span>
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Sky_Sport_-_Logo_2026.svg/3840px-Sky_Sport_-_Logo_2026.svg.png" class="credit-logo" alt="Sky Sports">
             <span style="font-size: 0.8rem; color: var(--accent-blue);" data-en="(Click the logo to go to the website)" data-my="(Klik logo untuk layari laman web)">(Click the logo to go to the website)</span>
         </a>
