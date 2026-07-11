@@ -174,30 +174,94 @@
             .page-content { padding: 0 20px 40px; }
         }
 
-        .player-container {
-            background: var(--glass); border-radius: 30px; border: 1px solid var(--glass-border);
-            padding: 25px; backdrop-filter: blur(10px); box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
+.player-container {
+    background: var(--glass); 
+    border-radius: 30px; 
+    border: 1px solid var(--glass-border);
+    padding: 25px; 
+    backdrop-filter: blur(10px); 
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
 
-        .video-box { position: relative; width: 100%; padding-top: 56.25%; background: #000; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
-        .video-js { position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important; }
+/* Pembungkus Video Box kekal sama untuk menjaga aspek rasio 16:9 */
+.video-box { 
+    position: relative; 
+    width: 100%; 
+    padding-top: 56.25%; 
+    background: #000; 
+    border-radius: 20px; 
+    overflow: hidden; 
+    border: 1px solid rgba(255,255,255,0.05); 
+}
 
-        .player-info { display: flex; flex-direction: column; gap: 15px; margin-top: 25px; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 20px; }
-        .player-main-details { display: flex; align-items: center; }
-        #channel-logo-display { height: 60px; margin-right: 25px; width: 100px; object-fit: contain; }
-        .status-dot { height: 10px; width: 10px; background: #3fffcf; border-radius: 50%; display: inline-block; margin-right: 10px; box-shadow: 0 0 10px #3fffcf; animation: pulse 1.5s infinite; }
+/* KEMAS KINI UNTUK PLYR: Memaksa Plyr mengisi ruang .video-box sepenuhnya */
+.video-box .plyr { 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100% !important; 
+    height: 100% !important; 
+    max-width: 100% !important;
+}
 
-        .player-loading-notice {
-            background: rgba(255, 159, 67, 0.08);
-            border-left: 4px solid var(--accent-orange);
-            padding: 10px 15px;
-            border-radius: 4px 12px 12px 4px;
-            font-size: 0.85rem;
-            color: #ffdca3;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+/* Memastikan kontena dalaman video Plyr mengikut tinggi penuh pembungkus */
+.video-box .plyr__video-wrapper {
+    height: 100% !important;
+    width: 100% !important;
+}
+
+/* Memastikan tag video asal di dalam Plyr memapar dengan betul */
+.video-box video {
+    object-fit: cover; /* atau 'contain' mengikut kesesuaian paparan strim anda */
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* CSS Butiran Maklumat Player (Kekal sama seperti asal anda) */
+.player-info { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 15px; 
+    margin-top: 25px; 
+    padding: 20px; 
+    background: rgba(0,0,0,0.2); 
+    border-radius: 20px; 
+}
+
+.player-main-details { 
+    display: flex; 
+    align-items: center; 
+}
+
+#channel-logo-display { 
+    height: 60px; 
+    margin-right: 25px; 
+    width: 100px; 
+    object-fit: contain; 
+}
+
+.status-dot { 
+    height: 10px; 
+    width: 10px; 
+    background: #3fffcf; 
+    border-radius: 50%; 
+    display: inline-block; 
+    margin-right: 10px; 
+    box-shadow: 0 0 10px #3fffcf; 
+    animation: pulse 1.5s infinite; 
+}
+
+.player-loading-notice {
+    background: rgba(255, 159, 67, 0.08);
+    border-left: 4px solid var(--accent-orange);
+    padding: 10px 15px;
+    border-radius: 4px 12px 12px 4px;
+    font-size: 0.85rem;
+    color: #ffdca3;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
