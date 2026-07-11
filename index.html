@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-<link href="https://vjs.zencdn.net/8.11.8/video-js.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/shaka-player/4.11.12/controls.css" />
     
     <style>
         :root {
@@ -510,9 +510,7 @@
         </div>
     </div>
 
-    <script src="https://vjs.zencdn.net/8.11.8/video.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dashjs@4.7.4/dist/dash.all.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/videojs-contrib-dash@5.1.1/dist/videojs-contrib-dash.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/shaka-player/4.11.12/shaka-player.ui.js"></script>
 
     <script>
         // Schedule data in GMT+0
@@ -1877,13 +1875,33 @@ function renderResults() {
         renderResults();
         renderStandings();
 
-const player = videojs('fifa-player', { 
-    fluid: true, 
-    autoplay: false, 
-    controls: true, 
-    responsive: true 
-});
-        
+let player;
+let video;
+
+// 1. Inisialisasi Shaka Player apabila halaman selesai dimuatkan
+document.addEventListener('shaka-ui-loaded', initPlayer);
+
+async function initPlayer() {
+    video = document.getElementById('fifa-player');
+    
+    // Ambil container UI Shaka
+    const videoContainer = video.parentElement;
+    
+    // Guna UI terbina dalam Shaka
+    const ui = videoContainer['ui'];
+    
+    // Sediakan core player
+    player = ui.getControls().getPlayer();
+
+    // Dengar jika ada ralat berlaku
+    player.addEventListener('error', onPlayerError);
+}
+
+function onPlayerError(event) {
+    console.error('Ralat Shaka Player:', event.detail);
+}
+
+// 2. Fungsi UI Kad Saluran
 function updateUI(title, el, logoUrl) {
     if (!el) return;
     document.getElementById('now-playing-title').innerText = title;
@@ -1892,74 +1910,53 @@ function updateUI(title, el, logoUrl) {
     el.classList.add('active');
 }
 
-function streamHLS(url, title, el, logoUrl) { 
+// 3. Fungsi Utama Penstriman (Sokong .m3u8 & .mpd serentak)
+async function streamHLS(url, title, el, logoUrl) {
     try {
-        // 1. Kemas kini UI dulu supaya butang nampak bertindak balas (ada active class)
-        updateUI(title, el, logoUrl); 
-        
-        if (!url) {
-            console.error("URL strim kosong!");
+        updateUI(title, el, logoUrl);
+
+        if (!player) {
+            console.error("Shaka Player belum sedia!");
             return;
         }
 
-        // 2. Cuci player lama dengan selamat
-        if (player && typeof player.reset === 'function') {
-            player.reset(); 
-        }
-        
-        // 3. Kenal pasti jenis strim (.mpd atau .m3u8)
-        let streamType = 'application/x-mpegURL'; // Default HLS
-        if (url.toLowerCase().includes('.mpd')) {
-            streamType = 'application/dash+xml'; 
-        } 
-        
-        // 4. Sediakan konfigurasi asas
-        let srcOptions = { 
-            src: url, 
-            type: streamType,
-            withCredentials: false
-        };
+        // Reset konfigurasi headers terdahulu untuk saluran lain
+        player.configure({ streaming: { headers: {} } });
 
-        // 5. Inject headers cara selamat mengikut jenis fail
-        if (url.includes('rtm.gov.my') || url.includes('cloudfront.net')) {
-            if (streamType === 'application/dash+xml') {
-                // Cara paling selamat untuk dash.js tanpa mengganggu core Video.js options secara kasar
-                srcOptions.dashjs = {
-                    streaming: {
-                        xhr: {
-                            customHeaders: [
-                                { name: 'User-Agent', value: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36' },
-                                { name: 'Referer', value: 'https://rtmklik.rtm.gov.my/' }
-                            ]
-                        }
+        // Khas untuk RTM Klik (Mencegah Error 403)
+        if (url.includes('rtm.gov.my') || url.includes('cloudfront.net') || url.includes('.mpd')) {
+            player.configure({
+                streaming: {
+                    headers: {
+                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36',
+                        'Referer': 'https://rtmklik.rtm.gov.my/'
                     }
-                };
-            } else {
-                // Jika m3u8
-                srcOptions.header = {
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36',
-                    'Referer': 'https://rtmklik.rtm.gov.my/'
-                };
-            }
+                }
+            });
         }
 
-        // 6. Sumbat masuk dalam player dan mainkan
-        player.src(srcOptions);
-        player.load();
-
-        player.ready(function() {
-            player.play().catch(function(error) {
-                console.log("Autoplay disekat atau fail sekat CORS:", error);
+        // Setup DRM jika url ada clearkey (Jika diperlukan masa depan)
+        if (url.includes('clearkey')) {
+            player.configure({
+                drm: {
+                    clearKeys: {
+                        // 'KID_HEX': 'KEY_HEX'
+                    }
+                }
             });
-        });
+        }
+
+        // Muatkan URL (Shaka automatik tahu beza .mpd dan .m3u8 secara bijak!)
+        await player.load(url);
+        video.play().catch(e => console.log("Autoplay disekat oleh browser:", e));
+        console.log(`Berjaya memuatkan saluran: ${title}`);
 
     } catch (error) {
-        // Jika ada ralat, dia takkan matikan terus pelayar. Awak boleh nampak ralat kat F12 Console.
-        console.error("Ralat kritikal dalam streamHLS:", error);
+        console.error('Gagal memuatkan strim di Shaka:', error);
     }
 }
 
-// Salinan fungsi untuk pastikan onclick="streamDASH(...)" pada kad RTM berfungsi
+// Salinan fungsi untuk kad saluran rtm klik awak yang panggil 'streamDASH'
 const streamDASH = streamHLS;
     </script>
 </body>
