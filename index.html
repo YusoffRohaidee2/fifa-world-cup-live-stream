@@ -1877,24 +1877,44 @@ function renderResults() {
 
 let player;
 let video;
+let ui;
 
 // 1. Inisialisasi Shaka Player apabila halaman selesai dimuatkan
 document.addEventListener('shaka-ui-loaded', initPlayer);
 
-async function initPlayer() {
-    video = document.getElementById('fifa-player');
-    
-    // Ambil container UI Shaka
-    const videoContainer = video.parentElement;
-    
-    // Guna UI terbina dalam Shaka
-    const ui = videoContainer['ui'];
-    
-    // Sediakan core player
-    player = ui.getControls().getPlayer();
+// Fallback: kalau event shaka-ui-loaded tak fire (jarang berlaku), cuba init lepas window load
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        if (!player) initPlayer();
+    }, 1000);
+});
 
-    // Dengar jika ada ralat berlaku
+async function initPlayer() {
+    if (player) return; // elak double-init
+
+    video = document.getElementById('fifa-player');
+    if (!video) {
+        console.error('Elemen video #fifa-player tidak dijumpai.');
+        return;
+    }
+
+    const videoContainer = video.parentElement;
+
+    // Cuba ambil UI yang auto-attach oleh Shaka (perlukan data-shaka-player-container)
+    ui = videoContainer['ui'];
+
+    if (ui) {
+        player = ui.getControls().getPlayer();
+    } else {
+        // FALLBACK: bina player & UI secara manual jika auto-detect gagal
+        console.warn('Auto UI Shaka tidak dijumpai, membina UI secara manual...');
+        player = new shaka.Player(video);
+        ui = new shaka.ui.Overlay(player, videoContainer, video);
+        videoContainer['ui'] = ui;
+    }
+
     player.addEventListener('error', onPlayerError);
+    console.log('Shaka Player sedia digunakan.');
 }
 
 function onPlayerError(event) {
@@ -1915,15 +1935,17 @@ async function streamHLS(url, title, el, logoUrl) {
     try {
         updateUI(title, el, logoUrl);
 
+        // Kalau player belum sedia, cuba init dulu sebelum give up
         if (!player) {
-            console.error("Shaka Player belum sedia!");
+            await initPlayer();
+        }
+        if (!player) {
+            console.error('Shaka Player masih belum sedia selepas cuba init!');
             return;
         }
 
-        // Reset konfigurasi headers terdahulu untuk saluran lain
         player.configure({ streaming: { headers: {} } });
 
-        // Khas untuk RTM Klik (Mencegah Error 403)
         if (url.includes('rtm.gov.my') || url.includes('cloudfront.net') || url.includes('.mpd')) {
             player.configure({
                 streaming: {
@@ -1935,7 +1957,6 @@ async function streamHLS(url, title, el, logoUrl) {
             });
         }
 
-        // Setup DRM jika url ada clearkey (Jika diperlukan masa depan)
         if (url.includes('clearkey')) {
             player.configure({
                 drm: {
@@ -1946,9 +1967,8 @@ async function streamHLS(url, title, el, logoUrl) {
             });
         }
 
-        // Muatkan URL (Shaka automatik tahu beza .mpd dan .m3u8 secara bijak!)
         await player.load(url);
-        video.play().catch(e => console.log("Autoplay disekat oleh browser:", e));
+        video.play().catch(e => console.log('Autoplay disekat oleh browser:', e));
         console.log(`Berjaya memuatkan saluran: ${title}`);
 
     } catch (error) {
@@ -1956,7 +1976,6 @@ async function streamHLS(url, title, el, logoUrl) {
     }
 }
 
-// Salinan fungsi untuk kad saluran rtm klik awak yang panggil 'streamDASH'
 const streamDASH = streamHLS;
     </script>
 </body>
