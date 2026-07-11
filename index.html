@@ -1893,33 +1893,63 @@ function renderResults() {
         renderResults();
         renderStandings();
 
-        const player = videojs('fifa-player', { fluid: true, autoplay: false, controls: true, responsive: true });
-        
-        function updateUI(title, el, logoUrl) {
-            document.getElementById('now-playing-title').innerText = title;
-            document.getElementById('channel-logo-display').src = logoUrl;
-            document.querySelectorAll('.channel-card').forEach(c => c.classList.remove('active'));
-            el.classList.add('active');
-        }
+// Memulakan pemain Video.js (Gunakan ID 'fifa-player' mengikut HTML anda)
+const player = videojs('fifa-player', { 
+    fluid: true, 
+    autoplay: false, 
+    controls: true, 
+    responsive: true 
+});
 
-        function streamHLS(url, title, el, logoUrl) { 
-            updateUI(title, el, logoUrl); 
-            
-            player.reset(); 
-            
-            player.src({ 
-                src: url, 
-                type: 'application/x-mpegURL',
-                withCredentials: false
-            }); 
-            
-            player.load();
-            player.ready(function() {
-                player.play().catch(function(error) {
-                    console.log("Strim disekat oleh sekatan CORS Cloudfront RTB Go:", error);
-                });
-            });
-        }
+// Fungsi untuk mengemas kini UI (Tajuk, Logo, dan Status Aktif)
+function updateUI(title, el, logoUrl) {
+    const titleEl = document.getElementById('now-playing-title');
+    const logoEl = document.getElementById('channel-logo-display');
+    
+    if (titleEl) titleEl.innerText = title;
+    if (logoEl) logoEl.src = logoUrl;
+    
+    document.querySelectorAll('.channel-card').forEach(c => c.classList.remove('active'));
+    if (el) el.classList.add('active');
+}
+
+// FUNGSI UTAMA: Untuk strim HLS (.m3u8)
+function streamHLS(url, title, el, logoUrl) { 
+    updateUI(title, el, logoUrl); 
+    
+    // JANGAN gunakan player.reset() kerana ia merosakkan instance video.js
+    // Tukar sumber (src) secara langsung menggunakan jenis MIME HLS yang betul
+    player.src({ 
+        src: url, 
+        type: 'application/x-mpegURL'
+    }); 
+    
+    // Muatkan strim baharu dan mainkan
+    player.load();
+    player.ready(function() {
+        player.play().catch(function(error) {
+            console.log("Main balik disekat/ralat:", error);
+        });
+    });
+}
+
+// BANTUAN TAMBAHAN: Fungsi untuk strim DASH (.mpd)
+// Letakkan ini juga supaya kad saluran DASH (TV1, TV2, dll) boleh berfungsi semula
+function streamDASH(url, title, el, logoUrl) { 
+    updateUI(title, el, logoUrl); 
+    
+    player.src({ 
+        src: url, 
+        type: 'application/dash+xml'
+    }); 
+    
+    player.load();
+    player.ready(function() {
+        player.play().catch(function(error) {
+            console.log("Main balik DASH disekat/ralat:", error);
+        });
+    });
+}
     </script>
 </body>
 </html>
