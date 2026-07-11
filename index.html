@@ -1827,33 +1827,63 @@ const resultsData = [
         renderResults();
         renderStandings();
 
-        const player = videojs('fifa-player', { fluid: true, autoplay: false, controls: true, responsive: true });
-        
-        function updateUI(title, el, logoUrl) {
-            document.getElementById('now-playing-title').innerText = title;
-            document.getElementById('channel-logo-display').src = logoUrl;
-            document.querySelectorAll('.channel-card').forEach(c => c.classList.remove('active'));
-            el.classList.add('active');
-        }
+// Memulakan pemain Video.js
+const player = videojs('fifa-player', { 
+    fluid: true, 
+    autoplay: false, 
+    controls: true, 
+    responsive: true 
+});
 
-        function streamHLS(url, title, el, logoUrl) { 
-            updateUI(title, el, logoUrl); 
-            
-            player.reset(); 
-            
-            player.src({ 
-                src: url, 
-                type: 'application/x-mpegURL',
-                withCredentials: false
-            }); 
-            
-            player.load();
-            player.ready(function() {
-                player.play().catch(function(error) {
-                    console.log("Strim disekat oleh sekatan CORS Cloudfront RTB Go:", error);
-                });
-            });
-        }
+// Fungsi sepunya untuk kemas kini UI (Tajuk, Logo, dan Status Aktif)
+function updateUI(title, el, logoUrl) {
+    const titleEl = document.getElementById('now-playing-title');
+    const logoEl = document.getElementById('channel-logo-display');
+    
+    if (titleEl) titleEl.innerText = title;
+    if (logoEl) logoEl.src = logoUrl;
+    
+    document.querySelectorAll('.channel-card').forEach(c => c.classList.remove('active'));
+    if (el) el.classList.add('active');
+}
+
+// 1. FUNGSI UNTUK STRIM HLS (.m3u8)
+function streamHLS(url, title, el, logoUrl) { 
+    updateUI(title, el, logoUrl); 
+    
+    // Tukar src secara langsung (JANGAN gunakan player.reset())
+    player.src({ 
+        src: url, 
+        type: 'application/x-mpegURL',
+        withCredentials: false
+    }); 
+    
+    player.load();
+    player.ready(function() {
+        player.play().catch(function(error) {
+            console.log("Strim HLS disekat atau ralat:", error);
+        });
+    });
+}
+
+// 2. FUNGSI UNTUK STRIM DASH (.mpd)
+function streamDASH(url, title, el, logoUrl) { 
+    updateUI(title, el, logoUrl); 
+    
+    // Tukar src secara langsung menggunakan MIME type untuk DASH
+    player.src({ 
+        src: url, 
+        type: 'application/dash+xml',
+        withCredentials: false
+    }); 
+    
+    player.load();
+    player.ready(function() {
+        player.play().catch(function(error) {
+            console.log("Strim DASH disekat atau ralat:", error);
+        });
+    });
+}
     </script>
 </body>
 </html>
