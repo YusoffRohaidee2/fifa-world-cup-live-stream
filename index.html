@@ -1874,18 +1874,12 @@ const resultsData = [
         renderResults();
         renderStandings();
 
-// 1. Inisialisasi Plyr Player (Gantikan kod videojs tadi)
-const player = new Plyr('#fifa-player', {
-    controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captures', 'settings', 'pip', 'airplay', 'fullscreen'],
-    autoplay: false
-});
-
-// Dapatkan rujukan elemen video HTML secara terus untuk kegunaan hls.js / dash.js
+// Inisialisasi Plyr
+const player = new Plyr('#fifa-player', { autoplay: false });
 const videoElement = document.getElementById('fifa-player'); 
 let hlsInstance = null;
 let dashInstance = null;
 
-// 2. Fungsi kemas kini UI (Kekal sama seperti logik asal anda)
 function updateUI(title, el, logoUrl) {
     document.getElementById('now-playing-title').innerText = title;
     document.getElementById('channel-logo-display').src = logoUrl;
@@ -1893,11 +1887,10 @@ function updateUI(title, el, logoUrl) {
     el.classList.add('active');
 }
 
-// 3. Fungsi Utama Baru: streamVideo (Boleh proses M3U8 & MPD automatik)
 function streamVideo(url, title, el, logoUrl) { 
     updateUI(title, el, logoUrl); 
     
-    // Hentikan/Reset strim lama jika ada untuk elak memory leak
+    // 1. Hentikan dan musnahkan instance lama
     if (hlsInstance) {
         hlsInstance.destroy();
         hlsInstance = null;
@@ -1906,43 +1899,46 @@ function streamVideo(url, title, el, logoUrl) {
         dashInstance.reset();
         dashInstance = null;
     }
-    
-    // Ambil jenis fail berdasarkan sambungan hujung URL (M3U8 atau MPD)
-    const isHLS = url.includes('.m3u8') || url.includes('application/x-mpegURL');
-    const isDASH = url.includes('.mpd') || url.includes('application/dash+xml');
 
+    // 2. Bersihkan src asal pada tag video supaya player tidak keliru
+    videoElement.removeAttribute('src');
+    videoElement.load();
+
+    const isHLS = url.includes('.m3u8');
+    const isDASH = url.includes('.mpd');
+
+    // 3. Logik Mainkan HLS (.m3u8)
     if (isHLS) {
-        // --- LOGIK UNTUK M3U8 (HLS) ---
         if (Hls.isSupported()) {
             hlsInstance = new Hls({
                 xhrSetup: function (xhr) {
-                    xhr.withCredentials = false; // Memastikan standard CORS anda dipatuhi
+                    xhr.withCredentials = false;
                 }
             });
             hlsInstance.loadSource(url);
             hlsInstance.attachMedia(videoElement);
-            
             hlsInstance.on(Hls.Events.MANIFEST_PARSED, function() {
-                videoElement.play().catch(error => console.log("Strim disekat oleh sekatan CORS:", error));
+                videoElement.play().catch(e => console.log("Ralat autoplay HLS:", e));
             });
-        } 
-        // Untuk Safari iOS bawaan (Native HLS)
-        else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
+        } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
             videoElement.src = url;
-            videoElement.play().catch(error => console.log("Strim disekat oleh sekatan CORS:", error));
+            videoElement.play().catch(e => console.log("Ralat native HLS:", e));
         }
-
-    } else if (isDASH) {
-        // --- LOGIK UNTUK MPD (DASH) ---
-        dashInstance = dashjs.MediaPlayer().create();
-        // Anda boleh tambah setup proteksi DRM di sini jika perlu pada masa akan datang
-        dashInstance.initialize(videoElement, url, true); 
-        
-        videoElement.play().catch(error => console.log("Strim disekat oleh sekatan CORS:", error));
-    } else {
-        // --- LOGIK UNTUK VIDEO BIASA (MP4 / WebM) ---
+    } 
+    // 4. Logik Mainkan DASH (.mpd)
+    else if (isDASH) {
+        if (typeof dashjs !== 'undefined') {
+            dashInstance = dashjs.MediaPlayer().create();
+            // Penting: Kosongkan setting lama sebelum initialize yang baru
+            dashInstance.initialize(videoElement, url, true);
+        } else {
+            console.error("Library dash.js tidak dijumpai! Sila pastikan CDN dash.js sudah di-load.");
+        }
+    } 
+    // 5. Video Biasa
+    else {
         videoElement.src = url;
-        videoElement.play().catch(error => console.log("Strim disekat oleh sekatan CORS:", error));
+        videoElement.play().catch(e => console.log("Ralat MP4:", e));
     }
 }
     </script>
