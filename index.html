@@ -374,17 +374,78 @@
     <div class="channels-list-wrapper">
 
         <div class="section-header-group">
-            <div class="section-header" data-en="Rai Live Streams" data-my="Siaran Langsung Rai">Rai Live Streams</div>
-        </div>
+    <div class="section-header" data-en="RTM Klik Streams" data-my="Siaran Langsung RTM Klik">RTM Klik Streams</div>
+</div>
 
-        <div class="channel-card" onclick="streamHLS('https://dash2.antik.sk/live/test_rai_uno_tizen/playlist.m3u8', 'Rai 1', this, 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Rai_1_-_Logo_2016.svg/960px-Rai_1_-_Logo_2016.svg.png')">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Rai_1_-_Logo_2016.svg/960px-Rai_1_-_Logo_2016.svg.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
-            <div class="card-info">
-                <h4>Rai 1</h4>
-                <p>Global Feed | Italy<br><small>Commentary in Italian</small></p>
-            </div>
-            <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
-        </div>
+<!-- TV1 -->
+<div class="channel-card" onclick="streamDASH('https://d30aylox5wvifh.cloudfront.net/live/media0/tv1/DASH/tv1.mpd', 'TV1', this, 'https://rtm-images.glueapi.io/fit-in/1920x1280/live_channel/TV1.jpg')">
+    <img src="https://rtm-images.glueapi.io/fit-in/1920x1280/live_channel/TV1.jpg" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+    <div class="card-info">
+        <h4>TV1</h4>
+        <p>Global Feed | Malaysia<br><small>Live Matches</small></p>
+    </div>
+    <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
+</div>
+
+<!-- TV2 -->
+<div class="channel-card" onclick="streamDASH('https://d30aylox5wvifh.cloudfront.net/live/media0/tv2/DASH/tv2.mpd', 'TV2', this, 'https://rtm-images.glueapi.io/fit-in/1920x1280/system/TV2Dolby.png')">
+    <img src="https://rtm-images.glueapi.io/fit-in/1920x1280/system/TV2Dolby.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+    <div class="card-info">
+        <h4>TV2</h4>
+        <p>Global Feed | Malaysia<br><small>Live Matches</small></p>
+    </div>
+    <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
+</div>
+
+<!-- Sukan+ -->
+<div class="channel-card" onclick="streamDASH('https://d30aylox5wvifh.cloudfront.net/live/media0/sukan/DASH/sukan.mpd', 'Sukan+', this, 'https://rtm-images.glueapi.io/fit-in/1920x1280/system/SukanDolby.png')">
+    <img src="https://rtm-images.glueapi.io/fit-in/1920x1280/system/SukanDolby.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+    <div class="card-info">
+        <h4>Sukan+</h4>
+        <p>Global Feed | Malaysia<br><small>Live Matches & Replay</small></p>
+    </div>
+    <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
+</div>
+
+<!-- TV Okey -->
+<div class="channel-card" onclick="streamDASH('https://d30aylox5wvifh.cloudfront.net/live/media0/okey/DASH/okey.mpd', 'TV Okey', this, 'https://rtm-images.glueapi.io/fit-in/1920x1280/system/OkeyDolby.png')">
+    <img src="https://rtm-images.glueapi.io/fit-in/1920x1280/system/OkeyDolby.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+    <div class="card-info">
+        <h4>TV Okey</h4>
+        <p>Global Feed | Malaysia<br><small>Live Matches & Replay</small></p>
+    </div>
+    <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
+</div>
+
+<!-- FIFA WC1 -->
+<div class="channel-card" onclick="streamDASH('https://d30aylox5wvifh.cloudfront.net/live/media0/wc1/DASH/wc1.mpd', 'FIFA WC1', this, 'https://rtm-images.glueapi.io/fit-in/1920x1920/system/FIFA-WC-1-Dolby.png')">
+    <img src="https://rtm-images.glueapi.io/fit-in/1920x1920/system/FIFA-WC-1-Dolby.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+    <div class="card-info">
+        <h4>FIFA WC1</h4>
+        <p>Global Feed | Malaysia<br><small>Replays & Highlights</small></p>
+    </div>
+    <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
+</div>
+
+<!-- FIFA WC2 -->
+<div class="channel-card" onclick="streamDASH('https://d30aylox5wvifh.cloudfront.net/live/media0/wc2/DASH/wc2.mpd', 'FIFA WC2', this, 'https://rtm-images.glueapi.io/fit-in/1920x1280/system/FIFA-WC-2-Dolby.png')">
+    <img src="https://rtm-images.glueapi.io/fit-in/1920x1280/system/FIFA-WC-2-Dolby.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+    <div class="card-info">
+        <h4>FIFA WC2</h4>
+        <p>Global Feed | Malaysia<br><small>Replays & Highlights</small></p>
+    </div>
+    <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
+</div>
+
+<!-- FIFA WC3 -->
+<div class="channel-card" onclick="streamDASH('https://d30aylox5wvifh.cloudfront.net/live/media0/wc3/DASH/wc3.mpd', 'FIFA WC3', this, 'https://rtm-images.glueapi.io/fit-in/1920x1280/system/FIFA-WC-3-Dolby.png')">
+    <img src="https://rtm-images.glueapi.io/fit-in/1920x1280/system/FIFA-WC-3-Dolby.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+    <div class="card-info">
+        <h4>FIFA WC3</h4>
+        <p>Global Feed | Malaysia<br><small>Replays & Highlights</small></p>
+    </div>
+    <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
+</div>
         
         <div class="section-header-group">
             <div class="section-header" data-en="Somoy TV Live Stream" data-my="Siaran Langsung Somoy TV">Somoy TV Live Stream</div>
@@ -398,34 +459,7 @@
             </div>
             <span class="tag" style="background: var(--accent-blue); color: #000;">720p</span>
         </div>
-
-                <!-- SEGMEN: SIGMA TV -->
-        <div class="section-header-group">
-            <div class="section-header" data-en="Sigma TV Streams" data-my="Siaran Langsung Sigma TV">Sigma TV Streams</div>
-        </div>
-
-        <!-- Sigma TV -->
-        <div class="channel-card" onclick="streamHLS('https://sl2.sigmatv.com/hls/live.m3u8', 'Sigma TV', this, 'https://i.imgur.com/DXKx102.png')">
-            <img src="https://i.imgur.com/DXKx102.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
-            <div class="card-info">
-                <h4>Sigma TV</h4>
-                <p>Global Feed | Cyprus<br><small>Commentary in local language</small></p>
-            </div>
-            <span class="tag" style="background: var(--accent-blue); color: #000;">720p</span>
-        </div>
-
-        <div class="section-header-group">
-            <div class="section-header" data-en="New World TV Live Stream" data-my="Siaran Langsung New World TV">New World TV Live Stream</div>
-        </div>
-
-        <div class="channel-card" onclick="streamHLS('https://hls.newworldtv.com/nw-info/video/live.m3u8', 'New World TV', this, 'https://upload.wikimedia.org/wikipedia/commons/3/3e/Logo-New-World-TV-01-1.png')">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Logo-New-World-TV-01-1.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
-            <div class="card-info">
-                <h4>New World TV</h4>
-                <p>Global Feed | Africa<br><small>Commentary in English</small></p>
-            </div>
-            <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
-        </div>
+        
 </div>
     </div>
 </div>
@@ -1867,7 +1901,6 @@ function streamHLS(url, title, el, logoUrl) {
             
             // 2. Set ClearKey DRM setup kalau ada parameter clearkey kat URL
             if (url.includes('drmScheme=clearkey') || url.includes('clearkey')) {
-                // Sila isi KID dan KEY yang sah di dalam objek 'clearkeys' di bawah jika ada
                 streamKeySystems = {
                     'org.w3.clearkey': {
                         'clearkeys': {
@@ -1889,6 +1922,14 @@ function streamHLS(url, title, el, logoUrl) {
             withCredentials: false
         };
 
+        // Khas untuk RTM Klik (.mpd): Hantar custom headers agar tidak kena Error 403
+        if (url.includes('rtm.gov.my') || url.includes('.mpd')) {
+            srcOptions.header = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36',
+                'Referer': 'https://rtmklik.rtm.gov.my/'
+            };
+        }
+
         // Kalau ada DRM, Video.js perlukan info keySystems ni
         if (streamKeySystems) {
             srcOptions.keySystems = streamKeySystems;
@@ -1908,6 +1949,10 @@ function streamHLS(url, title, el, logoUrl) {
         console.error("Ralat kritikal pada fungsi streamHLS:", error);
     }
 }
+
+// 5. Duplicate fungsi supaya kad saluran yang panggil 'streamDASH' pun akan berfungsi dengan kod yang sama
+const streamDASH = streamHLS;
+        
     </script>
 </body>
 </html>
