@@ -1944,6 +1944,9 @@ const videoElement = document.getElementById('fifa-player');
 let hlsInstance = null;
 let dashInstance = null;
 
+// CORS Proxy untuk bypass sekatan CloudFront (Gunakan proxy kegemaran/sendiri jika ada)
+const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
+
 function updateUI(title, el, logoUrl) {
     document.getElementById('now-playing-title').innerText = title;
     document.getElementById('channel-logo-display').src = logoUrl;
@@ -1989,21 +1992,28 @@ function streamVideo(url, title, el, logoUrl) {
             videoElement.play().catch(e => console.log("Ralat native HLS:", e));
         }
     } 
-else if (isDASH) {
+    // 4. Logik Mainkan DASH (.mpd)
+    else if (isDASH) {
         if (typeof dashjs !== 'undefined') {
             dashInstance = dashjs.MediaPlayer().create();
             
-            // Trik: Sediakan konfigurasi XHR sebelum load video
+            // TRIK UTAMA: Jika pautan mengandungi cloudfront (RTM), lalu proxy untuk sorok Origin/Referer
+            let finalUrl = url;
+            if (url.includes('cloudfront.net')) {
+                finalUrl = CORS_PROXY + url;
+                console.log("Menggunakan CORS Proxy untuk memintas sekatan CloudFront RTM:", finalUrl);
+            }
+
             dashInstance.updateSettings({
                 'streaming': {
                     'xhr': {
-                        // Memaksa request dilakukan secara anonymous tanpa kuki/kredibiliti
                         'withCredentials': false 
                     }
                 }
             });
 
-            dashInstance.initialize(videoElement, url, true);
+            // Guna finalUrl yang telah di-proxy
+            dashInstance.initialize(videoElement, finalUrl, true);
             
             dashInstance.on(dashjs.MediaPlayer.events.CAN_PLAY, function() {
                 videoElement.play().catch(e => console.log("Autoplay disekat/CORS:", e));
@@ -2012,6 +2022,7 @@ else if (isDASH) {
             console.error("Library dash.js tiada! Pastikan CDN dipanggil.");
         }
     }
+}
     </script>
 </body>
 </html>
