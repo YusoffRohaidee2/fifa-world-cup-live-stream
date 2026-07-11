@@ -1989,22 +1989,29 @@ function streamVideo(url, title, el, logoUrl) {
             videoElement.play().catch(e => console.log("Ralat native HLS:", e));
         }
     } 
-    // 4. Logik Mainkan DASH (.mpd)
-    else if (isDASH) {
+else if (isDASH) {
         if (typeof dashjs !== 'undefined') {
             dashInstance = dashjs.MediaPlayer().create();
-            // Penting: Kosongkan setting lama sebelum initialize yang baru
+            
+            // Trik: Sediakan konfigurasi XHR sebelum load video
+            dashInstance.updateSettings({
+                'streaming': {
+                    'xhr': {
+                        // Memaksa request dilakukan secara anonymous tanpa kuki/kredibiliti
+                        'withCredentials': false 
+                    }
+                }
+            });
+
             dashInstance.initialize(videoElement, url, true);
+            
+            dashInstance.on(dashjs.MediaPlayer.events.CAN_PLAY, function() {
+                videoElement.play().catch(e => console.log("Autoplay disekat/CORS:", e));
+            });
         } else {
-            console.error("Library dash.js tidak dijumpai! Sila pastikan CDN dash.js sudah di-load.");
+            console.error("Library dash.js tiada! Pastikan CDN dipanggil.");
         }
-    } 
-    // 5. Video Biasa
-    else {
-        videoElement.src = url;
-        videoElement.play().catch(e => console.log("Ralat MP4:", e));
     }
-}
     </script>
 </body>
 </html>
