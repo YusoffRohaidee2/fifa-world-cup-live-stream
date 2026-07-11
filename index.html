@@ -565,11 +565,13 @@
         </div>
     </div>
 
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-<script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
-<script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest" defer></script>
+<script src="https://cdn.dashjs.org/latest/dash.all.min.js" defer></script>
+<script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js" defer></script>
+<script defer>
+    // letak semua kod korang (scheduleData, renderSchedule, switchTab dll) kat sini
     
-    <script>
+ <script>
         // Schedule data in GMT+0
 const scheduleData = [
     { date: "2026-07-10T19:00:00Z", team1: "Spain", team2: "Belgium" },
@@ -580,6 +582,7 @@ const scheduleData = [
     { date: "2026-07-18T21:00:00Z", team1: "SF Match 1 Loser", team2: "SF Match 2 Loser" },
     { date: "2026-07-19T19:00:00Z", team1: "SF Match 1 Winner", team2: "SF Match 2 Winner" }
 ];
+
 
 
 // Results data array
