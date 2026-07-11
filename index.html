@@ -10,8 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <link href="https://vjs.zencdn.net/8.11.8/video-js.css" rel="stylesheet" />
-
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+    
     <style>
         :root {
             --bg-deep: #050505;
@@ -459,8 +459,10 @@
         </div>
     </div>
 
-    <script src="https://vjs.zencdn.net/8.11.8/video.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
+<script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+    
     <script>
         // Schedule data in GMT+0
         const scheduleData = [
@@ -1179,33 +1181,77 @@
         renderResults();
         renderStandings();
 
-        const player = videojs('fifa-player', { fluid: true, autoplay: false, controls: true, responsive: true });
-        
-        function updateUI(title, el, logoUrl) {
-            document.getElementById('now-playing-title').innerText = title;
-            document.getElementById('channel-logo-display').src = logoUrl;
-            document.querySelectorAll('.channel-card').forEach(c => c.classList.remove('active'));
-            el.classList.add('active');
+// 1. Inisialisasi Plyr Player (Gantikan kod videojs tadi)
+const player = new Plyr('#fifa-player', {
+    controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captures', 'settings', 'pip', 'airplay', 'fullscreen'],
+    autoplay: false
+});
+
+// Dapatkan rujukan elemen video HTML secara terus untuk kegunaan hls.js / dash.js
+const videoElement = document.getElementById('fifa-player'); 
+let hlsInstance = null;
+let dashInstance = null;
+
+// 2. Fungsi kemas kini UI (Kekal sama seperti logik asal anda)
+function updateUI(title, el, logoUrl) {
+    document.getElementById('now-playing-title').innerText = title;
+    document.getElementById('channel-logo-display').src = logoUrl;
+    document.querySelectorAll('.channel-card').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+}
+
+// 3. Fungsi Utama Baru: streamVideo (Boleh proses M3U8 & MPD automatik)
+function streamVideo(url, title, el, logoUrl) { 
+    updateUI(title, el, logoUrl); 
+    
+    // Hentikan/Reset strim lama jika ada untuk elak memory leak
+    if (hlsInstance) {
+        hlsInstance.destroy();
+        hlsInstance = null;
+    }
+    if (dashInstance) {
+        dashInstance.reset();
+        dashInstance = null;
+    }
+    
+    // Ambil jenis fail berdasarkan sambungan hujung URL (M3U8 atau MPD)
+    const isHLS = url.includes('.m3u8') || url.includes('application/x-mpegURL');
+    const isDASH = url.includes('.mpd') || url.includes('application/dash+xml');
+
+    if (isHLS) {
+        // --- LOGIK UNTUK M3U8 (HLS) ---
+        if (Hls.isSupported()) {
+            hlsInstance = new Hls({
+                xhrSetup: function (xhr) {
+                    xhr.withCredentials = false; // Memastikan standard CORS anda dipatuhi
+                }
+            });
+            hlsInstance.loadSource(url);
+            hlsInstance.attachMedia(videoElement);
+            
+            hlsInstance.on(Hls.Events.MANIFEST_PARSED, function() {
+                videoElement.play().catch(error => console.log("Strim disekat oleh sekatan CORS:", error));
+            });
+        } 
+        // Untuk Safari iOS bawaan (Native HLS)
+        else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
+            videoElement.src = url;
+            videoElement.play().catch(error => console.log("Strim disekat oleh sekatan CORS:", error));
         }
 
-        function streamHLS(url, title, el, logoUrl) { 
-            updateUI(title, el, logoUrl); 
-            
-            player.reset(); 
-            
-            player.src({ 
-                src: url, 
-                type: 'application/x-mpegURL',
-                withCredentials: false
-            }); 
-            
-            player.load();
-            player.ready(function() {
-                player.play().catch(function(error) {
-                    console.log("Strim disekat oleh sekatan CORS Cloudfront RTB Go:", error);
-                });
-            });
-        }
+    } else if (isDASH) {
+        // --- LOGIK UNTUK MPD (DASH) ---
+        dashInstance = dashjs.MediaPlayer().create();
+        // Anda boleh tambah setup proteksi DRM di sini jika perlu pada masa akan datang
+        dashInstance.initialize(videoElement, url, true); 
+        
+        videoElement.play().catch(error => console.log("Strim disekat oleh sekatan CORS:", error));
+    } else {
+        // --- LOGIK UNTUK VIDEO BIASA (MP4 / WebM) ---
+        videoElement.src = url;
+        videoElement.play().catch(error => console.log("Strim disekat oleh sekatan CORS:", error));
+    }
+}
     </script>
 </body>
 </html>
