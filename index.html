@@ -1877,9 +1877,15 @@ function renderResults() {
         renderResults();
         renderStandings();
 
-const player = videojs('fifa-player', { fluid: true, autoplay: false, controls: true, responsive: true });
+const player = videojs('fifa-player', { 
+    fluid: true, 
+    autoplay: false, 
+    controls: true, 
+    responsive: true 
+});
         
 function updateUI(title, el, logoUrl) {
+    if (!el) return;
     document.getElementById('now-playing-title').innerText = title;
     document.getElementById('channel-logo-display').src = logoUrl;
     document.querySelectorAll('.channel-card').forEach(c => c.classList.remove('active'));
@@ -1888,65 +1894,73 @@ function updateUI(title, el, logoUrl) {
 
 function streamHLS(url, title, el, logoUrl) { 
     try {
+        // 1. Kemas kini UI dulu supaya butang nampak bertindak balas (ada active class)
         updateUI(title, el, logoUrl); 
         
-        if (typeof player !== 'undefined' && player.reset) {
+        if (!url) {
+            console.error("URL strim kosong!");
+            return;
+        }
+
+        // 2. Cuci player lama dengan selamat
+        if (player && typeof player.reset === 'function') {
             player.reset(); 
         }
         
+        // 3. Kenal pasti jenis strim (.mpd atau .m3u8)
         let streamType = 'application/x-mpegURL'; // Default HLS
-
-        if (url && url.includes('.mpd')) {
+        if (url.toLowerCase().includes('.mpd')) {
             streamType = 'application/dash+xml'; 
         } 
         
+        // 4. Sediakan konfigurasi asas
         let srcOptions = { 
             src: url, 
             type: streamType,
             withCredentials: false
         };
 
-        // Konfigurasi DASH yang lebih mesra pelayar web
-        if (streamType === 'application/dash+xml') {
-            player.options({
-                html5: {
-                    dashjs: {
-                        settings: {
-                            streaming: {
-                                // Cuba kurangkan sekatan XHR jika browser menolak
-                                httpwithcredentials: false,
-                                xhr: {
-                                    customHeaders: [
-                                        { name: 'X-Requested-With', value: 'XMLHttpRequest' }
-                                    ]
-                                }
-                            }
+        // 5. Inject headers cara selamat mengikut jenis fail
+        if (url.includes('rtm.gov.my') || url.includes('cloudfront.net')) {
+            if (streamType === 'application/dash+xml') {
+                // Cara paling selamat untuk dash.js tanpa mengganggu core Video.js options secara kasar
+                srcOptions.dashjs = {
+                    streaming: {
+                        xhr: {
+                            customHeaders: [
+                                { name: 'User-Agent', value: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36' },
+                                { name: 'Referer', value: 'https://rtmklik.rtm.gov.my/' }
+                            ]
                         }
                     }
-                }
-            });
-            
-            // Jika ia fail m3u8 rtm biasa
-            if (url.includes('rtm.gov.my') && streamType !== 'application/dash+xml') {
+                };
+            } else {
+                // Jika m3u8
                 srcOptions.header = {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36',
                     'Referer': 'https://rtmklik.rtm.gov.my/'
                 };
             }
         }
 
+        // 6. Sumbat masuk dalam player dan mainkan
         player.src(srcOptions);
         player.load();
 
         player.ready(function() {
             player.play().catch(function(error) {
-                console.log("Autoplay disekat:", error);
+                console.log("Autoplay disekat atau fail sekat CORS:", error);
             });
         });
 
     } catch (error) {
-        console.error("Ralat pada fungsi streamHLS:", error);
+        // Jika ada ralat, dia takkan matikan terus pelayar. Awak boleh nampak ralat kat F12 Console.
+        console.error("Ralat kritikal dalam streamHLS:", error);
     }
-}       
+}
+
+// Salinan fungsi untuk pastikan onclick="streamDASH(...)" pada kad RTM berfungsi
+const streamDASH = streamHLS;
     </script>
 </body>
 </html>
