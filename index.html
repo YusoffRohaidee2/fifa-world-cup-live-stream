@@ -373,8 +373,10 @@
 <div class="sidebar">
     <div class="channels-list-wrapper">
 
+        <!-- KUMPULAN 1: RTM Malaysia Streams (Dengan Logo) -->
         <div class="section-header-group">
-            <div class="section-header" data-en="RTM Klik Streams" data-my="Siaran Langsung RTM Klik">RTM Klik Streams</div>
+            <img src="https://vectorise.net/logo/wp-content/uploads/2024/07/Logo-RTM-Teman-Setia-Anda-2021.png" class="section-header-logo">
+            <div class="section-header" data-en="RTM Malaysia Streams" data-my="Siaran Langsung RTM">RTM Malaysia Streams</div>
         </div>
 
         <!-- TV1 -->
@@ -397,22 +399,22 @@
             <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
         </div>
 
-        <!-- Sukan+ -->
-        <div class="channel-card" onclick="tukarSaluran('https://d30aylox5wvifh.cloudfront.net/live/media0/sukan/DASH/sukan.mpd', 'Sukan+', this, 'https://rtm-images.glueapi.io/fit-in/1920x1280/system/SukanDolby.png', 'dash')">
-            <img src="https://rtm-images.glueapi.io/fit-in/1920x1280/system/SukanDolby.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+        <!-- Sukan+ HD -->
+        <div class="channel-card" onclick="tukarSaluran('https://slive.mana2.my/SukanRtm/index.m3u8', 'Sukan+ HD', this, 'https://static.wikia.nocookie.net/logopedia/images/3/33/RTM_Sukan_Plus_%282026%29.png/revision/latest/scale-to-width-down/1000?cb=20260402075508', 'hls')">
+            <img src="https://static.wikia.nocookie.net/logopedia/images/3/33/RTM_Sukan_Plus_%282026%29.png/revision/latest/scale-to-width-down/1000?cb=20260402075508" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
             <div class="card-info">
-                <h4>Sukan+</h4>
-                <p>Global Feed | Malaysia<br><small>Live Matches & Replay</small></p>
+                <h4>Sukan+ HD</h4>
+                <p>MYTV Mana Mana | Malaysia</p>
             </div>
             <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
         </div>
 
-        <!-- TV Okey -->
-        <div class="channel-card" onclick="tukarSaluran('https://d30aylox5wvifh.cloudfront.net/live/media0/okey/DASH/okey.mpd', 'TV Okey', this, 'https://rtm-images.glueapi.io/fit-in/1920x1280/system/OkeyDolby.png', 'dash')">
-            <img src="https://rtm-images.glueapi.io/fit-in/1920x1280/system/OkeyDolby.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+        <!-- TV Okey HD -->
+        <div class="channel-card" onclick="tukarSaluran('https://slive.mana2.my/TvOkey/index.m3u8', 'TV Okey HD', this, 'https://i.imgur.com/V2jREQ5.png', 'hls')">
+            <img src="https://i.imgur.com/V2jREQ5.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
             <div class="card-info">
-                <h4>TV Okey</h4>
-                <p>Global Feed | Malaysia<br><small>Live Matches & Replay</small></p>
+                <h4>TV Okey HD</h4>
+                <p>MYTV Mana Mana | Malaysia</p>
             </div>
             <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
         </div>
@@ -447,11 +449,29 @@
             <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
         </div>
         
+        <!-- KUMPULAN 2: RTB Live Streams (Dengan Ikon FontAwesome) -->
         <div class="section-header-group">
+            <i class="fa-solid fa-video section-header-icon"></i>
+            <div class="section-header" data-en="RTB Live Streams" data-my="Siaran Langsung RTB">RTB Live Streams</div>
+        </div>
+
+        <!-- RTB GO -->
+        <div class="channel-card" onclick="tukarSaluran('https://d1211whpimeups.cloudfront.net/smil:rtbgo/playlist.m3u8', 'RTB GO', this, 'https://i.imgur.com/CGlzsD5.png', 'hls')">
+            <img src="https://i.imgur.com/CGlzsD5.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+            <div class="card-info">
+                <h4>RTB GO</h4>
+                <p data-en="Global Feed | Brunei" data-my="Suapan Global | Brunei" style="margin-bottom: 5px;">Global Feed | Brunei</p>
+            </div>
+            <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
+        </div>
+
+        <!-- KUMPULAN 3: Somoy TV Live Stream -->
+        <div class="section-header-group">
+            <i class="fa-solid fa-broadcast-tower section-header-icon"></i>
             <div class="section-header" data-en="Somoy TV Live Stream" data-my="Siaran Langsung Somoy TV">Somoy TV Live Stream</div>
         </div>
 
-        <!-- Somoy News TV (HLS) -->
+        <!-- Somoy News TV -->
         <div class="channel-card" onclick="tukarSaluran('https://live.thebosstv.com:30443/dwlive/Somoy-TV/chunks.m3u8', 'Somoy News TV', this, 'https://i.imgur.com/i54AQic.png', 'hls')">
             <img src="https://i.imgur.com/i54AQic.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
             <div class="card-info">
