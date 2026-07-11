@@ -1758,27 +1758,54 @@ const resultsData = [
 
 function renderResults() {
     const container = document.getElementById('results-container');
+    if (!container) return; // Perlindungan tambahan jika kontena tiada dalam DOM
+    
     container.innerHTML = '';
     
+    // Pastikan resultsData wujud sebelum digunakan
+    if (!window.resultsData || resultsData.length === 0) {
+        container.innerHTML = '<div style="text-align:center; padding:20px; color:#aaa;">Tiada data keputusan perlawanan.</div>';
+        return;
+    }
+    
     const reversedResults = [...resultsData].sort((a, b) => new Date(b.date) - new Date(a.date));
+    
     reversedResults.forEach(r => {
         const utcDate = new Date(r.date);
         const localDateStr = utcDate.toLocaleDateString([], { day: 'numeric', month: 'short', year: 'numeric' });
+        
+        // 1. Sediakan Events Pasukan 1
         let events1Html = '';
-        r.events1.forEach(e => {
-            const icon = e.type === 'goal' ? '<i class="fa-solid fa-football goal-icon"></i>' : '<i class="fa-solid fa-square card-red"></i>';
-            events1Html += `<div class="event-item">${icon} <span>${e.text}</span></div>`;
-        });
+        if (r.events1 && Array.isArray(r.events1)) {
+            r.events1.forEach(e => {
+                const icon = e.type === 'goal' ? '<i class="fa-solid fa-football goal-icon"></i>' : '<i class="fa-solid fa-square card-red"></i>';
+                events1Html += `<div class="event-item">${icon} <span>${e.text}</span></div>`;
+            });
+        }
+        
+        // 2. Sediakan Events Pasukan 2
         let events2Html = '';
-        r.events2.forEach(e => {
-            const icon = e.type === 'goal' ? '<i class="fa-solid fa-football goal-icon"></i>' : '<i class="fa-solid fa-square card-red"></i>';
-            events2Html += `<div class="event-item rev"> <span>${e.text}</span> ${icon}</div>`;
-        });
+        if (r.events2 && Array.isArray(r.events2)) {
+            r.events2.forEach(e => {
+                const icon = e.type === 'goal' ? '<i class="fa-solid fa-football goal-icon"></i>' : '<i class="fa-solid fa-square card-red"></i>';
+                events2Html += `<div class="event-item rev"> <span>${e.text}</span> ${icon}</div>`;
+            });
+        }
+        
+        // 3. Penyelesaian Isu Utama: Format data Kehadiran (Attendance) secara selamat
+        let formattedAttendance = 'N/A';
+        if (r.attendance !== undefined && r.attendance !== null && r.attendance !== '') {
+            // Tukar ke string dahulu untuk elakkan ralat jika asal data adalah format Nombor
+            const attStr = String(r.attendance).replace(/,/g, ''); 
+            const attNum = Number(attStr);
+            formattedAttendance = !isNaN(attNum) ? attNum.toLocaleString() : r.attendance;
+        }
+
         const card = document.createElement('div');
         card.className = 'schedule-card';
         card.innerHTML = `
             <div class="match-header">
-                <span class="match-group">${r.group}</span>
+                <span class="match-group">${r.group || ''}</span>
                 <span class="match-date-gmt" style="color: var(--accent-green); font-weight:700;"><i class="fa-solid fa-circle-check"></i> FT</span>
             </div>
             <div class="teams">
@@ -1788,8 +1815,8 @@ function renderResults() {
             </div>
             ${r.note ? `<div class="match-note" style="text-align:center; font-size:0.85rem; color:#e67e22; font-weight:600; margin:4px 0 8px;"><i class="fa-solid fa-circle-info"></i> ${r.note}</div>` : ''}
             <div class="match-details-box">
-                <div class="detail-row"><span>Stadium: <strong>${r.stadium}</strong></span></div>
-                <div class="detail-row"><span>Attendance: <strong>${Number(r.attendance.replace(/,/g, '')).toLocaleString()}</strong></span><span>Date: <strong>${localDateStr}</strong></span></div>
+                <div class="detail-row"><span>Stadium: <strong>${r.stadium || 'N/A'}</strong></span></div>
+                <div class="detail-row"><span>Attendance: <strong>${formattedAttendance}</strong></span><span>Date: <strong>${localDateStr}</strong></span></div>
             </div>
             <div class="events-list">
                 <div class="team-events">${events1Html}</div>
@@ -1798,12 +1825,14 @@ function renderResults() {
         `;
         container.appendChild(card);
     });
+    
+    // 4. Tambah Footer Kredit
     const footerEl = document.createElement('div');
     footerEl.className = 'results-footer';
     footerEl.innerHTML = `
-        <a href="https://www.skysports.com/fifa-world-cup-scores-fixtures" target="_blank" class="credit-link">
+        <a href="https://www.skysports.com/fifa-world-cup-scores-fixtures" target="_blank" class="credit-link" style="display: flex; align-items: center; gap: 8px; text-decoration: none; justify-content: center; margin-top: 15px;">
             <span data-en="Courtesy by :" data-my="Ihsan oleh :">Courtesy by :</span>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Sky_Sport_-_Logo_2026.svg/3840px-Sky_Sport_-_Logo_2026.svg.png" class="credit-logo" alt="Sky Sports">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Sky_Sport_-_Logo_2026.svg/3840px-Sky_Sport_-_Logo_2026.svg.png" class="credit-logo" alt="Sky Sports" style="height:20px;">
             <span style="font-size: 0.8rem; color: var(--accent-blue);" data-en="(Click the logo to go to the website)" data-my="(Klik logo untuk layari laman web)">(Click the logo to go to the website)</span>
         </a>
     `;
