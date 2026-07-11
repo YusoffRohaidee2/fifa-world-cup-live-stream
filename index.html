@@ -10,8 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <link href="https://vjs.zencdn.net/8.11.8/video-js.css" rel="stylesheet" />
-
+<link href="https://vjs.zencdn.net/8.11.8/video-js.css" rel="stylesheet" />
+    
     <style>
         :root {
             --bg-deep: #050505;
@@ -511,6 +511,8 @@
     </div>
 
     <script src="https://vjs.zencdn.net/8.11.8/video.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dashjs@4.7.4/dist/dash.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/videojs-contrib-dash@5.1.1/dist/videojs-contrib-dash.min.js"></script>
 
     <script>
         // Schedule data in GMT+0
@@ -1896,6 +1898,11 @@ function streamHLS(url, title, el, logoUrl) {
         let streamType = 'application/x-mpegURL'; // Default HLS
         let streamKeySystems = null;
 
+        // Reset tetapan custom headers untuk dashjs (elak clash dengan stream lain)
+        if (player.options_.html5 && player.options_.html5.dashjs) {
+            player.options_.html5.dashjs.settings = {};
+        }
+
         if (url && url.includes('.mpd')) {
             streamType = 'application/dash+xml'; // Tukar ke DASH kalau fail .mpd
             
@@ -1922,12 +1929,35 @@ function streamHLS(url, title, el, logoUrl) {
             withCredentials: false
         };
 
-        // Khas untuk RTM Klik (.mpd): Hantar custom headers agar tidak kena Error 403
-        if (url.includes('rtm.gov.my') || url.includes('.mpd')) {
-            srcOptions.header = {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36',
-                'Referer': 'https://rtmklik.rtm.gov.my/'
-            };
+        // --- PENGUBAHSUAIAN UTAMA UNTUK COMPATIBILITY HEADERS RTM (.mpd & .m3u8) ---
+        if (url.includes('rtm.gov.my') || url.includes('cloudfront.net') || url.includes('.mpd')) {
+            
+            // Jika fail .mpd (DASH), hantar headers guna cara dash.js settings
+            if (streamType === 'application/dash+xml') {
+                player.options({
+                    html5: {
+                        dashjs: {
+                            settings: {
+                                streaming: {
+                                    httpwithcredentials: false,
+                                    xhr: {
+                                        customHeaders: [
+                                            { name: 'User-Agent', value: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36' },
+                                            { name: 'Referer', value: 'https://rtmklik.rtm.gov.my/' }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            } else {
+                // Jika fail .m3u8 (HLS), guna cara standard Video.js
+                srcOptions.header = {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36',
+                    'Referer': 'https://rtmklik.rtm.gov.my/'
+                };
+            }
         }
 
         // Kalau ada DRM, Video.js perlukan info keySystems ni
