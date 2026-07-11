@@ -370,50 +370,80 @@
                 </div>
             </div>
 
-            <div class="sidebar">
-                <div class="channels-list-wrapper">
+<div class="sidebar">
+    <div class="channels-list-wrapper">
 
-                    <div class="section-header-group">
-                        <img src="https://vectorise.net/logo/wp-content/uploads/2024/07/Logo-RTM-Teman-Setia-Anda-2021.png" class="section-header-logo">
-                        <div class="section-header" data-en="RTM Malaysia Streams" data-my="Siaran Langsung RTM">RTM Malaysia Streams</div>
-                    </div>
-
-                    <div class="channel-card" onclick="streamHLS('https://slive.mana2.my/SukanRtm/index.m3u8', 'Sukan+ HD', this, 'https://static.wikia.nocookie.net/logopedia/images/3/33/RTM_Sukan_Plus_%282026%29.png/revision/latest/scale-to-width-down/1000?cb=20260402075508')">
-                        <img src="https://static.wikia.nocookie.net/logopedia/images/3/33/RTM_Sukan_Plus_%282026%29.png/revision/latest/scale-to-width-down/1000?cb=20260402075508" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
-                        <div class="card-info">
-                            <h4>Sukan+ HD</h4>
-                            <p>MYTV Mana Mana | Malaysia</p>
-                        </div>
-                        <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
-                    </div>
-
-                    <div class="channel-card" onclick="streamHLS('https://slive.mana2.my/TvOkey/index.m3u8', 'TV Okey HD', this, 'https://i.imgur.com/V2jREQ5.png')">
-                        <img src="https://i.imgur.com/V2jREQ5.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
-                        <div class="card-info">
-                            <h4>TV Okey HD</h4>
-                            <p>MYTV Mana Mana | Malaysia</p>
-                        </div>
-                        <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
-                    </div>
-
-                    <div class="section-header-group">
-                        <i class="fa-solid fa-video section-header-icon"></i>
-                        <div class="section-header" data-en="RTB Live Streams" data-my="Siaran Langsung RTB">RTB Live Streams</div>
-                    </div>
-
-                    <div class="channel-card" onclick="streamHLS('https://d1211whpimeups.cloudfront.net/smil:rtbgo/playlist.m3u8', 'RTB GO', this, 'https://i.imgur.com/CGlzsD5.png')">
-                        <img src="https://i.imgur.com/CGlzsD5.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
-                        <div class="card-info">
-                            <h4>RTB GO</h4>
-                            <p data-en="Global Feed | Brunei" data-my="Suapan Global | Brunei" style="margin-bottom: 5px;">Global Feed | Brunei</p>
-                    </div>
-                        <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
-                    </div>
-
-                </div>
-            </div>
+        <div class="section-header-group">
+            <img src="https://vectorise.net/logo/wp-content/uploads/2024/07/Logo-RTM-Teman-Setia-Anda-2021.png" class="section-header-logo">
+            <div class="section-header" data-en="RTM Malaysia Streams" data-my="Siaran Langsung RTM">RTM Malaysia Streams</div>
         </div>
+
+        <div class="channel-card" onclick="streamDASH('https://d30aylox5wvifh.cloudfront.net/live/media0/tv1/DASH/tv1.mpd', 'TV1', this, 'https://rtm-images.glueapi.io/fit-in/1920x1280/live_channel/TV1.jpg')">
+            <img src="https://rtm-images.glueapi.io/fit-in/1920x1280/live_channel/TV1.jpg" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+            <div class="card-info">
+                <h4>TV1</h4>
+                <p>RTM Klik | Malaysia</p>
+            </div>
+            <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
+        </div>
+
+        <div class="channel-card" onclick="streamDASH('https://d30aylox5wvifh.cloudfront.net/live/media0/tv2/DASH/tv2.mpd', 'TV2', this, 'https://rtm-images.glueapi.io/fit-in/1920x1280/system/TV2Dolby.png')">
+            <img src="https://rtm-images.glueapi.io/fit-in/1920x1280/system/TV2Dolby.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+            <div class="card-info">
+                <h4>TV2</h4>
+                <p>RTM Klik | Malaysia</p>
+            </div>
+            <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
+        </div>
+
+        <div class="channel-card" onclick="streamDASH('https://d30aylox5wvifh.cloudfront.net/live/media0/sukan/DASH/sukan.mpd', 'Sukan+', this, 'https://rtm-images.glueapi.io/fit-in/1920x1280/system/SukanDolby.png')">
+            <img src="https://rtm-images.glueapi.io/fit-in/1920x1280/system/SukanDolby.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+            <div class="card-info">
+                <h4>Sukan+</h4>
+                <p>RTM Klik | Malaysia</p>
+            </div>
+            <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
+        </div>
+
+        <div class="channel-card" onclick="streamDASH('https://d30aylox5wvifh.cloudfront.net/live/media0/okey/DASH/okey.mpd', 'TV Okey', this, 'https://rtm-images.glueapi.io/fit-in/1920x1280/system/OkeyDolby.png')">
+            <img src="https://rtm-images.glueapi.io/fit-in/1920x1280/system/OkeyDolby.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+            <div class="card-info">
+                <h4>TV Okey</h4>
+                <p>RTM Klik | Malaysia</p>
+            </div>
+            <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
+        </div>
+
+        <div class="channel-card" onclick="streamDASH('https://d30aylox5wvifh.cloudfront.net/live/media0/wc1/DASH/wc1.mpd', 'FIFA WC1', this, 'https://rtm-images.glueapi.io/fit-in/1920x1920/system/FIFA-WC-1-Dolby.png')">
+            <img src="https://rtm-images.glueapi.io/fit-in/1920x1920/system/FIFA-WC-1-Dolby.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+            <div class="card-info">
+                <h4>FIFA WC1</h4>
+                <p>RTM Klik | Malaysia</p>
+            </div>
+            <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
+        </div>
+
+        <div class="channel-card" onclick="streamDASH('https://d30aylox5wvifh.cloudfront.net/live/media0/wc2/DASH/wc2.mpd', 'FIFA WC2', this, 'https://rtm-images.glueapi.io/fit-in/1920x1280/system/FIFA-WC-2-Dolby.png')">
+            <img src="https://rtm-images.glueapi.io/fit-in/1920x1280/system/FIFA-WC-2-Dolby.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+            <div class="card-info">
+                <h4>FIFA WC2</h4>
+                <p>RTM Klik | Malaysia</p>
+            </div>
+            <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
+        </div>
+
+        <div class="channel-card" onclick="streamDASH('https://d30aylox5wvifh.cloudfront.net/live/media0/wc3/DASH/wc3.mpd', 'FIFA WC3', this, 'https://rtm-images.glueapi.io/fit-in/1920x1280/system/FIFA-WC-3-Dolby.png')">
+            <img src="https://rtm-images.glueapi.io/fit-in/1920x1280/system/FIFA-WC-3-Dolby.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+            <div class="card-info">
+                <h4>FIFA WC3</h4>
+                <p>RTM Klik | Malaysia</p>
+            </div>
+            <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
+        </div>
+</div>
     </div>
+</div>
+</div> <!-- tutup #page-live -->
 
     <div id="page-schedule" class="page-content">
         <div class="schedule-grid" id="schedule-container"></div>
