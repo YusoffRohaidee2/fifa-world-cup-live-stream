@@ -1946,6 +1946,7 @@ let dashInstance = null;
 const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
 
 function updateUI(title, el, logoUrl) {
+    if (!el) return;
     document.getElementById('now-playing-title').innerText = title;
     document.getElementById('channel-logo-display').src = logoUrl;
     document.querySelectorAll('.channel-card').forEach(c => c.classList.remove('active'));
