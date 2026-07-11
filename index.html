@@ -1894,95 +1894,59 @@ function streamHLS(url, title, el, logoUrl) {
             player.reset(); 
         }
         
-        // 1. Detect type berdasarkan hujung URL
         let streamType = 'application/x-mpegURL'; // Default HLS
-        let streamKeySystems = null;
-
-        // Reset tetapan custom headers untuk dashjs (elak clash dengan stream lain)
-        if (player.options_.html5 && player.options_.html5.dashjs) {
-            player.options_.html5.dashjs.settings = {};
-        }
 
         if (url && url.includes('.mpd')) {
-            streamType = 'application/dash+xml'; // Tukar ke DASH kalau fail .mpd
-            
-            // 2. Set ClearKey DRM setup kalau ada parameter clearkey kat URL
-            if (url.includes('drmScheme=clearkey') || url.includes('clearkey')) {
-                streamKeySystems = {
-                    'org.w3.clearkey': {
-                        'clearkeys': {
-                            // 'KID_HEX': 'KEY_HEX'
-                        },
-                        'audio/mp4': {
-                            'initDataTypes': ['cenc'],
-                            'videoCapabilities': [{ 'contentType': 'video/mp4; codecs="avc1.4d401f"' }]
-                        }
-                    }
-                };
-            }
+            streamType = 'application/dash+xml'; 
         } 
         
-        // 3. Sumbat masuk dalam player src secara dinamik
         let srcOptions = { 
             src: url, 
             type: streamType,
             withCredentials: false
         };
 
-        // --- PENGUBAHSUAIAN UTAMA UNTUK COMPATIBILITY HEADERS RTM (.mpd & .m3u8) ---
-        if (url.includes('rtm.gov.my') || url.includes('cloudfront.net') || url.includes('.mpd')) {
-            
-            // Jika fail .mpd (DASH), hantar headers guna cara dash.js settings
-            if (streamType === 'application/dash+xml') {
-                player.options({
-                    html5: {
-                        dashjs: {
-                            settings: {
-                                streaming: {
-                                    httpwithcredentials: false,
-                                    xhr: {
-                                        customHeaders: [
-                                            { name: 'User-Agent', value: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36' },
-                                            { name: 'Referer', value: 'https://rtmklik.rtm.gov.my/' }
-                                        ]
-                                    }
+        // Konfigurasi DASH yang lebih mesra pelayar web
+        if (streamType === 'application/dash+xml') {
+            player.options({
+                html5: {
+                    dashjs: {
+                        settings: {
+                            streaming: {
+                                // Cuba kurangkan sekatan XHR jika browser menolak
+                                httpwithcredentials: false,
+                                xhr: {
+                                    customHeaders: [
+                                        { name: 'X-Requested-With', value: 'XMLHttpRequest' }
+                                    ]
                                 }
                             }
                         }
                     }
-                });
-            } else {
-                // Jika fail .m3u8 (HLS), guna cara standard Video.js
+                }
+            });
+            
+            // Jika ia fail m3u8 rtm biasa
+            if (url.includes('rtm.gov.my') && streamType !== 'application/dash+xml') {
                 srcOptions.header = {
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36',
                     'Referer': 'https://rtmklik.rtm.gov.my/'
                 };
             }
         }
 
-        // Kalau ada DRM, Video.js perlukan info keySystems ni
-        if (streamKeySystems) {
-            srcOptions.keySystems = streamKeySystems;
-        }
-
         player.src(srcOptions);
         player.load();
 
-        // 4. Play bila player dah sedia
         player.ready(function() {
             player.play().catch(function(error) {
-                console.log("Strim disekat (CORS / Autoplay policy):", error);
+                console.log("Autoplay disekat:", error);
             });
         });
 
     } catch (error) {
-        console.error("Ralat kritikal pada fungsi streamHLS:", error);
+        console.error("Ralat pada fungsi streamHLS:", error);
     }
-}
-
-// 5. Duplicate fungsi supaya kad saluran yang panggil 'streamDASH' pun akan berfungsi dengan kod yang sama
-const streamDASH = streamHLS;
-        
+}       
     </script>
 </body>
 </html>
