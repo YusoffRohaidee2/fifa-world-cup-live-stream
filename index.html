@@ -1901,7 +1901,7 @@ function streamHLS(url, title, el, logoUrl) {
     player.src({ 
         src: url, 
         type: 'application/x-mpegURL',
-        withCredentials: true 
+        withCredentials: false 
     }); 
     
     player.load();
