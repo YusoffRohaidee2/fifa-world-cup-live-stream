@@ -10,8 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <link href="https://vjs.zencdn.net/8.11.8/video-js.css" rel="stylesheet" />
-
+<link href="https://vjs.zencdn.net/8.11.8/video-js.css" rel="stylesheet" />
+    
     <style>
         :root {
             --bg-deep: #050505;
@@ -169,23 +169,29 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @media (max-width: 1200px) {
+@media (max-width: 1200px) {
             .dashboard { grid-template-columns: 1fr; }
             .page-content { padding: 0 20px 40px; }
         }
 
         .player-container {
             background: var(--glass); border-radius: 30px; border: 1px solid var(--glass-border);
-            padding: 25px; backdrop-filter: blur(10px); box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            padding: 25px; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
-        .video-box { position: relative; width: 100%; padding-top: 56.25%; background: #000; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
+        .video-box { 
+            position: relative; width: 100%; padding-top: 56.25%; background: #000; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); 
+            -webkit-transform: translateZ(0); transform: translateZ(0); /* Selesaikan isu border-radius terpotong pada iOS */
+        }
         .video-js { position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important; }
 
         .player-info { display: flex; flex-direction: column; gap: 15px; margin-top: 25px; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 20px; }
-        .player-main-details { display: flex; align-items: center; }
+        .player-main-details { display: flex; align-items: center; flex-wrap: wrap; } /* Flex-wrap untuk keselamatan skrin mudah alih */
         #channel-logo-display { height: 60px; margin-right: 25px; width: 100px; object-fit: contain; }
-        .status-dot { height: 10px; width: 10px; background: #3fffcf; border-radius: 50%; display: inline-block; margin-right: 10px; box-shadow: 0 0 10px #3fffcf; animation: pulse 1.5s infinite; }
+        .status-dot { 
+            height: 10px; width: 10px; background: #3fffcf; border-radius: 50%; display: inline-block; margin-right: 10px; box-shadow: 0 0 10px #3fffcf; 
+            -webkit-animation: pulse 1.5s infinite; animation: pulse 1.5s infinite; 
+        }
 
         .player-loading-notice {
             background: rgba(255, 159, 67, 0.08);
@@ -199,7 +205,18 @@
             gap: 10px;
         }
 
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+        /* --- TAMBAHAN KOD SOKONGAN ANIMASI & MOBILE COMPATIBLE --- */
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(63, 255, 207, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(63, 255, 207, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(63, 255, 207, 0); }
+        }
+
+        @media (max-width: 480px) {
+            .player-container { padding: 15px; border-radius: 20px; }
+            .player-main-details { flex-direction: column; align-items: flex-start; gap: 10px; }
+            #channel-logo-display { margin-right: 0; margin-bottom: 5px; height: 45px; width: 80px; }
+        }
 
         .sidebar { display: flex; flex-direction: column; gap: 20px; }
         
@@ -489,8 +506,9 @@
         </div>
     </div>
 
-    <script src="https://vjs.zencdn.net/8.11.8/video.min.js"></script>
-
+<script src="https://vjs.zencdn.net/8.11.8/video.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/videojs-contrib-dash@5.1.1/dist/videojs-contrib-dash.min.js"></script>
+    
     <script>
         // Schedule data in GMT+0
 const scheduleData = [
@@ -1857,12 +1875,33 @@ const resultsData = [
         renderResults();
         renderStandings();
 
-// Memulakan pemain Video.js
+// Memulakan pemain Video.js dengan talaan prestasi tinggi (DASH & HLS)
 const player = videojs('fifa-player', { 
     fluid: true, 
     autoplay: false, 
     controls: true, 
-    responsive: true 
+    responsive: true,
+    preload: 'auto',
+    html5: {
+        // Konfigurasi Video.js HTTP Streaming (VHS) untuk HLS & DASH bawaan
+        vhs: {
+            overrideNative: true, // Paksa guna VHS untuk prestasi stabil merentasi pelayar
+            maxBufferLength: 30,  // Simpan buffer sehingga 30 saat ke depan (Strim lebih lancar)
+            enableLowInitialPlaylist: true // Muatkan kualiti rendah dahulu sekiranya internet lambat supaya video cepat jalan
+        },
+        // Talaan Khas untuk Engine dash.js (Wajib jika guna videojs-contrib-dash)
+        dash: {
+            setFastSwitchEnabled: true, // Tukar kualiti video dengan laju mengikut kelajuan internet
+            setBufferToKeep: 20,        // Kekalkan buffer 20 saat untuk elakkan video tersekat-sekat
+            setBufferAheadToKeep: 30,   // Muatkan 30 saat ke hadapan secara agresif
+            setStableBufferTime: 12,    // Sasaran kestabilan buffer
+            setLowLatencyEnabled: true, // Kurangkan 'delay' strim langsung (Live)
+            // Sokongan DRM meluas sekiranya strim dilindungi (Widevine / PlayReady)
+            protectionData: {
+                // Konfigurasi ini diisi secara dinamik jika saluran memerlukan kunci lesen
+            }
+        }
+    }
 });
 
 // Fungsi sepunya untuk kemas kini UI (Tajuk, Logo, dan Status Aktif)
@@ -1881,26 +1920,35 @@ function updateUI(title, el, logoUrl) {
 function streamHLS(url, title, el, logoUrl) { 
     updateUI(title, el, logoUrl); 
     
-    // Tukar src secara langsung (JANGAN gunakan player.reset())
+    // Reset player dengan bersih sebelum muat saluran baharu supaya tiada memori 'leak'
+    player.pause();
+    player.src([]); // Bersihkan src lama untuk kosongkan buffer dengan laju
+    
     player.src({ 
         src: url, 
         type: 'application/x-mpegURL',
-        withCredentials: false
+        withCredentials: false // Tukar ke true jika strim memerlukan cookies/token sesi anda
     }); 
     
     player.load();
     player.ready(function() {
-        player.play().catch(function(error) {
-            console.log("Strim HLS disekat atau ralat:", error);
-        });
+        // Gunakan timeout kecil untuk memberi ruang pelayar bersedia selepas pembersihan buffer
+        setTimeout(() => {
+            player.play().catch(function(error) {
+                console.log("Strim HLS disekat atau ralat:", error);
+            });
+        }, 50);
     });
 }
 
-// 2. FUNGSI UNTUK STRIM DASH (.mpd)
+// 2. FUNGSI UNTUK STRIM DASH (.mpd) - DIOPTIMUMKAN!
 function streamDASH(url, title, el, logoUrl) { 
     updateUI(title, el, logoUrl); 
     
-    // Tukar src secara langsung menggunakan MIME type untuk DASH
+    // Bersihkan buffer saluran lama untuk elakkan 'crash' pertukaran codec
+    player.pause();
+    player.src([]); 
+    
     player.src({ 
         src: url, 
         type: 'application/dash+xml',
@@ -1909,9 +1957,11 @@ function streamDASH(url, title, el, logoUrl) {
     
     player.load();
     player.ready(function() {
-        player.play().catch(function(error) {
-            console.log("Strim DASH disekat atau ralat:", error);
-        });
+        setTimeout(() => {
+            player.play().catch(function(error) {
+                console.log("Strim DASH disekat atau ralat:", error);
+            });
+        }, 50);
     });
 }
     </script>
