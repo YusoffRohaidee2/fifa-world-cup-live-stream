@@ -395,7 +395,7 @@
             <div class="section-header" data-en="RTM Malaysia Streams" data-my="Siaran Langsung RTM">RTM Malaysia Streams</div>
         </div>
 
-        <div class="channel-card" onclick="streamDASH('https://bold-sky-a86c.yusoff-rohaidee.workers.dev/?url=https://d30aylox5wvifh.cloudfront.net/live/media0/tv1/DASH/tv1.mpd', 'TV1', this, 'https://rtm-images.glueapi.io/fit-in/1920x1280/live_channel/TV1.jpg')">
+        <div class="channel-card" onclick="streamDASH('https://d30aylox5wvifh.cloudfront.net/live/media0/tv1/DASH/tv1.mpd', 'TV1', this, 'https://rtm-images.glueapi.io/fit-in/1920x1280/live_channel/TV1.jpg')">
             <img src="https://rtm-images.glueapi.io/fit-in/1920x1280/live_channel/TV1.jpg" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
             <div class="card-info">
                 <h4>TV1</h4>
@@ -1734,27 +1734,49 @@ const resultsData = [
             });
         }
 
-        function renderResults() {
-            const container = document.getElementById('results-container');
-            container.innerHTML = '';
-            
-            const reversedResults = [...resultsData].sort((a, b) => new Date(b.date) - new Date(a.date));
+function renderResults() {
+    const container = document.getElementById('results-container');
+    container.innerHTML = '';
+    
+    const reversedResults = [...resultsData].sort((a, b) => new Date(b.date) - new Date(a.date));
 
-            reversedResults.forEach(r => {
-                const utcDate = new Date(r.date);
-                const localDateStr = utcDate.toLocaleDateString([], { day: 'numeric', month: 'short', year: 'numeric' });
+    reversedResults.forEach(r => {
+        const utcDate = new Date(r.date);
+        const localDateStr = utcDate.toLocaleDateString([], { day: 'numeric', month: 'short', year: 'numeric' });
 
-                let events1Html = '';
-                r.events1.forEach(e => {
-                    const icon = e.type === 'goal' ? '<i class="fa-solid fa-football goal-icon"></i>' : '<i class="fa-solid fa-square card-red"></i>';
-                    events1Html += `<div class="event-item">${icon} <span>${e.text}</span></div>`;
-                });
+        let events1Html = '';
+        r.events1.forEach(e => {
+            const icon = e.type === 'goal' ? '<i class="fa-solid fa-football goal-icon"></i>' : '<i class="fa-solid fa-square card-red"></i>';
+            events1Html += `<div class="event-item">${icon} <span>${e.text}</span></div>`;
+        });
 
-                let events2Html = '';
-                r.events2.forEach(e => {
-                    const icon = e.type === 'goal' ? '<i class="fa-solid fa-football goal-icon"></i>' : '<i class="fa-solid fa-square card-red"></i>';
-                    events2Html += `<div class="event-item event-item.rev"><span>${e.text}</span> ${icon}</div>`;
-                });
+        let events2Html = '';
+        r.events2.forEach(e => {
+            const icon = e.type === 'goal' ? '<i class="fa-solid fa-football goal-icon"></i>' : '<i class="fa-solid fa-square card-red"></i>';
+            events2Html += `<div class="event-item event-item.rev"><span>${e.text}</span> ${icon}</div>`;
+        });
+
+        // 1. TAMBAH DI SINI: Semak jika ada nota, jika ada buat HTML untuk nota tersebut
+        let noteHtml = '';
+        if (r.note) {
+            noteHtml = `<div class="match-note">After Extra Time : ${r.note}</div>`;
+        }
+
+        // 2. MASUKKAN `noteHtml` ke dalam template kad anda
+        // Contoh struktur kad (sesuaikan dengan susunan HTML asal anda):
+        const cardHtml = `
+            <div class="match-card">
+                <div class="match-date">${localDateStr}</div>
+                <div class="match-events">
+                    <div class="team-1-events">${events1Html}</div>
+                    <div class="team-2-events">${events2Html}</div>
+                </div>
+                ${noteHtml} 
+            </div>
+        `;
+
+        container.insertAdjacentHTML('beforeend', cardHtml);
+    });
 
                 const card = document.createElement('div');
                 card.className = 'schedule-card';
@@ -1927,7 +1949,7 @@ function streamHLS(url, title, el, logoUrl) {
     player.src({ 
         src: url, 
         type: 'application/x-mpegURL',
-        withCredentials: false // Tukar ke true jika strim memerlukan cookies/token sesi anda
+        withCredentials: true // Tukar ke true jika strim memerlukan cookies/token sesi anda
     }); 
     
     player.load();
