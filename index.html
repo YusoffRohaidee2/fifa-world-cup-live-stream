@@ -391,7 +391,7 @@
     <div class="channels-list-wrapper">
 
         <div class="section-header-group">
-            <div class="section-header" data-en="Somoy TV Live Stream" data-my="Siaran Langsung Somoy TV">Somoy TV Live Stream</div>
+            <div class="section-header" data-en="Somoy TV Live Stream" data-my="Siaran Langsung Somoy TV">Siaran Langsung Somoy TV</div>
         </div>
 
         <div class="channel-card" onclick="streamHLS('https://live.thebosstv.com:30443/dwlive/Somoy-TV/chunks.m3u8', 'Somoy News TV', this, 'https://i.imgur.com/i54AQic.png')">
@@ -402,7 +402,7 @@
             </div>
             <span class="tag" style="background: var(--accent-blue); color: #000;">720p</span>
         </div>
-
+        
     </div> <!-- Penutup untuk channels-list-wrapper -->
 </div> <!-- Penutup untuk sidebar -->
             
@@ -1845,26 +1845,24 @@ const player = videojs('fifa-player', {
     responsive: true,
     preload: 'auto',
     html5: {
-        // Konfigurasi Video.js HTTP Streaming (VHS) untuk HLS & DASH bawaan
         vhs: {
-            overrideNative: true,         // Paksa guna VHS untuk prestasi stabil merentasi pelayar
-            maxBufferLength: 30,          // Simpan buffer sehingga 30 saat ke depan (Strim lebih lancar)
-            enableLowInitialPlaylist: true // Muatkan kualiti rendah dahulu sekiranya internet lambat supaya video cepat jalan
+            overrideNative: true,         
+            maxBufferLength: 30,          
+            enableLowInitialPlaylist: true 
         },
-        // Talaan Khas untuk Engine dash.js (Wajib jika guna videojs-contrib-dash)
         dash: {
-            setFastSwitchEnabled: true,   // Tukar kualiti video dengan laju mengikut kelajuan internet
-            setBufferToKeep: 20,           // Kekalkan buffer 20 saat untuk elakkan video tersekat-sekat
-            setBufferAheadToKeep: 30,      // Muatkan 30 saat ke hadapan secara agresif
-            setStableBufferTime: 12,       // Sasaran kestabilan buffer
-            setLowLatencyEnabled: true,    // Kurangkan 'delay' strim langsung (Live)
-            protectionData: {}             // Konfigurasi ini diisi secara dinamik jika saluran memerlukan kunci lesen
+            setFastSwitchEnabled: true,   
+            setBufferToKeep: 20,           
+            setBufferAheadToKeep: 30,      
+            setStableBufferTime: 12,       
+            setLowLatencyEnabled: true,    
+            protectionData: {}             
         }
     }
 });
 
 // ==========================================
-// 2. FUNGSI UTAMAKAN UI (Tajuk, Logo & Aktif Kad)
+// 2. FUNGSI UTAMAKAN UI & PENGURUSAN MEMORI
 // ==========================================
 function updateUI(title, el, logoUrl) {
     const titleEl = document.getElementById('now-playing-title');
@@ -1877,18 +1875,16 @@ function updateUI(title, el, logoUrl) {
     if (el) el.classList.add('active');
 }
 
-// Mencegah memory leak dan membersihkan buffer secara agresif sebelum menukar saluran
 function resetPlayer() {
     player.pause();
-    player.src([]); 
+    player.reset(); 
 }
 
-// Menjalankan video selepas buffer dibersihkan dengan selamat
 function safePlay(formatName) {
     player.ready(function() {
         setTimeout(() => {
             player.play().catch(function(error) {
-                console.log(`Strim ${formatName} disekat atau ralat:`, error);
+                console.log(`[Player] Strim ${formatName} disekat atau ralat:`, error);
             });
         }, 50);
     });
@@ -1898,7 +1894,6 @@ function safePlay(formatName) {
 // 3. FUNGSI-FUNGSI PENSTRIMAN KANDUNGAN
 // ==========================================
 
-// A. Strim HLS (.m3u8)
 function streamHLS(url, title, el, logoUrl) { 
     updateUI(title, el, logoUrl); 
     resetPlayer();
@@ -1906,14 +1901,13 @@ function streamHLS(url, title, el, logoUrl) {
     player.src({ 
         src: url, 
         type: 'application/x-mpegURL',
-        withCredentials: true // Tukar ke true jika strim memerlukan cookies/token sesi anda
+        withCredentials: true 
     }); 
     
     player.load();
     safePlay('HLS');
 }
 
-// B. Strim DASH (.mpd)
 function streamDASH(url, title, el, logoUrl) { 
     updateUI(title, el, logoUrl); 
     resetPlayer();
@@ -1928,7 +1922,6 @@ function streamDASH(url, title, el, logoUrl) {
     safePlay('DASH');
 }
 
-// C. Strim MP4 / Direct Video (.mp4, .webm, .mkv)
 function streamMP4(url, title, el, logoUrl) { 
     updateUI(title, el, logoUrl); 
     resetPlayer();
@@ -1942,24 +1935,26 @@ function streamMP4(url, title, el, logoUrl) {
     safePlay('MP4/Direct');
 }
 
-// D. Strim DASH dengan Perlindungan DRM ClearKey
 function streamDASHClearKey(url, title, el, logoUrl, keyId, key) {
     updateUI(title, el, logoUrl);
     resetPlayer();
     
-    player.src({
-        src: url,
-        type: 'application/dash+xml',
-        keySystemOptions: [
-            {
-                name: 'org.w3.clearkey',
-                options: {
-                    clearkeys: {
+    // Set data perlindungan terus ke dalam engine dash.js sebelum memuatkan src
+    player.ready(function() {
+        if (player.dash && player.dash.engine) {
+            player.dash.engine.setProtectionData({
+                "org.w3.clearkey": {
+                    "clearkeys": {
                         [keyId]: key
                     }
                 }
-            }
-        ]
+            });
+        }
+    });
+    
+    player.src({
+        src: url,
+        type: 'application/dash+xml'
     });
     
     player.load();
@@ -1970,15 +1965,14 @@ function streamDASHClearKey(url, title, el, logoUrl, keyId, key) {
 // 4. FUNGSI PENGESAN AUTOMATIK (AUTO-DETECT)
 // ==========================================
 function streamAuto(url, title, el, logoUrl) {
-    // Membuang query params (?abc=123) untuk memastikan semakan hujung fail adalah tepat
     const cleanUrl = url.split('?')[0].toLowerCase(); 
+    const fullUrlLower = url.toLowerCase();
     
-    if (cleanUrl.endsWith('.m3u8')) {
+    if (cleanUrl.endsWith('.m3u8') || fullUrlLower.includes('.m3u8')) {
         streamHLS(url, title, el, logoUrl);
-    } else if (cleanUrl.endsWith('.mpd')) {
+    } else if (cleanUrl.endsWith('.mpd') || fullUrlLower.includes('.mpd')) {
         streamDASH(url, title, el, logoUrl);
     } else {
-        // Jika bukan manifest adaptif, cuba mainkan terus sebagai fail video/MP4
         streamMP4(url, title, el, logoUrl);
     }
 }
