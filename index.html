@@ -1753,17 +1753,19 @@ function renderResults() {
         let events2Html = '';
         r.events2.forEach(e => {
             const icon = e.type === 'goal' ? '<i class="fa-solid fa-football goal-icon"></i>' : '<i class="fa-solid fa-square card-red"></i>';
-            // Dibetulkan: Menukar 'event-item.rev' kepada 'event-item rev' supaya class CSS berfungsi dengan betul
             events2Html += `<div class="event-item rev"><span>${e.text}</span> ${icon}</div>`;
         });
 
-        // Semak jika ada nota perlawanan
+        // Nota dibuat kecil, warna kuning, dan ditambah ikon stopwatch
         let noteHtml = '';
         if (r.note) {
-            noteHtml = `<div class="match-note">After Extra Time : ${r.note}</div>`;
+            noteHtml = `
+                <div class="match-note" style="color: #ffcc00; font-size: 0.75rem; text-align: center; margin-bottom: 8px; font-weight: 500;">
+                    <i class="fa-solid fa-stopwatch" style="margin-right: 4px;"></i>${r.note}
+                </div>
+            `;
         }
 
-        // Cipta kad perlawanan menggunakan kaedah document.createElement
         const card = document.createElement('div');
         card.className = 'schedule-card';
         card.innerHTML = `
@@ -1771,6 +1773,9 @@ function renderResults() {
                 <span class="match-group">${r.group}</span>
                 <span class="match-date-gmt" style="color: var(--accent-green); font-weight:700;"><i class="fa-solid fa-circle-check"></i> FT</span>
             </div>
+            
+            ${noteHtml}
+
             <div class="teams">
                 <div class="team"><i class="fa-solid fa-shield-halved"></i><span>${r.team1}</span></div>
                 <div class="score-display">${r.score1} : ${r.score2}</div>
@@ -1784,13 +1789,12 @@ function renderResults() {
                 <div class="team-events">${events1Html}</div>
                 <div class="team-events right">${events2Html}</div>
             </div>
-            ${noteHtml}
         `;
         
         container.appendChild(card);
-    }); // Penutup loop forEach yang betul di sini
+    }); // <-- Loop forEach tamat di sini dengan betul
 
-    // Cipta dan tambah footer selepas semua kad selesai dirender
+    // Cipta dan tambah footer HANYA SEKALI selepas semua kad selesai dijana
     const footerEl = document.createElement('div');
     footerEl.className = 'results-footer';
     footerEl.innerHTML = `
