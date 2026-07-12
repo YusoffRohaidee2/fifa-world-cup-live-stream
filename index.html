@@ -372,30 +372,19 @@
 
             <div class="sidebar">
                 <div class="channels-list-wrapper">
-
-<!-- SECTION: INTERNATIONAL STREAMS -->
-                    <div class="section-header-group">
-                        <i class="fa-solid fa-earth-asia section-header-icon"></i>
-                        <div class="section-header" data-en="International Streams" data-my="Siaran Antarabangsa">International Streams</div>
+                    
+            <div class="section-header-group">
+                <div class="section-header" data-en="Somoy TV Live Stream" data-my="Siaran Langsung Somoy TV">Somoy TV Live Stream</div>
                     </div>
 
-                    <!-- Somoy Bangla -->
-                    <div class="channel-card" onclick="streamHLS('https://live.thebosstv.com:30443/dwlive/Somoy-TV/chunks.m3u8', 'Somoy Bangla', this, '')">
+                <div class="channel-card" onclick="streamHLS('https://live.thebosstv.com:30443/dwlive/Somoy-TV/chunks.m3u8', 'Somoy News TV', this, 'https://i.imgur.com/i54AQic.png')">
+                    <img src="https://i.imgur.com/i54AQic.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
                         <div class="card-info">
                             <h4>Somoy News TV</h4>
-                            <p>Global Feed | Bangladesh</p>
-                        </div>
-                        <span class="tag" style="background: var(--accent-blue); color: #000;">720p</span>
-                    </div>
-
-                    <!-- TV3 IR Iran -->
-                    <div class="channel-card" onclick="streamHLS('https://edge22.776740.ir.cdn.ir/hls2/tv3.m3u8', 'TV3 IR Iran', this, '')">
-                        <div class="card-info">
-                            <h4>TV3</h4>
-                            <p>Global Feed | IR Iran</p>
-                        </div>
-                        <span class="tag" style="background: var(--accent-blue); color: #000;">720p</span>
-                    </div>
+                                <p>Global Feed | Bangladesh<br><small>Commentary in English</small></p>
+                                    </div>
+                                        <span class="tag" style="background: var(--accent-blue); color: #000;">720p</span>
+                                            </div>
 
                 </div>
             </div>
@@ -411,7 +400,7 @@
     </div>
 
     <div id="page-standings" class="page-content">
-        <span class="standings-update-time"><i class="fa-regular fa-clock"></i> <span data-en="Last updated: 19 June, 7:33am" data-my="Kemaskini terakhir: 19 Jun, 7:33 pagi">Last updated: 19 June, 7:33am</span></span>
+        <span class="standings-update-time"><i class="fa-regular fa-clock"></i> <span data-en="Not updated!" data-my="Tidak Dikemaskini!">Not updated!</span></span>
         <div class="standings-grid" id="standings-container"></div>
     </div>
 
@@ -451,11 +440,8 @@
     <script>
         // Schedule data in GMT+0
 const scheduleData = [
-    { date: "2026-07-10T19:00:00Z", team1: "Spain", team2: "Belgium" },
-    { date: "2026-07-11T21:00:00Z", team1: "Norway", team2: "England" },
-    { date: "2026-07-12T01:00:00Z", team1: "Argentina", team2: "Switzerland" },
-    { date: "2026-07-14T19:00:00Z", team1: "France", team2: "QF Match 2 Winner" },
-    { date: "2026-07-15T19:00:00Z", team1: "QF Match 3 Winner", team2: "QF Match 4 Winner" },
+    { date: "2026-07-14T19:00:00Z", team1: "France", team2: "Spain" },
+    { date: "2026-07-15T19:00:00Z", team1: "England", team2: "Argentina" },
     { date: "2026-07-18T21:00:00Z", team1: "SF Match 1 Loser", team2: "SF Match 2 Loser" },
     { date: "2026-07-19T19:00:00Z", team1: "SF Match 1 Winner", team2: "SF Match 2 Winner" }
 ];
@@ -1532,7 +1518,7 @@ const resultsData = [
     /* ========================================== *
      * QUARTER-FINAL                              *
      * ========================================== */
-    {
+{
         date: "2026-07-09T20:00:00Z", group: "Quarter Final",
         team1: "France", team2: "Morocco", score1: 2, score2: 0,
         stadium: "Boston Stadium", attendance: "63,811",
@@ -1541,6 +1527,46 @@ const resultsData = [
             { type: "goal", text: "O. Dembélé (66')" }
         ],
         events2: []
+    }, // <-- Tanda koma ditambah di sini
+    {
+        date: "2026-07-11T03:00:00Z", group: "Quarter Final",
+        team1: "Spain", team2: "Belgium", score1: 2, score2: 1,
+        stadium: "SoFi Stadium", attendance: "70,492",
+        events1: [
+            { type: "goal", text: "F. Ruiz Peña (30')" },
+            { type: "goal", text: "M. Merino (88')" }
+        ],
+        events2: [
+            { type: "goal", text: "C. de Ketelaere (41')" }
+        ]
+    },
+    {
+        date: "2026-07-12T02:00:00Z", group: "Quarter Final",
+        team1: "Norway", team2: "England", score1: 1, score2: 2,
+        stadium: "Hard Rock Stadium", attendance: "64,478",
+        note: "After Extra Time",
+        events1: [
+            { type: "goal", text: "A. Schjelderup (36')" }
+        ],
+        events2: [
+            { type: "goal", text: "J. Bellingham (45+2')" },
+            { type: "goal", text: "J. Bellingham (93')" }
+        ]
+    },
+    {
+        date: "2026-07-12T07:00:00Z", group: "Quarter Final",
+        team1: "Argentina", team2: "Switzerland", score1: 3, score2: 1,
+        stadium: "GEHA Field at Arrowhead Stadium", attendance: "69,045",
+        note: "After Extra Time",
+        events1: [
+            { type: "goal", text: "A. Mac Allister (10')" },
+            { type: "goal", text: "J. Álvarez (112')" },
+            { type: "goal", text: "L. Martínez (120+1')" }
+        ],
+        events2: [
+            { type: "goal", text: "D. Ndoye (67')" },
+            { type: "red", text: "B. Embolo (72')" }
+        ]
     }
 ];
 // Standings raw data mapping
