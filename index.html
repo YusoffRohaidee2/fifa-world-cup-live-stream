@@ -1753,66 +1753,55 @@ function renderResults() {
         let events2Html = '';
         r.events2.forEach(e => {
             const icon = e.type === 'goal' ? '<i class="fa-solid fa-football goal-icon"></i>' : '<i class="fa-solid fa-square card-red"></i>';
-            events2Html += `<div class="event-item event-item.rev"><span>${e.text}</span> ${icon}</div>`;
+            // Dibetulkan: Menukar 'event-item.rev' kepada 'event-item rev' supaya class CSS berfungsi dengan betul
+            events2Html += `<div class="event-item rev"><span>${e.text}</span> ${icon}</div>`;
         });
 
-        // 1. TAMBAH DI SINI: Semak jika ada nota, jika ada buat HTML untuk nota tersebut
+        // Semak jika ada nota perlawanan
         let noteHtml = '';
         if (r.note) {
             noteHtml = `<div class="match-note">After Extra Time : ${r.note}</div>`;
         }
 
-        // 2. MASUKKAN `noteHtml` ke dalam template kad anda
-        // Contoh struktur kad (sesuaikan dengan susunan HTML asal anda):
-        const cardHtml = `
-            <div class="match-card">
-                <div class="match-date">${localDateStr}</div>
-                <div class="match-events">
-                    <div class="team-1-events">${events1Html}</div>
-                    <div class="team-2-events">${events2Html}</div>
-                </div>
-                ${noteHtml} 
+        // Cipta kad perlawanan menggunakan kaedah document.createElement
+        const card = document.createElement('div');
+        card.className = 'schedule-card';
+        card.innerHTML = `
+            <div class="match-header">
+                <span class="match-group">${r.group}</span>
+                <span class="match-date-gmt" style="color: var(--accent-green); font-weight:700;"><i class="fa-solid fa-circle-check"></i> FT</span>
             </div>
+            <div class="teams">
+                <div class="team"><i class="fa-solid fa-shield-halved"></i><span>${r.team1}</span></div>
+                <div class="score-display">${r.score1} : ${r.score2}</div>
+                <div class="team"><i class="fa-solid fa-shield-halved"></i><span>${r.team2}</span></div>
+            </div>
+            <div class="match-details-box">
+                <div class="detail-row"><span>Stadium: <strong>${r.stadium}</strong></span></div>
+                <div class="detail-row"><span>Attendance: <strong>${Number(r.attendance.replace(/,/g, '')).toLocaleString()}</strong></span><span>Date: <strong>${localDateStr}</strong></span></div>
+            </div>
+            <div class="events-list">
+                <div class="team-events">${events1Html}</div>
+                <div class="team-events right">${events2Html}</div>
+            </div>
+            ${noteHtml}
         `;
+        
+        container.appendChild(card);
+    }); // Penutup loop forEach yang betul di sini
 
-        container.insertAdjacentHTML('beforeend', cardHtml);
-    });
-
-                const card = document.createElement('div');
-                card.className = 'schedule-card';
-                card.innerHTML = `
-                    <div class="match-header">
-                        <span class="match-group">${r.group}</span>
-                        <span class="match-date-gmt" style="color: var(--accent-green); font-weight:700;"><i class="fa-solid fa-circle-check"></i> FT</span>
-                    </div>
-                    <div class="teams">
-                        <div class="team"><i class="fa-solid fa-shield-halved"></i><span>${r.team1}</span></div>
-                        <div class="score-display">${r.score1} : ${r.score2}</div>
-                        <div class="team"><i class="fa-solid fa-shield-halved"></i><span>${r.team2}</span></div>
-                    </div>
-                    <div class="match-details-box">
-                        <div class="detail-row"><span>Stadium: <strong>${r.stadium}</strong></span></div>
-                        <div class="detail-row"><span>Attendance: <strong>${Number(r.attendance.replace(/,/g, '')).toLocaleString()}</strong></span><span>Date: <strong>${localDateStr}</strong></span></div>
-                    </div>
-                    <div class="events-list">
-                        <div class="team-events">${events1Html}</div>
-                        <div class="team-events right">${events2Html}</div>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-
-            const footerEl = document.createElement('div');
-            footerEl.className = 'results-footer';
-            footerEl.innerHTML = `
-                <a href="https://www.skysports.com/fifa-world-cup-scores-fixtures" target="_blank" class="credit-link">
-                    <span data-en="Courtesy (C) by :" data-my="Ihsan (C) oleh :">Courtesy (C) by :</span>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Sky_Sport_-_Logo_2026.svg/3840px-Sky_Sport_-_Logo_2026.svg.png" class="credit-logo" alt="Sky Sports">
-                    <span style="font-size: 0.8rem; color: var(--accent-blue);" data-en="(Click the logo to go to the website)" data-my="(Klik logo untuk layari laman web)">(Click the logo to go to the website)</span>
-                </a>
-            `;
-            container.appendChild(footerEl);
-        }
+    // Cipta dan tambah footer selepas semua kad selesai dirender
+    const footerEl = document.createElement('div');
+    footerEl.className = 'results-footer';
+    footerEl.innerHTML = `
+        <a href="https://www.skysports.com/fifa-world-cup-scores-fixtures" target="_blank" class="credit-link">
+            <span data-en="Courtesy (C) by :" data-my="Ihsan (C) oleh :">Courtesy (C) by :</span>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Sky_Sport_-_Logo_2026.svg/3840px-Sky_Sport_-_Logo_2026.svg.png" class="credit-logo" alt="Sky Sports">
+            <span style="font-size: 0.8rem; color: var(--accent-blue);" data-en="(Click the logo to go to the website)" data-my="(Klik logo untuk layari laman web)">(Click the logo to go to the website)</span>
+        </a>
+    `;
+    container.appendChild(footerEl);
+}
 
         function renderStandings() {
             const container = document.getElementById('standings-container');
