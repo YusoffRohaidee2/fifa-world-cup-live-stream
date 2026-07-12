@@ -359,41 +359,44 @@
         <button class="lang-btn" onclick="toggleLanguage()">EN / MY</button>
     </div>
 
-    <div id="page-live" class="page-content active">
-        <div class="dashboard">
-            <div class="player-section">
-                <div class="player-container">
-                    <div class="video-box">
-                        <video id="fifa-player" class="video-js vjs-big-play-centered" controls preload="auto" crossOrigin="anonymous"></video>
-                    </div>
-
-                    <div class="player-info">
-                        <div class="player-main-details">
-                            <img id="channel-logo-display" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Play_logo.svg/3840px-Play_logo.svg.png" alt="Broadcast Feed">                                <div style="display: flex; align-items: center;">
-                                    <span class="status-dot"></span>
-                                    <span id="feed-badge" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-green);" data-en="OFFICIAL BROADCAST FEED" data-my="SALURAN PENYIARAN RASMI">OFFICIAL BROADCAST FEED</span>
-                                </div>
-                                <h2 id="now-playing-title" style="margin: 5px 0 0; font-size: 1.8rem; font-family: 'Poppins';" data-en="Select a Channel" data-my="Pilih Saluran">Select a Channel</h2>
-                            </div>
-                        </div>
-                        
-                        <div class="player-loading-notice">
-                            <i class="fa-solid fa-circle-info" style="color: var(--accent-orange);"></i>
-                            <span data-en="Notice: Please wait a moment if the stream takes longer to load." data-my="Makluman: Sila tunggu sebentar jika siaran mengambil masa yang agak lama untuk dimuatkan.">Notice: Please wait a moment if the stream takes longer to load.</span>
-                        </div>
-                    </div>
+<div id="page-live" class="page-content active">
+    <div class="dashboard">
+        <div class="player-section">
+            <div class="player-container">
+                
+                <div class="video-box">
+                    <video id="fifa-player" class="video-js vjs-big-play-centered" controls preload="auto" crossorigin="anonymous"></video>
                 </div>
-            </div>
+
+                <div class="player-info">
+                    <div class="player-main-details">
+                        <img id="channel-logo-display" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Play_logo.svg/3840px-Play_logo.svg.png" alt="Broadcast Feed">                                
+                        
+                        <div class="player-text-details" style="display: flex; flex-direction: column; justify-content: center;">
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span class="status-dot"></span>
+                                <span id="feed-badge" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-green);" data-en="OFFICIAL BROADCAST FEED" data-my="SALURAN PENYIARAN RASMI">OFFICIAL BROADCAST FEED</span>
+                            </div>
+                            <h2 id="now-playing-title" style="margin: 5px 0 0; font-size: 1.8rem; font-family: 'Poppins';" data-en="Select a Channel" data-my="Pilih Saluran">Select a Channel</h2>
+                        </div>
+                    </div>
+                    
+                    <div class="player-loading-notice" style="margin-top: 15px;">
+                        <i class="fa-solid fa-circle-info" style="color: var(--accent-orange); margin-right: 5px;"></i>
+                        <span data-en="Notice: Please wait a moment if the stream takes longer to load." data-my="Makluman: Sila tunggu sebentar jika siaran mengambil masa yang agak lama untuk dimuatkan.">Notice: Please wait a moment if the stream takes longer to load.</span>
+                    </div>
+                </div> </div> </div> </div> </div>
 
 <div class="sidebar">
     <div class="channels-list-wrapper">
 
+        <!-- SEGMEN: SOMOY TV -->
         <div class="section-header-group">
-            <div class="section-header" data-en="Somoy TV Live Stream" data-my="Siaran Langsung Somoy TV">Siaran Langsung Somoy TV</div>
+            <div class="section-header" data-en="Somoy TV Live Stream" data-my="Siaran Langsung Somoy TV">Somoy TV Live Stream</div>
         </div>
 
         <div class="channel-card" onclick="streamHLS('https://live.thebosstv.com:30443/dwlive/Somoy-TV/chunks.m3u8', 'Somoy News TV', this, 'https://i.imgur.com/i54AQic.png')">
-            <img src="https://i.imgur.com/i54AQic.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+            <img src="https://i.imgur.com/i54AQic.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;" alt="Somoy News TV">
             <div class="card-info">
                 <h4>Somoy News TV</h4>
                 <p>Global Feed | Bangladesh<br><small>Commentary in English</small></p>
@@ -401,14 +404,14 @@
             <span class="tag" style="background: var(--accent-blue); color: #000;">720p</span>
         </div>
 
-                <!-- SEGMEN: BEIN SPORTS -->
+        <!-- SEGMEN: BEIN SPORTS -->
         <div class="section-header-group">
             <div class="section-header" data-en="BeIN Sports Streams" data-my="Siaran Langsung BeIN Sports">BeIN Sports Streams</div>
         </div>
 
         <!-- BeIN Sports France 1 -->
         <div class="channel-card" onclick="streamHLS('https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8', 'BeIN Sports France 1', this, 'https://i.imgur.com/tXqMkzA.png')">
-            <img src="https://i.imgur.com/tXqMkzA.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+            <img src="https://i.imgur.com/tXqMkzA.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;" alt="BeIN Sports France 1">
             <div class="card-info">
                 <h4>BeIN Sports France 1</h4>
                 <p>Global Feed | Qatar<br><small>Commentary in French</small></p>
@@ -416,13 +419,14 @@
             <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
         </div>
 
-                <div class="section-header-group">
-            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/97/IRIB_Logo.svg/1280px-IRIB_Logo.svg.png" class="section-header-logo">
+        <!-- SEGMEN: IRIB -->
+        <div class="section-header-group">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/97/IRIB_Logo.svg/1280px-IRIB_Logo.svg.png" class="section-header-logo" alt="IRIB Logo">
             <div class="section-header" data-en="IRIB Streams" data-my="Siaran Langsung IRIB">IRIB Streams</div>
         </div>
 
         <div class="channel-card" onclick="streamHLS('https://edge22.776740.ir.cdn.ir/hls2/tv3.m3u8', 'TV3', this, 'https://tvfarsi.com/wp-content/uploads/2024/05/IRIB-Shabake-3-Live-Irans-Youthful-Hub-for-Sports-Entertainment-and-Beyond.webp')">
-            <img src="https://tvfarsi.com/wp-content/uploads/2024/05/IRIB-Shabake-3-Live-Irans-Youthful-Hub-for-Sports-Entertainment-and-Beyond.webp" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
+            <img src="https://tvfarsi.com/wp-content/uploads/2024/05/IRIB-Shabake-3-Live-Irans-Youthful-Hub-for-Sports-Entertainment-and-Beyond.webp" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;" alt="TV3">
             <div class="card-info">
                 <h4>TV3</h4>
                 <p>Global Feed | IR Iran</p>
