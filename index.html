@@ -374,37 +374,20 @@
     <div class="channels-list-wrapper">
 
         <!-- ========================================== -->
-        <!-- PRIORITY 1: ENGLISH COMMENTARY STREAM      -->
-        <!-- ========================================== -->
-
-        <!-- SEGMENT: SOMOY TV -->
-        <div class="section-header-group">
-            <div class="section-header" data-en="Somoy TV Live Stream" data-my="Siaran Langsung Somoy TV">Somoy TV Live Stream</div>
-        </div>
-        <div class="channel-card" onclick="streamHLS('https://live.thebosstv.com:30443/dwlive/Somoy-TV/chunks.m3u8', 'Somoy News TV', this, 'https://i.imgur.com/i54AQic.png')">
-            <img src="https://i.imgur.com/i54AQic.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
-            <div class="card-info">
-                <h4>Somoy News TV</h4>
-                <p>Global Feed | Bangladesh<br><small>Commentary in English</small></p>
-            </div>
-            <span class="tag" style="background: var(--accent-blue); color: #000;">720p</span>
-        </div>
-
-        <!-- ========================================== -->
         <!-- PRIORITY 2: SPORTS / OTHER LANGUAGES       -->
         <!-- ========================================== -->
 
         <!-- SEGMENT: BEIN LIVE EVENT (BARU DITAMBAH) -->
         <div class="section-header-group">
-            <div class="section-header" data-en="Bein Sports Streams" data-my="Siaran Langsung Bein Sport">Bein Sports Streams</div>
+            <div class="section-header" data-en="Fussball TV Streams" data-my="Siaran Langsung Fussball TV">Fusball TV Streams</div>
         </div>
-        <div class="channel-card" onclick="streamHLS('https://cp11.adabmedia.com/hls2/sport.m3u8', 'Bein Sports Live Event', this, 'https://i.imgur.com/RLrMBlm.png')">
+        <div class="channel-card" onclick="streamHLS('https://cp11.adabmedia.com/hls2/sport.m3u8', 'Fusball TV1', this, 'https://i.imgur.com/RLrMBlm.png')">
             <img src="https://i.imgur.com/RLrMBlm.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
             <div class="card-info">
-                <h4>Bein Sports Live Event</h4>
-                <p>Global Feed | Qatar<br><small>Commentary in Arabic</small></p>
+                <h4>Fusball TV1</h4>
+                <p>Global Feed<br><small>Commentary in local language</small></p>
             </div>
-            <span class="tag" style="background: var(--accent-blue); color: #000;">720p</span>
+            <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
         </div>
 
         <!-- SEGMENT: IRIB 3 -->
@@ -474,10 +457,8 @@
     <script>
         // Schedule data in GMT+0
 const scheduleData = [
-    { date: "2026-07-14T19:00:00Z", team1: "France", team2: "Spain" },
-    { date: "2026-07-15T19:00:00Z", team1: "England", team2: "Argentina" },
-    { date: "2026-07-18T21:00:00Z", team1: "SF Match 1 Loser", team2: "SF Match 2 Loser" },
-    { date: "2026-07-19T19:00:00Z", team1: "SF Match 1 Winner", team2: "SF Match 2 Winner" }
+    { date: "2026-07-18T21:00:00Z", team1: "France", team2: "England" },
+    { date: "2026-07-19T19:00:00Z", team1: "Spain", team2: "Argentina" }
 ];
 
 
@@ -1289,8 +1270,12 @@ const resultsData = [
         ]
     },
 
+/* ========================================== *
+     * ROUND OF 32                                *
+     * ========================================== */
+
     {
-        date: "2026-06-28T20:00:00Z", group: "Group A",
+        date: "2026-06-28T20:00:00Z", group: "Round of 32",
         team1: "South Africa", team2: "Canada", score1: 0, score2: 1,
         stadium: "SoFi Stadium", attendance: "69,237",
         events1: [],
@@ -1299,7 +1284,7 @@ const resultsData = [
         ]
     },
     {
-        date: "2026-06-29T18:00:00Z", group: "Group C",
+        date: "2026-06-29T18:00:00Z", group: "Round of 32",
         team1: "Brazil", team2: "Japan", score1: 2, score2: 1,
         stadium: "NRG Stadium", attendance: "68,777",
         events1: [
@@ -1311,7 +1296,7 @@ const resultsData = [
         ]
     },
     {
-        date: "2026-06-29T21:30:00Z", group: "Group E", note: "After Extra Time - Paraguay win 4-3 on penalties",
+        date: "2026-06-29T21:30:00Z", group: "Round of 32", note: "After Extra Time - Paraguay win 4-3 on penalties",
         team1: "Germany", team2: "Paraguay", score1: 1, score2: 1,
         stadium: "Boston Stadium", attendance: "63,945",
         events1: [
@@ -1322,7 +1307,7 @@ const resultsData = [
         ]
     },
     {
-        date: "2026-06-30T02:00:00Z", group: "Group F", note: "After Extra Time - Morocco win 3-2 on penalties",
+        date: "2026-06-30T02:00:00Z", group: "Round of 32", note: "After Extra Time - Morocco win 3-2 on penalties",
         team1: "Netherlands", team2: "Morocco", score1: 1, score2: 1,
         stadium: "Estadio BBVA", attendance: "51,243",
         events1: [
@@ -1333,7 +1318,7 @@ const resultsData = [
         ]
     },
     {
-        date: "2026-06-30T18:00:00Z", group: "Group E",
+        date: "2026-06-30T18:00:00Z", group: "Round of 32",
         team1: "Ivory Coast", team2: "Norway", score1: 1, score2: 2,
         stadium: "Dallas Stadium", attendance: "69,665",
         events1: [
@@ -1345,7 +1330,7 @@ const resultsData = [
         ]
     },
     {
-        date: "2026-06-30T22:00:00Z", group: "Group I",
+        date: "2026-06-30T22:00:00Z", group: "Round of 32",
         team1: "France", team2: "Sweden", score1: 3, score2: 0,
         stadium: "MetLife Stadium", attendance: "80,663",
         events1: [
@@ -1355,7 +1340,7 @@ const resultsData = [
         events2: []
     },
     {
-        date: "2026-07-01T02:00:00Z", group: "Group A",
+        date: "2026-07-01T02:00:00Z", group: "Round of 32",
         team1: "Mexico", team2: "Ecuador", score1: 2, score2: 0,
         stadium: "Azteca Stadium", attendance: "80,824",
         events1: [
@@ -1367,7 +1352,7 @@ const resultsData = [
         ]
     },
     {
-        date: "2026-07-01T17:00:00Z", group: "Group L",
+        date: "2026-07-01T17:00:00Z", group: "Round of 32",
         team1: "England", team2: "DR Congo", score1: 2, score2: 1,
         stadium: "Mercedes-Benz Stadium", attendance: "68,239",
         events1: [
@@ -1378,7 +1363,7 @@ const resultsData = [
         ]
     },
     {
-        date: "2026-07-01T21:00:00Z", group: "Group G", note: "After Extra Time - Belgium win 3-2",
+        date: "2026-07-01T21:00:00Z", group: "Round of 32", note: "After Extra Time - Belgium win 3-2",
         team1: "Belgium", team2: "Senegal", score1: 3, score2: 2,
         stadium: "Lumen Field", attendance: "66,925",
         events1: [
@@ -1391,7 +1376,7 @@ const resultsData = [
         ]
     },
     {
-        date: "2026-07-02T01:00:00Z", group: "Group D",
+        date: "2026-07-02T01:00:00Z", group: "Round of 32",
         team1: "United States of America", team2: "Bosnia and Herzegovina", score1: 2, score2: 0,
         stadium: "Levi's Stadium", attendance: "68,827",
         events1: [
@@ -1402,7 +1387,7 @@ const resultsData = [
         events2: []
     },
     {
-        date: "2026-07-02T20:00:00Z", group: "Group H",
+        date: "2026-07-02T20:00:00Z", group: "Round of 32",
         team1: "Spain", team2: "Austria", score1: 3, score2: 0,
         stadium: "SoFi Stadium", attendance: "70,492",
         events1: [
@@ -1412,7 +1397,7 @@ const resultsData = [
         events2: []
     },
     {
-        date: "2026-07-03T00:00:00Z", group: "Group K",
+        date: "2026-07-03T00:00:00Z", group: "Round of 32",
         team1: "Portugal", team2: "Croatia", score1: 2, score2: 1,
         stadium: "Toronto Stadium", attendance: "43,036",
         events1: [
@@ -1424,7 +1409,17 @@ const resultsData = [
         ]
     },
     {
-        date: "2026-07-03T19:00:00Z", group: "Group D", note: "After Extra Time - Egypt win 4-2 on penalties",
+        date: "2026-07-03T03:00:00Z", group: "Round of 32",
+        team1: "Switzerland", team2: "Algeria", score1: 2, score2: 0,
+        stadium: "BC Place", attendance: "52,497",
+        events1: [
+            { type: "goal", text: "B. Embolo (10')" },
+            { type: "goal", text: "D. Ndoye (46')" }
+        ],
+        events2: []
+    },
+    {
+        date: "2026-07-03T19:00:00Z", group: "Round of 32", note: "After Extra Time - Egypt win 4-2 on penalties",
         team1: "Australia", team2: "Egypt", score1: 1, score2: 1,
         stadium: "Dallas Stadium", attendance: "70,244",
         events1: [
@@ -1435,7 +1430,7 @@ const resultsData = [
         ]
     },
     {
-        date: "2026-07-03T23:00:00Z", group: "Group J", note: "After Extra Time - Argentina win 3-2",
+        date: "2026-07-03T23:00:00Z", group: "Round of 32", note: "After Extra Time - Argentina win 3-2",
         team1: "Argentina", team2: "Cape Verde", score1: 3, score2: 2,
         stadium: "Hard Rock Stadium", attendance: "64,478",
         events1: [
@@ -1449,7 +1444,7 @@ const resultsData = [
         ]
     },
     {
-        date: "2026-07-04T02:30:00Z", group: "Group K",
+        date: "2026-07-04T02:30:00Z", group: "Round of 32",
         team1: "Colombia", team2: "Ghana", score1: 1, score2: 0,
         stadium: "GEHA Field at Arrowhead Stadium", attendance: "69,045",
         events1: [
@@ -1578,7 +1573,7 @@ const resultsData = [
         date: "2026-07-12T02:00:00Z", group: "Quarter Final",
         team1: "Norway", team2: "England", score1: 1, score2: 2,
         stadium: "Hard Rock Stadium", attendance: "64,478",
-        note: "After Extra Time",
+        note: "After Extra Time - England win 2-1",
         events1: [
             { type: "goal", text: "A. Schjelderup (36')" }
         ],
@@ -1591,7 +1586,7 @@ const resultsData = [
         date: "2026-07-12T07:00:00Z", group: "Quarter Final",
         team1: "Argentina", team2: "Switzerland", score1: 3, score2: 1,
         stadium: "GEHA Field at Arrowhead Stadium", attendance: "69,045",
-        note: "After Extra Time",
+        note: "After Extra Time - Argentina win 3-1",
         events1: [
             { type: "goal", text: "A. Mac Allister (10')" },
             { type: "goal", text: "J. Álvarez (112')" },
@@ -1600,6 +1595,33 @@ const resultsData = [
         events2: [
             { type: "goal", text: "D. Ndoye (67')" },
             { type: "red", text: "B. Embolo (72')" }
+        ]
+    },
+
+    /* ========================================== *
+     * SEMI-FINAL                                 *
+     * ========================================== */
+
+    {
+        date: "2026-07-14T19:00:00Z", group: "Semi Final",
+        team1: "France", team2: "Spain", score1: 0, score2: 2,
+        stadium: "Dallas Stadium", attendance: "70,176",
+        events1: [],
+        events2: [
+            { type: "goal", text: "M. Oyarzabal (22', pen)" },
+            { type: "goal", text: "P. Porro (58')" }
+        ]
+    },
+    {
+        date: "2026-07-15T19:00:00Z", group: "Semi Final",
+        team1: "England", team2: "Argentina", score1: 1, score2: 2,
+        stadium: "Mercedes-Benz Stadium", attendance: "68,239",
+        events1: [
+            { type: "goal", text: "A. Gordon (55')" }
+        ],
+        events2: [
+            { type: "goal", text: "E. Fernández (85')" },
+            { type: "goal", text: "L. Martínez (90+2')" }
         ]
     }
 ];
