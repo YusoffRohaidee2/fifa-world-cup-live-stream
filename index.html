@@ -452,12 +452,12 @@
 
         <!-- SEGMENT: BEIN LIVE EVENT (BARU DITAMBAH) -->
         <div class="section-header-group">
-            <div class="section-header" data-en="Fussball TV Streams" data-my="Siaran Langsung Fussball TV">Fusball TV Streams</div>
+            <div class="section-header" data-en="Fussball TV Streams" data-my="Siaran Langsung Fussball TV">Fussball TV Streams</div>
         </div>
         <div class="channel-card" onclick="streamHLS('https://cp11.adabmedia.com/hls2/sport.m3u8', 'Fusball TV1', this, 'https://upload.wikimedia.org/wikipedia/commons/5/55/Magenta_Telekom_Logo.svg')">
             <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Magenta_Telekom_Logo.svg" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
             <div class="card-info">
-                <h4>Fusball TV1</h4>
+                <h4>Fussball TV1</h4>
                 <p>Global Feed<br><small>Commentary in local language</small></p>
             </div>
             <span class="tag" style="background: var(--accent-blue); color: #000;">1080p</span>
@@ -474,21 +474,6 @@
                 <p>Global Feed | Iran<br><small>Commentary in Persian</small></p>
             </div>
             <span class="tag" style="background: var(--accent-blue); color: #000;">HD</span>
-        </div>
-
-                <!-- SEGMEN: SIGMA TV -->
-        <div class="section-header-group">
-            <div class="section-header" data-en="Sigma TV Streams" data-my="Siaran Langsung Sigma TV">Sigma TV Streams</div>
-        </div>
-
-        <!-- Sigma TV -->
-        <div class="channel-card" onclick="streamHLS('https://sl2.sigmatv.com/hls/live.m3u8', 'Sigma TV', this, 'https://i.imgur.com/DXKx102.png')">
-            <img src="https://i.imgur.com/DXKx102.png" class="card-img" style="background: rgba(255,255,255,0.05); padding: 4px;">
-            <div class="card-info">
-                <h4>Sigma TV</h4>
-                <p>Global Feed | Cyprus<br><small>Commentary in local language</small></p>
-            </div>
-            <span class="tag" style="background: var(--accent-blue); color: #000;">720p</span>
         </div>
 
                 </div>
@@ -1856,8 +1841,8 @@ const resultsData = [
                         <div class="team"><i class="fa-solid fa-shield-halved"></i><span>${s.team2}</span></div>
                     </div>
                     <div class="match-details-box" style="margin-bottom:0;">
-                        <div class="detail-row"><span><i class="fa-solid fa-calendar" style="margin-right:5px; color:var(--accent-blue);"></i> Tarikh: <strong>${localDateStr}</strong></span></div>
-                        <div class="detail-row"><span><i class="fa-solid fa-clock" style="margin-right:5px; color:var(--accent-blue);"></i> Masa (Sistem): <strong>${localTimeStr}</strong></span></div>
+                        <div class="detail-row"><span><i class="fa-solid fa-calendar" style="margin-right:5px; color:var(--accent-blue);"></i> Date: <strong>${localDateStr}</strong></span></div>
+                        <div class="detail-row"><span><i class="fa-solid fa-clock" style="margin-right:5px; color:var(--accent-blue);"></i> Kick-off: <strong>${localTimeStr}</strong></span></div>
                     </div>
                 `;
                 container.appendChild(card);
